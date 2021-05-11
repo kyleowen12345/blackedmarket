@@ -33,7 +33,7 @@ export async function getServerSideProps({ query }) {
 }
 
 export default function Home({page,initialApolloState}) {
- 
+ console.log(page)
   return (
     <div >
       <Homepage page={page}/>
