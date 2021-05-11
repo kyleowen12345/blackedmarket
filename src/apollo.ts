@@ -15,7 +15,7 @@ import {
   function createApolloClient() {
     return new ApolloClient({
       ssrMode: true,
-      uri:  `https://blackedmarketapi.herokuapp.com/graphql`,
+      uri:  Url,
       cache: new InMemoryCache(),
     });
   }

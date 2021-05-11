@@ -2,41 +2,27 @@ import { useMutation, gql } from "@apollo/client"
 import { useForm } from 'react-hook-form';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router'
-const SIGNUP = gql`
-mutation($name:String!,$email:String!,$password:String!){
-    createUser(name:$name,email:$email,password:$password){
+const LOGIN = gql`
+mutation($email:String!,$password:String!){
+    login(email:$email,password:$password){
       token
     }
   }
 `;
-export default function Register() {
+export default function Login() {
     const router = useRouter()
-    const [signup,{ loading,error }] = useMutation(SIGNUP,{ errorPolicy: 'all' });
+    const [login,{ loading,error }] = useMutation(LOGIN,{ errorPolicy: 'all' });
     const { register, formState: { errors } , handleSubmit } = useForm();
-    const onSubmit = async({name,email,password}) => {
-            const {data}= await  signup({variables:{name:name,email:email,password:password}})
+    const onSubmit = async({email,password}) => {
+            const {data}= await  login({variables:{email:email,password:password}})
             if(data){
-            Cookies.set('blackedmarket', data?.createUser.token,{expires:1,secure:true});
+            Cookies.set('blackedmarket', data?.login.token,{expires:1,secure:true});
             router.push('/?page=1')
             }
     };
     return (
       <div className="App">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <label htmlFor="name">First Name</label>
-          <input
-            placeholder="firstName"
-            {...register('name', {
-              required: 'this is a required',
-              minLength: {
-                value: 5,
-                message: 'Min length is 5',
-              },
-            })}
-          />
-          <br />
-          {errors.name && errors.name.message}
-          <br />
           <label htmlFor="email">Email</label>
           <input
             type="text"
