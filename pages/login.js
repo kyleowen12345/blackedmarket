@@ -1,7 +1,7 @@
 import { useMutation, gql } from "@apollo/client"
 import { useForm } from 'react-hook-form';
-import Cookies from 'js-cookie';
 import { useRouter } from 'next/router'
+import { useAuth } from "../lib/auth";
 const LOGIN = gql`
 mutation($email:String!,$password:String!){
     login(email:$email,password:$password){
@@ -11,13 +11,14 @@ mutation($email:String!,$password:String!){
 `;
 export default function Login() {
     const router = useRouter()
-    const [login,{ loading,error }] = useMutation(LOGIN,{ errorPolicy: 'all' });
+    const {Login}=useAuth()
+    const [login,{data, loading,error }] = useMutation(LOGIN,{ errorPolicy: 'all' });
     const { register, formState: { errors } , handleSubmit } = useForm();
     const onSubmit = async({email,password}) => {
-            const {data}= await  login({variables:{email:email,password:password}})
+            const{data}=await  login({variables:{email:email,password:password}})
             if(data){
-            Cookies.set('blackedmarket', data?.login.token,{expires:1,secure:true});
-            router.push('/?page=1')
+             Login(data?.login.token)
+             router.push('/stores/1')
             }
     };
     return (
@@ -53,8 +54,8 @@ export default function Login() {
           {errors.password && errors.password.message}
           <br />
           { error && <p>{error?.message}</p> }
-     {loading ? <p className="p-2 text-white font-mono">Loading...</p>:<button type="submit" disabled={loading}>
-       Signup
+     {loading ? <p className="p-2 text-white font-mono">Loading...</p>:<button type="submit" disabled={loading||data}>
+       Login
           </button>}
      
         </form>

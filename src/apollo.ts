@@ -11,12 +11,24 @@ import {
   let apolloClient: ApolloClient<NormalizedCacheObject>;
   
   
-  
+  export const UserAuth = makeVar('');
   function createApolloClient() {
     return new ApolloClient({
       ssrMode: true,
       uri:  Url,
-      cache: new InMemoryCache(),
+      cache: new InMemoryCache({
+     typePolicies:{
+       Query:{
+       fields:{
+         UserAuth:{
+           read(){
+             return UserAuth()
+           }
+         }
+       }
+     }
+   }
+      }),
     });
   }
   
@@ -32,7 +44,7 @@ import {
   
     return apolloClient;
   }
-  export const PageNumber = makeVar([]);
+  
   export function useApollo(initialState) {
     const store = useMemo(() => initializeApollo(initialState), [initialState]);
     return store;

@@ -1,17 +1,15 @@
 import React from 'react'
-import { useQuery } from "@apollo/client";
-import {STORES} from "../pages/index"
 import ReactPaginate from "react-paginate"
 import { useRouter } from "next/router"
 import Image from 'next/image'
+import Link from 'next/link'
 
-const Homepage = ({page}) => {
+const Homepage = ({data,loading}) => {
     const router = useRouter()
-    const { data, loading,error } = useQuery( STORES,{variables:{curPage: page.toString()}} );
-    const handlePagination = page => {
+    const handlePagination = id => {
         const path = router.pathname
         const query = router.query
-        query.page = page.selected + 1
+        query.id = id.selected + 1
         router.push({
           pathname: path,
           query: query,
@@ -19,10 +17,12 @@ const Homepage = ({page}) => {
       }
     return (
         <div>
-          {loading && <h1>Loading..</h1>}
-          {
-             data?.storespaginate.stores.map(i=>(
-                <div key={i.id}>
+        {loading && <h1>Loading..</h1>}
+    <Link href="/user/profile"><a>Profile</a></Link>
+    <h1>Stores</h1>
+        {
+          data?.storespaginate.stores.map(i=>(
+          <div key={i.id}>
        <Image
         src={i.storeBackgroundImage}
         alt={i.storeName}
@@ -34,7 +34,7 @@ const Homepage = ({page}) => {
        </div> 
              ))
           }
-            <ReactPaginate
+        <ReactPaginate
         marginPagesDisplayed={2}
         pageRangeDisplayed={5}
         previousLabel={"previous"}
