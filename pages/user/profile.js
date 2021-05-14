@@ -31,13 +31,12 @@ export async function getServerSideProps({req }) {
 
 export default function Home({initialApolloState}) {
     const { data,error,loading } = useQuery( PROFILE);
-    console.log(data)
     console.log(error?.message)
   return (
     <div >
        {loading && <h1>Loading..</h1>}
        {error && <h1>{error?.message}</h1>}
-     {data&& <Profile user={data?.user}/>}
+     {data && <Profile user={data?.user}/>}
     </div>
   )
 }

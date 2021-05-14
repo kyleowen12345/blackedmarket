@@ -15,7 +15,6 @@ export default function Register() {
     const onSubmit = async({email}) => {
        await  resetpassword({variables:{email:email}})      
     };
-    console.log(data)
     console.log(error)
     return (
       <div className="App">

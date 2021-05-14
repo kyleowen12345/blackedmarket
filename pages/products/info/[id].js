@@ -1,26 +1,25 @@
 import {  gql  } from "@apollo/client";
-import Homepage from "../../components/store/Stores";
-import { initializeApollo } from "../../src/apollo.ts";
+import { initializeApollo } from "../../../src/apollo.ts";
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router"
+import ProductInfo from "../../../components/product/ProductInfo";
 import Link from 'next/link'
-export const STORES = gql`
-query paginate($curPage:String!) {
-    storespaginate(curPage:$curPage){
-      stores{
-        id
+export const PRODUCTINFO = gql`
+ query ($id:ID!){
+    productInfo(id:$id){
+     productName 
+      price
+      productStocks
+      sold
+      image
+      description
+      createdAt
+      storeName{
         storeName
-        storeBackgroundImage
-        sellerName{
-          id
-          email
-          name
-        }
-        storeType
       }
-      curPage
-      maxPage
-      storeCount
+      storeOwner{
+        email
+      }
     }
   }
 `;
@@ -28,8 +27,8 @@ export async function getServerSideProps(context) {
   const { id } = context.query;
   const apolloClient = initializeApollo();
   await apolloClient.query({
-    query:STORES,
-    variables:{curPage:id || "1"}
+    query:PRODUCTINFO,
+    variables:{id:id}
   });
   const initialApolloState=apolloClient.cache.extract()
   return { props: {initialApolloState} };
@@ -38,14 +37,13 @@ export async function getServerSideProps(context) {
 export default function Home() {
   const router = useRouter()
   const {id}= router.query
-  const { data, loading,error } = useQuery( STORES,{variables:{curPage:id }} );
-  console.log(loading)
+  const { data,error,loading } = useQuery( PRODUCTINFO,{variables:{id:id }} );
   return (
     <div >
       <Link href="/"><a>Home</a></Link>
       {loading && <h1>Loading..</h1>}
        {error && <h1>{error?.message}</h1>}
-       {data && <Homepage  data={data} loading={loading}/>}
+       {data && <ProductInfo product={data?.productInfo}/>}
     </div>
   )
 }

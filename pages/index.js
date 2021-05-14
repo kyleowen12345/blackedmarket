@@ -36,9 +36,8 @@ const LANDINGPAGE = gql`
 
 export default function Home({initialApolloState}) {
   const { data,error } = useQuery( LANDINGPAGE );
-  console.log(error)
+  console.log("5"-1)
   const {authToken,signOut}=useAuth()
-  console.log(authToken)
   return (
     <>
     {authToken ? <button onClick={signOut}>logout</button> : <Link href="/login"><a>Login</a></Link>}
@@ -46,6 +45,8 @@ export default function Home({initialApolloState}) {
     <Link href="/stores/1"><a>Stores</a></Link>
     <br/>
     <Link href="/user/profile"><a>Profile</a></Link>
+    <br/>
+    <Link href="/products/1"><a>Products</a></Link>
     <h1>Latest Products</h1>
    <ProductLandingPage products={data?.landingpage.products}/>
    <h1>Top Stores</h1>

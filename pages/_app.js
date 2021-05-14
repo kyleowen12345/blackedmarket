@@ -1,4 +1,4 @@
-import '../styles/globals.css'
+import '../styles/globals.scss'
 import { ApolloProvider } from "@apollo/client";
 import  {useApollo}  from "../src/apollo.ts";
 import {AuthProvider} from '../lib/auth.js'

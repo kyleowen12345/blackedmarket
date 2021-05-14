@@ -17,8 +17,6 @@ export default function Register() {
     const onSubmit = async({password}) => {
        await  newpassword({variables:{token:id,password:password}})   
     };
-    console.log(id)
-    console.log(data)
     return (
       <div className="App">
         <form onSubmit={handleSubmit(onSubmit)}>

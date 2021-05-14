@@ -3,9 +3,7 @@ import ReactPaginate from "react-paginate"
 import { useRouter } from "next/router"
 import Image from 'next/image'
 import Link from 'next/link'
-
-
-const Homepage = ({data,loading}) => {
+const Products = ({data}) => {
     const router = useRouter()
     const handlePagination = id => {
         const path = router.pathname
@@ -18,32 +16,34 @@ const Homepage = ({data,loading}) => {
       }
     return (
         <div>
-        {loading && <h1>Loading..</h1>}
     <Link href="/user/profile"><a>Profile</a></Link>
-    <h1>Stores</h1>
+    <h1>Products</h1>
         {
-          data?.storespaginate.stores.map(i=>(
+          data?.productpaginate.products.map(i=>(
           <div key={i.id}>
        <Image
-        src={i.storeBackgroundImage}
-        alt={i.storeName}
+        src={i.image}
+        alt={i.productName}
         width={500}
         height={500}
       />
-         <p>{i.storeName}</p>
-         <p>{i.sellerName.email}</p>
+         <p>{i.productName}</p>
+         <p>{i.price}</p>
+         <p>{i.description}</p>
+         <p>{i.storeName.storeName}</p>
+         <p>{i.storeOwner.email}</p>
          <Link href={`/stores/info/${i.id}`}><a>Visit</a></Link>
        </div> 
              ))
           }
         <ReactPaginate
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={5}
+        marginPagesDisplayed={1}
+        pageRangeDisplayed={2}
         previousLabel={"previous"}
         nextLabel={"next"}
         breakLabel={"..."}
-        initialPage={data?.storespaginate.curPage - 1}
-        pageCount={data?.storespaginate.maxPage}
+        initialPage={data?.productpaginate.curPage - 1}
+        pageCount={data?.productpaginate.maxPage}
         onPageChange={handlePagination}
         containerClassName={"paginate-wrap"}
         subContainerClassName={"paginate-inner"}
@@ -53,9 +53,10 @@ const Homepage = ({data,loading}) => {
         previousClassName={"paginate-previous"}
         nextClassName={"paginate-next"}
         breakLinkClassName={"paginate-break-a"}
+        breakClassName={"paginate-previous"}
       />
         </div>
     )
 }
 
-export default Homepage
+export default Products
