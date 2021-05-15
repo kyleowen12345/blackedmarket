@@ -45,7 +45,7 @@ export default function Login() {
             {...register('password', {
               required: 'this is required',
               minLength: {
-                value: 5,
+                value: 3,
                 message: 'Min length is 5',
               },
             })}
