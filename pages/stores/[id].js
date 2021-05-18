@@ -27,10 +27,15 @@ query paginate($curPage:String!) {
 export async function getServerSideProps(context) {
   const { id } = context.query;
   const apolloClient = initializeApollo();
-  await apolloClient.query({
-    query:STORES,
-    variables:{curPage:id || "1"}
-  });
+  try {
+    await apolloClient.query({
+      query:STORES,
+      variables:{curPage:id || "1"}
+    });
+  } catch (error) {
+    console.log(error)
+  }
+  
   const initialApolloState=apolloClient.cache.extract()
   return { props: {initialApolloState} };
 }

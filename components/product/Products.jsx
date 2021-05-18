@@ -32,7 +32,7 @@ const Products = ({data}) => {
          <p>{i.description}</p>
          <p>{i.storeName.storeName}</p>
          <p>{i.storeOwner.email}</p>
-         <Link href={`/stores/info/${i.id}`}><a>Visit</a></Link>
+         <Link href={`/products/info/${i.id}`}><a>Visit</a></Link>
        </div> 
              ))
           }

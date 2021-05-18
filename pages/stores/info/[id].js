@@ -26,10 +26,15 @@ export const STORESINFO = gql`
 export async function getServerSideProps(context) {
   const { id } = context.query;
   const apolloClient = initializeApollo();
-  await apolloClient.query({
-    query:STORESINFO,
-    variables:{id:id}
-  });
+  try {
+    await apolloClient.query({
+      query:STORESINFO,
+      variables:{id:id}
+    });
+  } catch (error) {
+    console.log(error)
+  }
+ 
   const initialApolloState=apolloClient.cache.extract()
   return { props: {initialApolloState} };
 }
