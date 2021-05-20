@@ -3,18 +3,25 @@ import { useMutation, gql  } from "@apollo/client";
 import { useAuth } from '../../lib/auth';
 
 const ADDTOCART = gql`
-mutation ($id:ID!,$quantity:Int,$productName:String!,$image:String!) {
-    addToCart(id:$id,quantity:$quantity,productName:$productName,image:$image){
+mutation ($id:ID!,$quantity:Int,$productName:String!,$image:String!,$price:String!) {
+    addToCart(id:$id,quantity:$quantity,productName:$productName,image:$image,price:$price){
     token
     }
   }
 `
 const AddtoCart = ({product}) => {
+    console.log(product)
     const {authToken}=useAuth()
     const [quantity,setQuantity]=useState(1)
     const [addToCart,{data, loading,error }] = useMutation(ADDTOCART,{ errorPolicy: 'all' });
     const onSubmit=async()=>{
-       await addToCart({variables:{id:product.id,quantity:quantity,productName:product.productName,image:product.image},context:{headers:{token:authToken || ""}}})
+       await addToCart({variables:{
+        id:product.id,
+        quantity:quantity,
+        productName:product.productName,
+        image:product.image,
+        price:product.price
+    },context:{headers:{token:authToken || ""}}})
     }
     console.log(error?.message)
     console.log(typeof quantity)

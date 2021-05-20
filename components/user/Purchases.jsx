@@ -31,7 +31,7 @@ const Purchases = ({history}) => {
              <p>{i.name}</p>
              <p>{i.price}</p>
              <p>{i.quantity}</p>
-             <p><Moment format="LLLL">{i.dateOfPurchase}</Moment></p>
+             <p><Moment format="LLLL">{Date.parse(i.dateOfPurchase)||i.dateOfPurchase}</Moment></p>
              <Link href={`/products/info/${i.id}`}><a>Visit</a></Link>
            </div> 
                  ))

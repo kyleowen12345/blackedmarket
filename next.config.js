@@ -21,8 +21,8 @@ module.exports = {
   
     const ContentSecurityPolicy = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com;
-    child-src *.youtube.com *.google.com;
+    script-src 'self' https://www.paypalobjects.com/api/checkout.js 'unsafe-eval' 'unsafe-inline' *.youtube.com *.paypal.com;
+    child-src *.youtube.com *.google.com *.paypal.com;
     style-src 'self' 'unsafe-inline' *.googleapis.com;
     img-src * blob: data:;
     media-src 'none';
