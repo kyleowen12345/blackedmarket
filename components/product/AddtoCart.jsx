@@ -3,8 +3,8 @@ import { useMutation, gql  } from "@apollo/client";
 import { useAuth } from '../../lib/auth';
 
 const ADDTOCART = gql`
-mutation ($id:ID!,$quantity:Int,$productName:String!,$image:String!,$price:String!) {
-    addToCart(id:$id,quantity:$quantity,productName:$productName,image:$image,price:$price){
+mutation ($id:ID!,$quantity:Int,$productName:String!,$image:String!,$price:String!,$storeName:ID!,$storeOwner:ID!) {
+    addToCart(id:$id,quantity:$quantity,productName:$productName,image:$image,price:$price,storeName:$storeName,storeOwner:$storeOwner){
     token
     }
   }
@@ -20,7 +20,9 @@ const AddtoCart = ({product}) => {
         quantity:quantity,
         productName:product.productName,
         image:product.image,
-        price:product.price
+        price:product.price,
+        storeName:product.storeName.id,
+        storeOwner:product.storeOwner.id
     },context:{headers:{token:authToken || ""}}})
     }
     console.log(error?.message)

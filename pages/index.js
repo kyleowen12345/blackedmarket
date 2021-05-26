@@ -42,6 +42,8 @@ export default function Home({initialApolloState}) {
     <>
     {authToken ? <button onClick={signOut}>logout</button> : <Link href="/login"><a>Login</a></Link>}
     <br/>
+    <Link href="/stores/createstore"><a>Create Stores</a></Link>
+    <br/>
     <Link href="/stores/1"><a>Stores</a></Link>
     <br/>
     <Link href="/user/profile"><a>Profile</a></Link>

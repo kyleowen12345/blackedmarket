@@ -20,14 +20,16 @@ module.exports = {
     }
   
     const ContentSecurityPolicy = `
-    default-src 'self';
-    script-src 'self' https://www.paypalobjects.com/api/checkout.js 'unsafe-eval' 'unsafe-inline' *.youtube.com *.paypal.com;
+    default-src 'self' blob:;
+    script-src 'self'  https://www.paypalobjects.com/api/checkout.js 'unsafe-eval' 'unsafe-inline' *.youtube.com *.paypal.com blob:;
     child-src *.youtube.com *.google.com *.paypal.com;
     style-src 'self' 'unsafe-inline' *.googleapis.com;
     img-src * blob: data:;
+    worker-src 'self' blob:;
     media-src 'none';
     connect-src *;
     font-src 'self';
+    script-src-elem 'self' blob:;
   `;
   const securityHeaders = [
     // https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP

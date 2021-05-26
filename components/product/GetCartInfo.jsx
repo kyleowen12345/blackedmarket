@@ -6,11 +6,17 @@ import Moment from 'react-moment';
 import DeleteItemInCart from './DeleteItemInCart'
 import Pagination from '../helpers/Pagination'
 import Paypal from './Paypal';
+import { useAuth } from '../../lib/auth';
+
+
+
 const GetCartInfo = ({cart}) => {
   const [carts,setCarts]=useState(cart?.cart)
   const [total,setTotal]=useState()
+  const {authToken}=useAuth()
   const [ready,setReady]=useState(false)
   const router = useRouter()
+  console.log(carts)
   const calculateTotal=()=>{
     let total=0
     carts.map(item=>{
@@ -27,10 +33,7 @@ const GetCartInfo = ({cart}) => {
    }
   }, [carts])
   const transactionSuccess=(pay)=>{
-    let variables={
-        cartDetail:carts,paymentData:pay
-    }
-    console.log(variables)
+    console.log(carts)
 }
   const transactionError=()=>{
     console.log('Paypal Error')

@@ -17,6 +17,7 @@ export const PRODUCTINFO = gql`
       createdAt
       storeName{
         storeName
+        id
       }
       storeOwner{
         id
