@@ -13,6 +13,7 @@ export const STORESINFO = gql`
       storeDescription
       storeType
       sellerName{
+        id
         email
         name
       }
