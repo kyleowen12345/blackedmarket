@@ -24,7 +24,7 @@ const StoreDashBoard = ({mystore}) => {
            <Image src={i.storeBackgroundImage} alt={i.storeName} width={300} height={300}/>
              <p>{i.storeName}</p>
              <p>{i.storeType}</p>
-             <Link href={`/stores/info/${i.id}`}><a>Visit</a></Link>
+             <Link href={`/stores/dashboard/mystore/${i.id}`}><a>Visit</a></Link>
            </div> 
              ))   
             }
