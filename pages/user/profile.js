@@ -9,7 +9,6 @@ import Profile from "../../components/user/Profile";
       id
       name
       profilePic
-      name
       contactNumber
       country
       city

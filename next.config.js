@@ -29,7 +29,6 @@ module.exports = {
     media-src 'none';
     connect-src *;
     font-src 'self';
-    script-src-elem 'self' https://www.paypalobjects.com/api/checkout.js blob:;
   `;
   const securityHeaders = [
     // https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP

@@ -6,17 +6,14 @@ import Moment from 'react-moment';
 import DeleteItemInCart from './DeleteItemInCart'
 import Pagination from '../helpers/Pagination'
 import Paypal from './Paypal';
-import { useAuth } from '../../lib/auth';
-
-
+import axios from 'axios'
+import Cookies from 'js-cookie';
 
 const GetCartInfo = ({cart}) => {
   const [carts,setCarts]=useState(cart?.cart)
   const [total,setTotal]=useState()
-  const {authToken}=useAuth()
   const [ready,setReady]=useState(false)
   const router = useRouter()
-  console.log(carts)
   const calculateTotal=()=>{
     let total=0
     carts.map(item=>{
@@ -25,15 +22,23 @@ const GetCartInfo = ({cart}) => {
     setTotal(total)
   }
   useEffect(() => {
-    setReady(true)
-  }, [])
-  useEffect(() => {
    if(carts){
+    setReady(true)
      calculateTotal()
    }
   }, [carts])
-  const transactionSuccess=(pay)=>{
-    console.log(carts)
+  const transactionSuccess=async(pay)=>{
+    let variables={
+      cartDetail:carts,paymentData:pay
+  }
+    try {
+      await axios.post(`${process.env.NEXT_PUBLIC_PURCHASE_KEY}`,variables,{headers:{
+        token:Cookies.get('blackedmarket') || ""
+      }})
+      setCarts([])
+    } catch (error) {
+      console.log(error)
+    }
 }
   const transactionError=()=>{
     console.log('Paypal Error')

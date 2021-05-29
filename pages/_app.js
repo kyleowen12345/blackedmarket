@@ -5,11 +5,13 @@ import {AuthProvider} from '../lib/auth.js'
 function MyApp({ Component, pageProps }) {
   const client = useApollo(pageProps.initialApolloState);
   return(
-    <AuthProvider>
+ 
     <ApolloProvider client={client}>
+      <AuthProvider>
     <Component {...pageProps} />
-    </ApolloProvider>
     </AuthProvider>
+    </ApolloProvider>
+  
   )
 }
 

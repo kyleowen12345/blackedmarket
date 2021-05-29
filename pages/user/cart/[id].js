@@ -16,6 +16,8 @@ export const CARTINFO = gql`
         productName
         image
         price
+        storeName
+        storeOwner
       }
     }
   }
