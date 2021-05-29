@@ -23,8 +23,8 @@ export const CARTINFO = gql`
   }
 `;
 export async function getServerSideProps({req,query }) {
-  const apolloClient = initializeApollo();
   const {id}=query
+  const apolloClient = initializeApollo();
   try {
     await apolloClient.query({
         query:CARTINFO,
