@@ -3,7 +3,6 @@ import { initializeApollo } from "../../../src/apollo.ts";
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router"
 import GetCartInfo from "../../../components/product/GetCartInfo";
-import Cookies from 'js-cookie';
 export const CARTINFO = gql`
  query ($curPage:String!){
     getCartInfo(curPage:$curPage){
@@ -45,7 +44,7 @@ export async function getServerSideProps({req,query }) {
 export default function Home({initialApolloState}) {
     const router = useRouter()
     const {id}= router.query
-    const { data,error,loading } = useQuery( CARTINFO,{variables:{curPage:id},context:{headers:{token:Cookies.get('blackedmarket') || ""}}});
+    const { data,error,loading } = useQuery( CARTINFO,{variables:{curPage:id}});
     console.log(error?.message)
     console.log(data)
   return (

@@ -22,12 +22,9 @@ const GetCartInfo = ({cart}) => {
     setTotal(total)
   }
   useEffect(() => {
-      setReady(true)
-    
-   }, [])
-  useEffect(() => {
    if(carts){
      calculateTotal()
+     setReady(true)
    }
   }, [carts])
   const transactionSuccess=async(pay)=>{
