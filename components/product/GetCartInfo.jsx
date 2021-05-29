@@ -22,8 +22,11 @@ const GetCartInfo = ({cart}) => {
     setTotal(total)
   }
   useEffect(() => {
+      setReady(true)
+    
+   }, [])
+  useEffect(() => {
    if(carts){
-    setReady(true)
      calculateTotal()
    }
   }, [carts])
