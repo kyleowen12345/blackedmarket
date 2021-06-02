@@ -7,19 +7,19 @@ import {
     Link,
     Text,
     useDisclosure,
-  useColorModeValue,
-  IconButton,
-  Drawer, 
-  DrawerOverlay,
-  DrawerHeader, 
-  DrawerBody, 
-  DrawerContent,
-  DrawerCloseButton 
+    useColorModeValue,
+    IconButton,
+    Drawer, 
+    DrawerOverlay,
+    DrawerHeader, 
+    DrawerBody, 
+    DrawerContent,
+    DrawerCloseButton 
   } from '@chakra-ui/react'
   import NextLink from 'next/link'
   import { Search2Icon,HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
   
-  const Links = ['Stores', 'Products'];
+  const NoUserLinks = [{name:'Stores',link:"/stores/1"}, {name:'Products',link:"/products/1"}];
 
 const Navbar = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -42,8 +42,8 @@ const Navbar = () => {
             alignItems="center"
             width="300"
            >
-               <NextLink href="/"><Link  fontWeight="bold" fontSize="3xl" display={{ base: 'none', md: 'flex' }} color="#ffffff">BlackedMarket</Link></NextLink>
-               <NextLink href="/"><Link href="/" fontWeight="bold" fontSize="lg" display={{ md: 'none' }} color="#ffffff">BlackedMarket</Link></NextLink>
+               <NextLink href="/"><Link  fontSize="3xl" display={{ base: 'none', md: 'flex' }} color="#ffffff">BlackedMarket</Link></NextLink>
+               <NextLink href="/"><Link href="/" fontSize="lg" display={{ md: 'none' }} color="#ffffff">BlackedMarket</Link></NextLink>
            </Container>
            <Container display="flex" alignItems="center" bg="#ffffff" borderRadius="md" display={{ base: 'none', md: 'flex' }}>
                <Input bg="#ffffff" border="none"  focusBorderColor="none"/>
@@ -58,14 +58,8 @@ const Navbar = () => {
               <NextLink href="/stores/1"><Link color="#ffffff">Stores</Link></NextLink>
                <Text ml={2} mr={2} color="#ffffff">|</Text>
                <NextLink href="/products/1"><Link  color="#ffffff">Products</Link></NextLink> 
-           </Container>
-           <Container
-             display={{ base: 'none', md: 'flex' }}
-             justifyContent="space-around"
-             alignItems="center"
-             width="200"
-           >
-              <NextLink href="/login"><Link  fontSize="lg" color="#ffffff">Login</Link></NextLink> 
+               <Text ml={2} mr={2} color="#ffffff">|</Text>
+               <NextLink href="/login"><Link   color="#ffffff">Login</Link></NextLink> 
            </Container>
            <Container
               display="flex"
@@ -77,11 +71,11 @@ const Navbar = () => {
               m={2}
               borderRadius={25}
            >
-                <NextLink href="/register"><Link  fontWeight="bold" fontSize="lg" color="#ffffff" display={{ base: 'none', md: 'flex' }}>
-                      Sign Up
+                <NextLink href="/register"><Link fontSize="lg" color="#ffffff" display={{ base: 'none', md: 'flex' }}>
+                      Register
                 </Link></NextLink>
-                <NextLink href="/register"><Link  fontWeight="bold" fontSize="sm" color="#ffffff" display={{ md: 'none' }}>
-                      Sign Up
+                <NextLink href="/register"><Link fontSize="sm" color="#ffffff" display={{ md: 'none' }}>
+                       Register
                 </Link></NextLink>
             </Container>
          </Flex>
@@ -93,16 +87,16 @@ const Navbar = () => {
              </Container>
       </Box>
     </Box> 
-      <Drawer onClose={onClose} isOpen={isOpen} >
+      <Drawer onClose={onClose} isOpen={isOpen} placement="left">
         <DrawerOverlay />
         <DrawerContent bg="#000000">
-        <DrawerCloseButton color="#ffffff"/>
-          <DrawerHeader borderBottomWidth="1px" color="#ffffff">Basic Drawer</DrawerHeader>
-          <DrawerBody display="flex" flexDirection="column">
-            {Links.map((link) => (
-                <Link key={link} color="#ffffff" p={2}>{link}</Link>
+          <DrawerCloseButton color="#ffffff"/>
+           <DrawerHeader borderBottomWidth="1px" color="#ffffff">BlackedMarket</DrawerHeader>
+             <DrawerBody display="flex" flexDirection="column">
+            {NoUserLinks.map((link) => (
+              <NextLink href={link.link}><Link key={link.name} color="#ffffff" p={2} onClick={onClose}>{link.name}</Link></NextLink> 
               ))}
-          </DrawerBody>
+             </DrawerBody>
         </DrawerContent>
       </Drawer>
         </div>
