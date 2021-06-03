@@ -2,7 +2,6 @@ import {  gql } from "@apollo/client";
 import { initializeApollo } from "../src/apollo.ts";
 import { useQuery } from "@apollo/client";
 import { useAuth } from "../lib/auth";
-import Link from 'next/link'
 import ProductLandingPage from "../components/product/ProductLandingPage"
 import StoreLandingPage from "../components/store/StoreLandingPage"
 const LANDINGPAGE = gql`
@@ -40,7 +39,7 @@ export default function Home({initialApolloState}) {
   const {authToken,signOut}=useAuth()
   return (
     <>
-    {authToken ? <button onClick={signOut}>logout</button> : <Link href="/login"><a>Login</a></Link>}
+    {/* {authToken ? <button onClick={signOut}>logout</button> : <Link href="/login"><a>Login</a></Link>}
     <br/>
     <Link href="/stores/createstore"><a>Create Stores</a></Link>
     <br/>
@@ -48,7 +47,7 @@ export default function Home({initialApolloState}) {
     <br/>
     <Link href="/user/profile"><a>Profile</a></Link>
     <br/>
-    <Link href="/products/1"><a>Products</a></Link>
+    <Link href="/products/1"><a>Products</a></Link> */}
     <h1>Latest Products</h1>
    <ProductLandingPage products={data?.landingpage.products}/>
    <h1>Top Stores</h1>
