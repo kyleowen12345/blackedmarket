@@ -1,27 +1,12 @@
 import React from 'react'
 import {
     Box,
-    Flex,
-    Input,
     Container,
-    Link,
     Text,
-    useDisclosure,
-    useColorModeValue,
-    IconButton,
-    Drawer, 
-    DrawerOverlay,
-    DrawerHeader, 
-    DrawerBody, 
-    DrawerContent,
-    DrawerCloseButton, 
-    Avatar,
     Menu,
     MenuButton,
     MenuList,
     MenuItem,
-    Button,
-    Icon 
   } from '@chakra-ui/react'
   import NextLink from 'next/link'
   import { ChevronDownIcon } from '@chakra-ui/icons'

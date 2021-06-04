@@ -1,4 +1,4 @@
-import React from 'react'
+import React  from 'react'
 import {
     Box,
     Flex,
@@ -20,7 +20,6 @@ import {
     MenuButton,
     MenuList,
     MenuItem,
-    Button,
     Icon 
   } from '@chakra-ui/react'
   import NextLink from 'next/link'
@@ -28,9 +27,14 @@ import {
   import { AiOutlineShoppingCart,AiOutlineDashboard,AiFillFolderAdd,AiOutlineLogout } from "react-icons/ai"
   import {  ImProfile} from "react-icons/im"
   import {  FaStore,FaProductHunt} from "react-icons/fa"
-import SubMenu from './SubMenu'
-  const WithUserLinks = [{name:'Profile',link:"/user/profile",icon:ImProfile},{name:'DashBoard',link:"/stores/dashboard/1",icon:AiOutlineDashboard},{name:'Stores',link:"/stores/1",icon:FaStore}, {name:'Products',link:"/products/1",icon:FaProductHunt},{name:'Create Store',link:"/stores/createstore",icon:AiFillFolderAdd}];
-const NavbarWithUser = ({signOut,user}) => {
+  import SubMenu from './SubMenu'
+
+
+  
+const WithUserLinks = [{name:'Profile',link:"/user/profile",icon:ImProfile},{name:'DashBoard',link:"/stores/dashboard/1",icon:AiOutlineDashboard},{name:'Stores',link:"/stores/1",icon:FaStore}, {name:'Products',link:"/products/1",icon:FaProductHunt},{name:'Create Store',link:"/stores/createstore",icon:AiFillFolderAdd}];
+
+
+const NavbarWithUser = ({signOut,user,refs}) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     console.log(user)
     return (
@@ -52,7 +56,7 @@ const NavbarWithUser = ({signOut,user}) => {
             alignItems="center"
             width="300"
            >
-               <NextLink href="/"><Link  fontSize="3xl" display={{ base: 'none', md: 'flex' }} color="#ffffff">BlackedMarket</Link></NextLink>
+               <NextLink href="/" ><Link  fontSize="3xl" display={{ base: 'none', md: 'flex' }} color="#ffffff">BlackedMarket</Link></NextLink>
                <NextLink href="/"><Link href="/" fontSize="lg" display={{ md: 'none' }} color="#ffffff">BlackedMarket</Link></NextLink>
            </Container>
            <Container display="flex" alignItems="center" bg="#ffffff" borderRadius="md" display={{ base: 'none', md: 'flex' }}>

@@ -1,5 +1,4 @@
-import React,{ useRef } from 'react'
-import LoadingBar from 'react-top-loading-bar'
+import React from 'react'
 import {
     Box,
     Flex,
@@ -20,9 +19,8 @@ import {
   import NextLink from 'next/link'
   import { Search2Icon,HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 const NoUserLinks = [{name:'Stores',link:"/stores/1"}, {name:'Products',link:"/products/1"},{name:'Login',link:"/login"}];
-const NavbarNoUser = () => {
+const NavbarNoUser = ({refs}) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const ref = useRef(null)
     return (
         <div>
     <Box bg={useColorModeValue('#000000', 'gray.900')} p={1} >     
@@ -41,6 +39,7 @@ const NavbarNoUser = () => {
             justifyContent="space-around"
             alignItems="center"
             width="300"
+            onClick={()=>refs.current.continuousStart()}
            >
                <NextLink href="/"><Link  fontSize="3xl" display={{ base: 'none', md: 'flex' }} color="#ffffff">BlackedMarket</Link></NextLink>
                <NextLink href="/"><Link href="/" fontSize="lg" display={{ md: 'none' }} color="#ffffff">BlackedMarket</Link></NextLink>
@@ -54,8 +53,9 @@ const NavbarNoUser = () => {
              justifyContent="space-around"
              alignItems="center"
              width="200"
+             onClick={()=>refs.current.continuousStart()}
            >
-              <NextLink href="/stores/1"><Link color="#ffffff">Stores</Link></NextLink>
+              <NextLink href="/stores/1" ><Link color="#ffffff" >Stores</Link></NextLink>
                <Text ml={2} mr={2} color="#ffffff">|</Text>
                <NextLink href="/products/1"><Link  color="#ffffff">Products</Link></NextLink> 
                <Text ml={2} mr={2} color="#ffffff">|</Text>
@@ -70,6 +70,7 @@ const NavbarNoUser = () => {
               p={3}
               m={2}
               borderRadius={25}
+              onClick={()=>refs.current.continuousStart()}
            >
                 <NextLink href="/register"><Link fontSize="lg" color="#ffffff" display={{ base: 'none', md: 'flex' }}>
                       Register
@@ -94,23 +95,13 @@ const NavbarNoUser = () => {
            <DrawerHeader borderBottomWidth="1px" color="#000000">BlackedMarket</DrawerHeader>
              <DrawerBody display="flex" flexDirection="column">
             {NoUserLinks.map((link) => (
-              <NextLink key={link.name} href={link.link}><Link fontSize="md" color="#000000" p={2} onClick={onClose}>{link.name}</Link></NextLink> 
+             <Container key={link.name} onClick={()=>refs.current.continuousStart()}> <NextLink key={link.name} href={link.link}><Link fontSize="md" color="#000000" p={2} onClick={onClose} >{link.name}</Link></NextLink> </Container>
               ))}
              </DrawerBody>
         </DrawerContent>
       </Drawer>
 
-      <div>
-      <LoadingBar color='#f11946' ref={ref} />
-      <button onClick={() => ref.current.continuousStart()}>
-        Start Continuous Loading Bar
-      </button>
-      <button onClick={() => ref.current.staticStart()}>
-        Start Static Loading Bar
-      </button>
-      <button onClick={() => ref.current.complete()}>Complete</button>
-      <br />
-    </div>
+     
         </div>
     )
 }
