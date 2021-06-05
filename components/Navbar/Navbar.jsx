@@ -4,7 +4,6 @@ import NavbarNoUser from './NavbarNoUser'
 import NavbarWithUser from './NavbarWithUser';
 
 
-
 const Navbar = () => {
     const {userData,signOut}=useAuth()
     return (

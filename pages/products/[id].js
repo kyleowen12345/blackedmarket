@@ -2,7 +2,6 @@ import React, {useEffect} from 'react'
 import {  gql  } from "@apollo/client";
 import { useLazyQuery } from "@apollo/client";
 import { useRouter } from "next/router"
-import Link from 'next/link'
 import Products from "../../components/product/Products";
 import Loader from '../../components/Loader/Loader';
 export const PRODUCTS = gql`
@@ -38,7 +37,6 @@ export default function Home() {
   }, [])
   return (
     <div >
-      <Link href="/"><a>Home</a></Link>
       {loading && <Loader/>}
        {error && <h1>{error?.message}</h1>}
        {data && <Products  data={data} />}

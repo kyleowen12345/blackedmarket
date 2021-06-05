@@ -3,7 +3,6 @@ import {  gql  } from "@apollo/client";
 import Homepage from "../../components/store/Stores";
 import { useLazyQuery  } from "@apollo/client";
 import { useRouter } from "next/router"
-import Link from 'next/link'
 import Loader from '../../components/Loader/Loader';
 export const STORES = gql`
 query paginate($curPage:String!) {
@@ -32,10 +31,8 @@ export default function Home() {
   useEffect(() => {
     stores()
   }, [])
-  console.log(loading)
   return (
     <div >
-      <Link href="/"><a>Home</a></Link>
       {loading && <Loader/>}
        {error && <h1>{error?.message}</h1>}
        {data && <Homepage  data={data} loading={loading}/>}

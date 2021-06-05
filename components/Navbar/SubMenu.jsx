@@ -14,11 +14,18 @@ import {
 const SubMenu = () => {
     return (
       <Box bg="#000000"  overflowX="auto" whiteSpace="nowrap" >
-        <Container display="flex" justifyContent="space-around" maxWidth={1000} minWidth={320}  borderTop="1px solid white" p={2}>
+        <Container display="flex" justifyContent="space-around" maxWidth={1000} minWidth={320}  p={2}>
           <Menu>
-          <MenuButton color="#ffffff" fontSize="sm" fontWeight="bold" pl={10}>Categories <ChevronDownIcon/></MenuButton>
+          <MenuButton color="#ffffff" fontSize="sm" fontWeight="bold" pl={5} >Categories <ChevronDownIcon/></MenuButton>
                      <MenuList>
-                   <MenuItem >Test</MenuItem>
+                   <MenuItem >Automotive</MenuItem>
+                   <MenuItem >Baby & Toddler</MenuItem>
+                   <MenuItem >Clothing & Shoes</MenuItem>
+                   <MenuItem >Computers</MenuItem>
+                   <MenuItem >Electronics</MenuItem>
+                   <MenuItem >Entertainment & Arts</MenuItem>
+                   <MenuItem >Food & Gifts</MenuItem>
+                   <MenuItem >Health & Beauty</MenuItem>
                    </MenuList>
                 </Menu>
        <Text color="#ffffff" fontSize="sm"  pl={5}>Latest Products</Text>

@@ -35,8 +35,6 @@ const LANDINGPAGE = gql`
 
 export default function Home({initialApolloState}) {
   const { data,error } = useQuery( LANDINGPAGE );
-  console.log("5"-1)
-  const {authToken,signOut}=useAuth()
   return (
     <>
     {/* {authToken ? <button onClick={signOut}>logout</button> : <Link href="/login"><a>Login</a></Link>}
