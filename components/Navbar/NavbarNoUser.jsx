@@ -19,7 +19,7 @@ import {
   import NextLink from 'next/link'
   import { Search2Icon,HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 const NoUserLinks = [{name:'Stores',link:"/stores/1"}, {name:'Products',link:"/products/1"},{name:'Login',link:"/login"}];
-const NavbarNoUser = ({refs}) => {
+const NavbarNoUser = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
         <div>
@@ -39,7 +39,7 @@ const NavbarNoUser = ({refs}) => {
             justifyContent="space-around"
             alignItems="center"
             width="300"
-            onClick={()=>refs.current.continuousStart()}
+      
            >
                <NextLink href="/"><Link  fontSize="3xl" display={{ base: 'none', md: 'flex' }} color="#ffffff">BlackedMarket</Link></NextLink>
                <NextLink href="/"><Link href="/" fontSize="lg" display={{ md: 'none' }} color="#ffffff">BlackedMarket</Link></NextLink>
@@ -53,7 +53,7 @@ const NavbarNoUser = ({refs}) => {
              justifyContent="space-around"
              alignItems="center"
              width="200"
-             onClick={()=>refs.current.continuousStart()}
+            
            >
               <NextLink href="/stores/1" ><Link color="#ffffff" >Stores</Link></NextLink>
                <Text ml={2} mr={2} color="#ffffff">|</Text>
@@ -70,7 +70,6 @@ const NavbarNoUser = ({refs}) => {
               p={3}
               m={2}
               borderRadius={25}
-              onClick={()=>refs.current.continuousStart()}
            >
                 <NextLink href="/register"><Link fontSize="lg" color="#ffffff" display={{ base: 'none', md: 'flex' }}>
                       Register
@@ -95,7 +94,7 @@ const NavbarNoUser = ({refs}) => {
            <DrawerHeader borderBottomWidth="1px" color="#000000">BlackedMarket</DrawerHeader>
              <DrawerBody display="flex" flexDirection="column">
             {NoUserLinks.map((link) => (
-             <Container key={link.name} onClick={()=>refs.current.continuousStart()}> <NextLink key={link.name} href={link.link}><Link fontSize="md" color="#000000" p={2} onClick={onClose} >{link.name}</Link></NextLink> </Container>
+             <NextLink key={link.name} href={link.link}><Link fontSize="md" color="#000000" p={2} onClick={onClose} >{link.name}</Link></NextLink>
               ))}
              </DrawerBody>
         </DrawerContent>

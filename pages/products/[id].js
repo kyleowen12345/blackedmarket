@@ -1,9 +1,10 @@
+import React, {useEffect} from 'react'
 import {  gql  } from "@apollo/client";
-import { initializeApollo } from "../../src/apollo.ts";
-import { useQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import { useRouter } from "next/router"
 import Link from 'next/link'
 import Products from "../../components/product/Products";
+import Loader from '../../components/Loader/Loader';
 export const PRODUCTS = gql`
 query ($curPage:String!){
   productpaginate(curPage:$curPage){
@@ -27,31 +28,18 @@ query ($curPage:String!){
   }
 }
 `;
-export async function getServerSideProps(context) {
-  const { id } = context.query;
-  const apolloClient = initializeApollo();
-  try {
-    await apolloClient.query({
-      query:PRODUCTS,
-      variables:{curPage:id || "1"}
-    });
-  } catch (error) {
-    console.log(error)
-  }
- 
-  const initialApolloState=apolloClient.cache.extract()
-  return { props: {initialApolloState} };
-}
 
 export default function Home() {
   const router = useRouter()
   const {id}= router.query
-  const { data, loading,error } = useQuery( PRODUCTS,{variables:{curPage:id }} );
-  console.log(data)
+  const [products,{ data, loading,error }] = useLazyQuery( PRODUCTS,{variables:{curPage:id || "1"}} );
+  useEffect(() => {
+    products()
+  }, [])
   return (
     <div >
       <Link href="/"><a>Home</a></Link>
-      {loading && <h1>Loading..</h1>}
+      {loading && <Loader/>}
        {error && <h1>{error?.message}</h1>}
        {data && <Products  data={data} />}
        
