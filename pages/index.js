@@ -1,7 +1,6 @@
 import {  gql } from "@apollo/client";
 import { initializeApollo } from "../src/apollo.ts";
 import { useQuery } from "@apollo/client";
-import { useAuth } from "../lib/auth";
 import ProductLandingPage from "../components/product/ProductLandingPage"
 import StoreLandingPage from "../components/store/StoreLandingPage"
 const LANDINGPAGE = gql`

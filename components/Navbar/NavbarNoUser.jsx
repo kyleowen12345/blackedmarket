@@ -20,8 +20,9 @@ import {Box,
   import NextLink from 'next/link'
   import {  FaStore,FaProductHunt} from "react-icons/fa"
   import { AiOutlineLogin } from "react-icons/ai"
-  import { Search2Icon,HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
+  import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
   import SubMenu from './SubMenu'
+import SearchInput from './SearchInput'
 
 const NoUserLinks = [{name:'Stores',link:"/stores/1",icon:FaStore}, {name:'Products',link:"/products/1",icon:FaProductHunt},{name:'Login',link:"/login",icon:AiOutlineLogin}];
 
@@ -44,10 +45,11 @@ const NavbarNoUser = () => {
            {/* Search and Links */}
            { 
             isSmallerThan768 == false && <>
-           <Container display="flex" alignItems="center" bg="#ffffff" borderRadius="md" >
-                    <Input bg="#ffffff" border="none"  focusBorderColor="none"/>
-                      <Search2Icon color="#000000" />
-           </Container>
+           {/* <Container display="flex" alignItems="center" bg="#ffffff" borderRadius="md" > */}
+                   <SearchInput width={"450px"}/>
+                    {/* <Input bg="#ffffff" border="none"  focusBorderColor="none"/>
+                      <Search2Icon color="#000000" /> */}
+           {/* </Container> */}
             <Container  display="flex" justifyContent="space-around" alignItems="center"  width="200">
                      <NextLink href="/stores/1" ><Link color="#ffffff" >Stores</Link></NextLink>
                          <Text ml={2} mr={2} color="#ffffff">|</Text>
@@ -68,10 +70,7 @@ const NavbarNoUser = () => {
       {/* 768px Search input*/}
       {isSmallerThan768 && 
       <Box bg={useColorModeValue('#000000', 'gray.900')} p={2} >
-            <Container display="flex" alignItems="center" bg="#ffffff" borderRadius="md" >
-                 <Input bg="#ffffff" border="none"  focusBorderColor="none" height="1.8em"/>
-                 <Search2Icon color="#000000" />
-             </Container>
+          <SearchInput width={"300px"}/>
       </Box>}
 
     </Box> 

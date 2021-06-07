@@ -1,6 +1,6 @@
 import React from 'react'
-import ReactPaginate from "react-paginate"
 import { useRouter } from "next/router"
+import Pagination from '../helpers/Pagination'
 import Image from 'next/image'
 import Link from 'next/link'
 const Products = ({data}) => {
@@ -36,25 +36,7 @@ const Products = ({data}) => {
        </div> 
              ))
           }
-        <ReactPaginate
-        marginPagesDisplayed={1}
-        pageRangeDisplayed={2}
-        previousLabel={"previous"}
-        nextLabel={"next"}
-        breakLabel={"..."}
-        initialPage={data?.curPage - 1}
-        pageCount={data?.maxPage}
-        onPageChange={handlePagination}
-        containerClassName={"paginate-wrap"}
-        subContainerClassName={"paginate-inner"}
-        pageClassName={"paginate-li"}
-        pageLinkClassName={"paginate-a"}
-        activeClassName={"paginate-active"}
-        previousClassName={"paginate-previous"}
-        nextClassName={"paginate-next"}
-        breakLinkClassName={"paginate-break-a"}
-        breakClassName={"paginate-previous"}
-      />
+         {data?.productCount > 5 && <Pagination marginPages={1} pageRange={2} initialPage={data?.curPage - 1} pageCount={data?.maxPage} onPageChange={handlePagination}/>}
         </div>
     )
 }

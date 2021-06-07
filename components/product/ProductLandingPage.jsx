@@ -5,7 +5,7 @@ const ProductLandingPage = ({products}) => {
     return (
         <div>
             {products?.map(i=>(
-                <div key={i.id}>
+                <div key={i.id || i._id}>
                 <Image src={i.image} alt={i.storeName} width={300} height={300}/>
                 <p>{i.productName}</p>
                 <p>$ {i.price}</p>
