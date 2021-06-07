@@ -19,7 +19,7 @@ const Products = ({data}) => {
     <Link href="/user/profile"><a>Profile</a></Link>
     <h1>Products</h1>
         {
-          data?.productpaginate.products.map(i=>(
+          data?.products.map(i=>(
           <div key={i.id}>
        <Image
         src={i.image}
@@ -42,8 +42,8 @@ const Products = ({data}) => {
         previousLabel={"previous"}
         nextLabel={"next"}
         breakLabel={"..."}
-        initialPage={data?.productpaginate.curPage - 1}
-        pageCount={data?.productpaginate.maxPage}
+        initialPage={data?.curPage - 1}
+        pageCount={data?.maxPage}
         onPageChange={handlePagination}
         containerClassName={"paginate-wrap"}
         subContainerClassName={"paginate-inner"}

@@ -39,7 +39,7 @@ export default function Home() {
     <div >
       {loading && <Loader/>}
        {error && <h1>{error?.message}</h1>}
-       {data && <Products  data={data} />}
+       {data && <Products  data={data?.productpaginate} />}
        
     </div>
   )
