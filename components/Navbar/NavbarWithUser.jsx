@@ -8,7 +8,6 @@ import {
     Text,
     useDisclosure,
     useColorModeValue,
-    useMediaQuery,
     IconButton,
     Drawer, 
     DrawerOverlay,
@@ -30,14 +29,13 @@ import {
   import {  FaStore,FaProductHunt} from "react-icons/fa"
   import { useRouter } from 'next/router'
   import SubMenu from './SubMenu'
-
+  import SearchInput from './SearchInput'
 
   
 const WithUserLinks = [{name:'Profile',link:"/user/profile",icon:ImProfile},{name:'DashBoard',link:"/stores/dashboard/1",icon:AiOutlineDashboard},{name:'Stores',link:"/stores/1",icon:FaStore}, {name:'Products',link:"/products/1",icon:FaProductHunt},{name:'Create Store',link:"/stores/createstore",icon:AiFillFolderAdd}];
 
 const NavbarWithUser = ({signOut,user}) => {
-    const { isOpen, onOpen, onClose } = useDisclosure();
-    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const router = useRouter()
     return (
         <div>
@@ -45,22 +43,20 @@ const NavbarWithUser = ({signOut,user}) => {
       <Box  display="flex" justifyContent="center" alignItems="space-between">
         <Flex width={1200} alignItems="center" justifyContent="center">
           {/* Burger Menu */}
-            {isSmallerThan768 && <IconButton size={'md'} icon={isOpen ? <CloseIcon  color="#ffffff"/> : <HamburgerIcon  color="#ffffff"/>} aria-label={'Open Menu'} onClick={isOpen ? onClose : onOpen}  bg="#000000"/>}
+          <IconButton size={'md'} icon={isOpen ? <CloseIcon  color="#ffffff"/> : <HamburgerIcon  color="#ffffff"/>} display={{ md: 'none' }} aria-label={'Open Menu'} onClick={isOpen ? onClose : onOpen} bg="#000000" />
            
            {/* Logo */}
            <Container display="flex" justifyContent="space-around" alignItems="center"  width="300">
-             {isSmallerThan768 ? <NextLink href="/"><Link  fontSize="lg"  color="#ffffff">BlackedMarket</Link></NextLink>:<NextLink href="/"><Link  fontSize="3xl" color="#ffffff">BlackedMarket</Link></NextLink>}
+             <NextLink href="/"><Link  fontSize="lg" display={{ md: 'none' }} color="#ffffff">BlackedMarket</Link></NextLink>
+             <NextLink href="/"><Link  fontSize="3xl" display={{ base: 'none', md: 'flex' }} color="#ffffff">BlackedMarket</Link></NextLink>
            </Container>
 
            {/* Search and user Menu */}
-           {
-             isSmallerThan768 == false && <>
-             <Container display="flex" alignItems="center" bg="#ffffff" borderRadius="md" display={{ base: 'none', md: 'flex' }}>
-               <Input bg="#ffffff" border="none"  focusBorderColor="none"/>
-               <Search2Icon color="#000000" />
-           </Container>
+           <Box display={{ base: 'none', md: 'flex' }}>
+            <SearchInput width={"450px"} />
+            </Box>
            
-           <Container justifyContent="space-around" alignItems="center" width="200">
+           <Container justifyContent="space-around" alignItems="center" width="200" display={{ base: 'none', md: 'flex' }}>
               <Menu >
                  <MenuButton   bg="#000000">
                      <Flex display="flex" alignItems="center">
@@ -77,8 +73,7 @@ const NavbarWithUser = ({signOut,user}) => {
                 </MenuList>
               </Menu>
            </Container>
-           </>
-           }
+          
             {/* Cart */}
            <Container display="flex" justifyContent="space-around"  alignItems="center"  width="300" p={2} m={1} >
                   <Link onClick={()=>router.push('/user/cart/1')}><Icon as={AiOutlineShoppingCart} color="#ffffff" w={7} h={7}/></Link> 
@@ -87,13 +82,9 @@ const NavbarWithUser = ({signOut,user}) => {
         </Flex>
       </Box>
       {/* 768px Search input*/}
-      {isSmallerThan768 && 
-      <Box bg={useColorModeValue('#000000', 'gray.900')} p={2} >
-            <Container display="flex" alignItems="center" bg="#ffffff" borderRadius="md" >
-                 <Input bg="#ffffff" border="none"  focusBorderColor="none" height="1.8em"/>
-                 <Search2Icon color="#000000" />
-             </Container>
-      </Box>}
+      <Box bg={useColorModeValue('#000000', 'gray.900')} p={2} display={{ md: 'none' }}>
+          <SearchInput width={"300px"}/>
+      </Box>
       
     </Box>
 

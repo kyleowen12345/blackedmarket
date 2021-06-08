@@ -19,7 +19,7 @@ const SearchInput = ({width}) => {
     return (
         <>
          <form onSubmit={handleSubmit(onSubmit)}>
-         <Container display="flex" alignItems="center" bg="#ffffff" borderRadius="md" w={width} height="30px">
+         <Container display="flex" alignItems="center" bg="#ffffff" borderRadius="md" w={width} height="30px" >
             <Input bg="#ffffff" border="none"  focusBorderColor="none" height="1.8em" autoComplete="off"
             {...register('product', {
              required: 'this is a required',

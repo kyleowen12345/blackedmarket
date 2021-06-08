@@ -1,13 +1,11 @@
 import React from 'react'
 import {Box,
     Flex,
-    Input,
     Container,
     Link,
     Text,
     useDisclosure,
     useColorModeValue,
-    useMediaQuery,
     IconButton,
     Drawer, 
     DrawerOverlay,
@@ -28,50 +26,47 @@ const NoUserLinks = [{name:'Stores',link:"/stores/1",icon:FaStore}, {name:'Produ
 
 const NavbarNoUser = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
     return (
   <div>
     <Box bg={useColorModeValue('#000000', 'gray.900')} p={1} >     
       <Box  display="flex" justifyContent="center" alignItems="space-between">
         <Flex width={1200} alignItems="center" justifyContent="center">
           {/* Burger Menu */}
-           {isSmallerThan768 &&  <IconButton size={'md'} icon={isOpen ? <CloseIcon  color="#ffffff"/> : <HamburgerIcon  color="#ffffff"/>} aria-label={'Open Menu'} onClick={isOpen ? onClose : onOpen} bg="#000000" />}
+          <IconButton size={'md'} icon={isOpen ? <CloseIcon  color="#ffffff"/> : <HamburgerIcon  color="#ffffff"/>} display={{ md: 'none' }} aria-label={'Open Menu'} onClick={isOpen ? onClose : onOpen} bg="#000000" />
            
            {/* Logo */}
            <Container display="flex" justifyContent="space-around" alignItems="center"  width="300">
-             {isSmallerThan768 ? <NextLink href="/"><Link  fontSize="lg"  color="#ffffff">BlackedMarket</Link></NextLink>:<NextLink href="/"><Link  fontSize="3xl" color="#ffffff">BlackedMarket</Link></NextLink>}
+             <NextLink href="/"><Link  fontSize="lg" display={{ md: 'none' }} color="#ffffff">BlackedMarket</Link></NextLink>
+             <NextLink href="/"><Link  fontSize="3xl" display={{ base: 'none', md: 'flex' }} color="#ffffff">BlackedMarket</Link></NextLink>
            </Container>
 
            {/* Search and Links */}
-           { 
-            isSmallerThan768 == false && <>
-           {/* <Container display="flex" alignItems="center" bg="#ffffff" borderRadius="md" > */}
-                   <SearchInput width={"450px"}/>
-                    {/* <Input bg="#ffffff" border="none"  focusBorderColor="none"/>
-                      <Search2Icon color="#000000" /> */}
-           {/* </Container> */}
-            <Container  display="flex" justifyContent="space-around" alignItems="center"  width="200">
+           <Box display={{ base: 'none', md: 'flex' }}>
+            <SearchInput width={"450px"} />
+            </Box>
+            <Container  display="flex" justifyContent="space-around" alignItems="center"  width="200" display={{ base: 'none', md: 'flex' }}>
                      <NextLink href="/stores/1" ><Link color="#ffffff" >Stores</Link></NextLink>
                          <Text ml={2} mr={2} color="#ffffff">|</Text>
                      <NextLink href="/products/1"><Link  color="#ffffff">Products</Link></NextLink> 
                          <Text ml={2} mr={2} color="#ffffff">|</Text>
                      <NextLink href="/login"><Link   color="#ffffff">Login</Link></NextLink> 
            </Container>
-           </>
-           }
+           
+          
 
            {/* Register */}
            <Container display="flex"  justifyContent="space-around" alignItems="center"  width="300" bg="messenger.500" p={3} m={2} borderRadius={25}  >
-               {isSmallerThan768 ? <NextLink href="/register"><Link fontSize="sm" color="#ffffff" >   Register </Link></NextLink> : <NextLink href="/register"><Link fontSize="lg" color="#ffffff">Register</Link></NextLink>}
+               <NextLink href="/register"><Link fontSize="sm" display={{ md: 'none' }} color="#ffffff" >  Register </Link></NextLink>
+               <NextLink href="/register"><Link fontSize="lg" display={{ base: 'none', md: 'flex' }} color="#ffffff">Register</Link></NextLink>
             </Container>
          </Flex>
       </Box>
 
       {/* 768px Search input*/}
-      {isSmallerThan768 && 
-      <Box bg={useColorModeValue('#000000', 'gray.900')} p={2} >
+  
+      <Box bg={useColorModeValue('#000000', 'gray.900')} p={2} display={{ md: 'none' }}>
           <SearchInput width={"300px"}/>
-      </Box>}
+      </Box>
 
     </Box> 
 
