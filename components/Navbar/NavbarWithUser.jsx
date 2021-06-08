@@ -47,8 +47,8 @@ const NavbarWithUser = ({signOut,user}) => {
            
            {/* Logo */}
            <Container display="flex" justifyContent="space-around" alignItems="center"  width="300">
-             <NextLink href="/"><Link  fontSize="lg" display={{ md: 'none' }} color="#ffffff">BlackedMarket</Link></NextLink>
-             <NextLink href="/"><Link  fontSize="3xl" display={{ base: 'none', md: 'flex' }} color="#ffffff">BlackedMarket</Link></NextLink>
+             <NextLink href="/" passHref><Link fontWeight="bold" fontSize="lg" display={{ md: 'none' }} color="#ffffff">BlackedMarket</Link></NextLink>
+             <NextLink href="/" passHref><Link fontWeight="bold" fontSize="3xl" display={{ base: 'none', md: 'flex' }} color="#ffffff">BlackedMarket</Link></NextLink>
            </Container>
 
            {/* Search and user Menu */}
@@ -67,7 +67,7 @@ const NavbarWithUser = ({signOut,user}) => {
                  </MenuButton>
                 <MenuList>
                   {WithUserLinks.map((link) => (
-                   <MenuItem key={link.name}><Icon as={link.icon} color="#000000" /><NextLink href={link.link}><Link   fontSize="md" color="#000000" p={2} >{link.name}</Link></NextLink></MenuItem>
+                   <MenuItem key={link.name}><Icon as={link.icon} color="#000000" /><NextLink href={link.link} passHref><Link   fontSize="md" color="#000000" p={2} >{link.name}</Link></NextLink></MenuItem>
                      ))}
                     <MenuItem onClick={signOut}><Icon as={AiOutlineLogout} color="#000000" /><Link  fontSize="md" color="#000000" p={2} >Log Out</Link></MenuItem>
                 </MenuList>
@@ -83,12 +83,11 @@ const NavbarWithUser = ({signOut,user}) => {
       </Box>
       {/* 768px Search input*/}
       <Box bg={useColorModeValue('#000000', 'gray.900')} p={2} display={{ md: 'none' }}>
-          <SearchInput width={"300px"}/>
+          <SearchInput width={"99%"}/>
       </Box>
       
     </Box>
 
-    <SubMenu/>
   {/* 768px UserDrawer */}
       <Drawer onClose={onClose} isOpen={isOpen} placement="left">
         <DrawerOverlay />
@@ -104,7 +103,7 @@ const NavbarWithUser = ({signOut,user}) => {
             {WithUserLinks.map((link) => (
              <Container key={link.name} mb={5}> 
              <Icon as={link.icon} color="#000000" />
-             <NextLink key={link.name} href={link.link}><Link fontSize="md" color="#000000" p={2} onClick={onClose}>{link.name}</Link></NextLink> 
+             <NextLink key={link.name} href={link.link} passHref><Link fontSize="md" color="#000000" p={2} onClick={onClose}>{link.name}</Link></NextLink> 
              </Container>
               ))}
               <Container onClick={signOut}><Icon as={AiOutlineLogout} color="#000000" /><Link  fontSize="md" color="#000000" p={2} >Log Out</Link></Container>
