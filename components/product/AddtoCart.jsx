@@ -10,7 +10,6 @@ mutation ($id:ID!,$quantity:Int,$productName:String!,$image:String!,$price:Strin
   }
 `
 const AddtoCart = ({product}) => {
-    console.log(product)
     const {authToken}=useAuth()
     const [quantity,setQuantity]=useState(1)
     const [addToCart,{data, loading,error }] = useMutation(ADDTOCART,{ errorPolicy: 'all' });
@@ -25,8 +24,6 @@ const AddtoCart = ({product}) => {
         storeOwner:product.storeOwner.id
     },context:{headers:{token:authToken || ""}}})
     }
-    console.log(error?.message)
-    console.log(typeof quantity)
     return (
         <div>
             <input type="number" onChange={(e)=>setQuantity(parseInt(e.target.value))}  placeholder={"quantity"}/>

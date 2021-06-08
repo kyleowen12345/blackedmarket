@@ -11,7 +11,6 @@ const ProductInfo = ({product}) => {
     if(authToken){
         decoded=jwt_decode(authToken)
     }
-    console.log(product)
     return (
         <div> 
             <Image src={product?.image} alt={product?.productName} width={200} height={200}/>
