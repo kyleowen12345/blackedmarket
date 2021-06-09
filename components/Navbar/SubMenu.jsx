@@ -17,9 +17,9 @@ const SubMenu = () => {
     return (
       
           <Menu >
-          <MenuButton color="#000000" fontSize="sm" fontWeight="bold"  width="80px" bg="#EAEDED" borderLeftRadius="5px">
+          <MenuButton color="#000000" fontSize="sm" fontWeight="bold"  width="80px" bg="#EAEDED" borderLeftRadius="5px" height="30px">
           <Container display="flex" alignItems="center" pl={1.5}>
-            {catergory}<ChevronDownIcon color="#000000"/>
+          <Text fontSize="xs">Category</Text> <ChevronDownIcon color="#000000"/>
             </Container>
             </MenuButton>
                    <MenuList h="300px" overflowX="auto" whiteSpace="nowrap" css={{'&::-webkit-scrollbar': {width: "10px"},'&::-webkit-scrollbar-track': {background: "#f1f1f1"},'&::-webkit-scrollbar-thumb': {background: "#888", borderRadius: '24px',}}}>

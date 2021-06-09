@@ -32,7 +32,7 @@ const NavbarNoUser = () => {
       <Box  display="flex" justifyContent="center" alignItems="space-between">
         <Flex width={1200} alignItems="center" justifyContent="center">
           {/* Burger Menu */}
-          <IconButton size={'md'} icon={isOpen ? <CloseIcon  color="#ffffff"/> : <HamburgerIcon  color="#ffffff"/>} display={{ md: 'none' }} aria-label={'Open Menu'} onClick={isOpen ? onClose : onOpen} bg="#000000" />
+          <IconButton size={'md'} icon={isOpen ? <CloseIcon  color="#ffffff"/> : <HamburgerIcon  color="#ffffff"/>} display={{ xl: 'none' }} aria-label={'Open Menu'} onClick={isOpen ? onClose : onOpen} bg="#000000" />
            
            {/* Logo */}
            <Container display="flex" justifyContent="space-around" alignItems="center"  width="300">
@@ -41,10 +41,10 @@ const NavbarNoUser = () => {
            </Container>
 
            {/* Search and Links */}
-           <Box display={{ base: 'none', md: 'flex' }}>
+           <Box display={{ base: 'none', xl: 'flex' }}>
             <SearchInput width={"450px"} />
             </Box>
-            <Container  display="flex" justifyContent="space-around" alignItems="center"  width="200" display={{ base: 'none', md: 'flex' }}>
+            <Container  display="flex" justifyContent="space-around" alignItems="center"  width="200" display={{ base: 'none', xl: 'flex' }}>
                      <NextLink href="/stores/1" passHref><Link color="#ffffff" >Stores</Link></NextLink>
                          <Text ml={2} mr={2} color="#ffffff">|</Text>
                      <NextLink href="/products/1" passHref><Link  color="#ffffff">Products</Link></NextLink> 
@@ -55,7 +55,7 @@ const NavbarNoUser = () => {
           
 
            {/* Register */}
-           <Container display="flex"  justifyContent="space-around" alignItems="center"  width="300" bg="messenger.500" p={3} m={2} borderRadius={25}  >
+           <Container display="flex"  justifyContent="space-around" alignItems="center"  width="150"  p={3} m={2} borderRadius={25}  >
                <NextLink href="/register" passHref><Link fontWeight="bold" fontSize="xs" display={{ md: 'none' }} color="#ffffff" >  Register </Link></NextLink>
                <NextLink href="/register" passHref><Link fontWeight="bold" fontSize="md" display={{ base: 'none', md: 'flex' }} color="#ffffff">Register</Link></NextLink>
             </Container>
@@ -64,7 +64,7 @@ const NavbarNoUser = () => {
 
       {/* 768px Search input*/}
   
-      <Box bg={useColorModeValue('#000000', 'gray.900')} p={2} display={{ md: 'none' }}>
+      <Box bg={useColorModeValue('#000000', 'gray.900')} p={2} display={{ xl: 'none' }}>
           <SearchInput width={"99%"}/>
       </Box>
 

@@ -1,9 +1,10 @@
-import {  gql  } from "@apollo/client";
-import { initializeApollo } from "../../../src/apollo.ts";
-import { useQuery } from "@apollo/client";
+import React, {useEffect} from 'react'
+import {  gql,useLazyQuery  } from "@apollo/client";
 import { useRouter } from "next/router"
 import GetCartInfo from "../../../components/product/GetCartInfo";
-export const CARTINFO = gql`
+import Cookies from 'js-cookie'
+import Loader from '../../../components/Loader/Loader';
+const CARTINFO = gql`
  query ($curPage:String!){
     getCartInfo(curPage:$curPage){
      curPage
@@ -22,34 +23,18 @@ export const CARTINFO = gql`
     }
   }
 `;
-export async function getServerSideProps({req,query }) {
-  const {id}=query
-  const apolloClient = initializeApollo();
-  try {
-    await apolloClient.query({
-        query:CARTINFO,
-        variables:{curPage:id || "1"},
-        context:{headers:{
-            token:req.cookies.blackedmarket || " "
-        }}
-      });
-  } catch (error) {
-      console.log(error)
-  }
-  
-  const initialApolloState=apolloClient.cache.extract()
-  return { props: {initialApolloState  } };
-}
 
-export default function Home({initialApolloState}) {
+export default function Home() {
     const router = useRouter()
     const {id}= router.query
-    const { data,error,loading } = useQuery( CARTINFO,{variables:{curPage:id}});
-    console.log(error?.message)
-    console.log(data)
+    const [cartinfo,{ data,error,loading }] = useLazyQuery( CARTINFO,{variables:{curPage:id||"1"},context:{headers:{token:Cookies.get('blackedmarket')||""}}});
+    useEffect(() => {
+        cartinfo()
+    }, [])
+  
   return (
     <div >
-       {loading && <h1>Loading..</h1>}
+       {loading && <Loader/>}
        {error && <h1>{error?.message}</h1>}
      {data && <GetCartInfo cart={data?.getCartInfo}/>}
      

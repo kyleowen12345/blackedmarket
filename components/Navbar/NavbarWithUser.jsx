@@ -23,16 +23,15 @@ import {
     Icon 
   } from '@chakra-ui/react'
   import NextLink from 'next/link'
-  import { Search2Icon,HamburgerIcon, CloseIcon,ChevronDownIcon } from '@chakra-ui/icons'
+  import { HamburgerIcon, CloseIcon,ChevronDownIcon } from '@chakra-ui/icons'
   import { AiOutlineShoppingCart,AiOutlineDashboard,AiFillFolderAdd,AiOutlineLogout } from "react-icons/ai"
   import {  ImProfile} from "react-icons/im"
   import {  FaStore,FaProductHunt} from "react-icons/fa"
   import { useRouter } from 'next/router'
-  import SubMenu from './SubMenu'
   import SearchInput from './SearchInput'
 
   
-const WithUserLinks = [{name:'Profile',link:"/user/profile",icon:ImProfile},{name:'DashBoard',link:"/stores/dashboard/1",icon:AiOutlineDashboard},{name:'Stores',link:"/stores/1",icon:FaStore}, {name:'Products',link:"/products/1",icon:FaProductHunt},{name:'Create Store',link:"/stores/createstore",icon:AiFillFolderAdd}];
+const WithUserLinks = [{name:'Profile',link:"/user/profile",icon:ImProfile},{name:'DashBoard',link:`/stores/dashboard?id=${1}`,icon:AiOutlineDashboard ,as:`/stores/dashboard?id=${1}`},{name:'Stores',link:"/stores/1",icon:FaStore}, {name:'Products',link:"/products/1",icon:FaProductHunt},{name:'Create Store',link:"/stores/createstore",icon:AiFillFolderAdd}];
 
 const NavbarWithUser = ({signOut,user}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -43,7 +42,7 @@ const NavbarWithUser = ({signOut,user}) => {
       <Box  display="flex" justifyContent="center" alignItems="space-between">
         <Flex width={1200} alignItems="center" justifyContent="center">
           {/* Burger Menu */}
-          <IconButton size={'md'} icon={isOpen ? <CloseIcon  color="#ffffff"/> : <HamburgerIcon  color="#ffffff"/>} display={{ md: 'none' }} aria-label={'Open Menu'} onClick={isOpen ? onClose : onOpen} bg="#000000" />
+          <IconButton size={'md'} icon={isOpen ? <CloseIcon  color="#ffffff"/> : <HamburgerIcon  color="#ffffff"/>} display={{ xl: 'none' }} aria-label={'Open Menu'} onClick={isOpen ? onClose : onOpen} bg="#000000" />
            
            {/* Logo */}
            <Container display="flex" justifyContent="space-around" alignItems="center"  width="300">
@@ -52,11 +51,11 @@ const NavbarWithUser = ({signOut,user}) => {
            </Container>
 
            {/* Search and user Menu */}
-           <Box display={{ base: 'none', md: 'flex' }}>
+           <Box display={{ base: 'none', xl: 'flex' }}>
             <SearchInput width={"450px"} />
             </Box>
            
-           <Container justifyContent="space-around" alignItems="center" width="200" display={{ base: 'none', md: 'flex' }}>
+           <Container justifyContent="space-around" alignItems="center" width="200" display={{ base: 'none', xl: 'flex' }}>
               <Menu >
                  <MenuButton   bg="#000000">
                      <Flex display="flex" alignItems="center">
@@ -67,7 +66,7 @@ const NavbarWithUser = ({signOut,user}) => {
                  </MenuButton>
                 <MenuList>
                   {WithUserLinks.map((link) => (
-                   <MenuItem key={link.name}><Icon as={link.icon} color="#000000" /><NextLink href={link.link} passHref><Link   fontSize="md" color="#000000" p={2} >{link.name}</Link></NextLink></MenuItem>
+                   <MenuItem key={link.name}><Icon as={link.icon} color="#000000" /><NextLink href={link.link} as={link.as} passHref><Link   fontSize="md" color="#000000" p={2} >{link.name}</Link></NextLink></MenuItem>
                      ))}
                     <MenuItem onClick={signOut}><Icon as={AiOutlineLogout} color="#000000" /><Link  fontSize="md" color="#000000" p={2} >Log Out</Link></MenuItem>
                 </MenuList>
@@ -82,7 +81,7 @@ const NavbarWithUser = ({signOut,user}) => {
         </Flex>
       </Box>
       {/* 768px Search input*/}
-      <Box bg={useColorModeValue('#000000', 'gray.900')} p={2} display={{ md: 'none' }}>
+      <Box bg={useColorModeValue('#000000', 'gray.900')} p={2} display={{ xl: 'none' }}>
           <SearchInput width={"99%"}/>
       </Box>
       

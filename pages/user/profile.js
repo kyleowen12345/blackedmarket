@@ -1,7 +1,8 @@
-import {  gql  } from "@apollo/client";
-import { initializeApollo } from "../../src/apollo.ts";
-import { useQuery } from "@apollo/client";
+import React, {useEffect} from 'react'
+import {  gql,useLazyQuery  } from "@apollo/client";
+import Cookies from 'js-cookie'
 import Profile from "../../components/user/Profile";
+import Loader from '../../components/Loader/Loader';
  const PROFILE = gql`
  {
     user{
@@ -17,29 +18,16 @@ import Profile from "../../components/user/Profile";
     }
   }
 `;
-export async function getServerSideProps({req }) {
-  const apolloClient = initializeApollo();
-  try {
-    await apolloClient.query({
-        query:PROFILE,
-        context:{headers:{
-            token:req.cookies.blackedmarket || " "
-        }}
-      });
-  } catch (error) {
-      console.log(error)
-  }
-  
-  const initialApolloState=apolloClient.cache.extract()
-  return { props: {initialApolloState  } };
-}
 
-export default function Home({initialApolloState}) {
-    const { data,error,loading } = useQuery( PROFILE);
-    console.log(error?.message)
+
+export default function Home() {
+    const [profile,{ data,error,loading }] = useLazyQuery( PROFILE,{context:{headers:{token:Cookies.get('blackedmarket')||""}}});
+    useEffect(() => {
+      profile()
+  }, [])
   return (
     <div >
-       {loading && <h1>Loading..</h1>}
+       {loading && <Loader/>}
        {error && <h1>{error?.message}</h1>}
      {data && <Profile user={data?.user}/>}
     </div>

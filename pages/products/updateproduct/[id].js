@@ -1,8 +1,9 @@
-import {  gql  } from "@apollo/client";
-import { initializeApollo } from "../../../src/apollo.ts";
-import { useQuery } from "@apollo/client";
+import React, {useEffect} from 'react'
+import {  gql,useLazyQuery  } from "@apollo/client";
 import { useRouter } from "next/router"
+import Cookies from 'js-cookie'
 import UpdateProduct from "../../../components/product/UpdateProduct";
+import Loader from '../../../components/Loader/Loader';
  const UPDATEPRODUCTINFO = gql`
  query ($id:ID!){
     productInfoUpdate(id:$id){
@@ -25,34 +26,17 @@ import UpdateProduct from "../../../components/product/UpdateProduct";
   }
 }
 `;
-export async function getServerSideProps({req,query }) {
-  const apolloClient = initializeApollo();
-  const {id}=query
-  try {
-    await apolloClient.query({
-        query:UPDATEPRODUCTINFO,
-        variables:{id:id},
-        context:{headers:{
-            token:req.cookies.blackedmarket || " "
-        }}
-      });
-  } catch (error) {
-      console.log(error)
-  }
-  
-  const initialApolloState=apolloClient.cache.extract()
-  return { props: {initialApolloState  } };
-}
 
-export default function Home({initialApolloState}) {
+export default function Home() {
     const router = useRouter()
     const {id}= router.query
-    const { data,error,loading } = useQuery(UPDATEPRODUCTINFO,{variables:{id:id }});
-    console.log(error?.message)
-    console.log(data)
+    const [updateproductinfo,{ data,error,loading }] = useLazyQuery(UPDATEPRODUCTINFO,{variables:{id:id },context:{headers:{token:Cookies.get('blackedmarket')||""}}});
+    useEffect(() => {
+      updateproductinfo()
+  }, [])
   return (
     <div >
-       {loading && <h1>Loading..</h1>}
+       {loading && <Loader/>}
        {error && <h1>{error?.message}</h1>}
        {data && <UpdateProduct product={data?.productInfoUpdate}/>} 
        
