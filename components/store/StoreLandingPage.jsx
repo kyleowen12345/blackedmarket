@@ -1,7 +1,6 @@
 import React from 'react'
 import NextLink from 'next/link'
 import { Grid,Box,Text,Image,Badge} from "@chakra-ui/react"
-import { StarIcon } from '@chakra-ui/icons'
 const StoreLandingPage = ({stores}) => {
     return (
         <>
@@ -30,12 +29,12 @@ const StoreLandingPage = ({stores}) => {
 
                                <Box
                                 mt="1"
-                                pl={1}
+                                pl={2}
                                 fontWeight="semibold"
                                 as="h4"
                                 lineHeight="tight"
                                 isTruncated
-                                fontSize={["0.83rem" ,"0.855rem","0.955rem"]}
+                                fontSize={["0.85rem" ,"0.93rem","0.955rem"]}
                                >
                                {i.storeName}
                                </Box>
