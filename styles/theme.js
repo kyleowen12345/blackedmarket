@@ -12,7 +12,7 @@ const breakpoints = createBreakpoints({
 const theme = extendTheme({
   fonts: {
     heading: "Open Sans",
-    body: "Raleway",
+    body: "Poppins",
   },
   components: { 
     Link: { baseStyle: { _focus: { boxShadow: 'none' } } }, 

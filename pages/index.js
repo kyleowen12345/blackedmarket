@@ -50,10 +50,10 @@ export default function Home({initialApolloState}) {
   console.log(isLargerThan1200)
   return (
     <>
-    <Box width={screen} mr="auto" ml="auto"  p={[3,2,0]}  alignItems="center">
-   <Text  size="2xl" ml="auto">Top Stores</Text>
-   <StoreLandingPage stores={data?.landingpage.stores}/>
-   <Text  size="2xl">Latest Products</Text>
+    <Box width={screen} mr="auto" ml="auto"  p={[3,2,0]}  display="flex" flexDirection="column" justifyContent="center">
+    <Text  size="2xl" bg="white" mt={4} mb={2} p={3} fontWeight="bold" boxShadow="md"  >Top Stores</Text>
+    <StoreLandingPage stores={data?.landingpage.stores}/>
+   <Text  size="2xl" bg="white" mt={4} mb={2} p={3} fontWeight="bold" boxShadow="md" >Latest Products</Text>
    <ProductLandingPage products={data?.landingpage.products}/>
     </Box>
    
