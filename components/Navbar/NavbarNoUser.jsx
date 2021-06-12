@@ -13,19 +13,20 @@ import {Box,
     DrawerBody, 
     DrawerContent,
     DrawerCloseButton,
-    Icon
+    Icon,
+    useMediaQuery
   } from '@chakra-ui/react'
   import NextLink from 'next/link'
   import {  FaStore,FaProductHunt} from "react-icons/fa"
   import { AiOutlineLogin } from "react-icons/ai"
   import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
-  import SubMenu from './SubMenu'
 import SearchInput from './SearchInput'
 
 const NoUserLinks = [{name:'Stores',link:"/stores/1",icon:FaStore}, {name:'Products',link:"/products/1",icon:FaProductHunt},{name:'Login',link:"/login",icon:AiOutlineLogin}];
 
 const NavbarNoUser = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const [isLargerThan1200] = useMediaQuery("(min-width: 1200px)")
     return (
   <div>
     <Box bg={useColorModeValue('#000000', 'gray.900')} p={1} >     
@@ -33,13 +34,13 @@ const NavbarNoUser = () => {
         <Flex width={1200} alignItems="center" justifyContent="center">
           {/* Burger Menu */}
           <IconButton size={'md'} icon={isOpen ? <CloseIcon  color="#ffffff"/> : <HamburgerIcon  color="#ffffff"/>} display={{ xl: 'none' }} aria-label={'Open Menu'} onClick={isOpen ? onClose : onOpen} bg="#000000" />
-           
-           {/* Logo */}
-           <Container display="flex" justifyContent="space-around" alignItems="center"  width="300">
-             <NextLink href="/" passHref><Link fontWeight="bold" fontSize="lg" display={{ md: 'none' }} color="#ffffff">BlackedMarket</Link></NextLink>
+          
+          {/* Logo logic */}
+         <Container display="flex" justifyContent="space-around" alignItems="center"  width="300"   ml={isLargerThan1200 && 0 } pl={isLargerThan1200 && 0}>
+             <NextLink href="/" passHref><Link fontWeight="bold" fontSize="lg" display={{ md: 'none' }} color="#ffffff" >BlackedMarket</Link></NextLink>
              <NextLink href="/" passHref><Link fontWeight="bold" fontSize="3xl" display={{ base: 'none', md: 'flex' }} color="#ffffff">BlackedMarket</Link></NextLink>
-           </Container>
-
+           </Container> 
+      
            {/* Search and Links */}
            <Box display={{ base: 'none', xl: 'flex' }}>
             <SearchInput width={"450px"} />
@@ -55,7 +56,7 @@ const NavbarNoUser = () => {
           
 
            {/* Register */}
-           <Container display="flex"  justifyContent="space-around" alignItems="center"  width="150"  p={3} m={2} borderRadius={25}  >
+          <Container display="flex"  justifyContent="space-around" alignItems="center"  width="150"  p={3} m={2} borderRadius={25}  mr={isLargerThan1200 && 0} pr={isLargerThan1200 && 0}>
                <NextLink href="/register" passHref><Link fontWeight="bold" fontSize="xs" display={{ md: 'none' }} color="#ffffff" >  Register </Link></NextLink>
                <NextLink href="/register" passHref><Link fontWeight="bold" fontSize="md" display={{ base: 'none', md: 'flex' }} color="#ffffff">Register</Link></NextLink>
             </Container>

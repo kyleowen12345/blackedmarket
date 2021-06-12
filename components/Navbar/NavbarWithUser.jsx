@@ -20,7 +20,8 @@ import {
     MenuButton,
     MenuList,
     MenuItem,
-    Icon 
+    Icon,
+    useMediaQuery
   } from '@chakra-ui/react'
   import NextLink from 'next/link'
   import { HamburgerIcon, CloseIcon,ChevronDownIcon } from '@chakra-ui/icons'
@@ -35,6 +36,7 @@ const WithUserLinks = [{name:'Profile',link:"/user/profile",icon:ImProfile},{nam
 
 const NavbarWithUser = ({signOut,user}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const [isLargerThan1200] = useMediaQuery("(min-width: 1200px)")
     const router = useRouter()
     return (
         <div>
@@ -45,7 +47,7 @@ const NavbarWithUser = ({signOut,user}) => {
           <IconButton size={'md'} icon={isOpen ? <CloseIcon  color="#ffffff"/> : <HamburgerIcon  color="#ffffff"/>} display={{ xl: 'none' }} aria-label={'Open Menu'} onClick={isOpen ? onClose : onOpen} bg="#000000" />
            
            {/* Logo */}
-           <Container display="flex" justifyContent="space-around" alignItems="center"  width="300">
+           <Container display="flex" justifyContent="space-around" alignItems="center"  width="300"  ml={isLargerThan1200 && 0 } pl={isLargerThan1200 && 0}>
              <NextLink href="/" passHref><Link fontWeight="bold" fontSize="lg" display={{ md: 'none' }} color="#ffffff">BlackedMarket</Link></NextLink>
              <NextLink href="/" passHref><Link fontWeight="bold" fontSize="3xl" display={{ base: 'none', md: 'flex' }} color="#ffffff">BlackedMarket</Link></NextLink>
            </Container>
@@ -74,7 +76,7 @@ const NavbarWithUser = ({signOut,user}) => {
            </Container>
           
             {/* Cart */}
-           <Container display="flex" justifyContent="space-around"  alignItems="center"  width="300" p={2} m={1} >
+           <Container display="flex" justifyContent="space-around"  alignItems="center"  width="300" p={2} m={1} mr={isLargerThan1200 && 0} pr={isLargerThan1200 && 0}>
                   <Link onClick={()=>router.push('/user/cart/1')}><Icon as={AiOutlineShoppingCart} color="#ffffff" w={7} h={7}/></Link> 
              </Container>
 

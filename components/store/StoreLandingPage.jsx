@@ -1,16 +1,23 @@
 import React from 'react'
-import Image from 'next/image'
+import NextLink from 'next/link'
+import { Grid,Box,Text,Image} from "@chakra-ui/react"
 const StoreLandingPage = ({stores}) => {
     return (
-        <div>
+        <>
+        <Grid  templateColumns={[ "repeat(1, auto)", "repeat(1, auto)", "repeat(2, auto)","repeat(3, auto)"  ]} gap={2}>
             {stores?.map(i=>(
-                <div key={i.id}>
-                <Image src={i.storeBackgroundImage} alt={i.storeName} width={300} height={300}/>
-                <p>{i.storeName}</p>
-                <p>{i.storeType}</p>
-                </div>
+            <NextLink key={i.id} href={`/stores/info/${i.id}`} passHref={true}>
+                <Box maxW="400px" h={["320px" ,"320px" ,"400px"]} borderWidth="1px" overflow="hidden" justifyContent="center" alignItems="center" as="a" bg="white"  _hover={{border: "4px solid rgb(254,189,105)", }}>
+                         <Image src={i.storeBackgroundImage} alt={i.storeName} width={"100%"} height={"82%"}/>
+                    <Box display="flex" flexDirection="column" alignItems="center" mt={[2,2,3]} >
+                         <Text  fontSize={["0.83rem" ,"0.955rem",]}>{i.storeName}</Text>
+                         <Text fontWeight="bold" fontSize={["0.83rem" ,"0.955rem",]}>{i.storeType}</Text>
+                    </Box>
+                </Box>
+            </NextLink>
             ))}
-        </div>
+        </Grid>
+        </>
     )
 }
 
