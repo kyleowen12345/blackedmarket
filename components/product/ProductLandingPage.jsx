@@ -9,7 +9,7 @@ const ProductLandingPage = ({products}) => {
         <Grid  templateColumns={[ "repeat(2, auto)", "repeat(2, auto)", "repeat(3, auto)", "repeat(4, auto)", "repeat(5, auto)" ]} gap={3} >
             {products?.map(i=>(
                 <NextLink key={i.id || i._id} href={`/products/info/${i.id}`}  passHref={true}>
-                    <Box maxW="230px" h={["205px" ,"245px" ,"260px"]} borderWidth="1px" overflow="hidden" justifyContent="center" alignItems="center" as="a" bg="white" _hover={{border: "3px solid rgb(254,189,105)",color:"#FC8E00" }} boxShadow="md" >
+                    <Box maxW="230px" h={["205px" ,"245px" ,"260px"]} borderWidth="1px" overflow="hidden"  as="a" bg="white" _hover={{border: "3px solid rgb(254,189,105)",color:"#FC8E00" }} boxShadow="md" >
                         <Image src={i.image} alt={i.productName} width={"100%"} height={"65%"} />
                           <Box pl={2}>
                                  <Box mt="1" fontWeight="semibold"as="h4" lineHeight="tight" isTruncated >
@@ -30,8 +30,8 @@ const ProductLandingPage = ({products}) => {
                                          <Text fontSize="10px">{i.productName.length + i.image.length} reviews</Text> 
                                      </Box>
                                  </Box>
-                         </Box>
-                  </Box>
+                           </Box>
+                   </Box>
                 </NextLink>
             ))}
         </Grid>
