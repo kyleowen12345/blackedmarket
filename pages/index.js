@@ -6,33 +6,41 @@ import StoreLandingPage from "../components/store/StoreLandingPage"
 import { Box,Text  } from "@chakra-ui/react"
 import { useEffect, useState } from "react";
 import Deals from "../components/Deals/Deals";
+import CarouselBanner from "../components/Banner/CarouselBanner";
 
 
 const LANDINGPAGE = gql`
-  query {
-    landingpage{
-      stores{
-        id
-        storeName
-        storeType
-        sellerName{
-          email
-        }
-        storeBackgroundImage
+query {
+  landingpage{
+    stores{
+      id
+      storeName
+      storeType
+      sellerName{
+        email
       }
-    products{
-       id
-      storeName{
-        id
-        storeName
-      }
-      productName
-      price
-      image
+      storeBackgroundImage
     }
-      
+  products{
+     id
+    storeName{
+      id
+      storeName
     }
+    productName
+    price
+    image
   }
+    deals{
+       _id
+    productName
+    price
+    image
+    description
+    }
+    
+  }
+}
 `;
 
 
@@ -43,11 +51,12 @@ export default function Home({initialApolloState}) {
     <>
     
     <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,2,0]}  display="flex" flexDirection="column" justifyContent="center">
-    <Deals/>
-    <Text  size="2xl" bg="white" mt={5} mb={2} p={3} fontWeight="bold" boxShadow="md"  >Top Stores</Text>
+    <CarouselBanner/>
+    <Deals deals={data?.landingpage.deals}/>
+    <Text  size="2xl" bg="white" mt={20} mb={2} p={3} fontWeight="bold" boxShadow="md" id="Store" >Top Stores</Text>
     <StoreLandingPage stores={data?.landingpage.stores}/>
-   <Text  size="2xl" bg="white" mt={5} mb={2} p={3} fontWeight="bold" boxShadow="md" >Latest Products</Text>
-   <ProductLandingPage products={data?.landingpage.products}/>
+   <Text  size="2xl" bg="white" mt={10} mb={2} p={3} fontWeight="bold" boxShadow="md" id="products">Latest Products</Text>
+   <ProductLandingPage products={data?.landingpage.products} />
     </Box>
    
    </>

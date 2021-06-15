@@ -1,20 +1,16 @@
 import React, { useRef, useEffect } from "react";
-import { Box } from "@chakra-ui/react";
-import { keyframes } from "@emotion/react";
+import { Box, Image } from "@chakra-ui/react";
+import BannerLink from "./BannerLink"
 
-const fadeIn = keyframes`
-0% { opacity:0; }
-100% { opacity:1; }
-`;
+
+
 
 const arr = [
-  { show: "block", url: "https://cf.shopee.ph/file/f02c278c5df1aedabd30ee3677fea56b" },
-  { show: "none", url: "https://cf.shopee.ph/file/5b9c7f4b70eb3e423cf92fe51acc011e" },
-  { show: "none", url: "https://source.unsplash.com/6ccJQ5qPFvY/1440x960" },
-  { show: "none", url: "https://source.unsplash.com/qTLyiHW1nIc/1440x960" },
-  { show: "none", url: "https://source.unsplash.com/fxX__3GRtsg/1440x960" }
+  { show: "block", url: "https://image.freepik.com/free-vector/online-shop-illustration_180868-82.jpg" },
+  { show: "none", url: "https://image.freepik.com/free-vector/online-shop-illustration_180868-82.jpg" },
+  { show: "none", url: "https://image.freepik.com/free-vector/e-commerce-colorful-concept_1284-48408.jpg" },
+  { show: "none", url: "https://image.freepik.com/free-vector/online-shopping-mobile-shopping-internet-store-shop-website-smartphone-illustrations-set-customers-ordering-purchasing-goods-cartoon-characters-e-commerce-digital-technology_229548-29.jpg" },
 ];
-
 
 const CarouselBanner = () => {
   const [value, setValue] = React.useState(1);
@@ -22,7 +18,7 @@ const CarouselBanner = () => {
   
   useInterval(() => {
     // Your custom logic here
-    value === 4 ? setValue(1) : setValue(value +1);
+    value === 3 ? setValue(1) : setValue(value +1);
     arr.map(i => {
       return (i.show = "none");
     });
@@ -30,27 +26,22 @@ const CarouselBanner = () => {
   }, delay);
   return (
     <>
-      <div>
+      <Box mt={5}backgroundColor="#222" display="flex">
         {arr.map((item, key) => {
           return (
             <Box
-              backgroundColor="#222"
-              backgroundImage={`url(${item.url})`}
-              backgroundPosition="center"
-              backgroundSize="cover"
-              backgroundRepeat="no-repeat"
-              width={"40vw"}
-              height="30vh"
-              animation={`${fadeIn} ease 3s`}
               display={item.show}
               key={key}
-              paddingTop={5}
-             
+              height={["150px","150px","200px","300px"]}
+              width={["100%","100%","100%","100%","800px"]}
             >
+              <Image src={item.url} alt={item.url}  height={"100%"} width="100%" />
             </Box>
           );
         })}
-      </div>
+        <Image src={"https://media.giphy.com/media/S5iaflEE71xTQaWTFm/giphy.gif"}  alt={"https://media.giphy.com/media/S5iaflEE71xTQaWTFm/giphy.gif"} height={"300px"}pl={10} display={["none","none","none","none","block"]}/>
+      </Box>
+      <BannerLink/>
     </>
   );
 }

@@ -1,37 +1,19 @@
-import React, {useEffect} from 'react'
-import {  gql,useQuery } from "@apollo/client";
+import React from 'react'
 import {Grid, Badge,Box,Text,Image} from "@chakra-ui/react"
 import NextLink from 'next/link'
-import Loader from '../Loader/Loader';
-const TODAYSDEAL = gql`
-  query {
-    randomQuery{
-      _id
-      productName
-      price
-      image
-      description
-    }
-      
-    }
-  
-`;
 
-const Deals = () => {
+
+const Deals = ({deals}) => {
  
-    const { data, error,loading,refetch  } = useQuery( TODAYSDEAL );
-    useEffect(() => {
-      setInterval(() => { }, 86400000)
-    }, [])
-    console.log(data)
+
     return (
       <>
-      <Box >
+      <Box id="Deals">
         <Text  size="2xl" bg="white" mt={4} mb={2} p={3} fontWeight="bold" boxShadow="md"  >Today's Deals</Text>
-        {loading ?<Loader/>:<Grid  templateColumns={[ "repeat(2, auto)", "repeat(2, auto)", "repeat(3, auto)", "repeat(3, auto)", "repeat(6, auto)" ]} gap={1}  bg="white" >
-        {data?.randomQuery.map(i=>(
+        <Grid  templateColumns={[ "repeat(2, auto)", "repeat(2, auto)", "repeat(3, auto)", "repeat(3, auto)", "repeat(6, auto)" ]} gap={1}  >
+        {deals?.map(i=>(
            <NextLink key={i.id || i._id} href={`/products/info/${i.id || i._id}`}  passHref={true}>
-              <Box  maxW="230px" h={["205px" ,"245px" ,"260px"]} borderWidth="1px" overflow="hidden"  as="a" bg="white" _hover={{border: "3px solid rgb(254,189,105)",color:"#FC8E00" }} boxShadow="md" m={1}>
+              <Box  maxW="230px" h={["205px" ,"245px" ,"260px"]} borderWidth="1px" overflow="hidden"  as="a" bg="white" _hover={{border: "3px solid rgb(254,189,105)",color:"#FC8E00" }} boxShadow="md" >
                         <Image src={i.image} alt={i.productName} width={"100%"} height={"65%"} />
                           <Box pl={2}>
                                  <Box mt="1" fontWeight="semibold"as="h4" lineHeight="tight" isTruncated >
@@ -54,7 +36,7 @@ const Deals = () => {
                     </Box>
            </NextLink>
         ))}
-   </Grid>}
+   </Grid>
   </Box> 
   </>
     )
