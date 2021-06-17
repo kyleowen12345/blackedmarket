@@ -3,7 +3,7 @@ import jwt_decode from "jwt-decode";
 import { useAuth } from '../../../lib/auth';
 import ProductInfoImage from './ProductInfoImage';
 import ProductInfoDetails from './ProductInfoDetails';
-import { Box,Button  } from "@chakra-ui/react"
+import { Box  } from "@chakra-ui/react"
 const ProductInfo = ({product}) => {
     const {authToken}=useAuth()
     let decoded=null
