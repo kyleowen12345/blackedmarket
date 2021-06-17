@@ -10,8 +10,8 @@ const BannerLink = () => {
             <Link href="#products" >
                 <Box bg="white" w={["100px","100px","150px","230px","230px","380px"]} p={2} pl={[0,1,3,5]} borderRadius={"3xl"} display="flex" alignItems="center" _hover={{border: "3px solid rgb(254,189,105)"}}>
                   <Icon as={FaProductHunt} color="#FEBD69" />
-                   <Badge fontSize={["5px","10px","12px","15px"]}  borderRadius="full"  colorScheme="orange" ml={[0,1,2,3]} >
-                      Products
+                   <Badge fontSize={["5px","10px","12px","15px"]}  colorScheme="orange" ml={[0,1,2,3]} isTruncated>
+                     Latest Products
                     </Badge>
                     <ChevronDownIcon ml="auto" color="#FEBD69" />
                 </Box>
@@ -19,8 +19,8 @@ const BannerLink = () => {
             <Link href="#Store" >
             <Box bg="white" w={["100px","100px","150px","200px","230px","380px"]} p={2} pl={[0,1,3,5]} borderRadius={"3xl"} display="flex" alignItems="center" _hover={{border: "3px solid rgb(254,189,105)"}}>
             <Icon as={FaStore} color="#FEBD69" />
-                  <Badge fontSize={["5px","10px","12px","15px"]}   borderRadius="full"  colorScheme="orange" ml={[0,1,2,3]}>
-                     Store
+                  <Badge fontSize={["5px","10px","12px","15px"]}    colorScheme="orange" ml={[0,1,2,3]}>
+                    Top Store
                   </Badge>
                   <ChevronDownIcon ml="auto" color="#FEBD69" />
                 </Box>
@@ -28,7 +28,7 @@ const BannerLink = () => {
             <Link href="#Deals" >
             <Box bg="white" w={["100px","100px","150px","200px","230px","380px"]}p={2} pl={[0,1,3,5]} borderRadius={"3xl"} display="flex" alignItems="center" _hover={{border: "3px solid rgb(254,189,105)"}}>
             <Icon as={AiFillGift} color="#FEBD69" />
-                  <Badge fontSize={["5px","10px","12px","15px"]}   borderRadius="full"  colorScheme="orange" ml={[0,1,2,3]}>
+                  <Badge fontSize={["5px","10px","12px","15px"]}    colorScheme="orange" ml={[0,1,2,3]}>
                      Deals
                   </Badge>
                   <ChevronDownIcon ml="auto" color="#FEBD69" />
