@@ -1,12 +1,10 @@
 import React, {useEffect} from 'react'
 import {  gql,useLazyQuery  } from "@apollo/client";
-import { initializeApollo } from "../../../src/apollo.ts";
 import { useRouter } from "next/router"
 import ProductInfo from "../../../components/product/productinfo/ProductInfo";
 import Loader from '../../../components/Loader/Loader';
 import { Box } from "@chakra-ui/react"
 import ProductInfoSubNav from '../../../components/product/productinfo/ProductInfoSubNav'
-import ProductStoreInfo from '../../../components/product/productinfo/ProductStoreInfo'
 
 export const PRODUCTINFO = gql`
  query ($id:ID!){
@@ -56,12 +54,10 @@ export default function Home() {
     {loading ? <Loader/>:<div >
        {/* {error && <h1>{error?.message}</h1>} */}
       
-         <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"    >
+         <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"   >
            <ProductInfoSubNav data={data} id={id}/>
-              {data && <>
-              <ProductInfo product={data?.productInfo.product}/>
-              <ProductStoreInfo product={data?.productInfo}/>
-                  </>
+              {data && 
+              <ProductInfo product={data?.productInfo} />
               }
        </Box>
        

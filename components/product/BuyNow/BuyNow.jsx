@@ -6,7 +6,7 @@ import Shipping from '../productinfo/productDetails/Shipping'
 const BuyNow = ({isOpen,quantity,product,setQuantity,onClose,initialRef,finalRef}) => {
     const [ready,setReady]=useState(false)
     const total=product.price * quantity
-    const shipping=product.price * quantity * 0.25
+    const shipping=product.price  * 0.25
     useEffect(() => {
         if(isOpen){
           setReady(true)
