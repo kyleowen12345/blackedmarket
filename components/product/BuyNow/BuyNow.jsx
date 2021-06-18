@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import { Modal,ModalOverlay,Button,Input,ModalContent,ModalHeader,ModalBody,ModalCloseButton,Box,Text,ModalFooter  } from "@chakra-ui/react"
 import Paypal from '../Paypal'
+import Shipping from '../productinfo/productDetails/Shipping'
 
 const BuyNow = ({isOpen,quantity,product,setQuantity,onClose,initialRef,finalRef}) => {
     const [ready,setReady]=useState(false)
@@ -41,10 +42,10 @@ const BuyNow = ({isOpen,quantity,product,setQuantity,onClose,initialRef,finalRef
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Pay with Paypal</ModalHeader>
+          <ModalHeader>{product.productName}</ModalHeader>
           <ModalCloseButton boxShadow="none"/>
-          <ModalBody pb={6}>
-          <Box m={3} mt={5} display={"flex"}>
+          <ModalBody pb={6} >
+             <Box m={3} mt={5} display={"flex"}>
                <Box mr={[5,5,20]} width={"95px"} >
                 <Text color="#888888" fontSize={["8px","14px","15px"]}>Quantity :</Text>
                 </Box>
@@ -53,10 +54,20 @@ const BuyNow = ({isOpen,quantity,product,setQuantity,onClose,initialRef,finalRef
                 <Input  type="number" onChange={(e)=>setQuantity(parseInt(e.target.value))} value={quantity} width={"100px"} borderRadius={0}  focusBorderColor="none"  height="30px"/>
                 <Button disabled={quantity == product.productStocks} bg="white" _hover={{bg:"white"}}  borderRadius={0} border="1px solid #E2E8F0" height="30px" onClick={()=>setQuantity(quantity+1)}>+</Button>
                 </Box>
+              </Box>
+            <Shipping product={product}/>
+            <Box m={3} mt={5} display={"flex"} alignItems="center">
+                <Box mr={[5,5,20]} width={"95px"}>
+                <Text color="#888888" fontSize={["8px","13px","15px"]}>Total :</Text>
+                </Box>
+                <Box maxW={["150px","150px","200px"]} isTruncated>
+                <Text fontSize={["8px","13px","15px"]} fontWeight="bold" isTruncated>${total + shipping}</Text>
+                </Box>
+                
             </Box>
           </ModalBody>
 
-          <ModalFooter>
+          <ModalFooter dis="flex" alignItems="center" ml="auto" mr="auto">
           {ready && <Paypal toPay={total + shipping} ontracSuccess={transactionSuccess} ontracError={transactionError} ontracCancel={transactionCancel}/> }
           </ModalFooter>
         </ModalContent>

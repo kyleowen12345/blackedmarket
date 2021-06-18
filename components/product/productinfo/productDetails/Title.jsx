@@ -5,7 +5,7 @@ import { StarIcon } from '@chakra-ui/icons'
 
 const Title = ({product}) => {
     return (
-        <Box p={5} pt={[0,0,5]}>
+        <Box p={5} pt={[0,0,5]} pb={[0,0,5]}>
                 <Box display="flex" alignItems="center" >
                     <Box>
                           <Badge  colorScheme="orange" fontSize={["8px","8px","10px","12px","13px"]}>Preffered</Badge>

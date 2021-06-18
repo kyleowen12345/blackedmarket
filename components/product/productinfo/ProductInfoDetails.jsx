@@ -17,10 +17,10 @@ const ProductInfoDetails = ({product,decoded}) => {
             {/* Description */}
             <Box m={3} mt={5} display={"flex"} alignItems="center">
                 <Box mr={[5,5,20]} width={"95px"}>
-                <Text color="#888888" fontSize={["8px","14px","15px"]}>Description :</Text>
+                <Text color="#888888" fontSize={["8px","13px","15px"]}>Description :</Text>
                 </Box>
                 <Box maxW={["150px","150px","200px"]} isTruncated>
-                <Text fontSize={["8px","12px","13px"]} isTruncated>{product?.description}</Text>
+                <Text fontSize={["8px","11px","13px"]} isTruncated>{product?.description}</Text>
                 </Box>
                 
             </Box>
@@ -29,10 +29,10 @@ const ProductInfoDetails = ({product,decoded}) => {
             {/* Stocks */}
             <Box m={3} display={"flex"} mt={5}>
                <Box mr={[5,5,20]} width={"95px"}>
-                <Text color="#888888" fontSize={["8px","14px","15px"]}>Stocks :</Text>
+                <Text color="#888888" fontSize={["8px","13px","15px"]}>Stocks :</Text>
                 </Box>
                 <Box>
-                <Text fontSize={["8px","12px","13px"]}>{product?.productStocks} piece(s) available</Text>
+                <Text fontSize={["8px","11px","13px"]}>{product?.productStocks} piece(s) available</Text>
                 </Box>
             </Box>
            

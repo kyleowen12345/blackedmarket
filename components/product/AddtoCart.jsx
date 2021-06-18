@@ -34,7 +34,7 @@ const AddtoCart = ({product}) => {
     
     return (
         <Box>
-            <Box m={3} mt={5} display={"flex"}>
+            <Box m={3} mt={5} display={"flex"} >
                <Box mr={[5,5,20]} width={"95px"} >
                 <Text color="#888888" fontSize={["8px","14px","15px"]}>Quantity :</Text>
                 </Box>
