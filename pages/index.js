@@ -55,7 +55,7 @@ export default function Home({initialApolloState}) {
     <Deals deals={data?.landingpage.deals}/>
     <Text  size="2xl" bg="white" mt={20} mb={2} p={3} fontWeight="bold" boxShadow="md" id="Store" >Top Stores</Text>
     <StoreLandingPage stores={data?.landingpage.stores}/>
-   <Text  size="2xl" bg="white" mt={10} mb={2} p={3} fontWeight="bold" boxShadow="md" id="products">Latest Products</Text>
+   <Text  size="2xl" bg="white" mt={10} mb={2} p={3} fontWeight="bold" boxShadow="md" id="products">New Products</Text>
    <ProductLandingPage products={data?.landingpage.products} />
     </Box>
    

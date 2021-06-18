@@ -3,22 +3,26 @@ import { Box,Text,Button,Icon,Grid  } from "@chakra-ui/react"
 import {  FaStore} from "react-icons/fa"
 import Image from 'next/image'
 import Moment from 'react-moment';
+import NextLink from 'next/link'
 
 const ProductStoreInfo = ({product}) => {
     console.log( product)
     return (
         <>
-        <Box  display={["block","block","block","flex","flex",]} bg="white" height={["200px","250px","100px"]} mt={10}    alignItems="center" p={[0,3,10]} > 
-           <Box display="flex" borderRight={["","","","1px solid #C4C4C4"]} width={["300px","300px","300px","400px"]} ml={["auto","auto","0px"]}>
+        <Box  display="flex" bg="white" height={["200px","250px","120px"]} mt={10}    alignItems="center" p={[0,3,10]} flexDirection={["column","column","row"]} justifyContent="center"> 
+           <Box display="flex" borderRight={["","","","1px solid #C4C4C4"]} width={["300px","200px","300px","400px"]} >
                <Box>
                   <Image src={product.product.storeName.storeBackgroundImage} alt={product.product.storeName.storeBackgroundImage} width="70px" height="70px" className="productStore"/>
                </Box>
                
                <Box ml={5}>
-                 <Text>{product.product.storeName.storeName}</Text>
-                 <Box display="flex"   justifyContent="space-between" >
-                 <Button as="a" width="120px"  bg="white" color="#888888"  _hover={{bg:"#FC8E00",color:"white"}} border="1px solid #C4C4C4" borderRadius={0} height="35px" fontSize="13px"><Icon as={FaStore}  mr={2}/> View Shop</Button>
+                 <Text maxW={["120px","120px","200px"]} fontSize={["12px","14px","16px"]} isTruncated>{product.product.storeName.storeName}</Text>
+                 <NextLink href={`/stores/info/${product.product.storeName.id}`} passHref>
+                 <Box display="flex"   justifyContent="space-between" as="a">
+                 <Button  width="120px"    bg="#FC8E00" color="white" _hover={{bg:"white", color:"#FC8E00"}} border="1px solid #C4C4C4" borderRadius={0} height="35px" fontSize="13px"><Icon as={FaStore}  mr={2}/> View Shop</Button>
                  </Box>
+                 </NextLink>
+                 
                </Box>
             
            </Box>

@@ -7,15 +7,15 @@ const Shipping = ({product}) => {
     return (
         <Box m={3} mt={5} display={"flex"}>
                 <Box mr={[5,5,20]} width={"95px"} >
-                        <Text color="#888888" fontSize={["8px","12px","15px"]}>Shipping :</Text>
+                        <Text color="#888888" fontSize={["8px","14px","15px"]}>Shipping :</Text>
                 </Box>
                 <Box>
                         <Box width={["100px","100px","323px"]}>
                             <Icon as={FiTruck} color="#000000" />
                         </Box>
                         <Box display="flex" alignItems="center" justifyContent="space-between" width={["100px","100px","300px"]}>
-                                  <Text fontSize={["8px","10px","13px"]} width="100px">Shipping To</Text>
-                               <Select ml={[5,5,20]}  variant="unstyled" placeholder="Unstyled" placeholder="USA"  fontSize={["8px","10px","13px"]} minW="120px" fontWeight="bold">
+                                  <Text fontSize={["8px","12px","13px"]} width="100px">Shipping To</Text>
+                               <Select ml={[5,5,20]}  variant="unstyled" placeholder="Unstyled" placeholder="USA"  fontSize={["8px","12px","13px"]} minW="100px" fontWeight="bold">
                                           {
                                               country_list.map(i=>(
                                               <Text fontSize={["8px","10px","13px"]}  as="option" key={i}>{i}</Text>
@@ -24,8 +24,8 @@ const Shipping = ({product}) => {
                                 </Select>
                         </Box>
                         <Box display="flex" alignItems="center" justifyContent="space-between" width={["100px","100px","170px"]}>
-                              <Text fontSize={["8px","10px","13px"]} >Shipping Fee</Text>
-                              <Text fontSize={["8px","10px","13px"]} fontWeight="bold">$ {product.price * 0.25 }</Text>
+                              <Text fontSize={["8px","12px","13px"]} >Shipping Fee</Text>
+                              <Text fontSize={["8px","12px","13px"]} fontWeight="bold">$ {product.price * 0.25 }</Text>
                         </Box>
                 </Box>
             </Box>

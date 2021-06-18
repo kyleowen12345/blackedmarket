@@ -11,7 +11,7 @@ const BannerLink = () => {
                 <Box bg="white" w={["100px","100px","150px","230px","230px","380px"]} p={2} pl={[0,1,3,5]} borderRadius={"3xl"} display="flex" alignItems="center" _hover={{border: "3px solid rgb(254,189,105)"}}>
                   <Icon as={FaProductHunt} color="#FEBD69" />
                    <Badge fontSize={["5px","10px","12px","15px"]}  colorScheme="orange" ml={[0,1,2,3]} isTruncated>
-                     Latest Products
+                     New Products
                     </Badge>
                     <ChevronDownIcon ml="auto" color="#FEBD69" />
                 </Box>

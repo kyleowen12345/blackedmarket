@@ -40,8 +40,13 @@ export default function Home() {
   const {id}= router.query
   const [storesinfo,{ data, error,loading }] = useLazyQuery( STORESINFO,{variables:{id:id }} );
   useEffect(() => {
-    storesinfo()
-  }, [])
+    if(id){
+      return storesinfo()
+    }else{
+      return
+    }
+    
+  }, [id])
   return (
     <div >
       <Link href="/"><a>Home</a></Link>

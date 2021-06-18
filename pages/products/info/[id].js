@@ -43,12 +43,17 @@ export default function Home() {
   const {id}= router.query
   const [productinfo,{ data,error,loading }] = useLazyQuery( PRODUCTINFO,{variables:{id:id }} );
   useEffect(() => {
-    productinfo()
-  }, [])
- 
+    if(id){
+     return productinfo()
+    }else{
+      return
+    }
+    
+  }, [id])
+ console.log(id)
   return (
-    <div >
-      {loading && <Loader/>}
+    <>
+    {loading ? <Loader/>:<div >
        {/* {error && <h1>{error?.message}</h1>} */}
       
          <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"    >
@@ -60,6 +65,7 @@ export default function Home() {
               }
        </Box>
        
-    </div>
+    </div>}
+    </>
   )
 }
