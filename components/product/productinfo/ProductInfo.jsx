@@ -13,7 +13,7 @@ const ProductInfo = ({product}) => {
     }
     return (
         <>
-        <Box display={["block","block","flex","flex","flex"]} bg="white" height={["800px","800px","530px"]} ml="auto"> 
+        <Box display={["block","block","flex","flex","flex"]} bg="white" height={["800px","750px","530px"]} ml="auto"> 
             <ProductInfoImage src={product?.product.image} alt={product?.product.productName}/>
             <ProductInfoDetails product={product} decoded={decoded}/>
         </Box>
