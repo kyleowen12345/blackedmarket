@@ -45,9 +45,17 @@ const BuyNow = ({isOpen,quantity,product,setQuantity,onClose,initialRef,finalRef
           <ModalHeader>{product.productName}</ModalHeader>
           <ModalCloseButton boxShadow="none"/>
           <ModalBody pb={6} >
+          <Box m={3} mt={5} display={"flex"} alignItems="center">
+                <Box mr={[5,5,20]} width={"95px"}>
+                <Text color="#888888" fontSize={["8px","13px","15px"]}>Price </Text>
+                </Box>
+                <Box maxW={["150px","150px","200px"]} isTruncated>
+                <Text fontSize={["8px","13px","15px"]} fontWeight="bold" isTruncated>${product.price}</Text>
+                </Box>
+            </Box>
              <Box m={3} mt={5} display={"flex"}>
                <Box mr={[5,5,20]} width={"95px"} >
-                <Text color="#888888" fontSize={["8px","14px","15px"]}>Quantity </Text>
+                <Text color="#888888" fontSize={["8px","13px","15px"]}>Quantity </Text>
                 </Box>
                 <Box display="flex" width={["100px","150px","186px"]}>
                 <Button disabled={quantity == 1} bg="white" _hover={{bg:"white"}} borderRadius={0} border="1px solid #E2E8F0" height="30px" onClick={()=>setQuantity(quantity-1)}>-</Button>
@@ -56,6 +64,7 @@ const BuyNow = ({isOpen,quantity,product,setQuantity,onClose,initialRef,finalRef
                 </Box>
               </Box>
             <Shipping product={product}/>
+           
             <Box m={3} mt={5} display={"flex"} alignItems="center">
                 <Box mr={[5,5,20]} width={"95px"}>
                 <Text color="#888888" fontSize={["8px","13px","15px"]}>Total </Text>

@@ -36,12 +36,12 @@ const AddtoCart = ({product}) => {
         <Box maxH={"90px"}>
             <Box m={3} mt={5} display={"flex"} >
                <Box mr={[5,5,20]} width={"95px"} >
-                <Text color="#888888" fontSize={["8px","14px","15px"]}>Quantity </Text>
+                <Text color="#888888" fontSize={["8px","13px","15px"]}>Quantity </Text>
                 </Box>
                 <Box display="flex" width={["100px","150px","186px"]}>
-                <Button disabled={quantity == 1} bg="white" _hover={{bg:"white"}} borderRadius={0} border="1px solid #E2E8F0" height="30px" onClick={()=>setQuantity(quantity-1)}>-</Button>
-                <Input  type="number" onChange={(e)=>setQuantity(parseInt(e.target.value))} value={quantity} width={"100px"} borderRadius={0}  focusBorderColor="none"  height="30px"/>
-                <Button disabled={quantity == product.productStocks} bg="white" _hover={{bg:"white"}}  borderRadius={0} border="1px solid #E2E8F0" height="30px" onClick={()=>setQuantity(quantity+1)}>+</Button>
+                <Button disabled={quantity == 1} bg="white" _hover={{bg:"white"}} borderRadius={0} border="1px solid #E2E8F0" height={["25px","25px","30px"]}onClick={()=>setQuantity(quantity-1)}>-</Button>
+                <Input  type="number" onChange={(e)=>setQuantity(parseInt(e.target.value))} value={quantity} width={"100px"} borderRadius={0}  focusBorderColor="none"  height={["25px","25px","30px"]}/>
+                <Button disabled={quantity == product.productStocks} bg="white" _hover={{bg:"white"}}  borderRadius={0} border="1px solid #E2E8F0" height={["25px","25px","30px"]} onClick={()=>setQuantity(quantity+1)}>+</Button>
                 </Box>
             </Box>
             <Box display={"flex"} width={["300px","300px","400px"]} justifyContent="space-between" m={3} mt={5}>
