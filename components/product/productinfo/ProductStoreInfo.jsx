@@ -6,7 +6,7 @@ import Moment from 'react-moment';
 import NextLink from 'next/link'
 
 const ProductStoreInfo = ({product}) => {
-    console.log( product)
+  
     return (
         <>
         <Box  display="flex" bg="white" height={["200px","100%","130px"]}  mt={3}  alignItems="center" p={[0,3,10]} flexDirection={["column","column","row"]}  > 

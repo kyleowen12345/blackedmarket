@@ -14,6 +14,7 @@ const GetCartInfo = ({cart}) => {
   const [total,setTotal]=useState()
   const [ready,setReady]=useState(false)
   const router = useRouter()
+
   const calculateTotal=()=>{
     let total=0
     carts.map(item=>{

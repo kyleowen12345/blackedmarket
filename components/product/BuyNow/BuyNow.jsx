@@ -1,30 +1,45 @@
 import React, { useState,useEffect } from 'react'
-import { Modal,ModalOverlay,Button,Input,ModalContent,ModalHeader,ModalBody,ModalCloseButton,Box,Text,ModalFooter  } from "@chakra-ui/react"
+import { Modal,ModalOverlay,Button,Input,ModalContent,ModalHeader,ModalBody,ModalCloseButton,Box,Text,ModalFooter,useToast   } from "@chakra-ui/react"
 import Paypal from '../Paypal'
 import Shipping from '../productinfo/productDetails/Shipping'
+import Cookies from 'js-cookie';
+import axios from 'axios'
+
+
 
 const BuyNow = ({isOpen,quantity,product,setQuantity,onClose,initialRef,finalRef}) => {
     const [ready,setReady]=useState(false)
     const total=product.price * quantity
     const shipping=product.price  * 0.25
+    const toast = useToast()
     useEffect(() => {
         if(isOpen){
           setReady(true)
         }
        }, [isOpen])
     const transactionSuccess=async(pay)=>{
-        console.log(pay)
-    //     let variables={
-    //       cartDetail:carts,paymentData:pay
-    //   }
-    //     try {
-    //       await axios.post(`${process.env.NEXT_PUBLIC_PURCHASE_KEY}`,variables,{headers:{
-    //         token:Cookies.get('blackedmarket') || ""
-    //       }})
-    //       setCarts([])
-    //     } catch (error) {
-    //       console.log(error)
-    //     }
+        let variables={
+          cartDetail:[{price: product.price,
+            id: product.id,
+            image: product.image,
+            productName: product.productName,
+            quantity: quantity,
+            storeName:product.storeName.id,
+            storeOwner:product.storeOwner.id}],paymentData:pay
+      }
+        try {
+          await axios.post(`${process.env.NEXT_PUBLIC_PURCHASE_KEY}/singlePurchase`,variables,{headers:{
+            token:Cookies.get('blackedmarket') || ""
+          }})
+          onClose()
+          toast({
+            title: `Purchase successful`,
+                status:"success",
+                isClosable: true,
+          })
+        } catch (error) {
+          console.log(error)
+        }
     }  
     const transactionError=()=>{
         console.log('Paypal Error')

@@ -8,7 +8,7 @@ import Shipping from './Shipping';
 import { AiOutlineEdit } from "react-icons/ai"
 import Moment from 'react-moment';
 const ProductInfoDetails = ({product,decoded}) => {
-    console.log(product)
+    
     return (
         <Box ml={["auto","auto",0,0,10]} width={["300px","300px","800px"]}  mr="auto">
             {/* Title/rating/sold */}

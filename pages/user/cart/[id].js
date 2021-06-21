@@ -4,7 +4,7 @@ import { useRouter } from "next/router"
 import GetCartInfo from "../../../components/product/GetCartInfo";
 import Cookies from 'js-cookie'
 import Loader from '../../../components/Loader/Loader';
-const CARTINFO = gql`
+export const CARTINFO = gql`
  query ($curPage:String!){
     getCartInfo(curPage:$curPage){
      curPage
@@ -27,11 +27,10 @@ const CARTINFO = gql`
 export default function Home() {
     const router = useRouter()
     const {id}= router.query
-    const [cartinfo,{ data,error,loading }] = useLazyQuery( CARTINFO,{variables:{curPage:id||"1"},context:{headers:{token:Cookies.get('blackedmarket')||""}}});
+    const [cartinfo,{ data,error,loading }] = useLazyQuery( CARTINFO,{variables:{curPage:id||"1"},context:{headers:{token:Cookies.get('blackedmarket')||""}},fetchPolicy:"no-cache"});
     useEffect(() => {
         cartinfo()
     }, [])
-  
   return (
     <div >
        {loading && <Loader/>}
