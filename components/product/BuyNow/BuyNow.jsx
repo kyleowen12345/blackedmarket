@@ -39,6 +39,12 @@ const BuyNow = ({isOpen,quantity,product,setQuantity,onClose,initialRef,finalRef
           })
         } catch (error) {
           console.log(error)
+          toast({
+            title: `Purchase Failed`,
+            description: "Please log-in again",
+                status:"error",
+                isClosable: true,
+          })
         }
     }  
     const transactionError=()=>{

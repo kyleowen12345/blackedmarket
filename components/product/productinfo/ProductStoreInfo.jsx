@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box,Text,Button,Icon,Grid  } from "@chakra-ui/react"
+import { Box,Text,Button,Icon,Grid,Container  } from "@chakra-ui/react"
 import {  FaStore} from "react-icons/fa"
 import Image from 'next/image'
 import Moment from 'react-moment';
@@ -9,7 +9,7 @@ const ProductStoreInfo = ({product}) => {
   
     return (
         <>
-        <Box  display="flex" bg="white" height={["200px","100%","130px"]}  mt={3}  alignItems="center" p={[0,3,10]} flexDirection={["column","column","row"]}  > 
+        <Box  display="flex" bg="white" height={["200px","100%","130px"]}  mt={3} mb={5}  alignItems="center" p={[0,3,10]} flexDirection={["column","column","row"]}  > 
            <Box display="flex" borderRight={["","","","1px solid #C4C4C4"]} width={["300px","70vw","250px","250px","300px"]} >
                <Box>
                   <Image src={product.product.storeName.storeBackgroundImage} alt={product.product.storeName.storeBackgroundImage} width="70px" height="70px" className="productStore"/>
@@ -27,7 +27,7 @@ const ProductStoreInfo = ({product}) => {
             
            </Box>
           <Box display={["none","flex","flex"]} justifyContent="center" ml="auto" mr="auto" p={2}>
-          <Grid templateColumns={ ["repeat(1, auto)","repeat(1, 65vw)","repeat(2, auto)","repeat(2, auto)"]} gap={5} >
+          <Grid templateColumns={ ["repeat(1, auto)","repeat(1, 65vw)","repeat(2, auto)","repeat(2, auto)"]} gap={5} display={["none","none","grid"]}>
                <Box display="flex" alignItems="center">
                     <Text fontSize={["11px","11px","11px","13px"]}>
                        Products
@@ -62,6 +62,34 @@ const ProductStoreInfo = ({product}) => {
                 </Box>
                 
             </Grid>  
+            <Container display={["flex","flex","none"]}  justifyContent="space-around" alignItems="center"  maxW="290px" >
+                <Box display="flex" flexDirection="column" alignItems="center">
+                     <Text fontSize={["8px","13px"]} fontWeight="bold"  color="#FC8E00" maxW="110px" isTruncated>
+                        {product.relatedProducts}
+                     </Text>
+                     <Text fontSize={["11px","12px"]}>
+                         Products
+                      </Text>
+                </Box>
+                <Text ml={2} mr={2} color="black" fontSize="30px">|</Text>
+                <Box display="flex" flexDirection="column" alignItems="center">
+                     <Text fontSize={["8px","13px"]} fontWeight="bold" color="#FC8E00"  maxW="110px" isTruncated>
+                           <Moment fromNow>{Date.parse(product.product.storeName.createdAt) || product.product.storeName.createdAt}</Moment>
+                     </Text>
+                     <Text fontSize={["11px","12px"]}>
+                             Joined 
+                     </Text>
+                </Box>
+                <Text ml={2} mr={2} color="black" fontSize="30px">|</Text>
+                <Box display="flex" flexDirection="column" alignItems="center">
+                       <Text fontSize={["8px","13px"]} fontWeight="bold"  color="#FC8E00" maxW="110px" isTruncated>
+                         {product.product.storeName.storeType}
+                       </Text>
+                       <Text fontSize={["11px","12px"]}>
+                            Store Type
+                       </Text>
+                </Box>
+           </Container>
         </Box> 
            
         </Box>
