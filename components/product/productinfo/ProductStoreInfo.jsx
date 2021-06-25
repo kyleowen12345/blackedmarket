@@ -10,7 +10,7 @@ const ProductStoreInfo = ({product}) => {
     return (
         <>
         <Box  display="flex" bg="white" height={["200px","100%","130px"]}  mt={3} mb={5}  alignItems="center" p={[0,3,10]} flexDirection={["column","column","row"]}  > 
-           <Box display="flex" borderRight={["","","","1px solid #C4C4C4"]} width={["300px","70vw","250px","250px","300px"]} >
+           <Box display="flex" borderRight={["","","","1px solid #C4C4C4"]} width={["300px","70vw","250px","250px","400px"]} >
                <Box>
                   <Image src={product.product.storeName.storeBackgroundImage} alt={product.product.storeName.storeBackgroundImage} width="70px" height="70px" className="productStore"/>
                </Box>
@@ -49,7 +49,7 @@ const ProductStoreInfo = ({product}) => {
                        Joined 
                      </Text>
                      <Text fontSize={["8px","10px","11px","13px"]} fontWeight="bold" ml={3} color="#FC8E00">
-                     <Moment format="LLL">{Date.parse(product.product.storeName.createdAt) || product.product.storeName.createdAt}</Moment>
+                     <Moment fromNow>{Date.parse(product.product.storeName.createdAt) || product.product.storeName.createdAt}</Moment>
                      </Text>
                 </Box>
                 <Box display="flex" alignItems="center">
@@ -64,28 +64,28 @@ const ProductStoreInfo = ({product}) => {
             </Grid>  
             <Container display={["flex","flex","none"]}  justifyContent="space-around" alignItems="center"  maxW="290px" >
                 <Box display="flex" flexDirection="column" alignItems="center">
-                     <Text fontSize={["8px","13px"]} fontWeight="bold"  color="#FC8E00" maxW="110px" isTruncated>
+                     <Text fontSize={["8px","12px"]} fontWeight="bold"  color="#FC8E00" maxW="110px" isTruncated>
                         {product.relatedProducts}
                      </Text>
-                     <Text fontSize={["11px","12px"]}>
+                     <Text fontSize={["11px","11px"]}>
                          Products
                       </Text>
                 </Box>
-                <Text ml={2} mr={2} color="black" fontSize="30px">|</Text>
+                <Text ml={2} mr={2}  fontSize="25px">|</Text>
                 <Box display="flex" flexDirection="column" alignItems="center">
-                     <Text fontSize={["8px","13px"]} fontWeight="bold" color="#FC8E00"  maxW="110px" isTruncated>
+                     <Text fontSize={["8px","12px"]} fontWeight="bold" color="#FC8E00"  maxW="110px" isTruncated>
                            <Moment fromNow>{Date.parse(product.product.storeName.createdAt) || product.product.storeName.createdAt}</Moment>
                      </Text>
-                     <Text fontSize={["11px","12px"]}>
+                     <Text fontSize={["11px","11px"]}>
                              Joined 
                      </Text>
                 </Box>
-                <Text ml={2} mr={2} color="black" fontSize="30px">|</Text>
+                <Text ml={2} mr={2}  fontSize="25px">|</Text>
                 <Box display="flex" flexDirection="column" alignItems="center">
-                       <Text fontSize={["8px","13px"]} fontWeight="bold"  color="#FC8E00" maxW="110px" isTruncated>
+                       <Text fontSize={["8px","12px"]} fontWeight="bold"  color="#FC8E00" maxW="110px" isTruncated>
                          {product.product.storeName.storeType}
                        </Text>
-                       <Text fontSize={["11px","12px"]}>
+                       <Text fontSize={["11px","11px"]}>
                             Store Type
                        </Text>
                 </Box>

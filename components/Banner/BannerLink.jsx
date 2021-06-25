@@ -29,7 +29,7 @@ const BannerLink = () => {
               <Box p={3} pl={[0,1,3,5]}  pr={[0,1,3,5]} display="flex" alignItems="center" _hover={{borderBottom: "3px solid rgb(254,189,105)"}}>
                   <Icon as={AiFillGift} color="#FC8E00" />
                   <Text fontSize={["5px","10px","12px","15px"]}  fontWeight="bold" color="#FC8E00" ml={[0,1,2,3]}>
-                     Deals
+                    Top Deals
                   </Text>
                   <ChevronDownIcon ml="auto" color="#FC8E00" />
               </Box>
