@@ -5,7 +5,7 @@ import {STORESINFO} from "../../info/[id]"
 import { useAuth } from "../../../../lib/auth";
 import jwt_decode from "jwt-decode";
 import StoreInfo from "../../../../components/store/storeInfo/StoreInfo";
-import StoreProduct from "../../../../components/store/storeInfo/StoreProduct";
+import StoreProduct from "../../../../components/store/storeInfo/Products/StoreProduct";
 import DeleteStore from "../../../../components/store/DeleteStore";
 import Link from 'next/link'
 export async function getServerSideProps({req,query }) {
