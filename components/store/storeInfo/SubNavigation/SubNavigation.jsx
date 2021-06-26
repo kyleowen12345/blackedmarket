@@ -13,13 +13,13 @@ const SubNavigation = () => {
                     <Text fontSize="15px" fontWeight="bold">Home</Text>
                 </Box> 
           </NextLink>   
-          <NextLink href="#" passHref>
+          <NextLink href="#products" passHref>
                 <Box as="a" cursor="pointer" width="33.3vw"  display="flex" alignItems="center" justifyContent="center"  borderBottom={inDetails == "Products" &&  "5px solid #FC8E00"  } color={inDetails == "Products" && "#FC8E00"}  height="40px" onClick={()=>setInDetails("Products")}>
                     <Icon as={AiOutlineAppstore} mr={3} />
                     <Text fontSize="15px" fontWeight="bold">Products</Text>
                 </Box> 
           </NextLink>  
-          <NextLink href="#" passHref>
+          <NextLink href="#details" passHref>
                <Box as="a" cursor="pointer" width="33.3vw"  display="flex" alignItems="center" justifyContent="center" borderBottom={inDetails=="Details" &&  "5px solid #FC8E00"  } color={inDetails=="Details" && "#FC8E00"} height="40px" onClick={()=>setInDetails("Details")}>
                <Icon as={BiDetail} mr={3} />
                     <Text fontSize="15px" fontWeight="bold">Store Details</Text> 

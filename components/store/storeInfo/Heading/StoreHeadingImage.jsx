@@ -14,7 +14,7 @@ const StoreHeadingImage = ({store}) => {
                        <Image src={store.storeBackgroundImage} alt={store.storeName} width="75px" height="75px" borderRadius="50%" border="2px solid white"/>
                    </Box>
                    <Box mt={".625rem"} ml={".625rem"} color="white" position="relative" overflow="hidden">
-                       <Text fontWeight="bold" fontSize="20px">{store.storeName}</Text>
+                       <Text fontWeight="bold" fontSize="20px" isTruncated  maxW="220px">{store.storeName}</Text>
                        <Text fontSize="12px">Active</Text>
                    </Box>
                 </Box>

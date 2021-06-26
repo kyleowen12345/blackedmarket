@@ -7,7 +7,7 @@ import Moment from 'react-moment';
 
 const StoreHeadingDescription = ({product,store}) => {
     return (
-        <Grid templateColumns={ "repeat(2, auto)"} gridColumnGap={10}  display={["none","none","grid"]} ml="50px" height="150px" mt="auto" pt={5}>
+        <Grid templateColumns={ "repeat(2, 1fr)"} gridColumnGap={10}  display={["none","none","grid"]} ml="50px" height="150px" mt="auto" pt={5}>
             <Box display="flex" alignItems="center" height="30px">
                <Icon as={RiProductHuntLine} mr={3} />
                <Text fontSize={["11px","11px","11px","13px"]}>Products:</Text>

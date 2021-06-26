@@ -61,8 +61,8 @@ const AddtoCart = ({product}) => {
                 </Box>
             </Box>
             <Box display={"flex"} width={["300px","300px","400px"]} justifyContent="space-between" m={3} mt={5}>
-                 <Button fontSize={["13px","13px","18px"]} onClick={onSubmit} isLoading={loading} disabled={ quantity > product.productStocks || quantity === 0 ||isNaN(quantity) || product.productStocks < 1} width={["120px","120px","180px"]} bg="#FFF0DD" color="#FC8E00" border="1px solid #FC8E00" _hover={{bg:"#FFF0DD"}} ><Icon as={AiOutlineShoppingCart} color="#FC8E00" mr={2}/>Add to Cart</Button>
-                 <Button fontSize={["13px","13px","18px"]}  width={["120px","120px","180px"]} disabled={ quantity > product.productStocks || quantity === 0 ||isNaN(quantity) || product.productStocks < 1}  bg="#FC8E00" color="white" _hover={{bg:"#FC8E00"}} mr={[5,5,0]} onClick={authToken ? onOpen : noUser}>Buy Now</Button>
+                 <Button fontSize={["13px","13px","18px"]} onClick={onSubmit} isLoading={loading} disabled={ quantity > product.productStocks || quantity === 0 ||isNaN(quantity) || product.productStocks < 1} width={["120px","120px","180px"]} bg="#FFF0DD" color="#FC8E00" border="1px solid #FC8E00" _hover={{bg:"#FFF0DD"}} borderRadius={0} ><Icon as={AiOutlineShoppingCart} color="#FC8E00" mr={2}/>Add to Cart</Button>
+                 <Button fontSize={["13px","13px","18px"]}  width={["120px","120px","180px"]} disabled={ quantity > product.productStocks || quantity === 0 ||isNaN(quantity) || product.productStocks < 1}  bg="#FC8E00" color="white" _hover={{bg:"#FC8E00"}} mr={[5,5,0]} onClick={authToken ? onOpen : noUser} borderRadius={0} >Buy Now</Button>
             </Box>
             <BuyNow isOpen={isOpen} quantity={quantity} product={product} setQuantity={setQuantity} onClose={onClose}  initialRef={initialRef} finalRef={finalRef} />
         </Box>
