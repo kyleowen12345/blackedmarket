@@ -1,13 +1,12 @@
 import React from 'react'
-import { Box,Text } from "@chakra-ui/react"
-import Image from 'next/image'
-import StoreDetailsGrid from '../Products/StoreDetailsGrid';
+import { Box,Text,Image } from "@chakra-ui/react"
+import StoreDetailsGrid from '../StoreDetails/StoreDetailsGrid';
 const StoreDetails = ({store}) => {
     return (
-        <Box height="400px" bg="white"  mb={"300px"} boxShadow="md" id="details">
-            <Text  size="2xl" mt={5}  pl={10} pt={5} fontWeight="bold" >About Store</Text>
-           <Box display="flex" p={10} pt={5}>
-                 <Image src={store.storeBackgroundImage} alt={store.storeName} width={300} height={300}/>
+        <Box  bg="white" height={["100%","100%","100%","400px"]}  mb={"300px"} boxShadow="md" id="details" display="flex" flexDirection="column" justifyContent="center" mb={5}>
+            <Text  size="2xl"  p={[5,5,5,5,10]} pb={[0,0,0,0,2]} fontWeight="bold" >About Store</Text>
+           <Box display={["block","block","block","flex"]} p={[5,5,10]} pt={[5,5,0]} pl={[5,5,5,5,10]} pr={[5,5,5,5,10]}>
+                <Image src={store.storeBackgroundImage} alt={store.storeName} width={["100%","100%", "100%",300]} height={300} mr={2}/>
                  <StoreDetailsGrid store={store}/>
           </Box>
         </Box>

@@ -5,7 +5,7 @@ import {  RiUserFollowLine} from "react-icons/ri"
 
 const StoreHeadingImage = ({store}) => {
     return (
-     <Box position="relative" width="24.37rem" overflow="hidden" borderRadius=".25rem">
+     <Box position="relative" width="24.37rem" overflow="hidden" borderRadius=".25rem" height={"150px"} width={["100%","100%","100%","390px"]} >
             <Box position="absolute" left={0} top={0} right={0} bottom={0} backgroundImage={`url(${store.storeBackgroundImage})`} backgroundPosition="50%" backgroundSize="cover" backgroundRepeat="no-repeat" filter="blur(2px)" m={-4}></Box>
             <Box position="absolute" left={0} top={0} right={0} bottom={0} backgroundColor="rgba(0,0,0,.6)"></Box>
             <Box position="absolute" left={"1.25rem"} top={".625rem"} right={".875rem"} bottom={".625rem"} >

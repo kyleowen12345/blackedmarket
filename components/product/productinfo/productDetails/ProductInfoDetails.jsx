@@ -10,7 +10,7 @@ import Moment from 'react-moment';
 const ProductInfoDetails = ({product,decoded}) => {
     
     return (
-        <Box ml={["auto","auto",0,0,10]} width={["300px","300px","800px"]}  mr="auto">
+        <Box ml={["auto","auto",0,0,10]} width={["300px","300px","60%","800px"]}  mr="auto">
             {/* Title/rating/sold */}
              <Title product={product.product}/>
             {/* Price */}
@@ -19,7 +19,7 @@ const ProductInfoDetails = ({product,decoded}) => {
             </Box>
             {/* Description */}
             <Box m={3} mt={5} display={"flex"} alignItems="center">
-                <Box mr={[5,5,20]} width={"95px"}>
+                <Box mr={[5,5,10,20]} width={"95px"}>
                 <Text color="#888888" fontSize={["8px","13px","15px"]}>Description </Text>
                 </Box>
                 <Box maxW={["150px","150px","200px"]} isTruncated>
@@ -31,7 +31,7 @@ const ProductInfoDetails = ({product,decoded}) => {
            {product?.product.storeOwner.id !== decoded?.id && <Shipping product={product.product}/>}
             {/* Stocks */}
             <Box m={3} display={"flex"} mt={5}>
-               <Box mr={[5,5,20]} width={"95px"}>
+               <Box  mr={[5,5,10,20]} width={"95px"}>
                 <Text color="#888888" fontSize={["8px","13px","15px"]}>Stocks </Text>
                 </Box>
                 <Box>
@@ -40,7 +40,7 @@ const ProductInfoDetails = ({product,decoded}) => {
             </Box>
             {/* Created */}
            {product?.product.storeOwner.id === decoded?.id && <Box m={3} display={"flex"} mt={5}>
-               <Box mr={[5,5,20]} width={"95px"}>
+               <Box  mr={[5,5,10,20]} width={"95px"}>
                    <Text color="#888888" fontSize={["8px","13px","15px"]}>Created</Text>
                 </Box>
                 <Box>

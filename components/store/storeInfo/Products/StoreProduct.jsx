@@ -5,7 +5,7 @@ import { StarIcon } from '@chakra-ui/icons'
 const StoreProduct = ({product}) => {
     console.log(product.length)
     return (
-        <Box  mt={5} >
+        <Box  >
         <Grid  templateColumns={[ "repeat(2, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)", "repeat(4, 1fr)","repeat(5, 1fr)"] }  gap={2} >
             {product?.map(i=>(
                 <NextLink key={i.id || i._id} href={`/products/info/${i.id}`}  passHref={true}>
