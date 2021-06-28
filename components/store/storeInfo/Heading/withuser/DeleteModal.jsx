@@ -1,35 +1,19 @@
 import React from 'react'
 import { useMutation, gql  } from "@apollo/client";
-import { useAuth } from '../../lib/auth';
+import { useAuth } from '../../../../../lib/auth';
 import { useRouter } from "next/router"
 import { AiFillDelete } from "react-icons/ai"
 import { Icon,Button,AlertDialog,AlertDialogBody,AlertDialogFooter,AlertDialogHeader,AlertDialogContent,AlertDialogOverlay,AlertDialogCloseButton  } from "@chakra-ui/react"
-const DELETEPRODUCT=gql`
-mutation ($id:ID!){
-    deleteProduct(id:$id){
-      message
-    }
-  }
-`
-const DeleteProduct = ({productId,storeId,productName}) => {
+
+const DeleteModal = ({store}) => {
     const [isOpen, setIsOpen] = React.useState(false)
     const onClose = () => setIsOpen(false)
     const cancelRef = React.useRef()
     const {authToken}=useAuth()
     const router = useRouter()
-    const [deleteproduct,{data, loading,error }] = useMutation(DELETEPRODUCT,{ errorPolicy: 'all' },);
-    const onSubmit=async()=>{
-      const {data}= await deleteproduct({variables:{id:productId},context:{headers:{token:authToken || ""}}})
-      if(data) {
-        router.push(`/stores/dashboard/mystore/${storeId}`) 
-        onClose()
-      }
-        
-    }
-    
     return (
         <>
-         <Button borderRadius={0} colorScheme="red" fontSize={["13px","13px","18px"]}  width={["120px","120px","150px","180px"]} mr={[5,5,0]}  onClick={() => setIsOpen(true)}>
+             <Button bg="transparent" fontSize="14px" borderRadius="none" color="white" border="1px solid white" width="100%" _hover={{bg:"transparent"}}  onClick={() => setIsOpen(true)}>
          <Icon as={AiFillDelete} color="white" mr={2}/> Delete 
         </Button>
         <AlertDialog
@@ -40,28 +24,26 @@ const DeleteProduct = ({productId,storeId,productName}) => {
         <AlertDialogOverlay>
           <AlertDialogContent>
             <AlertDialogHeader fontSize="lg" fontWeight="bold">
-              Delete {productName}
+              Delete 
             </AlertDialogHeader>
             <AlertDialogCloseButton />
             <AlertDialogBody>
-              Are you sure? You can't undo this action afterwards.
+              Are you sure to delete {store.storeName} ? You can't undo this action afterwards.
             </AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
+              <Button ref={cancelRef} onClick={onClose} mr={2}>
                 Cancel
               </Button>
-              <Button colorScheme="red" onClick={onSubmit} ml={3} isLoading={loading}>
+              <Button colorScheme="red" >
                 Delete
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialogOverlay>
       </AlertDialog>
-        
-        {/* {error && <p>{error?.message}</p>} */}
-</>
+        </>
     )
 }
 
-export default DeleteProduct
+export default DeleteModal

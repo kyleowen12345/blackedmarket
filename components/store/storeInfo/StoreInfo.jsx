@@ -10,7 +10,7 @@ const StoreInfo = ({store,product}) => {
             {/*Heading */}
             <StoreHeading store={store} product={product} />
             {/* Subnav */}
-            <SubNavigation />
+            <SubNavigation storeId={store.id}/>
             {/* Products */}
             <Text  size="2xl" bg="white" mt={10} mb={2} p={3} fontWeight="bold" boxShadow="md" id="products">Top Products</Text>
              <StoreProduct product={product}/>
