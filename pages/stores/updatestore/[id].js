@@ -1,8 +1,9 @@
-import {  gql  } from "@apollo/client";
-import { initializeApollo } from "../../../src/apollo.ts";
-import { useQuery } from "@apollo/client";
+import React, {useEffect} from 'react'
+import {  gql  } from "@apollo/client";;
+import { useLazyQuery } from "@apollo/client";
 import { useRouter } from "next/router"
 import UpdateStore from "../../../components/store/UpdateStore";
+import Cookies from 'js-cookie'
  const UPDATESTOREINFO = gql`
  query ($id:ID!){
     storeInfoUpdate(id:$id){
@@ -17,31 +18,19 @@ import UpdateStore from "../../../components/store/UpdateStore";
   }
 }
 `;
-export async function getServerSideProps({req,query }) {
-  const apolloClient = initializeApollo();
-  const {id}=query
-  try {
-    await apolloClient.query({
-        query:UPDATESTOREINFO,
-        variables:{id:id},
-        context:{headers:{
-            token:req.cookies.blackedmarket || " "
-        }}
-      });
-  } catch (error) {
-      console.log(error)
-  }
-  
-  const initialApolloState=apolloClient.cache.extract()
-  return { props: {initialApolloState  } };
-}
 
-export default function Home({initialApolloState}) {
+export default function Home() {
     const router = useRouter()
     const {id}= router.query
-    const { data,error,loading } = useQuery(UPDATESTOREINFO,{variables:{id:id }});
-    console.log(error?.message)
-    console.log(data)
+    const [updatestoreinfo,{ data,error,loading }] = useLazyQuery(UPDATESTOREINFO,{variables:{id:id },context:{headers:{token:Cookies.get('blackedmarket')||""}}});
+    useEffect(() => {
+      if(id){
+        return updatestoreinfo()
+      }else{
+        return
+      }
+      
+  }, [id])
   return (
     <div >
        {loading && <h1>Loading..</h1>}
