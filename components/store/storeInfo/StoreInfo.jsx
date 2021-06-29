@@ -5,11 +5,11 @@ import SubNavigation from './SubNavigation/SubNavigation'
 import StoreProduct from './Products/StoreProduct'
 import StoreDetails from './StoreDetails/StoreDetails'
 import NextLink from 'next/link'
-const StoreInfo = ({store,product}) => {
+const StoreInfo = ({store,product,follower}) => {
     return (
         <Box >
             {/*Heading */}
-            <StoreHeading store={store} product={product} />
+            <StoreHeading store={store} product={product} follower={follower}/>
             {/* Subnav */}
             <SubNavigation storeId={store.id}/>
             {/* Products */}

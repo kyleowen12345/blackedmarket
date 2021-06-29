@@ -3,7 +3,8 @@ import { useMutation, gql  } from "@apollo/client";
 import { useAuth } from '../../lib/auth';
 import { useRouter } from "next/router"
 import { AiFillDelete } from "react-icons/ai"
-import { Icon,Button,AlertDialog,AlertDialogBody,AlertDialogFooter,AlertDialogHeader,AlertDialogContent,AlertDialogOverlay,AlertDialogCloseButton  } from "@chakra-ui/react"
+import { Icon,Button } from "@chakra-ui/react"
+import DeleteModal from "../DeleteModal/DeleteModal"
 const DELETEPRODUCT=gql`
 mutation ($id:ID!){
     deleteProduct(id:$id){
@@ -32,35 +33,8 @@ const DeleteProduct = ({productId,storeId,productName}) => {
          <Button borderRadius={0} colorScheme="red" fontSize={["13px","13px","18px"]}  width={["120px","120px","150px","180px"]} mr={[5,5,0]}  onClick={() => setIsOpen(true)}>
          <Icon as={AiFillDelete} color="white" mr={2}/> Delete 
         </Button>
-        <AlertDialog
-        isOpen={isOpen}
-        leastDestructiveRef={cancelRef}
-        onClose={onClose}
-      >
-        <AlertDialogOverlay>
-          <AlertDialogContent>
-            <AlertDialogHeader fontSize="lg" fontWeight="bold">
-              Delete {productName}
-            </AlertDialogHeader>
-            <AlertDialogCloseButton />
-            <AlertDialogBody>
-              Are you sure? You can't undo this action afterwards.
-            </AlertDialogBody>
-
-            <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
-                Cancel
-              </Button>
-              <Button colorScheme="red" onClick={onSubmit} ml={3} isLoading={loading}>
-                Delete
-              </Button>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialogOverlay>
-      </AlertDialog>
-        
-        {/* {error && <p>{error?.message}</p>} */}
-</>
+        <DeleteModal isOpen={isOpen} cancelRef={cancelRef} onClose={onClose} onSubmit={onSubmit} loading={loading}/>
+        </>
     )
 }
 

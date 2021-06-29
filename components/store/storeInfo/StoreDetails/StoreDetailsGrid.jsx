@@ -53,7 +53,7 @@ const StoreDetailsGrid = ({store}) => {
                </Grid>
                <Box display="flex" justifyContent="center"  color="#FC8E00">
                     {
-                      store.sellerName.id == decoded.id ?  
+                      store.sellerName?.id == decoded?.id ?  
                       <Button w="100%" mt={2} borderRadius={0} border="2px solid #FC8E00" bg="transparent"  _hover={{bg:"#FC8E00", color:"white"}}><Icon as={AiOutlineBarChart} mr={3} />Status</Button>
                       :
                       <Button w="100%" mt={2} borderRadius={0} border="2px solid #FC8E00" bg="transparent"  _hover={{bg:"#FC8E00", color:"white"}}><Icon as={RiUserFollowLine} mr={3} />Follow</Button>   
