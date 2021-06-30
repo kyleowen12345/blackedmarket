@@ -3,6 +3,7 @@ import ReactPaginate from "react-paginate"
 
 const Pagination = ({marginPages,pageRange,initialPage,pageCount,onPageChange}) => {
     return (
+        
         <ReactPaginate
             marginPagesDisplayed={marginPages}
             pageRangeDisplayed={pageRange}
@@ -22,6 +23,7 @@ const Pagination = ({marginPages,pageRange,initialPage,pageCount,onPageChange}) 
             breakLinkClassName={"paginate-break-a"}
             breakClassName={"paginate-previous"}
           />
+          
     )
 }
 

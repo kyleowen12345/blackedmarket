@@ -1,8 +1,8 @@
 import React from 'react'
-import { Box,Text,Grid,Button,Icon } from "@chakra-ui/react"
+import { Box,Text,Grid,Button,Icon,Link } from "@chakra-ui/react"
 import Moment from 'react-moment';
 import {  RiUserFollowLine} from "react-icons/ri"
-import { AiOutlineBarChart } from "react-icons/ai"
+import { AiOutlineBarChart,AiOutlineMail } from "react-icons/ai"
 import { useAuth } from '../../../../lib/auth';
 
 const StoreDetailsGrid = ({store}) => {
@@ -56,7 +56,9 @@ const StoreDetailsGrid = ({store}) => {
                       store.sellerName?.id == decoded?.id ?  
                       <Button w="100%" mt={2} borderRadius={0} border="2px solid #FC8E00" bg="transparent"  _hover={{bg:"#FC8E00", color:"white"}}><Icon as={AiOutlineBarChart} mr={3} />Status</Button>
                       :
-                      <Button w="100%" mt={2} borderRadius={0} border="2px solid #FC8E00" bg="transparent"  _hover={{bg:"#FC8E00", color:"white"}}><Icon as={RiUserFollowLine} mr={3} />Follow</Button>   
+                      <Link href={`mailto:${store.sellerName.email}`} w="100%" _hover={{textDecoration:"none"}} >
+                        <Button w="100%" mt={2} borderRadius={0} border="2px solid #FC8E00" bg="transparent"  _hover={{bg:"#FC8E00", color:"white"}}><Icon as={AiOutlineMail} mr={3} />Send Email</Button>   
+                      </Link>
                     }
                   
                       

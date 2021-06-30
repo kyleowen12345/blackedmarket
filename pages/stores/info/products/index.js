@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react'
 import {  gql,useLazyQuery  } from "@apollo/client";
 import { useRouter } from "next/router"
+import SortedProducts from '../../../../components/store/storeInfo/SortedProducts/SortedProducts';
+import Loader from '../../../../components/Loader/Loader';
 
 export const STOREPRODUCT = gql`
 query($storeId:String!,$curPage:String!$sortOrder:String!){
@@ -9,6 +11,7 @@ query($storeId:String!,$curPage:String!$sortOrder:String!){
       maxPage
       productCount
       products{
+        id
         productName
         price
         sold
@@ -31,11 +34,10 @@ export default function Home() {
           return
       }
   }, [id])
-  console.log(data)
-  console.log(router.query)
+console.log(data)
   return (
-    <div >
-     
-    </div>
+    <>
+     {loading ? <Loader/>:<SortedProducts product={data?.storeProducts}/>}
+    </>
   )
 }

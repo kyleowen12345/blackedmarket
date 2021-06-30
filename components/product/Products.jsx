@@ -17,7 +17,6 @@ const Products = ({data}) => {
     return (
         <div>
     <Link href="/user/profile"><a>Profile</a></Link>
-    <h1>Products</h1>
         {
           data?.products.map(i=>(
           <div key={i.id}>
@@ -33,7 +32,9 @@ const Products = ({data}) => {
          <p>{i.storeName.storeName}</p>
          <p>{i.storeOwner.email}</p>
          <Link href={`/products/info/${i.id}`}><a>Visit</a></Link>
+         
        </div> 
+       
              ))
           }
          {data?.productCount > 5 && <Pagination marginPages={1} pageRange={2} initialPage={data?.curPage - 1} pageCount={data?.maxPage} onPageChange={handlePagination}/>}

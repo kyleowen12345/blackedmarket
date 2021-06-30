@@ -35,11 +35,11 @@ const CarouselBanner = () => {
               height={["150px","150px","200px","300px"]}
               width={["100%","100%","100%","100%","800px"]}
             >
-              <Image src={item.url} alt={item.url}  height={"100%"} width="100%" />
+              <Image src={item.url} alt={item.url}  height={"100%"} width="100%" loading="eager"/>
             </Box>
           );
         })}
-        <Image src={"https://media.giphy.com/media/S5iaflEE71xTQaWTFm/giphy.gif"}  alt={"https://media.giphy.com/media/S5iaflEE71xTQaWTFm/giphy.gif"} height={"300px"}pl={10} display={["none","none","none","none","block"]}/>
+        <Image src={"https://media.giphy.com/media/S5iaflEE71xTQaWTFm/giphy.gif"}  alt={"https://media.giphy.com/media/S5iaflEE71xTQaWTFm/giphy.gif"} height={"300px"}pl={10} display={["none","none","none","none","block"]} loading="eager"/>
       </Box>
       <BannerLink/>
     </>

@@ -8,7 +8,7 @@ const StoreLandingPage = ({stores}) => {
             {stores?.map(i=>(
             <NextLink key={i.id} href={`/stores/info/${i.id}`} passHref={true}>
                 <Box maxW="400px" h={["320px" ,"320px" ,"400px"]} borderWidth="1px" overflow="hidden" as="a" bg="white"  _hover={{border: "4px solid rgb(254,189,105)",color:"#FC8E00" }} boxShadow="md" >
-                         <Image src={i.storeBackgroundImage} alt={i.storeName} width={"100%"} height={"82%"}/>
+                         <Image src={i.storeBackgroundImage} alt={i.storeName} width={"100%"} height={"82%"} loading="eager"/>
                     <Box p={[2,2,2,4]}>
                            <Box d="flex" alignItems="baseline">
                                 <Badge borderRadius="full" px="2" colorScheme="orange">
