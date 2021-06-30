@@ -47,14 +47,14 @@ const Follow = ({store,follower}) => {
            console.log(data)
          }
 };
-console.log(followLoad)
+
     return (
         <Box pr=".625rem" flex={1} >
             {
              follower == true ? 
-             <Button bg="transparent" fontSize="14px" borderRadius="none" color="white" border="1px solid white" width="100%" _hover={{bg:"transparent"}} onClick={onUnFollow} isLoading={followLoad}><Icon as={RiUserUnfollowLine} mr={3} /> Unfollow</Button>
+             <Button bg="transparent" fontSize="14px" borderRadius="none" color="white" border="1px solid white" width="100%" _hover={{bg:"transparent"}} onClick={onUnFollow} isLoading={UnfollowLoad}><Icon as={RiUserUnfollowLine} mr={3} /> Unfollow</Button>
              :
-             <Button bg="transparent" fontSize="14px" borderRadius="none" color="white" border="1px solid white" width="100%" _hover={{bg:"transparent"}} onClick={onFollow} isLoading={UnfollowLoad}><Icon as={RiUserFollowLine} mr={3} /> Follow</Button>   
+             <Button bg="transparent" fontSize="14px" borderRadius="none" color="white" border="1px solid white" width="100%" _hover={{bg:"transparent"}} onClick={onFollow} isLoading={followLoad}><Icon as={RiUserFollowLine} mr={3} /> Follow</Button>   
             }
             
         </Box>
