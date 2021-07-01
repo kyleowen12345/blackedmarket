@@ -29,6 +29,7 @@ export const STORESINFO = gql`
         productName
         price
         image
+        sold
       }
       isUserAFollower
     }

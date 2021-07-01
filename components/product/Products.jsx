@@ -38,6 +38,7 @@ const Products = ({data}) => {
              ))
           }
          {data?.productCount > 5 && <Pagination marginPages={1} pageRange={2} initialPage={data?.curPage - 1} pageCount={data?.maxPage} onPageChange={handlePagination}/>}
+
         </div>
     )
 }

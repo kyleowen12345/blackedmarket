@@ -22,6 +22,7 @@ const Pagination = ({marginPages,pageRange,initialPage,pageCount,onPageChange}) 
             nextClassName={"paginate-next"}
             breakLinkClassName={"paginate-break-a"}
             breakClassName={"paginate-previous"}
+            disableInitialCallback={ true }
           />
           
     )
