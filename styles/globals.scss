@@ -1,6 +1,7 @@
 
 $black-color: black;
-$white-color: white;
+$white-color: black;
+$orange-color:#FC8E00;
 html,
 body {
   padding: 0;
@@ -27,47 +28,34 @@ a {
   padding: 0.5rem 1rem;
   border-radius: 3px;
   max-width: 100%;
-  flex-wrap: wrap;
-  background: $black-color;
-  body.light & {
-    background: #fafafa;
-  }
   .paginate-a,
   .paginate-next-a,
   .paginate-prev-a,
   .paginate-break-a {
     cursor: pointer;
-    padding: 0.2rem 0.4rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
     &:focus {
       outline: 0;
-    }
-    &:hover {
-      background: $black-color;
-      background: $white-color;
     }
   }
   .paginate-li {
-    margin: 0 0.2rem;
-    color: white;
-    &:focus {
-      outline: 0;
-    }
-    &:hover {
-    color:$black-color
-    }
+    margin: 0 2rem;
+    color: $white-color;
+    border-radius: 5px;
+    font-size: 20px;
   }
   .paginate-previous,.paginate-next{
-    color: white; 
+    color: $white-color; 
+    font-size: 40px;
+    margin: 0 2rem;
+    padding: 0.2rem 1rem;
   }
-  .paginate-next-a,
-  .paginate-prev-a {
-    color: $black-color;
-    margin: 0 0.3rem;
-  }
+ 
   .paginate-active {
     color: $black-color;
-    border: 2px solid $white-color;
-    background: $white-color;
+    background: $orange-color;
+    padding: 0.3rem ;
   }
   .paginate-disabled > a {
     cursor: not-allowed;
@@ -78,6 +66,25 @@ a {
     }
     &:hover {
       background: transparent !important;
+    }
+  }
+  @media only screen and (max-width: 700px) {
+    .paginate-previous,.paginate-next{
+      padding: 0.2rem 0rem;
+    }
+    .paginate-li {
+      margin: 0 0.2rem;
+      font-size: 13px;
+    }
+    .paginate-previous,.paginate-next{
+      font-size: 30px;
+      margin: 0 0.6rem;
+    }
+  }
+  @media only screen and (max-width: 300px) {
+    .paginate-previous,.paginate-next{
+      font-size: 30px;
+      margin: 0 0.3rem;
     }
   }
 }
