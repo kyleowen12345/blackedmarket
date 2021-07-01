@@ -5,8 +5,8 @@ const Pagination = ({marginPages,pageRange,initialPage,pageCount,onPageChange}) 
     return (
         
         <ReactPaginate
-            marginPagesDisplayed={1}
-            pageRangeDisplayed={2}
+            marginPagesDisplayed={marginPages}
+            pageRangeDisplayed={pageRange}
             previousLabel={"<"}
             nextLabel={">"}
             breakLabel={"..."}
