@@ -32,7 +32,7 @@ import {
   import SearchInput from './SearchInput'
 
   
-const WithUserLinks = [{name:'Profile',link:"/user/profile",icon:ImProfile},{name:'DashBoard',link:`/stores/dashboard?id=${1}`,icon:AiOutlineDashboard ,as:`/stores/dashboard?id=${1}`},{name:'Stores',link:"/stores/1",icon:FaStore}, {name:'Products',link:"/products/1",icon:FaProductHunt},{name:'Create Store',link:"/stores/createstore",icon:AiFillFolderAdd}];
+const WithUserLinks = [{name:'Profile',link:"/user/profile",icon:ImProfile},{name:'DashBoard',link:`/stores/dashboard?id=${1}`,icon:AiOutlineDashboard ,as:`/stores/dashboard?id=${1}`},{name:'Stores',link:"/stores/1?sortOrder=storeName",icon:FaStore}, {name:'Products',link:"/products/1?sortOrder=productName",icon:FaProductHunt},{name:'Create Store',link:"/stores/createstore",icon:AiFillFolderAdd}];
 
 const NavbarWithUser = ({signOut,user}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()

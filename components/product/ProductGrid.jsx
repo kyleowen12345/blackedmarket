@@ -2,15 +2,15 @@ import React from 'react'
 import NextLink from 'next/link'
 import { Grid,Box,Text,Image} from "@chakra-ui/react"
 import { StarIcon } from '@chakra-ui/icons'
-const ProductLandingPage = ({products}) => {
+const ProductGrid = ({products,imageLoad}) => {
 
     return (
         <>
-        <Grid  templateColumns={[ "repeat(2, auto)", "repeat(2, auto)", "repeat(3, auto)", "repeat(4, auto)", "repeat(5, auto)" ]} gap={3} >
+        <Grid  templateColumns={[ "repeat(2, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)", "repeat(4, 1fr)", "repeat(5, 1fr)" ]} gap={3} >
             {products?.map(i=>(
                 <NextLink key={i.id || i._id} href={`/products/info/${i.id}`}  passHref={true}>
-                    <Box maxW="230px" h={["205px" ,"245px" ,"260px"]} borderWidth="1px" overflow="hidden"  as="a" bg="white" _hover={{border: "3px solid rgb(254,189,105)",color:"#FC8E00" }} boxShadow="md" loading="eager">
-                        <Image src={i.image} alt={i.productName} width={"100%"} height={"65%"} />
+                    <Box maxW="230px" h={["205px" ,"245px" ,"260px"]} borderWidth="1px" overflow="hidden"  as="a" bg="white" _hover={{border: "3px solid rgb(254,189,105)",color:"#FC8E00" }} boxShadow="md" >
+                        <Image src={i.image} alt={i.productName} width={"100%"} height={"65%"} loading={imageLoad}/>
                           <Box pl={[1,1,1,1,2]}>
                                  <Box mt="1" fontWeight="semibold"as="h4" lineHeight="tight" isTruncated >
                                       <Text fontSize={["0.75rem" ,"0.875rem",]} isTruncated>{i.productName}</Text>
@@ -39,4 +39,4 @@ const ProductLandingPage = ({products}) => {
     )
 }
 
-export default ProductLandingPage
+export default ProductGrid

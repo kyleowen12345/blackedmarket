@@ -1,10 +1,9 @@
 import {  gql } from "@apollo/client";
 import { initializeApollo } from "../src/apollo.ts";
 import { useQuery } from "@apollo/client";
-import ProductLandingPage from "../components/product/ProductLandingPage"
-import StoreLandingPage from "../components/store/StoreLandingPage"
+import ProductGrid from "../components/product/ProductGrid"
+import StoreGrid from "../components/store/StoreGrid"
 import { Box,Text  } from "@chakra-ui/react"
-import { useEffect, useState } from "react";
 import Deals from "../components/Deals/Deals";
 import CarouselBanner from "../components/Banner/CarouselBanner";
 
@@ -54,9 +53,9 @@ export default function Home({initialApolloState}) {
     <CarouselBanner/>
     <Deals deals={data?.landingpage.deals}/>
     <Text  size="2xl" bg="white" mt={20} mb={2} p={3} fontWeight="bold" boxShadow="md" id="Store" >Top Stores</Text>
-    <StoreLandingPage stores={data?.landingpage.stores}/>
+    <StoreGrid stores={data?.landingpage.stores} imageLoad={"eager"}/>
    <Text  size="2xl" bg="white" mt={10} mb={2} p={3} fontWeight="bold" boxShadow="md" id="products">New Products</Text>
-   <ProductLandingPage products={data?.landingpage.products} />
+   <ProductGrid products={data?.landingpage.products} imageLoad={"eager"}/>
     </Box>
    
    </>

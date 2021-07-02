@@ -1,14 +1,14 @@
 import React from 'react'
 import NextLink from 'next/link'
 import { Grid,Box,Image,Badge} from "@chakra-ui/react"
-const StoreLandingPage = ({stores}) => {
+const StoreGrid = ({stores,imageLoad}) => {
     return (
         <>
-        <Grid  templateColumns={[ "repeat(1, auto)", "repeat(1, auto)", "repeat(2, auto)","repeat(3, auto)"  ]} gap={2} >
+        <Grid  templateColumns={[ "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)","repeat(3, 1fr)"  ]} gap={2} >
             {stores?.map(i=>(
             <NextLink key={i.id} href={`/stores/info/${i.id}`} passHref={true}>
                 <Box maxW="400px" h={["320px" ,"320px" ,"400px"]} borderWidth="1px" overflow="hidden" as="a" bg="white"  _hover={{border: "4px solid rgb(254,189,105)",color:"#FC8E00" }} boxShadow="md" >
-                         <Image src={i.storeBackgroundImage} alt={i.storeName} width={"100%"} height={"82%"} loading="eager"/>
+                         <Image src={i.storeBackgroundImage} alt={i.storeName} width={"100%"} height={"82%"} loading={imageLoad}/>
                     <Box p={[2,2,2,4]}>
                            <Box d="flex" alignItems="baseline">
                                 <Badge borderRadius="full" px="2" colorScheme="orange">
@@ -47,4 +47,4 @@ const StoreLandingPage = ({stores}) => {
     )
 }
 
-export default StoreLandingPage
+export default StoreGrid

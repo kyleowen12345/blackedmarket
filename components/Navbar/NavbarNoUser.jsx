@@ -22,7 +22,7 @@ import {Box,
   import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import SearchInput from './SearchInput'
 
-const NoUserLinks = [{name:'Stores',link:"/stores/1",icon:FaStore}, {name:'Products',link:"/products/1",icon:FaProductHunt},{name:'Login',link:"/login",icon:AiOutlineLogin}];
+const NoUserLinks = [{name:'Stores',link:"/stores/1?sortOrder=storeName",icon:FaStore}, {name:'Products',link:"/products/1?sortOrder=productName",icon:FaProductHunt},{name:'Login',link:"/login",icon:AiOutlineLogin}];
 
 const NavbarNoUser = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -46,9 +46,9 @@ const NavbarNoUser = () => {
             <SearchInput width={"450px"} />
             </Box>
             <Container  display="flex" justifyContent="space-around" alignItems="center"  width="200" display={{ base: 'none', xl: 'flex' }}>
-                     <NextLink href="/stores/1" passHref><Link color="#ffffff" >Stores</Link></NextLink>
+                     <NextLink href="/stores/1?sortOrder=storeName" passHref><Link color="#ffffff" >Stores</Link></NextLink>
                          <Text ml={2} mr={2} color="#ffffff">|</Text>
-                     <NextLink href="/products/1" passHref><Link  color="#ffffff">Products</Link></NextLink> 
+                     <NextLink href="/products/1?sortOrder=productName" passHref><Link  color="#ffffff">Products</Link></NextLink> 
                          <Text ml={2} mr={2} color="#ffffff">|</Text>
                      <NextLink href="/login" passHref><Link   color="#ffffff">Login</Link></NextLink> 
            </Container>
