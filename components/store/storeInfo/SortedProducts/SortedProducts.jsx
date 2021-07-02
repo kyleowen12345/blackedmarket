@@ -1,6 +1,5 @@
 import React from 'react'
-import { Box,Text,Link,Icon} from "@chakra-ui/react"
-import { AiOutlineSortDescending } from "react-icons/ai"
+import { Box,Text,Link} from "@chakra-ui/react"
 import NextLink from 'next/link'
 import { useRouter } from "next/router"
 import StoreProduct from '../Products/StoreProduct'
@@ -28,7 +27,7 @@ const SortedProducts = ({product}) => {
                  <Box display="flex"  alignItems="center" justifyContent="space-between" w={["90%","90%","90%","50%","50%"]}>
                     {sorterList.map(i=>(
                         <NextLink key={i.link} href={`/stores/info/products?store=${store}&id=1&sortOrder=${i.link}`} passHref>
-                              <Link  fontSize={["10px","10px","13px","15px"]} color={sortOrder == i.link && "white"} bg={sortOrder == i.link ? "#FC8E00" : "white"} fontWeight="bold" p={2} pr={[1,1,1,2]} w="100%" ml={2} borderRadius={5}><Icon as={AiOutlineSortDescending} mr={[0,0,0,1]} />{i.name}</Link>
+                              <Link  fontSize={["10px","10px","13px","15px"]} color={sortOrder == i.link && "white"} bg={sortOrder == i.link ? "#FC8E00" : "white"} fontWeight="bold" p={2} pr={[1,1,1,2]} w="100%" ml={2} borderRadius={5}>{i.name}</Link>
                         </NextLink>
                         ))}
                  </Box>

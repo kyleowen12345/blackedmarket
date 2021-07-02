@@ -20,7 +20,7 @@ const BannerLink = () => {
               <Box  p={3} pl={[0,1,3,5]} display="flex" alignItems="center" _hover={{borderBottom: "3px solid rgb(254,189,105)"}} >
                   <Icon as={FaStore} color="#FC8E00" />
                   <Text fontSize={["5px","10px","12px","15px"]} fontWeight="bold" color="#FC8E00" ml={[0,1,2,3]}>
-                    Top Store
+                    Top Stores
                   </Text>
                   <ChevronDownIcon ml="auto" color="#FC8E00" />
               </Box>

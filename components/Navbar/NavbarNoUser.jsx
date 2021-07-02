@@ -56,7 +56,7 @@ const NavbarNoUser = () => {
           
 
            {/* Register */}
-          <Container display="flex"  justifyContent="space-around" alignItems="center"  width="150"  p={3} m={2} borderRadius={25}  mr={isLargerThan1200 && 0} pr={isLargerThan1200 && 0}>
+          <Container display="flex"  justifyContent="space-around" alignItems="center"  width={["44px","47px","47px","70px","150px"]}  p={3} m={2} borderRadius={25}  mr={isLargerThan1200 && 0} pr={isLargerThan1200 && 0}>
                <NextLink href="/register" passHref><Link fontWeight="bold" fontSize="xs" display={{ md: 'none' }} color="#ffffff" >  Register </Link></NextLink>
                <NextLink href="/register" passHref><Link fontWeight="bold" fontSize="md" display={{ base: 'none', md: 'flex' }} color="#ffffff">Register</Link></NextLink>
             </Container>
