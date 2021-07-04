@@ -49,7 +49,7 @@ export default function Login() {
                 <Stack spacing={[4,4,4,6]}>
                 <Stack  spacing={0}>
                    <Text fontSize={['lg','lg','xl','2xl','2xl']} fontWeight="bold">Sign in to your account</Text>
-                   <Text pl={1} fontSize={['10px','10px','sm']} color={'gray'}>once you go  <Link>blacked</Link> you never go back</Text>
+                   <Text pl={0.5} fontSize={['10px','10px','sm']} color={'gray'}>once you go  <Link>blacked</Link> you never go back</Text>
                 </Stack>
                         <FormControl id="email">
                            <FormLabel>Email address</FormLabel>

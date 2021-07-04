@@ -1,16 +1,13 @@
 import React from 'react'
-import { useMutation, gql  } from "@apollo/client";
-import { useAuth } from '../../../../../lib/auth';
-import { useRouter } from "next/router"
 import { AiFillDelete } from "react-icons/ai"
 import { Icon,Button,AlertDialog,AlertDialogBody,AlertDialogFooter,AlertDialogHeader,AlertDialogContent,AlertDialogOverlay,AlertDialogCloseButton  } from "@chakra-ui/react"
+import DeleteStore from '../../../DeleteStore';
 
 const DeleteModal = ({store}) => {
     const [isOpen, setIsOpen] = React.useState(false)
     const onClose = () => setIsOpen(false)
     const cancelRef = React.useRef()
-    const {authToken}=useAuth()
-    const router = useRouter()
+    console.log(store.id)
     return (
         <>
              <Button bg="transparent" fontSize="14px" borderRadius="none" color="white" border="1px solid white" width="100%" _hover={{bg:"transparent"}}  onClick={() => setIsOpen(true)}>
@@ -35,9 +32,7 @@ const DeleteModal = ({store}) => {
               <Button ref={cancelRef} onClick={onClose} mr={2}>
                 Cancel
               </Button>
-              <Button colorScheme="red" >
-                Delete
-              </Button>
+              <DeleteStore storeId={store.id}/>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialogOverlay>

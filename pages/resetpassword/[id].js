@@ -88,7 +88,7 @@ export default function Register() {
                               </Alert> }
                               {data && <Alert status="success"maxW={["300px","300px","400px","500px"]}>
                                 <AlertIcon />
-                                <Text fontSize={["12px","13px","14px","16px"]} isTruncated>Check your email to continue</Text>
+                                <Text fontSize={["12px","13px","14px","16px"]} isTruncated>Reset password complete !!!</Text>
                               </Alert> }
                             <Button
                               bg={"#FC8E00"}

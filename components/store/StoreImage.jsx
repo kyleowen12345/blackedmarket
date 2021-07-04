@@ -4,6 +4,7 @@ import imageCompressor from 'browser-image-compression'
 import axios from "axios";
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
+import { Box,Button,Text } from "@chakra-ui/react"
 const STOREIMAGE = gql`
 mutation ($id:ID!,$storeBackgroundImage:String!){
     storeImage(id:$id,storeBackgroundImage:$storeBackgroundImage){
@@ -11,7 +12,7 @@ mutation ($id:ID!,$storeBackgroundImage:String!){
     }
   }
 `;
-const StoreImage = ({storeId}) => {
+const StoreImage = ({storeId,nextStep}) => {
     const router = useRouter()
     const [image, setImage] = useState("");
     const [url, setUrl] = useState("");
@@ -20,7 +21,7 @@ const StoreImage = ({storeId}) => {
     useEffect(async() => {
         if(url){
             const {data}= await storeimage({variables:{id:storeId,storeBackgroundImage:url},context:{headers:{token:Cookies.get('blackedmarket') || ""}}})
-             if(data) router.push(`/stores/info/${storeId}`)
+             if(data) nextStep()
         } 
     },[storeimage,storeId,url]);
     const postPhoto = async(e) => {
@@ -37,11 +38,13 @@ const StoreImage = ({storeId}) => {
        };
        console.log(url)
     return (
-    <form >
-    <input type="file" onChange={(e) => setImage(e.target.files[0])} />
-    {error && <p>{error?.message}</p>}
-    {photoload ?<p>Uploading...</p>:<button type="submit" onClick={postPhoto} disabled={photoload||!image}>Finish</button>}
-    </form> 
+    <Box p={5} px={20}>    
+      <form >
+          <input type="file" onChange={(e) => setImage(e.target.files[0])} />
+          {error && <p>{error?.message}</p>}
+          <Button type="submit" onClick={postPhoto} disabled={photoload||!image} isLoading={photoload}>Finish</Button>
+    </form>
+    </Box> 
     )
 }
 
