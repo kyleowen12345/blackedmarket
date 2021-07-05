@@ -12,7 +12,7 @@ mutation ($id:ID!,$storeBackgroundImage:String!){
     }
   }
 `;
-const StoreImage = ({storeId,nextStep}) => {
+const StoreImage = ({storeId,nextStep,store,prevStep}) => {
     const router = useRouter()
     const [image, setImage] = useState("");
     const [url, setUrl] = useState("");
@@ -38,11 +38,16 @@ const StoreImage = ({storeId,nextStep}) => {
        };
        console.log(url)
     return (
-    <Box p={5} px={20}>    
+    <Box p={5} px={[0,0,5,5,20]} w={["200px","200px","100%"]} m={0}>    
       <form >
-          <input type="file" onChange={(e) => setImage(e.target.files[0])} />
+         <Box display={["block","block","flex"]} alignItems="center" justifyContent="space-between">
+          <input type="file" onChange={(e) => setImage(e.target.files[0])} style={{maxWidth:"250px"}}/>
           {error && <p>{error?.message}</p>}
-          <Button type="submit" onClick={postPhoto} disabled={photoload||!image} isLoading={photoload}>Finish</Button>
+          <Box>
+          {store && <Button onClick={prevStep} mr={2}  mt={[2,2,0]}>Back</Button>}
+          <Button type="submit" onClick={postPhoto} disabled={photoload||!image} isLoading={photoload} mt={[2,2,0]} >Finish</Button>
+          </Box>
+          </Box>
     </form>
     </Box> 
     )

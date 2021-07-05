@@ -12,13 +12,16 @@ import {
     Textarea,
     Select
   } from '@chakra-ui/react';
-const StoreForm = ({register,loading,error,errors,prevStep,nextStep,data}) => {
+  import CreateStoreButtons from './CreateStoreButtons'
+  import UpdateStoreButtons from './UpdateStoreButtons'
+  
+const StoreForm = ({register,loading,error,errors,prevStep,nextStep,data,store}) => {
   const options=["","Automotive","Baby & Toddler","Clothing & Shoes","Computers","Electronics","Entertainment & Arts","Food & Gifts","Health & Beauty","Home & Garden","Travel","Sports & Outdoors","Software","Personal & Home Services","Office & Professional Services","Restaurants & Dining"]
     return (
-    <Box p={5} px={20}>
+    <Box p={5} px={[1,1,5,5,20]} >
       <Stack spacing={[4,4,4,10]} align="center">
-         <Box display="flex" justifyContent="space-between" width="100%">
-          <FormControl id="storename" width="45%">
+         <Box display={["block","block","flex"]} justifyContent="space-between" width="100%">
+          <FormControl id="storename" width={["100%","100%","45%"]}>
              <Box display="flex">
                 <FormLabel >Store name </FormLabel>
                  <Text color="red">*</Text>
@@ -34,7 +37,7 @@ const StoreForm = ({register,loading,error,errors,prevStep,nextStep,data}) => {
             />
             <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.storeName && errors.storeName.message}</Text>
           </FormControl>
-          <FormControl id="storetype" width="45%">
+          <FormControl id="storetype" width={["100%","100%","45%"]}>
             <Box display="flex">
                 <FormLabel>Store type</FormLabel>
                 <Text color="red">*</Text>
@@ -55,8 +58,8 @@ const StoreForm = ({register,loading,error,errors,prevStep,nextStep,data}) => {
             <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.storeType && errors.storeType.message}</Text>
           </FormControl>
          </Box>
-          <Box display="flex" justifyContent="space-between" width="100%">
-          <FormControl id="socialMediaAcc" width="45%">
+          <Box display={["block","block","flex"]} justifyContent="space-between" width="100%">
+          <FormControl id="socialMediaAcc" width={["100%","100%","45%"]}>
           <Box display="flex">
                 <FormLabel>Social Media Account</FormLabel>
                 <Text color="red">*</Text>
@@ -72,7 +75,7 @@ const StoreForm = ({register,loading,error,errors,prevStep,nextStep,data}) => {
             />
             <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.socialMediaAcc && errors.socialMediaAcc.message}</Text>
           </FormControl>
-          <FormControl id="contactNumber" width="45%">
+          <FormControl id="contactNumber" width={["100%","100%","45%"]}>
             <Box display="flex">
                 <FormLabel>Contact number</FormLabel>
                 <Text color="red">*</Text>
@@ -122,7 +125,7 @@ const StoreForm = ({register,loading,error,errors,prevStep,nextStep,data}) => {
             <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.storeDescription && errors.storeDescription.message}</Text>
           </FormControl>
           {error && 
-          <Alert status="error" maxW={["300px","300px","400px","500px"]}>
+          <Alert status="error" w="100%">
             <AlertIcon />
             <Text fontSize={["12px","13px","14px","16px"]} isTruncated>{error.message}</Text>
           </Alert> 
@@ -131,7 +134,7 @@ const StoreForm = ({register,loading,error,errors,prevStep,nextStep,data}) => {
           <Button
             bg={"#FC8E00"}
             color={'white'}
-            width="20%"
+            width={["30%","30%","30%","20%"]}
             _hover={{
             bg: '#FC8E00',
             }}
@@ -142,23 +145,14 @@ const StoreForm = ({register,loading,error,errors,prevStep,nextStep,data}) => {
             >
              Submit
           </Button> 
-          <Box display="flex" alignItems="center">
-          <Button
-            onClick={prevStep}
-            width="50%" 
-            disabled={loading}
-            >
-             Back
-          </Button> 
-          <Button
-            onClick={nextStep}
-            width="50%"
-            ml={2}
-            disabled={loading || !data}
-            >
-             Next
-          </Button>
-          </Box> 
+          {
+          store ? 
+          <UpdateStoreButtons  loading={loading} nextStep={nextStep} />
+          :
+          <CreateStoreButtons prevStep={prevStep} loading={loading} nextStep={nextStep} data={data}/>
+          }
+          
+           
           </Box>
 
        </Stack>

@@ -3,7 +3,7 @@ import {  gql,useLazyQuery  } from "@apollo/client";
 import Cookies from 'js-cookie'
 import Profile from "../../components/user/Profile";
 import Loader from '../../components/Loader/Loader';
- const PROFILE = gql`
+export const PROFILE = gql`
  {
     user{
       email
@@ -15,6 +15,7 @@ import Loader from '../../components/Loader/Loader';
       city
       SocialMediaAcc
       zipcode
+      Seller
     }
   }
 `;
