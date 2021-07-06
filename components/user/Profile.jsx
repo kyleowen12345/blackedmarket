@@ -1,16 +1,16 @@
 import React from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
+import NextLink from 'next/link'
+import { Box,Text,Link,Image} from "@chakra-ui/react"
 const Profile = ({user}) => {
     return (
-        <div>
+        <Box>
             
             <Image src={user?.profilePic} alt={user?.name} width={200} height={200}/>
             <p>{user?.email}</p>
             <p>{user?.name}</p>
-            <Link href="/user/updateprofile"><a>Update Profile</a></Link>
+            <NextLink href="/user/updateprofile"><a>Update Profile</a></NextLink>
 
-        </div>
+        </Box>
     )
 }
 

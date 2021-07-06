@@ -10,7 +10,7 @@ const ProductStoreInfo = ({product}) => {
     return (
         <>
         <Box  display="flex" bg="white" height={["200px","100%","130px"]}  mt={3} mb={5}  alignItems="center" p={[0,3,10]} flexDirection={["column","column","row"]}  > 
-           <Box display="flex" borderRight={["","","","1px solid #C4C4C4"]} width={["300px","70vw","250px","250px","400px"]} justifyContent="center">
+           <Box display="flex" borderRight={["","","","1px solid #C4C4C4"]} width={["300px","100vw","250px","250px","400px"]} justifyContent="center">
                <Box>
                   <Image src={product.product.storeName.storeBackgroundImage} alt={product.product.storeName.storeBackgroundImage} width="70px" height="70px" className="productStore"/>
                </Box>

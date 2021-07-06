@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box,Button,Text,Stack } from "@chakra-ui/react"
+import { Box,Button,Text,Stack ,Alert,AlertIcon } from "@chakra-ui/react"
 import { useMutation, gql } from "@apollo/client"
 import {PROFILE} from '../../pages/user/profile'
 import { useAuth } from '../../lib/auth';
@@ -95,6 +95,12 @@ const CreateStoreInstruct = ({nextStep,isSeller}) => {
               </Box>
             
             </Stack>
+            {error && 
+          <Alert status="error" w="100%">
+            <AlertIcon />
+            <Text fontSize={["12px","13px","14px","16px"]} isTruncated>{error.message}</Text>
+          </Alert> 
+          }
             <Box display="flex" alignItems="center">
             {isSeller == true ? <Button
             onClick={nextStep}

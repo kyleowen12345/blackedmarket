@@ -3,6 +3,7 @@ import {  gql,useLazyQuery  } from "@apollo/client";
 import Cookies from 'js-cookie'
 import Profile from "../../components/user/Profile";
 import Loader from '../../components/Loader/Loader';
+import { Box,Text,Link} from "@chakra-ui/react"
 export const PROFILE = gql`
  {
     user{
@@ -27,10 +28,13 @@ export default function Home() {
       profile()
   }, [])
   return (
-    <div >
-       {loading && <Loader/>}
+    <>
+    {loading && <Loader/>}
+    <Box mt={[0,0,5]}  width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,2,0]}>
+       
        {error && <h1>{error?.message}</h1>}
      {data && <Profile user={data?.user}/>}
-    </div>
+    </Box>
+    </>
   )
 }

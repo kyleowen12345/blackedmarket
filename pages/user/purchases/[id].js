@@ -29,6 +29,7 @@ export default function Home() {
     useEffect(() => {
       purchases()
   }, [])
+  console.log(data)
   return (
     <div >
        {loading && <h1>Loading..</h1>}
