@@ -27,7 +27,7 @@ const StoreImage = ({storeId,nextStep,store,prevStep}) => {
     const postPhoto = async(e) => {
         e.preventDefault();
         setPhotoLoad(true)
-        const options = {maxSizeMB: 0.1,maxWidthOrHeight: 1920,useWebWorker: true}
+        const options = {maxSizeMB: 0.3,maxWidthOrHeight: 1920,useWebWorker: true}
 		imageCompressor(image,options).then(compressFile=>{
 		const data = new FormData();
 		data.append("file", compressFile);

@@ -19,7 +19,7 @@ const Products = ({data}) => {
     const sorterList=[{link:"productName",name:"Name"},{link:"price",name:"Price"},{link:"sold",name:"Sold"},{link:"createdAt",name:"Date"},{link:"productStocks",name:"Stocks"}]
     return (
         <>
-        <Box bg="white"  mt={[0,0,0,0,5]} mb={[2,2,2,2,5]} p={3} pl={[1,1,1,3]} pr={[1,1,1,3]} display="flex" alignItems="center" width="100%">
+        <Box bg="white"  mt={[0,0,1,1,5]} mb={[2,2,2,2,5]} p={3} pl={[1,1,1,3]} pr={[1,1,1,3]} display="flex" alignItems="center" width="100%" position="sticky" top={0} borderBottom="3px solid #FC8E00">
                  <Text  fontSize={["10px","10px","11px","14px"]}  fontWeight="bold" w="10%" color="#868686">Sort by</Text>
                  <Box display="flex"  alignItems="center" justifyContent="space-between" w={["90%","90%","90%","50%","50%"]}>
                     {sorterList.map(i=>(

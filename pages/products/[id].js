@@ -41,7 +41,7 @@ export default function Home() {
     }
   }, [id])
   return (
-    <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto">
+    <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto" >
       {loading && <Loader/>}
        {error && <h1>{error?.message}</h1>}
        {data && <Products  data={data?.productpaginate} />}

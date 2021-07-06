@@ -9,8 +9,8 @@ const Deals = ({deals}) => {
     return (
       <>
       <Box id="Deals">
-        <Text  size="2xl" bg="white" mt={4} mb={2} p={3} fontWeight="bold" boxShadow="md"  >Today's Deals</Text>
-        <Grid  templateColumns={[ "repeat(2, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)", "repeat(4, 1fr)", "repeat(6, 1fr)" ]} gap={1}  >
+        <Text  size="2xl" bg="white" mt={4} mb={2} p={3} fontWeight="bold" boxShadow="md"  >Best Seller</Text>
+        <Grid  templateColumns={[ "repeat(2, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)", "repeat(4, 1fr)", "repeat(6, 1fr)" ]} gap={1}  px={[3,2,0]}>
         {deals?.map(i=>(
            <NextLink key={i.id || i._id} href={`/products/info/${i.id || i._id}`}  passHref={true}>
               <Box  maxW="230px" h={["205px" ,"245px" ,"260px"]} borderWidth="1px" overflow="hidden"  as="a" bg="white" _hover={{border: "3px solid rgb(254,189,105)",color:"#FC8E00" }} boxShadow="md" >

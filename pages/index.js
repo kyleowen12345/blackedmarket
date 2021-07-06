@@ -49,7 +49,7 @@ export default function Home({initialApolloState}) {
   return (
     <>
     
-    <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,2,0]}  display="flex" flexDirection="column" justifyContent="center">
+    <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"   display="flex" flexDirection="column" justifyContent="center">
     <CarouselBanner/>
     <Deals deals={data?.landingpage.deals}/>
     <Text  size="2xl" bg="white" mt={20} mb={2} p={3} fontWeight="bold" boxShadow="md" id="Store" >Top Stores</Text>

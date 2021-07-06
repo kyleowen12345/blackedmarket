@@ -4,7 +4,7 @@ import { Grid,Box,Image,Badge} from "@chakra-ui/react"
 const StoreGrid = ({stores,imageLoad}) => {
     return (
         <>
-        <Grid  templateColumns={[ "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)","repeat(3, 1fr)"  ]} gap={2} >
+        <Grid  templateColumns={[ "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)","repeat(3, 1fr)"  ]} gap={[1,1,1,3]}  px={[1,1,0]}>
             {stores?.map(i=>(
             <NextLink key={i.id} href={`/stores/info/${i.id}`} passHref={true}>
                 <Box maxW="400px" h={["320px" ,"320px" ,"400px"]} borderWidth="1px" overflow="hidden" as="a" bg="white"  _hover={{border: "4px solid rgb(254,189,105)",color:"#FC8E00" }} boxShadow="md" >
