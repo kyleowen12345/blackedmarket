@@ -1,7 +1,17 @@
 import React from 'react'
 import ReactPaginate from "react-paginate"
-
-const Pagination = ({marginPages,pageRange,initialPage,pageCount,onPageChange}) => {
+import { useRouter } from "next/router"
+const Pagination = ({marginPages,pageRange,initialPage,pageCount}) => {
+  const router = useRouter()
+    const handlePagination = id => {
+        const path = router.pathname
+        const query = router.query
+        query.id = id.selected + 1
+        router.push({
+          pathname: path,
+          query: query,
+        })
+      }
     return (
         
         <ReactPaginate
@@ -12,7 +22,7 @@ const Pagination = ({marginPages,pageRange,initialPage,pageCount,onPageChange}) 
             breakLabel={"..."}
             initialPage={initialPage}
             pageCount={pageCount}
-            onPageChange={onPageChange}
+            onPageChange={handlePagination}
             containerClassName={"paginate-wrap"}
             subContainerClassName={"paginate-inner"}
             pageClassName={"paginate-li"}

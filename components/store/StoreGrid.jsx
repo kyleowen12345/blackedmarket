@@ -1,6 +1,7 @@
 import React from 'react'
 import NextLink from 'next/link'
-import { Grid,Box,Image,Badge} from "@chakra-ui/react"
+import { Grid,Box,Image,Text} from "@chakra-ui/react"
+import Moment from 'react-moment';
 const StoreGrid = ({stores,imageLoad}) => {
     return (
         <>
@@ -11,9 +12,6 @@ const StoreGrid = ({stores,imageLoad}) => {
                          <Image src={i.storeBackgroundImage} alt={i.storeName} width={"100%"} height={"82%"} loading={imageLoad}/>
                     <Box p={[2,2,2,4]}>
                            <Box d="flex" alignItems="baseline">
-                                <Badge borderRadius="full" px="2" colorScheme="orange">
-                                   Category
-                                </Badge>
                                  <Box
                                     color="gray.500"
                                     fontWeight="semibold"
@@ -30,13 +28,12 @@ const StoreGrid = ({stores,imageLoad}) => {
                                <Box
                                 mt="1"
                                 pl={2}
-                                fontWeight="semibold"
-                                as="h4"
-                                lineHeight="tight"
-                                isTruncated
-                                fontSize={["0.85rem" ,"0.93rem","0.955rem"]}
+                                display="flex"
+                                justifyContent="space-between"
+                                alignItems="center"
                                >
-                               {i.storeName}
+                               <Text lineHeight="tight" fontWeight="semibold" as="h4" maxW="200px" isTruncated fontSize={["0.85rem" ,"0.93rem","0.955rem"]}>{i.storeName}</Text>
+                               <Text fontSize="12px" maxW="150px" isTruncated><Moment fromNow>{Date.parse(i.createdAt)|| i.createdAt}</Moment></Text>
                                </Box>
                 </Box>
                     </Box>

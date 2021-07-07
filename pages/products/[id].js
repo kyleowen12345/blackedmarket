@@ -2,9 +2,12 @@ import React, {useEffect} from 'react'
 import {  gql  } from "@apollo/client";
 import { useLazyQuery } from "@apollo/client";
 import { useRouter } from "next/router"
-import Products from "../../components/product/Products";
+import ProductGrid from '../../components/product/ProductGrid';
+import Pagination from '../../components/helpers/Pagination';
 import Loader from '../../components/Loader/Loader';
-import { Box } from "@chakra-ui/react"
+import SortingMenu from '../../components/SortingMenu/SortingMenu';
+import NextLink from 'next/link'
+import { Box,Text,Link} from "@chakra-ui/react"
 export const PRODUCTS = gql`
 query ($curPage:String!,$sortOrder:String!){
   productpaginate(curPage:$curPage,sortOrder:$sortOrder){
@@ -40,12 +43,18 @@ export default function Home() {
       return
     }
   }, [id])
+  const sorterList=[{link:"productName",name:"Name"},{link:"price",name:"Price"},{link:"sold",name:"Sold"},{link:"createdAt",name:"Date"},{link:"productStocks",name:"Stocks"}]
+  console.log(data)
   return (
+    <>
+    {loading ? <Loader/> : error ? <h1>{error?.message}</h1>
+    :
     <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto" >
-      {loading && <Loader/>}
-       {error && <h1>{error?.message}</h1>}
-       {data && <Products  data={data?.productpaginate} />}
-       
+       <SortingMenu sorterList={sorterList} sortOrder={sortOrder} route={`/products/${id}?`}/>
+       {data && <ProductGrid  products={data?.productpaginate.products} />}  
+       <Pagination marginPages={1} pageRange={2} initialPage={data?.productpaginate.curPage - 1} pageCount={data?.productpaginate.maxPage}/> 
     </Box>
+    }
+    </>
   )
 }

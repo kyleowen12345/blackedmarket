@@ -18,6 +18,7 @@ query {
       sellerName{
         email
       }
+      createdAt
       storeBackgroundImage
     }
   products{
@@ -35,7 +36,7 @@ query {
     productName
     price
     image
-    description
+    sold
     }
     
   }

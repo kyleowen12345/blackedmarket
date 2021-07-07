@@ -15,7 +15,7 @@ const SearchInput = ({width}) => {
     const { register, formState: { errors } , handleSubmit } = useForm();
     const onSubmit = async({search}) => {
             if(search){
-            return  router.push(`/products/search/${search}?id=1`)
+            return  router.push(`/products/search/${search}?id=1&sortOrder=productName`)
             }else{
               return
             }

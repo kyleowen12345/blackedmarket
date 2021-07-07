@@ -17,6 +17,7 @@ query paginate($curPage:String!,$sortOrder:String!) {
           email
           name
         }
+        createdAt
         storeType
       }
       curPage
@@ -37,10 +38,14 @@ export default function Home() {
     }
   }, [id])
   return (
+    <>
+    {loading ? <Loader/> : error ? <h1>{error?.message}</h1>
+    :
     <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto" >
-      {loading && <Loader/>}
-       {error && <h1>{error?.message}</h1>}
        {data && <Stores  data={data} loading={loading}/>}
     </Box>
+    }
+    
+    </>
   )
 }
