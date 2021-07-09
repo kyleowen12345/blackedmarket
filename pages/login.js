@@ -39,12 +39,7 @@ export default function Login() {
     return (
       <Box  mx={'auto'} maxW={'lg'} py={[5,5,5,8,12]} px={[3,3,3,6]}>
           
-        <Box
-          rounded={'lg'}
-          bg={useColorModeValue('white', 'gray.700')}
-          boxShadow={'lg'}
-          width={["100%","100%",""]}
-          p={[4,4,4,8]}>
+        <Box rounded={'lg'} bg={useColorModeValue('white', 'gray.700')} boxShadow={'lg'} width={["100%","100%",""]} p={[4,4,4,8]}>
                  <form onSubmit={handleSubmit(onSubmit)}>
                 <Stack spacing={[4,4,4,6]}>
                 <Stack  spacing={0}>

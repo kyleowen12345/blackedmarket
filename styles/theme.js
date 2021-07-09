@@ -18,12 +18,10 @@ const theme = extendTheme({
   components: { 
     Link: { baseStyle: { _focus: { boxShadow: 'none' } } }, 
     Button: { baseStyle: { _focus: { boxShadow: 'none' } } },
-    Select: { baseStyle: { _focus: { boxShadow: 'none' } } }
-  },
-  breakpoints,
-  components: {
+    Select: { baseStyle: { _focus: { boxShadow: 'none' } } },
     Steps,
   },
+  breakpoints,
   
 })
 

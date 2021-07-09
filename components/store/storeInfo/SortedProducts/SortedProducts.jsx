@@ -12,10 +12,10 @@ const SortedProducts = ({product}) => {
   
   return (
         <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"   >
-            <Box display={"flex"} alignItems="center" mt={5}>
+            <SortingMenu sorterList={sorterList} sortOrder={sortOrder} route={`/stores/info/products?store=${store}&id=1&`}/>
+            <Box display={"flex"} alignItems="center" mt={[1,1,2,5]} p={3} px={[1,1,1,3]}>
                <NextLink href={`/stores/info/${store}`} passHref><Link  fontSize="14px">Back To Store</Link></NextLink>
             </Box>
-            <SortingMenu sorterList={sorterList} sortOrder={sortOrder} route={`/stores/info/products?store=${store}&id=1&`}/>
             <StoreProduct product={product?.products}/>
             <Pagination marginPages={1} pageRange={2} initialPage={product?.curPage - 1} pageCount={product?.maxPage} />
         </Box>

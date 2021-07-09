@@ -1,14 +1,19 @@
 import React from 'react'
 import NextLink from 'next/link'
-import { Box,Text,Link,Image} from "@chakra-ui/react"
+import { Box,Text,Link,Image,FormControl,FormLabel,Input,Stack,Button,Select} from "@chakra-ui/react"
+import ProfileForm from './ProfileForm'
+import ProfileDetails from './ProfileDetails'
+
 const Profile = ({user}) => {
     return (
-        <Box>
+        <Box width="80%" bg="white">
+            <Box py={4} px={8}>
+            <Text fontSize="20px" fontWeight="bold">My Profile</Text>
+            <Text>Manage your account</Text>
+            </Box>
             
-            <Image src={user?.profilePic} alt={user?.name} width={200} height={200}/>
-            <p>{user?.email}</p>
-            <p>{user?.name}</p>
-            <NextLink href="/user/updateprofile"><a>Update Profile</a></NextLink>
+           {/* <ProfileDetails user={user}/> */}
+           <ProfileForm user={user}/>
 
         </Box>
     )
