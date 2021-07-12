@@ -9,12 +9,25 @@ import Image from 'next/image'
 import { useAuth } from '../../lib/auth';
 import NextLink from 'next/link'
 import { UPDATESTOREINFO } from '../../pages/stores/updatestore/[id]';
+import { STORESINFO } from '../../pages/stores/info/[id]';
 const UPDATESTORE = gql`
 mutation ($id:ID!,$storeName:String!,$storeAddress:String!,$storeDescription:String!,$storeType:String!,$socialMediaAcc:String!,$contactNumber:String!){
   updateStore(id:$id,storeName:$storeName,storeAddress:$storeAddress,storeDescription:$storeDescription,storeType:$storeType,socialMediaAcc:$socialMediaAcc,contactNumber:$contactNumber){
-      id
-    storeName
-    storeBackgroundImage
+        id
+        storeName
+        storeAddress
+        storeDescription
+        storeType
+        sellerName{
+          id
+          email
+          name
+        }
+        socialMediaAcc
+        contactNumber
+        createdAt
+        storeBackgroundImage
+      
     }
   }
 `;
@@ -40,19 +53,41 @@ const UpdateStore = ({store,id}) => {
       setReady(true)
     }, [])
     const onSubmit = async({storeName,storeAddress,storeDescription,storeType,socialMediaAcc,contactNumber}) => {
-    await updateStore({variables:{id:store.id,storeName:storeName,storeAddress:storeAddress,storeDescription:storeDescription,storeType:storeType,socialMediaAcc:socialMediaAcc,contactNumber:contactNumber},context:{headers:{token:authToken || ""}},refetchQueries:[{query:UPDATESTOREINFO,variables:{id:id},context:{headers:{token:authToken || ""}}}]})
+  await updateStore({variables:{id:store.id,storeName:storeName,storeAddress:storeAddress,storeDescription:storeDescription,storeType:storeType,socialMediaAcc:socialMediaAcc,contactNumber:contactNumber},context:{headers:{token:authToken || ""}},
+  update(cache,{data}){
+    const oldStoreDetail=cache.readQuery({query:STORESINFO,variables:{id:id}})
+
+    if(data){
+      cache.writeQuery({
+        query:STORESINFO,
+        variables:{id:id},
+        data:{
+          storeInfo:{
+            __typename:"StoreswithProduct",
+            isUserAFollower:false,
+            products:oldStoreDetail.storeInfo.products,
+            store:data.updateStore
+          }
+        }
+      })
+    }
    
+  }})
+    // if(data){
+    //   return nextStep()
+    // }
     };
     return (
         <Box >
           {ready && 
-          <Steps colorScheme="teal" activeStep={activeStep} p={[1,1,1,1,8]}  fontFamily="body" textAlign={"left"}>   
+          <Steps colorScheme="teal" activeStep={activeStep} p={[1,1,1,1,8]}  fontFamily="body" textAlign={"left"}> 
              <Step label={"Step 1"} key={1} description={"Edit details"} >
                   <Text pl={[1,1,5,5,20]} fontSize="24px" fontWeight="bold">Edit details</Text>
                   <Text pl={[1,1,5,5,20]} fontSize="12px" >Please make sure to submit if you make changes.</Text>
                <form onSubmit={handleSubmit(onSubmit)}>
                   <StoreForm register={register} loading={loading} error={error} errors={errors} prevStep={prevStep} nextStep={nextStep} store={store}/>
                </form>
+                
               </Step>
               <Step label={"Step 2"} key={2} description={"Edit image"}>
               <Text pl={[1,1,5,5,20]} fontSize="24px" fontWeight="bold" w={["200px","200px","500px"]}>Edit image</Text>

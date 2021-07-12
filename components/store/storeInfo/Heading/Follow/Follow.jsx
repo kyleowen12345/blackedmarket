@@ -32,20 +32,47 @@ const Follow = ({store,follower}) => {
         if(!authToken){
             return  router.push("/login")
         } 
-        const{data}=await  followstore({variables:{id:store.id,storeName:store.storeName,storeType:store.storeType,storeBackgroundImage:store.storeBackgroundImage},context:{headers:{token:authToken || ""}},refetchQueries:[{query:STORESINFO,variables:{id:id },context:{headers:{token:authToken || ""}}}]})
+        await  followstore({variables:{id:store.id,storeName:store.storeName,storeType:store.storeType,storeBackgroundImage:store.storeBackgroundImage},context:{headers:{token:authToken || ""}},
+        update(cache,{data}){
+        const existingStore=cache.readQuery({query:STORESINFO,variables:{id:id}})
         if(data){
-         console.log(data)
+          cache.writeQuery({
+            query:STORESINFO,
+            variables:{id:id},
+            data:{
+              storeInfo:{
+                __typename: 'StoreswithProduct',
+                isUserAFollower:true,
+                products:existingStore.storeInfo.products,
+                store:existingStore.storeInfo.store
+              }
+            }
+          })
         }
+        }})
 };
     const onUnFollow = async() => {
         if(!authToken){
            return  router.push("/login")
           } 
-        const{data}=await  unfollowstore({variables:{id:store.id},context:{headers:{token:authToken || ""}},refetchQueries:[{query:STORESINFO,variables:{id:id },context:{headers:{token:authToken || ""}}}]})
-        
-        if(data){
-           console.log(data)
-         }
+        await  unfollowstore({variables:{id:store.id},context:{headers:{token:authToken || ""}},
+        update(cache,{data}){
+          const existingStore=cache.readQuery({query:STORESINFO,variables:{id:id}})
+          if(data){
+            cache.writeQuery({
+              query:STORESINFO,
+              variables:{id:id},
+              data:{
+                storeInfo:{
+                  __typename: 'StoreswithProduct',
+                  isUserAFollower:false,
+                  products:existingStore.storeInfo.products,
+                  store:existingStore.storeInfo.store
+                }
+              }
+            })
+          }
+          }})
 };
 
     return (

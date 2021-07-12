@@ -5,6 +5,7 @@ import axios from "axios";
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 import { Box,Button,Text } from "@chakra-ui/react"
+import { STORESINFO } from '../../pages/stores/info/[id]';
 const STOREIMAGE = gql`
 mutation ($id:ID!,$storeBackgroundImage:String!){
     storeImage(id:$id,storeBackgroundImage:$storeBackgroundImage){
@@ -20,7 +21,25 @@ const StoreImage = ({storeId,nextStep,store,prevStep}) => {
     const [storeimage,{error }] = useMutation(STOREIMAGE,{ errorPolicy: 'all' });
     useEffect(async() => {
         if(url){
-            const {data}= await storeimage({variables:{id:storeId,storeBackgroundImage:url},context:{headers:{token:Cookies.get('blackedmarket') || ""}}})
+            const {data}= await storeimage({variables:{id:storeId,storeBackgroundImage:url},context:{headers:{token:Cookies.get('blackedmarket') || ""}},
+        update(cache,{data}){
+            const oldStoreDetail=cache.readQuery({query:STORESINFO,variables:{id:storeId}})
+
+            if(data && oldStoreDetail){
+                cache.writeQuery({
+                  query:STORESINFO,
+                  variables:{id:storeId},
+                  data:{
+                    storeInfo:{
+                      __typename:"StoreswithProduct",
+                      isUserAFollower:false,
+                      products:oldStoreDetail.storeInfo.products,
+                      store:data.updateStore
+                    }
+                  }
+                })
+              }
+        }})
              if(data) nextStep()
         } 
     },[storeimage,storeId,url]);
