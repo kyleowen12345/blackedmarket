@@ -12,10 +12,12 @@ import {
     Input,
     Text,
     Alert,
-    AlertIcon
+    AlertIcon,
+    Icon
   } from "@chakra-ui/react"
   import { useMutation, gql } from "@apollo/client"
 import { useAuth } from '../../lib/auth'
+import { GiConfirmed } from "react-icons/gi"
 
 const CONFIRMUSER = gql`
 mutation ($password:String!){
@@ -25,7 +27,7 @@ mutation ($password:String!){
   }
 `
 
-const ConfirmUser = ({setConfirmedUser,confirmedUser}) => {
+const ConfirmUser = ({setConfirmedUser}) => {
     const {authToken}=useAuth()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [password,setPassword]=useState()
@@ -42,21 +44,15 @@ const ConfirmUser = ({setConfirmedUser,confirmedUser}) => {
     return (
         <>
          
-          <Button  bg={"#FC8E00"}
-            color={'white'}
-            width={["30%","30%","30%","20%"]}
-            _hover={{
-            bg: '#FC8E00',
-            }}
-            ml={2}  onClick={onOpen}>Confirm</Button>
+          <Button  bg={'white'} color={"#FC8E00"} border="2px solid #FC8E00" borderRadius={0}  _hover={{color: '#FC8E00',bg:"white"}} onClick={onOpen}><Icon as={GiConfirmed} color="#FC8E00" mr={3}/>Confirm</Button>
     
           <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent>
-              <ModalHeader>Confirm yourself</ModalHeader>
+              <ModalHeader>Enter your password</ModalHeader>
               <ModalCloseButton />
               <ModalBody>
-               <Text>Enter your password to make sure it is you.</Text>   
+               <Text fontSize="13px">Enter your password and submit, then click save changes.</Text>   
               <Input type="password" onChange={(e)=>setPassword(e.target.value)}/>
               {error && 
           <Alert status="error" w="100%" mt={3}>
@@ -70,7 +66,7 @@ const ConfirmUser = ({setConfirmedUser,confirmedUser}) => {
                 <Button  mr={3} onClick={onClose}>
                   Close
                 </Button>
-                <Button isLoading={loading} bg={"#FC8E00"}color={'white'} onClick={handleSubmit}>Submit</Button>
+                <Button isLoading={loading} bg={"#FC8E00"}color={'white'} onClick={handleSubmit}>Confirm</Button>
               </ModalFooter>
             </ModalContent>
           </Modal>
