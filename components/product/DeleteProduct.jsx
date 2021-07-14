@@ -30,7 +30,7 @@ const DeleteProduct = ({productId,storeId,productName}) => {
     
     return (
         <>
-         <Button borderRadius={0} colorScheme="red" fontSize={["13px","13px","18px"]}  width={["120px","120px","150px","180px"]} mr={[5,5,0]}  onClick={() => setIsOpen(true)}>
+         <Button  colorScheme="red" fontSize={["13px","13px","18px"]}  width={["120px","120px","150px","180px"]} mr={[5,5,0]}  onClick={() => setIsOpen(true)}>
          <Icon as={AiFillDelete} color="white" mr={2}/> Delete 
         </Button>
         <DeleteModal isOpen={isOpen} cancelRef={cancelRef} onClose={onClose} onSubmit={onSubmit} loading={loading}/>

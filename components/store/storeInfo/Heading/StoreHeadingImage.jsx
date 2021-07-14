@@ -8,7 +8,7 @@ import NextLink from 'next/link'
 import Follow from './Follow/Follow'
 
 const StoreHeadingImage = ({store,follower}) => {
-    const {decoded}=useAuth()
+    const {userData}=useAuth()
     
     return (
      <Box position="relative" width="24.37rem" overflow="hidden" borderRadius={["0","0","0",".25rem"]} height={"150px"} width={["100%","100%","100%","390px"]} >
@@ -25,7 +25,7 @@ const StoreHeadingImage = ({store,follower}) => {
                    </Box>
                 </Box>
                 {
-                store?.sellerName.id == decoded?.id ? 
+                store?.sellerName.id == userData?.id ? 
                 <Box position="relative" display="flex" mt=".625rem">
                     <Box pr=".625rem" flex={1} >
                     <NextLink href={`/stores/updatestore/${store.id}`} passHref>

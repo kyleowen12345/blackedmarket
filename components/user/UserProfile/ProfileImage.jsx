@@ -5,13 +5,12 @@ import { AiOutlineSave,AiOutlineEdit } from "react-icons/ai"
 import imageCompressor from 'browser-image-compression'
 import axios from "axios";
 import Cookies from 'js-cookie'
-import { PROFILE } from '../../pages/user/profile'
-import { useAuth } from '../../lib/auth'
+import { PROFILE } from '../../../pages/user/profile'
+import { useAuth } from '../../../lib/auth'
 
 const UPDATEUSERIMAGE = gql`
 mutation ($profilePic:String!){
     updateUserImage(profilePic:$profilePic){
-     user{
       email
       id
       name
@@ -22,10 +21,8 @@ mutation ($profilePic:String!){
       SocialMediaAcc
       zipcode
       Seller
-     }
-    token
-    }
   }
+}
 `
 
 const ProfileImage = ({user}) => {
@@ -44,14 +41,15 @@ const ProfileImage = ({user}) => {
                   query:PROFILE,
                   context:{headers:{token:authToken||" "}},
                   data:{
-                    user:data.updateUserImage.user
+                    user:data.updateUserImage
                   }
                 })
               }
         }})
              if(data){
-                Cookies.set('blackedmarket', data.updateUserImage.token,{expires:1,secure:true})
-             }
+                setEdit(false)
+                setImage(null)
+              }
         } 
     },[updateUserImage,url]);
     const postPhoto = async(e) => {
@@ -69,11 +67,10 @@ const ProfileImage = ({user}) => {
     return (
         <Box p={8} my={10} width="40%" borderLeft="1px solid #EFEFEF" display="flex" flexDirection="column" alignItems="center">
            
-           <Image src={user.profilePic} alt={user.name} width="266px" height="266px" objectFit="contain" loading="lazy"/>
-           
-           {edit == false && <Button mt={5} onClick={()=>setEdit(true)}  bg={'white'} color={"#FC8E00"} border="2px solid #FC8E00" borderRadius={0}  _hover={{color: '#FC8E00',bg:"white"}} width="85%"><Icon as={AiOutlineEdit} color="#FC8E00" mr={3} />Update Image</Button>}
+           <Image src={user.profilePic} alt={user.name} width="266px" height="266px"  loading="lazy"/>
+           {edit == false && <Button mt={5} onClick={()=>setEdit(true)}  bg={'white'} color={"#FC8E00"} border="2px solid #FC8E00"  _hover={{color: '#FC8E00',bg:"white"}} width="85%"><Icon as={AiOutlineEdit} color="#FC8E00" mr={3} />Update Image</Button>}
             {edit &&  <Input mt={5} type="file" width="266px" onChange={(e) => setImage(e.target.files[0])} px={0} accept=".jpg,.jpeg,.png" border={0} cursor="pointer" _focus={{outline:"none"}} css={{'&::-webkit-file-upload-button': { background: '#FC8E00', color:"white",border:"3px solid #FC8E00",borderRadius:5,cursor:"pointer"}}} />}
-            {image && <Button onClick={postPhoto}  mt={3}  bg={'white'} color={"#FC8E00"} border="2px solid #FC8E00" borderRadius={0}  _hover={{color: '#FC8E00',bg:"white"}} width="266px" isLoading={photoload || loading}><Icon as={AiOutlineSave} color="#FC8E00" mr={3} />Save chosen image</Button>}
+            {image && <Button onClick={postPhoto}  mt={3}  bg={'white'} color={"#FC8E00"} border="2px solid #FC8E00"   _hover={{color: '#FC8E00',bg:"white"}} width="266px" isLoading={photoload || loading}><Icon as={AiOutlineSave} color="#FC8E00" mr={3} />Save chosen image</Button>}
             <Text color="gray" fontSize="13px" mt={2}>File size: maximum 1 MB</Text>
            <Text color="gray" fontSize="13px">File extension: .JPEG, .PNG</Text>
         </Box>

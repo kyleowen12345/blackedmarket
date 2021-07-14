@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useMutation, gql } from "@apollo/client"
-import Cookies from 'js-cookie';
 import {
     Box,
     FormControl,
@@ -14,8 +13,8 @@ import {
     Icon
   } from '@chakra-ui/react';
   import { useForm } from 'react-hook-form';
-import { useAuth } from '../../lib/auth';
-import { PROFILE } from '../../pages/user/profile';
+import { useAuth } from '../../../lib/auth';
+import { PROFILE } from '../../../pages/user/profile';
 import ConfirmUser from './ConfirmUser';
 import { AiOutlineSave } from "react-icons/ai"
 import { useRouter } from "next/router"
@@ -24,7 +23,6 @@ import { useRouter } from "next/router"
 const UPDATEUSER = gql`
 mutation ($name:String!,$email:String!,$contactNumber:String!,$country:String!,$city:String!,$SocialMediaAcc:String!,$zipcode:String!){
     updateUser(name:$name,email:$email,contactNumber:$contactNumber,country:$country,city:$city,SocialMediaAcc:$SocialMediaAcc,zipcode:$zipcode){
-     user{
       email
       id
       name
@@ -35,10 +33,8 @@ mutation ($name:String!,$email:String!,$contactNumber:String!,$country:String!,$
       SocialMediaAcc
       zipcode
       Seller
-     }
-    token
-    }
   }
+}
 `
 const ProfileForm = ({user}) => {
    const {authToken}=useAuth()
@@ -64,14 +60,13 @@ const ProfileForm = ({user}) => {
            query:PROFILE,
            context:{headers:{token:authToken||" "}},
            data:{
-              user:data.updateUser.user
+              user:data.updateUser
            }
         })
      }
    }
 })
    if(data){
-      Cookies.set('blackedmarket', data.updateUser.token,{expires:1,secure:true})
       router.push('/user/profile')
    }  
 };

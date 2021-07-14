@@ -34,7 +34,7 @@ import {
   
 const WithUserLinks = [{name:'Profile',link:"/user/profile",icon:ImProfile},{name:'DashBoard',link:`/stores/dashboard?id=${1}`,icon:AiOutlineDashboard ,as:`/stores/dashboard?id=${1}`},{name:'Stores',link:"/stores/1?sortOrder=storeName",icon:FaStore}, {name:'Products',link:"/products/1?sortOrder=productName",icon:FaProductHunt},{name:'Create Store',link:"/stores/createstore",icon:AiFillFolderAdd}];
 
-const NavbarWithUser = ({signOut,user}) => {
+const NavbarWithUser = ({signOut,user,loading}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [isLargerThan1200] = useMediaQuery("(min-width: 1200px)")
     const router = useRouter()
@@ -61,8 +61,8 @@ const NavbarWithUser = ({signOut,user}) => {
               <Menu >
                  <MenuButton   bg="#000000">
                      <Flex display="flex" alignItems="center">
-                        <Avatar name={user.name} src={user.profilePic} mr={2} size="sm" />
-                             <Text  color="#ffffff">{user.name}</Text>
+                        <Avatar name={user?.name} src={user?.profilePic} mr={2} size="sm" />
+                             <Text  color="#ffffff">{loading ? "Loading...": user?.name}</Text>
                               <ChevronDownIcon  color="#ffffff" fontWeight="bold" w={6} h={6}/>
                      </Flex>
                  </MenuButton>
@@ -96,8 +96,8 @@ const NavbarWithUser = ({signOut,user}) => {
           <DrawerCloseButton color="#000000"/>
            <DrawerHeader borderBottomWidth="1px" color="#000000">
                <Flex display="flex" alignItems="center">
-               <Avatar name={user.name} src={user.profilePic} mr={2}/>
-               {user.name}
+               <Avatar name={user?.name} src={user?.profilePic} mr={2}/>
+               {loading ? "Loading...": user?.name}
                </Flex>
                </DrawerHeader>
              <DrawerBody display="flex" flexDirection="column">

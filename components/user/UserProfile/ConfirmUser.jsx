@@ -16,8 +16,9 @@ import {
     Icon
   } from "@chakra-ui/react"
   import { useMutation, gql } from "@apollo/client"
-import { useAuth } from '../../lib/auth'
+import { useAuth } from '../../../lib/auth'
 import { GiConfirmed } from "react-icons/gi"
+
 
 const CONFIRMUSER = gql`
 mutation ($password:String!){

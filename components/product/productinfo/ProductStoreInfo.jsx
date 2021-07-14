@@ -27,7 +27,7 @@ const ProductStoreInfo = ({product}) => {
             
            </Box>
           <Box display={["none","flex","flex"]} justifyContent="center" ml="auto" mr="auto" p={2}>
-          <Grid templateColumns={ ["repeat(1, auto)","repeat(1, 65vw)","repeat(2, auto)","repeat(2, auto)"]} gap={5} display={["none","none","grid"]}>
+          <Grid templateColumns={ ["repeat(1, 1fr)","repeat(1, 65vw)","repeat(2, 1fr)","repeat(2, 1fr)"]} gap={5} display={["none","none","grid"]}>
                <Box display="flex" alignItems="center">
                     <Text fontSize={["11px","11px","11px","13px"]}>
                        Products

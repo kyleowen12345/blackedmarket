@@ -5,10 +5,10 @@ import NavbarWithUser from './NavbarWithUser';
 
 
 const Navbar = () => {
-    const {signOut,decoded}=useAuth()
+    const {signOut,userCookie,userData,loading}=useAuth()
     return (
       <>
-      {decoded ?  <NavbarWithUser signOut={signOut} user={decoded} /> :<NavbarNoUser />}
+      {userCookie ?  <NavbarWithUser signOut={signOut} user={userData} loading={loading}/> :<NavbarNoUser />}
       </>
     )
 }

@@ -7,7 +7,7 @@ import Title from './Title';
 import Shipping from './Shipping';
 import { AiOutlineEdit } from "react-icons/ai"
 import Moment from 'react-moment';
-const ProductInfoDetails = ({product,decoded}) => {
+const ProductInfoDetails = ({product,userData}) => {
     
     return (
         <Box ml={["auto","auto",0,0,10]} width={["300px","300px","60%","800px"]}  mr="auto">
@@ -28,7 +28,7 @@ const ProductInfoDetails = ({product,decoded}) => {
                 
             </Box>
             {/* Shipping */}
-           {product?.product.storeOwner.id !== decoded?.id && <Shipping product={product.product}/>}
+          <Shipping product={product.product}/>
             {/* Stocks */}
             <Box m={3} display={"flex"} mt={5}>
                <Box  mr={[5,5,10,20]} width={"95px"}>
@@ -39,7 +39,7 @@ const ProductInfoDetails = ({product,decoded}) => {
                 </Box>
             </Box>
             {/* Created */}
-           {product?.product.storeOwner.id === decoded?.id && <Box m={3} display={"flex"} mt={5}>
+           {product?.product.storeOwner.id === userData?.id && <Box m={3} display={"flex"} mt={5}>
                <Box  mr={[5,5,10,20]} width={"95px"}>
                    <Text color="#888888" fontSize={["8px","13px","15px"]}>Created</Text>
                 </Box>
@@ -47,15 +47,15 @@ const ProductInfoDetails = ({product,decoded}) => {
                    <Text fontSize={["8px","11px","13px"]}><Moment format="LLL">{Date.parse(product.product.createdAt) || product.product.createdAt}</Moment></Text>
                 </Box>
             </Box>}
-            {product?.product.storeOwner.id === decoded?.id && <Box display={"flex"} width={["300px","300px","310px","400px"]} justifyContent="space-between" m={3} mt={[5,5,10]}>
+            {product?.product.storeOwner.id === userData?.id && <Box display={"flex"} width={["300px","300px","310px","400px"]} justifyContent="space-between" m={3} mt={[5,5,7]}>
             <Link href={`/products/updateproduct/${product.product.id}`} passHref>
-                <Button fontSize={["13px","13px","18px"]} width={["120px","120px","150px","180px"]} bg="#E4E6EB" color="black" borderRadius={0} ><Icon as={AiOutlineEdit} color="black" mr={2}/>Update</Button>
+                <Button fontSize={["13px","13px","18px"]} width={["120px","120px","150px","180px"]} bg="#E4E6EB" color="black"  ><Icon as={AiOutlineEdit} color="black" mr={2}/>Update</Button>
             </Link>
             <DeleteProduct productId={product.product.id} storeId={product?.product.storeName.id} productName={product?.product.productName}/>
             </Box>
             }
-            {/* {product?.product.storeOwner.id === decoded?.id && }  */}
-           {product?.product.storeOwner.id !== decoded?.id && <AddtoCart product={product.product}/>} 
+        
+           {product?.product.storeOwner.id !== userData?.id && <AddtoCart product={product.product}/>} 
         </Box>
     )
 }

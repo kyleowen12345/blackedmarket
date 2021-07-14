@@ -6,7 +6,7 @@ import { AiOutlineBarChart,AiOutlineMail } from "react-icons/ai"
 import { useAuth } from '../../../../lib/auth';
 
 const StoreDetailsGrid = ({store}) => {
-     const {decoded}=useAuth()
+     const {userData}=useAuth()
     return (
         <Box ml="auto" mr="auto">
         <Grid templateColumns={ ["repeat(1, 1fr)","repeat(1, 1fr)","repeat(2, 1fr)"]} gridColumnGap={10}  display={["none","grid","grid"]}  height={["100%","100%","100%","250px"]}  pt={[0,0,5]} >
@@ -53,7 +53,7 @@ const StoreDetailsGrid = ({store}) => {
                </Grid>
                <Box display="flex" justifyContent="center"  color="#FC8E00">
                     {
-                      store.sellerName?.id == decoded?.id ?  
+                      store.sellerName?.id == userData?.id ?  
                       <Button w="100%" mt={2} borderRadius={0} border="2px solid #FC8E00" bg="transparent"  _hover={{bg:"#FC8E00", color:"white"}}><Icon as={AiOutlineBarChart} mr={3} />Status</Button>
                       :
                       <Link href={`mailto:${store.sellerName.email}`} w="100%" _hover={{textDecoration:"none"}} >
