@@ -33,7 +33,7 @@ export default function Register() {
             const{data}= await signup({variables:{name:name,email:email,password:password}})
             if(data){
             signUp(data?.createUser.token)
-            router.push("/stores/1?sortOrder=storeName")
+            router.push("/")
             }
     };
     return (

@@ -33,7 +33,7 @@ export default function Login() {
             const{data}=await  login({variables:{email:email,password:password}})
             if(data){
              Login(data?.login.token)
-             router.push("/stores/1?sortOrder=storeName")
+             router.push("/")
             }
     };
     return (
