@@ -6,7 +6,7 @@ import NextLink from 'next/link'
 const SubNavigation = ({storeId}) => {
     const [inDetails,setInDetails]=useState("Home")
     return (
-        <Box bg="white" borderTop="1px solid rgb(234,234,234)" display="flex" justifyContent="space-between"  alignItems="center" pt={5} height="60px" >
+        <Box bg="white" borderTop="1px solid rgb(234,234,234)" display="flex" justifyContent="space-between"  alignItems="center" pt={5} height="60px" boxShadow="md">
           <NextLink href="#" passHref>
                 <Box as="a" cursor="pointer" width="33.3vw"  display="flex" alignItems="center" justifyContent="center"  borderBottom={inDetails == "Home" &&  ["2px solid #FC8E00","2px solid #FC8E00","5px solid #FC8E00"]  } color={inDetails == "Home" && "#FC8E00"} height="40px" onClick={()=>setInDetails("Home")}>
                   <Icon as={AiOutlineHome} mr={[1,1,3]} />

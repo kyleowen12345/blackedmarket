@@ -4,10 +4,16 @@ import { v4 as uuidv4 } from 'uuid';
 import Moment from 'react-moment';
 import NextLink from 'next/link'
 const PurchaseList = ({history}) => {
+    console.log(history?.length < 1)
     return (
         <>
-        {history?.map(i=>(
-            <Box key={uuidv4()} bg="white" my={4}>
+        {
+        history?.length < 1 ? <Box bg="white" my={4} height="100%" display="flex" justifyContent="center" alignItems="center" boxShadow="md" borderRadius={5}>
+            <Text fontSize="20px" fontWeight="bold">No orders yet</Text>
+        </Box>
+        :
+        history?.map(i=>(
+            <Box key={uuidv4()} bg="white" my={4} boxShadow="md" borderRadius={5}>
 
                <Box mx={5} pt={3}>
                     <Box display="flex" justifyContent="space-between" my={3}>

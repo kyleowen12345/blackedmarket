@@ -8,7 +8,7 @@ const Profile = ({user}) => {
   const router = useRouter()
   const {page}= router.query
     return (
-        <Box width="80%" bg="white">
+        <Box width="80%" bg="white" boxShadow="md" borderRadius={5}>
             <Box py={4} mx={8} borderBottom="1px solid #EFEFEF">
             <Text fontSize="20px" fontWeight="bold">My Profile</Text>
             <Text>Manage your account</Text>

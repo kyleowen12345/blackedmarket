@@ -9,9 +9,9 @@ const Menu = ({data}) => {
 
     return (
         <Box display="flex" flexDirection="column" width="20%" mt={5}>
-        <Box display="flex" width="80%" height="100px" justifyContent="space-between"  >
+        <Box display="flex" width="80%" height="100px"  >
            <Avatar size="lg" name={data?.name} src={data?.profilePic} />
-        <Box alignItems="center">
+        <Box alignItems="center" ml={5} mt={2}>
            <Text fontWeight="bold">{data?.name}</Text>
            <NextLink href={"/user/profile?page=update"} passHref>
             <Link fontSize="13px" ><Icon as={AiOutlineEdit} mr={3} />Edit Profile</Link>
