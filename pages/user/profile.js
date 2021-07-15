@@ -5,6 +5,7 @@ import Profile from "../../components/user/Profile";
 import Loader from '../../components/Loader/Loader';
 import { Box} from "@chakra-ui/react"
 import Menu from '../../components/user/Menu';
+import { useAuth } from '../../lib/auth';
 export const PROFILE = gql`
  {
     user{
@@ -24,7 +25,8 @@ export const PROFILE = gql`
 
 
 export default function Home() {
-    const [profile,{ data,error,loading }] = useLazyQuery( PROFILE,{context:{headers:{token:Cookies.get('blackedmarket')||""}}});
+  const {authToken,userData}=useAuth()
+    const [profile,{ data,error,loading }] = useLazyQuery( PROFILE,{context:{headers:{token:authToken||""}}});
     useEffect(() => {
       profile()
   }, [])
@@ -32,7 +34,7 @@ export default function Home() {
     <>
     {loading ? <Loader/> : error ? <h1>{error?.message}</h1>:
     <Box mt={[0,0,10]}  width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,2,0]} display="flex">
-     <Menu data={data}/>
+     <Menu data={userData}/>
      {data && <Profile user={data?.user} />}
     </Box>}
     </>

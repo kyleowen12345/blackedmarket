@@ -1,14 +1,12 @@
 import React from 'react'
-import NextLink from 'next/link'
-import { Box,Text,Link,Image,FormControl,FormLabel,Input,Stack,Button,Select} from "@chakra-ui/react"
+import { Box,Text} from "@chakra-ui/react"
 import ProfileForm from './UserProfile/ProfileForm'
 import ProfileDetails from './UserProfile/ProfileDetails'
 import ProfileImage from './UserProfile/ProfileImage'
 import { useRouter } from "next/router"
 const Profile = ({user}) => {
-    const router = useRouter()
+  const router = useRouter()
   const {page}= router.query
-  console.log(page)
     return (
         <Box width="80%" bg="white">
             <Box py={4} mx={8} borderBottom="1px solid #EFEFEF">
@@ -16,17 +14,14 @@ const Profile = ({user}) => {
             <Text>Manage your account</Text>
             </Box>
             {
-              page =="update" ?  <ProfileForm user={user}/>
+              page =="update" ?  <ProfileForm user={user}/> 
               :
               <Box display="flex">
            <ProfileDetails user={user}/>
            <ProfileImage user={user}/>
            </Box> 
-
+            
             }
-           
-           
-
         </Box>
     )
 }

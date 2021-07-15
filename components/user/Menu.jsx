@@ -5,25 +5,26 @@ import NextLink from 'next/link'
 import { useRouter } from "next/router"
 const Menu = ({data}) => {
   const router = useRouter()
-  const {page}=router.query
+  const path=router.route
 
     return (
         <Box display="flex" flexDirection="column" width="20%" mt={5}>
         <Box display="flex" width="80%" height="100px" justifyContent="space-between"  >
-           <Avatar size="lg" name={data?.user.name} src={data?.user.profilePic} />
+           <Avatar size="lg" name={data?.name} src={data?.profilePic} />
         <Box alignItems="center">
-           <Text fontWeight="bold">{data?.user.name}</Text>
+           <Text fontWeight="bold">{data?.name}</Text>
            <NextLink href={"/user/profile?page=update"} passHref>
-            <Link fontSize="13px"><Icon as={AiOutlineEdit} mr={3} />Edit Profile</Link>
+            <Link fontSize="13px" ><Icon as={AiOutlineEdit} mr={3} />Edit Profile</Link>
             </NextLink>
         </Box>
         </Box>
         <Stack spacing={5}>
         <NextLink href={"/user/profile"} passHref>
-        <Link fontWeight="bold" color={!page && "#FC8E00"}><Icon as={AiOutlineUser} mr={3} />My Account</Link>
+        <Link fontWeight="bold" color={path == "/user/profile" && "#FC8E00"}><Icon as={AiOutlineUser} mr={3} />Account</Link>
         </NextLink>  
-        
-        <Link fontWeight="bold"><Icon as={AiOutlineHistory} mr={3} />My Purchases</Link>
+        <NextLink href={'/user/purchases?id=1'}  passHref>
+        <Link fontWeight="bold" color={path == "/user/purchases" && "#FC8E00"}><Icon as={AiOutlineHistory} mr={3} />Purchases</Link>
+        </NextLink>
         <Link fontWeight="bold"><Icon as={AiOutlineEdit} mr={3} />Following</Link>
         </Stack>
       </Box>

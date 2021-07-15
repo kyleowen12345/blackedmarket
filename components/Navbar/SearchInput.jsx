@@ -28,7 +28,7 @@ const SearchInput = ({width}) => {
          <Input bg="#ffffff" border="none"  focusBorderColor="none" height="1.8em" autoComplete="off" pl={1} pr={0} {...register('search', {required: 'this is required',})}/>
                 <Button  variant="link" bg="#FEBD69" height="30px" borderRadius={0} borderRightRadius="5px" type="submit"><Search2Icon color="#000000" /></Button>
          </FormControl>
-                </Container>
+        </Container>
         </>
     )
 }

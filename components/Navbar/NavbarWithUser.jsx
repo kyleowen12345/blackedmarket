@@ -62,7 +62,7 @@ const NavbarWithUser = ({signOut,user,loading}) => {
                  <MenuButton   bg="#000000">
                      <Flex display="flex" alignItems="center">
                         <Avatar name={user?.name} src={user?.profilePic} mr={2} size="sm" />
-                             <Text  color="#ffffff">{loading ? "Loading...": user?.name}</Text>
+                             <Text  color="#ffffff">{loading ? "loading...": user?.name}</Text>
                               <ChevronDownIcon  color="#ffffff" fontWeight="bold" w={6} h={6}/>
                      </Flex>
                  </MenuButton>
@@ -97,7 +97,7 @@ const NavbarWithUser = ({signOut,user,loading}) => {
            <DrawerHeader borderBottomWidth="1px" color="#000000">
                <Flex display="flex" alignItems="center">
                <Avatar name={user?.name} src={user?.profilePic} mr={2}/>
-               {loading ? "Loading...": user?.name}
+               {loading ? "loading...": user?.name}
                </Flex>
                </DrawerHeader>
              <DrawerBody display="flex" flexDirection="column">
