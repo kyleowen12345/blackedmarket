@@ -25,7 +25,9 @@ const Menu = ({data}) => {
         <NextLink href={'/user/purchases?id=1'}  passHref>
         <Link fontWeight="bold" color={path == "/user/purchases" && "#FC8E00"}><Icon as={AiOutlineHistory} mr={3} />Purchases</Link>
         </NextLink>
-        <Link fontWeight="bold"><Icon as={AiOutlineEdit} mr={3} />Following</Link>
+        <NextLink href={'/user/following?id=1'}  passHref>
+        <Link fontWeight="bold" color={path == "/user/following" && "#FC8E00"}><Icon as={AiOutlineEdit} mr={3} />Following</Link>
+        </NextLink>
         </Stack>
       </Box>
     )

@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 import Moment from 'react-moment';
 import NextLink from 'next/link'
 const PurchaseList = ({history}) => {
-    console.log(history?.length < 1)
     return (
         <>
         {
@@ -17,7 +16,7 @@ const PurchaseList = ({history}) => {
 
                <Box mx={5} pt={3}>
                     <Box display="flex" justifyContent="space-between" my={3}>
-                        <Text ><Moment fromNow>{Date.parse(i.dateOfPurchase)||i.dateOfPurchase}</Moment></Text>
+                        <Text fontSize="13px" fontWeight="bold"><Moment fromNow>{Date.parse(i.dateOfPurchase)||i.dateOfPurchase}</Moment></Text>
                         <Text color="#FC8E00" fontWeight="bold">Purchased</Text>
                     </Box>
                 <Box display="flex" justifyContent="space-between" alignItems="center" width="100%" py={5} borderY="1px solid #EFEFEF">

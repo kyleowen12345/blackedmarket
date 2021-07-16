@@ -32,12 +32,8 @@ export default function Home() {
     const {id,keyword}= router.query
     const [purchases,{ data,error,loading }] = useLazyQuery(PURCHASES,{variables:{curPage:id || "1",keyword:keyword},context:{headers:{token:authToken||""}}, fetchPolicy: "no-cache" });
     useEffect(() => {
-      
         purchases()
-    
-      
   }, [])
-  console.log(data)
   return (
     < >
       {loading ? <Loader/> : error ? <h1>{error?.message}</h1>:
