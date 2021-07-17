@@ -4,7 +4,7 @@ import { AiOutlineEdit } from "react-icons/ai"
 import NextLink from 'next/link'
 const ProfileDetails = ({user}) => {
     return (
-        <Box p={8}  width="60%">
+        <Box p={8}  width={["100%","100%","100%","60%"]}>
             <Stack spacing={10}>
             <Box display="flex" alignItems="center">    
             <Text width="50%" textAlign="right" mr={4} fontSize="14px" color="#969696">Username</Text> 

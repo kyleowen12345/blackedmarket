@@ -8,7 +8,7 @@ const Menu = ({data}) => {
   const path=router.route
 
     return (
-        <Box display="flex" flexDirection="column" width="20%" mt={5}>
+        <Box display={["none","none","none","none","flex"]} flexDirection="column" width="20%" mt={5}>
         <Box display="flex" width="80%" height="100px"  >
            <Avatar size="lg" name={data?.name} src={data?.profilePic} />
         <Box alignItems="center" ml={5} mt={2}>

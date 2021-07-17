@@ -6,6 +6,7 @@ import { useAuth } from '../../lib/auth';
 import Loader from '../../components/Loader/Loader';
 import Menu from '../../components/user/Menu';
 import Following from '../../components/user/Following';
+import SmallMenu from '../../components/user/SmallMenu';
 export const FOLLOWING = gql`
  query ($curPage:String!,$keyword:String){
     getFollowingStore(curPage:$curPage,keyword:$keyword){
@@ -14,7 +15,9 @@ export const FOLLOWING = gql`
         followCount
         follow{
           id
-          storeDescription
+          sellerName{
+            name
+          }
           storeName
           storeType
           storeBackgroundImage
@@ -34,8 +37,9 @@ export default function Home() {
   return (
     < >
       {loading ? <Loader/> : error ? <h1>{error?.message}</h1>:
-       <Box mt={[0,0,10]}  width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,2,0]} display="flex">
+       <Box  mt={[0,0,0,0,10]}  width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,0,0]} display="flex" flexDirection={["column","column","column","column","row"]}>
        <Menu data={userData}/>
+       <SmallMenu />
        <Following following={data?.getFollowingStore}/>
        </Box>}
     </>

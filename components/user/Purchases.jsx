@@ -6,7 +6,7 @@ import PurchaseList from './UserPurchases/PurchaseList';
 const Purchases = ({history}) => {
 
     return (
-        <Box width="80%" >
+        <Box width={["100%","100%","100%","100%","80%"]} >
           <PurchasesSearch/>
               <PurchaseList history={history?.history}/>
             <Pagination marginPages={1} pageRange={2} initialPage={history?.curPage - 1} pageCount={history?.maxPage}/>

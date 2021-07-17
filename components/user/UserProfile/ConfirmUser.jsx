@@ -45,7 +45,7 @@ const ConfirmUser = ({setConfirmedUser}) => {
     return (
         <>
          
-          <Button  bg={'white'} color={"#FC8E00"} border="2px solid #FC8E00" borderRadius={0}  _hover={{color: '#FC8E00',bg:"white"}} onClick={onOpen}><Icon as={GiConfirmed} color="#FC8E00" mr={3}/>Confirm</Button>
+          <Button  bg={'white'} color={"#FC8E00"} border="2px solid #FC8E00"  _hover={{color: '#FC8E00',bg:"white"}} onClick={onOpen}><Icon as={GiConfirmed} color="#FC8E00" mr={3}/>Confirm</Button>
     
           <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />

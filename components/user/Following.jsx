@@ -6,7 +6,7 @@ import FollowingList from './UserFollowing/FollowingList'
 
 const Following = ({following}) => {
     return (
-        <Box width="80%" >
+        <Box width={["100%","100%","100%","100%","80%"]} >
           <FollowingSearch />
           <FollowingList following={following?.follow}/>
           <Pagination marginPages={1} pageRange={2} initialPage={following?.curPage - 1} pageCount={following?.maxPage}/>

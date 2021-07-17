@@ -59,18 +59,18 @@ const FollowingList = ({following}) => {
                                    <Text fontSize="13px" fontWeight="bold">{i.storeType}</Text>
                                    <Text color="#FC8E00" fontWeight="bold">Following</Text>
                             </Box>
-                            <Box display="flex" justifyContent="space-between" alignItems="center" width="100%" py={5} borderY="1px solid #EFEFEF">
-                               <Box display="flex"  width="80%">
-                                    <Image src={i.storeBackgroundImage} alt={i.storeName} width="100px" height="100px"/>
-                                    <Box ml={10}>
+                            <Box display={["block","block","flex"]} justifyContent="space-between" alignItems="center" width="100%" py={5} borderY="1px solid #EFEFEF">
+                               <Box display="flex" justifyContent={["space-between","space-between","left"]}  width={["100%","100%","80%","80%"]}>
+                                    <Image src={i.storeBackgroundImage} alt={i.storeName} width={["150px","150px","100px"]} height={["150px","150px","100px"]}/>
+                                    <Box ml={10} alignItems="left" w="50%">
                                        <Text fontSize="18px" fontWeight="bold" mb={5}>{i.storeName}</Text>
-                                       <Text fontSize="13px" fontWeight="bold">{i.storeDescription}</Text> 
+                                       <Text fontSize="13px" fontWeight="bold" >{i.sellerName.name}</Text> 
                                      </Box>
                                </Box> 
-                               <Box display="flex" alignItems="center">
-                                      <Button   fontSize="14px" bg="#FC8E00" color="white" _hover={{bg:"#FC8E00"}}  onClick={()=>onUnFollow(i.id)} isLoading={loading}>UnFollow</Button>
+                               <Box display="flex" justifyContent="space-between" alignItems="center" mt={[5,5,5,0]} >
+                                      <Button   fontSize="14px" bg="#FC8E00" color="white" _hover={{bg:"#FC8E00"}}  onClick={()=>onUnFollow(i.id)} isLoading={loading} width="50%">UnFollow</Button>
                                    <NextLink href={`/stores/info/${i.id}`} passHref> 
-                                      <Button as="a" fontSize="14px" ml={5} bg="white" border="1px solid gray" color="gray" _hover={{bg:"white"}}>Visit Store</Button>
+                                      <Button as="a" fontSize="14px" ml={5} bg="white" border="1px solid gray" color="gray" _hover={{bg:"white"}} width="50%">Visit Store</Button>
                                    </NextLink> 
                                </Box>
                             </Box>

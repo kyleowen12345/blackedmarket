@@ -23,7 +23,7 @@ const PurchaseList = ({history}) => {
                       <Box display="flex"  width="80%">
                           <Image src={i.image} alt={i.name} width="100px" height="100px"/>
                           <Box ml={10}>
-                             <Text fontSize="18px" fontWeight="bold" mb={5}>{i.name}</Text>
+                             <Text fontSize="18px" fontWeight="bold" mb={5} maxW="150px" isTruncated>{i.name}</Text>
                              <Text>x{i.quantity}</Text> 
                           </Box>
                       </Box> 

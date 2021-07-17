@@ -10,7 +10,8 @@ import {
     Text,
     Alert,
     AlertIcon,
-    Icon
+    Icon,
+    Link
   } from '@chakra-ui/react';
   import { useForm } from 'react-hook-form';
 import { useAuth } from '../../../lib/auth';
@@ -18,7 +19,7 @@ import { PROFILE } from '../../../pages/user/profile';
 import ConfirmUser from './ConfirmUser';
 import { AiOutlineSave } from "react-icons/ai"
 import { useRouter } from "next/router"
-
+import NextLink from 'next/link'
  
 const UPDATEUSER = gql`
 mutation ($name:String!,$email:String!,$contactNumber:String!,$country:String!,$city:String!,$SocialMediaAcc:String!,$zipcode:String!){
@@ -71,11 +72,14 @@ const ProfileForm = ({user}) => {
    }  
 };
     return (
-   <Box  py={10} px={8}>
+   <Box  py={5} px={8}>
+      <NextLink href="/user/profile" passHref>
+           <Link as="a" fontWeight="bold">Back</Link> 
+      </NextLink>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Stack spacing={10}>
-           <Box display="flex">
-           <FormControl id="username" width={["100%","100%","50%"]} mr={5}>
+        <Stack spacing={10} mt={5}>
+           <Box display="flex" flexDirection={["column","column","column","column","row"]}>
+           <FormControl id="username" width={["100%","100%","100%","100%","50%"]} mr={5}>
              <Box display="flex">
                 <FormLabel >User name </FormLabel>
                  <Text color="red">*</Text>
@@ -91,7 +95,7 @@ const ProfileForm = ({user}) => {
             />
             <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.name && errors.name.message}</Text>
           </FormControl>
-          <FormControl id="email" width={["100%","100%","50%"]}>
+          <FormControl id="email" width={["100%","100%","100%","100%","50%"]} mt={[3,3,3,3,0]}>
              <Box display="flex">
                 <FormLabel >Email</FormLabel>
                  <Text color="red">*</Text>
@@ -107,8 +111,8 @@ const ProfileForm = ({user}) => {
           </FormControl>
            </Box>
          
-           <Box display="flex">
-          <FormControl id="number" width={["100%","100%","50%"]} mr={5}>
+           <Box display="flex" flexDirection={["column","column","column","column","row"]}>
+          <FormControl id="number" width={["100%","100%","100%","100%","50%"]} mr={5}>
              <Box display="flex">
                 <FormLabel >Phone Number</FormLabel>
                  <Text color="red">*</Text>
@@ -122,7 +126,7 @@ const ProfileForm = ({user}) => {
             })} />
             <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.contactNumber && errors.contactNumber.message}</Text>
           </FormControl>
-          <FormControl id="socialmedia" width={["100%","100%","50%"]}>
+          <FormControl id="socialmedia" width={["100%","100%","100%","100%","50%"]} mt={[3,3,3,3,0]}>
              <Box display="flex">
                 <FormLabel >Social media account</FormLabel>
                  <Text color="red">*</Text>
@@ -152,8 +156,8 @@ const ProfileForm = ({user}) => {
             })} />
             <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.country && errors.country.message}</Text>
           </FormControl>
-          <Box display="flex">
-          <FormControl id="city" width={["100%","100%","50%"]} mr={5}>
+          <Box display="flex" flexDirection={["column","column","column","column","row"]}>
+          <FormControl id="city" width={["100%","100%","100%","100%","50%"]} mr={5}>
              <Box display="flex">
                 <FormLabel >City</FormLabel>
                  <Text color="red">*</Text>
@@ -167,7 +171,7 @@ const ProfileForm = ({user}) => {
             })} />
             <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.city && errors.city.message}</Text>
           </FormControl>
-          <FormControl id="zipcode" width={["100%","100%","50%"]}>
+          <FormControl id="zipcode" width={["100%","100%","100%","100%","50%"]} mt={[3,3,3,3,0]}>
              <Box display="flex">
                 <FormLabel >Zipcode</FormLabel>
                  <Text color="red">*</Text>
@@ -187,11 +191,10 @@ const ProfileForm = ({user}) => {
           
           {
             confirmedUser ?
-            <Button bg={'#FC8E00'} color={"white"}  borderRadius={0}  _hover={{bg: '#FC8E00',color:"white"}} type="submit" disabled={loading} isLoading={loading}><Icon as={AiOutlineSave} color="white" mr={3}/> Save Changes</Button>
+            <Button bg={'#FC8E00'} color={"white"}  _hover={{bg: '#FC8E00',color:"white"}} type="submit" disabled={loading} isLoading={loading}><Icon as={AiOutlineSave} color="white" mr={3}/> Save Changes</Button>
           :
           <ConfirmUser setConfirmedUser={setConfirmedUser} />
           }
-          
         </Stack>
     </form>
     </Box> 
