@@ -48,12 +48,12 @@ const FollowingList = ({following}) => {
     return (
         <>
           {
-            following?.length < 1 ? <Box bg="white" my={4} height="100%" display="flex" justifyContent="center" alignItems="center" boxShadow="md" borderRadius={5}>
-            <Text fontSize="20px" fontWeight="bold">Have not followed any</Text>
+            following?.length < 1 ? <Box bg="white" my={4} height="300px" display="flex" justifyContent="center" alignItems="center" boxShadow="md" borderRadius={5}>
+            <Text fontSize="20px" fontWeight="bold">No following record</Text>
         </Box>
         :
          following?.map(i=>(
-             <Box key={i.id} bg="white" my={4} boxShadow="md" borderRadius={5}>
+             <Box key={i.id} bg="white" my={4} boxShadow="md" borderRadius={5} mx={1}>
                       <Box mx={5} pt={3}>
                             <Box display="flex" justifyContent="space-between" my={3}>
                                    <Text fontSize="13px" fontWeight="bold">{i.storeType}</Text>
