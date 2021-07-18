@@ -7,7 +7,7 @@ import Title from './Title';
 import Shipping from './Shipping';
 import { AiOutlineEdit } from "react-icons/ai"
 import Moment from 'react-moment';
-const ProductInfoDetails = ({product,userData}) => {
+const ProductInfoDetails = ({product,userData,refetch}) => {
     
     return (
         <Box ml={["auto","auto",0,0,10]} width={["300px","300px","60%","800px"]}  mr="auto">
@@ -20,10 +20,10 @@ const ProductInfoDetails = ({product,userData}) => {
             {/* Description */}
             <Box m={3} mt={5} display={"flex"} alignItems="center">
                 <Box mr={[5,5,10,20]} width={"95px"}>
-                <Text color="#888888" fontSize={["8px","13px","15px"]}>Description </Text>
+                <Text color="#888888" fontSize={"15px"}>Description </Text>
                 </Box>
                 <Box maxW={["150px","150px","200px"]} isTruncated>
-                <Text fontSize={["8px","11px","13px"]} isTruncated>{product?.product.description}</Text>
+                <Text fontSize={"13px"} isTruncated>{product?.product.description}</Text>
                 </Box>
                 
             </Box>
@@ -32,19 +32,19 @@ const ProductInfoDetails = ({product,userData}) => {
             {/* Stocks */}
             <Box m={3} display={"flex"} mt={5}>
                <Box  mr={[5,5,10,20]} width={"95px"}>
-                <Text color="#888888" fontSize={["8px","13px","15px"]}>Stocks </Text>
+                <Text color="#888888" fontSize={"15px"}>Stocks </Text>
                 </Box>
                 <Box>
-                <Text fontSize={["8px","11px","13px"]}>{product?.product.productStocks} piece(s) available</Text>
+                <Text fontSize={"13px"}>{product?.product.productStocks} piece(s) available</Text>
                 </Box>
             </Box>
             {/* Created */}
            {product?.product.storeOwner.id === userData?.id && <Box m={3} display={"flex"} mt={5}>
                <Box  mr={[5,5,10,20]} width={"95px"}>
-                   <Text color="#888888" fontSize={["8px","13px","15px"]}>Created</Text>
+                   <Text color="#888888" fontSize={"15px"}>Created</Text>
                 </Box>
                 <Box>
-                   <Text fontSize={["8px","11px","13px"]}><Moment format="LLL">{Date.parse(product.product.createdAt) || product.product.createdAt}</Moment></Text>
+                   <Text fontSize={"13px"}><Moment format="LLL">{Date.parse(product.product.createdAt) || product.product.createdAt}</Moment></Text>
                 </Box>
             </Box>}
             {product?.product.storeOwner.id === userData?.id && <Box display={"flex"} width={["300px","300px","310px","400px"]} justifyContent="space-between" m={3} mt={[5,5,7]}>
@@ -55,7 +55,7 @@ const ProductInfoDetails = ({product,userData}) => {
             </Box>
             }
         
-           {product?.product.storeOwner.id !== userData?.id && <AddtoCart product={product.product}/>} 
+           {product?.product.storeOwner.id !== userData?.id && <AddtoCart product={product.product} refetch={refetch}/>} 
         </Box>
     )
 }

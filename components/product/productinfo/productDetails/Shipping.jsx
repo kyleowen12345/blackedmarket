@@ -7,7 +7,7 @@ const Shipping = ({product}) => {
     return (
         <Box m={3} mt={5} display={"flex"} maxH="85px">
                 <Box mr={[5,5,10,20]} width={"95px"} >
-                        <Text color="#888888" fontSize={["8px","13px","15px"]}>Shipping </Text>
+                        <Text color="#888888" fontSize={"15px"}>Shipping </Text>
                 </Box>
                 <Box>
                         <Box width={["100px","100px","100px","323px"]}>

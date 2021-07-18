@@ -57,7 +57,7 @@ const NavbarWithUser = ({signOut,user,loading}) => {
             <SearchInput width={"450px"} />
             </Box>
            
-           <Container justifyContent="space-around" alignItems="center" width="200" display={{ base: 'none', xl: 'flex' }}>
+           <Container justifyContent="space-around" alignItems="center" width="200" display={{ base: 'none', xl: 'flex' }} >
               <Menu >
                  <MenuButton   bg="#000000">
                      <Flex display="flex" alignItems="center">
@@ -90,9 +90,9 @@ const NavbarWithUser = ({signOut,user,loading}) => {
     </Box>
 
   {/* 768px UserDrawer */}
-      <Drawer onClose={onClose} isOpen={isOpen} placement="left">
+      <Drawer onClose={onClose} isOpen={isOpen} placement="left" >
         <DrawerOverlay />
-        <DrawerContent bg="#ffffff">
+        <DrawerContent bg="#ffffff" zIndex={9999}>
           <DrawerCloseButton color="#000000"/>
            <DrawerHeader borderBottomWidth="1px" color="#000000">
                <Flex display="flex" alignItems="center">

@@ -7,7 +7,7 @@ import axios from 'axios'
 
 
 
-const BuyNow = ({isOpen,quantity,product,setQuantity,onClose,initialRef,finalRef}) => {
+const BuyNow = ({isOpen,quantity,product,setQuantity,onClose,initialRef,finalRef,refetch}) => {
     const [ready,setReady]=useState(false)
     const total=product.price * quantity
     const shipping=product.price  * 0.25
@@ -32,6 +32,7 @@ const BuyNow = ({isOpen,quantity,product,setQuantity,onClose,initialRef,finalRef
             token:Cookies.get('blackedmarket') || ""
           }})
           onClose()
+          refetch()
           toast({
             title: `Purchase successful`,
                 status:"success",

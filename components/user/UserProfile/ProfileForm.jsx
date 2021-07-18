@@ -74,7 +74,7 @@ const ProfileForm = ({user}) => {
     return (
    <Box  py={5} px={8}>
       <NextLink href="/user/profile" passHref>
-           <Link as="a" fontWeight="bold">Back</Link> 
+           <Link as="a" fontWeight="bold"> {"<"} Back</Link> 
       </NextLink>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={10} mt={5}>

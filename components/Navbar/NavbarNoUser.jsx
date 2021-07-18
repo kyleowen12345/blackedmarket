@@ -75,7 +75,7 @@ const NavbarNoUser = () => {
     {/* 768px Drawer */}
       <Drawer onClose={onClose} isOpen={isOpen} placement="left">
         <DrawerOverlay />
-        <DrawerContent bg="#ffffff">
+        <DrawerContent bg="#ffffff" zIndex={9999}>
           <DrawerCloseButton color="#000000"/>
            <DrawerHeader borderBottomWidth="1px" color="#000000">BlackedMarket</DrawerHeader>
              <DrawerBody display="flex" flexDirection="column">

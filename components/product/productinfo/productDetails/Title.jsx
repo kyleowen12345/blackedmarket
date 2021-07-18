@@ -24,10 +24,10 @@ const Title = ({product}) => {
                                      ))}
                                     <Text fontSize={"20px"} ml={[2,3,3,5]} mr={[2,3,3,5]}>|</Text> 
                                     <Text  mr={[1,1,3]} fontSize={["10px","10px","12px","15px","20px"]}>{product.productName.length + product.image.length} </Text> 
-                                    <Text color="#888888" fontSize={["8px","8px","12px"]}>reviews</Text>
+                                    <Text color="#888888" fontSize={["8px","10px","12px"]}>reviews</Text>
                                      <Text fontSize="20px" ml={[2,2,3,5]} mr={[2,3,3,5]}>|</Text> 
                                      <Text mr={[1,1,3]} fontSize={["10px","10px","12px","15px","20px"]}>{product?.sold}</Text>
-                                     <Text color="#888888" fontSize={["8px","8px","12px"]}>Sold</Text>
+                                     <Text color="#888888" fontSize={["8px","10px","12px"]}>Sold</Text>
                 </Box>       
             </Box>
     )

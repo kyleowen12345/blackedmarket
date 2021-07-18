@@ -39,7 +39,7 @@ export const PRODUCTINFO = gql`
 export default function Home() {
   const router = useRouter()
   const {id}= router.query
-  const [productinfo,{ data,error,loading }] = useLazyQuery( PRODUCTINFO,{variables:{id:id }} );
+  const [productinfo,{ data,error,loading,refetch }] = useLazyQuery( PRODUCTINFO,{variables:{id:id }} );
   useEffect(() => {
     if(id){
      return productinfo()
@@ -48,7 +48,6 @@ export default function Home() {
     }
     
   }, [id])
- console.log(id)
   return (
     <>
     {loading ? <Loader/>:<div >
@@ -57,7 +56,7 @@ export default function Home() {
          <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"   >
            <ProductInfoSubNav data={data} id={id}/>
               {data && 
-              <ProductInfo product={data?.productInfo} />
+              <ProductInfo product={data?.productInfo} refetch={refetch}/>
               }
        </Box>
        
