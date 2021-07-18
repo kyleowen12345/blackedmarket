@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useMutation, gql  } from "@apollo/client";
-import { useAuth } from '../../lib/auth';
+import { useAuth } from '../../../lib/auth';
 import { Box,Text,Button,Input,Icon,useDisclosure  } from "@chakra-ui/react"
 import { AiOutlineShoppingCart } from "react-icons/ai"
-import BuyNow from './BuyNow/BuyNow';
+import BuyNow from '../BuyNow/BuyNow';
 import { useRouter } from 'next/router'
 
 

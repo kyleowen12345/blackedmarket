@@ -13,7 +13,7 @@ const SortedProducts = ({product}) => {
   return (
         <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"   >
             <SortingMenu sorterList={sorterList} sortOrder={sortOrder} route={`/stores/info/products?store=${store}&id=1&`}/>
-            <Box display={"flex"} alignItems="center" mt={[1,1,2,5]} p={3} px={[1,1,1,3]}>
+            <Box display={"flex"}  alignItems="center" mt={[1,1,2,5]} p={3} px={[1,1,1,0]}>
                <NextLink href={`/stores/info/${store}`} passHref><Link  fontSize="14px">Back To Store</Link></NextLink>
             </Box>
             <StoreProduct product={product?.products}/>

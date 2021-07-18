@@ -15,11 +15,11 @@ const ProductStoreInfo = ({product}) => {
                   <Image src={product.product.storeName.storeBackgroundImage} alt={product.product.storeName.storeBackgroundImage} width="70px" height="70px" className="productStore"/>
                </Box>
                
-               <Box ml={5}>
-                 <Text maxW={["120px","120px","200px"]} fontSize={["12px","14px","16px"]} isTruncated>{product.product.storeName.storeName}</Text>
+               <Box ml={[1,1,1,1,5]}>
+                 <Text maxW={["120px","120px","200px"]} fontSize={["12px","14px","14px","14px","16px"]} isTruncated>{product.product.storeName.storeName}</Text>
                  <NextLink href={`/stores/info/${product.product.storeName.id}`} passHref>
                  <Box display="flex"   justifyContent="space-between" as="a">
-                 <Button  width={["100px","100px","120px"]}    bg="white" color="#FC8E00" _hover={{bg:"white", color:"#FC8E00"}} border="1px solid #FC8E00" borderRadius={0} height="35px" fontSize={["11px","11px","13px"]}><Icon as={FaStore}  mr={2}/> View Shop</Button>
+                 <Button  width={["100px","100px","120px"]}    bg="white" color="#FC8E00" _hover={{bg:"white", color:"#FC8E00"}} border="1px solid #FC8E00"  height="35px" fontSize={["11px","11px","13px"]}><Icon as={FaStore}  mr={2}/> View Shop</Button>
                  </Box>
                  </NextLink>
                  

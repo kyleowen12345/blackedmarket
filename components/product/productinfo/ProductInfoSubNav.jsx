@@ -5,7 +5,7 @@ import { ChevronRightIcon } from '@chakra-ui/icons'
 
 const ProductInfoSubNav = ({data,id}) => {
     return (
-        <Box display={["none","none","none","flex","flex","flex"]} alignItems="center" mt={5} mb={3}>
+        <Box display={["none","none","none","none","flex"]} alignItems="center" mt={5} mb={3}>
         <NextLink href={'/'} passHref><Link color="rgb(6,116,231)" fontSize="12px">Blackedmarket</Link></NextLink>
         <ChevronRightIcon color="#000000" w={6} h={6}/>
         <NextLink href={`/stores/info/${data?.productInfo.product.storeName.id}`} passHref><Link  color="rgb(6,116,231)" fontSize="12px">{data?.productInfo.product.storeName.storeName}</Link></NextLink>

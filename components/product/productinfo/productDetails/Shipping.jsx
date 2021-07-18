@@ -11,10 +11,10 @@ const Shipping = ({product}) => {
                 </Box>
                 <Box>
                         <Box width={["100px","100px","100px","323px"]}>
-                            <Icon as={FiTruck} color="#000000" />
+                              <Icon as={FiTruck} color="#000000" />
                         </Box>
                         <Box display="flex" alignItems="center" justifyContent="space-between" width={["100px","100px","200px","300px"]} >
-                                  <Text fontSize={["8px","11px","13px"]} width="100px">Shipping To</Text>
+                                    <Text fontSize={["8px","11px","13px"]} width="100px">Shipping To</Text>
                                <Select ml={[5,5,10,20]}  variant="unstyled" placeholder="Unstyled" placeholder="USA"  fontSize={["8px","12px","13px"]} minW="100px" fontWeight="bold">
                                           {
                                               country_list.map(i=>(
