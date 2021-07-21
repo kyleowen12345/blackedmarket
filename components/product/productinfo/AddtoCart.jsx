@@ -5,10 +5,11 @@ import { Box,Text,Button,Input,Icon,useDisclosure  } from "@chakra-ui/react"
 import { AiOutlineShoppingCart } from "react-icons/ai"
 import BuyNow from '../BuyNow/BuyNow';
 import { useRouter } from 'next/router'
+import { CARTINFO, useCart } from '../../../lib/cart';
 
 
 const ADDTOCART = gql`
-mutation ($id:ID!,$quantity:Int,$productName:String!,$image:String!,$price:String!,$storeName:ID!,$storeOwner:ID!) {
+mutation ($id:ID!,$quantity:Int,$productName:String!,$image:String!,$price:Int!,$storeName:ID!,$storeOwner:ID!) {
     addToCart(id:$id,quantity:$quantity,productName:$productName,image:$image,price:$price,storeName:$storeName,storeOwner:$storeOwner){
         id
         quantity
@@ -23,8 +24,9 @@ mutation ($id:ID!,$quantity:Int,$productName:String!,$image:String!,$price:Strin
 const AddtoCart = ({product,refetch}) => {
     const router = useRouter()
     const {authToken}=useAuth()
+    const {cartRefetch}=useCart()
     const [quantity,setQuantity]=useState(1)
-    const [addToCart,{data, loading,error }] = useMutation(ADDTOCART,{ errorPolicy: 'all' });
+    const [addToCart,{ loading }] = useMutation(ADDTOCART,{ errorPolicy: 'all' });
     const { isOpen, onOpen, onClose } = useDisclosure()
     const initialRef = React.useRef()
     const finalRef = React.useRef()
@@ -33,7 +35,7 @@ const AddtoCart = ({product,refetch}) => {
         if(!authToken){
             return router.push('/login')
         }else{
-            return await addToCart({variables:{
+             await addToCart({variables:{
                 id:product.id,
                 quantity:quantity,
                 productName:product.productName,
@@ -42,6 +44,7 @@ const AddtoCart = ({product,refetch}) => {
                 storeName:product.storeName.id,
                 storeOwner:product.storeOwner.id
             },context:{headers:{token:authToken || ""}}})
+            cartRefetch()
         }
        
     }
@@ -55,9 +58,9 @@ const AddtoCart = ({product,refetch}) => {
                 <Text color="#888888" fontSize={"15px"}>Quantity </Text>
                 </Box>
                 <Box display="flex" width={["100px","150px","186px"]}>
-                <Button disabled={quantity == 1} bg="white" _hover={{bg:"white"}} borderRadius={0} border="1px solid #E2E8F0" height={["25px","25px","30px"]}onClick={()=>setQuantity(quantity-1)}>-</Button>
-                <Input  type="number" onChange={(e)=>setQuantity(parseInt(e.target.value))} value={quantity} width={"100px"} borderRadius={0}  focusBorderColor="none"  height={["25px","25px","30px"]}/>
-                <Button disabled={quantity == product.productStocks} bg="white" _hover={{bg:"white"}}  borderRadius={0} border="1px solid #E2E8F0" height={["25px","25px","30px"]} onClick={()=>setQuantity(quantity+1)}>+</Button>
+                   <Button disabled={quantity == 1} bg="white" _hover={{bg:"white"}} borderRadius={0} border="1px solid #E2E8F0" height={["25px","25px","30px"]}onClick={()=>setQuantity(quantity-1)}>-</Button>
+                    <Input  type="number" onChange={(e)=>setQuantity(parseInt(e.target.value))} value={quantity} width={"100px"} borderRadius={0}  focusBorderColor="none"  height={["25px","25px","30px"]}/>
+                    <Button disabled={quantity == product.productStocks} bg="white" _hover={{bg:"white"}}  borderRadius={0} border="1px solid #E2E8F0" height={["25px","25px","30px"]} onClick={()=>setQuantity(quantity+1)}>+</Button>
                 </Box>
             </Box>
             <Box display={"flex"} width={["300px","300px","310px","400px"]} justifyContent="space-between" m={3} mt={[3,3,5]}>

@@ -9,6 +9,7 @@ import {AuthProvider} from '../lib/auth.js'
 import {Global,css} from '@emotion/react'
 import Navbar from '../components/Navbar/Navbar';
 import theme from '../styles/theme';
+import { CartProvider } from '../lib/cart';
 const GlobalStyle = ({ children }) => {
   return (
     <>
@@ -35,11 +36,13 @@ function MyApp({ Component, pageProps }) {
    
     <ApolloProvider client={client}>
       <AuthProvider>
+      <CartProvider>
       <ChakraProvider theme={theme}  resetCSS>
       <GlobalStyle/>
       {ready && <Navbar/>}
        <Component {...pageProps} />
     </ChakraProvider >
+    </CartProvider> 
     </AuthProvider>
     </ApolloProvider>
   

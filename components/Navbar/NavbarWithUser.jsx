@@ -30,12 +30,14 @@ import {
   import {  FaStore,FaProductHunt} from "react-icons/fa"
   import { useRouter } from 'next/router'
   import SearchInput from './SearchInput'
+import { useCart } from '../../lib/cart'
 
   
 const WithUserLinks = [{name:'Profile',link:"/user/profile",icon:ImProfile},{name:'DashBoard',link:`/stores/dashboard?id=${1}`,icon:AiOutlineDashboard ,as:`/stores/dashboard?id=${1}`},{name:'Stores',link:"/stores/1?sortOrder=storeName",icon:FaStore}, {name:'Products',link:"/products/1?sortOrder=productName",icon:FaProductHunt},{name:'Create Store',link:"/stores/createstore",icon:AiFillFolderAdd}];
 
 const NavbarWithUser = ({signOut,user,loading}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const {data}=useCart()
     const [isLargerThan1200] = useMediaQuery("(min-width: 1200px)")
     const router = useRouter()
     return (

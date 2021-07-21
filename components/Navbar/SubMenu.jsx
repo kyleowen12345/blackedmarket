@@ -17,12 +17,12 @@ const SubMenu = () => {
     return (
       
           <Menu >
-          <MenuButton color="#000000" fontSize="sm" fontWeight="bold"  width="80px" bg="#EAEDED" borderLeftRadius="5px" height="30px">
+          <MenuButton color="#000000" fontSize="sm" fontWeight="bold"  width="80px" bg="#EAEDED" borderLeftRadius="5px" height="30px" >
           <Container display="flex" alignItems="center" pl={1.5}>
           <Text fontSize="xs">Category</Text> <ChevronDownIcon color="#000000"/>
             </Container>
             </MenuButton>
-                   <MenuList h="300px" overflowX="auto" whiteSpace="nowrap" css={{'&::-webkit-scrollbar': {width: "10px"},'&::-webkit-scrollbar-track': {background: "#f1f1f1"},'&::-webkit-scrollbar-thumb': {background: "#888", borderRadius: '24px',}}}>
+                   <MenuList h="300px" overflowX="auto" whiteSpace="nowrap" css={{'&::-webkit-scrollbar': {width: "10px"},'&::-webkit-scrollbar-track': {background: "#f1f1f1"},'&::-webkit-scrollbar-thumb': {background: "#888", borderRadius: '24px',}}} zIndex={9999} >
                    <NextLink href="/products/category/Automotive?id=1&sortOrder=productName" passHref><MenuItem >Automotive</MenuItem></NextLink>
                    <NextLink href="/products/category/Baby & Toddler?id=1&sortOrder=productName" passHref><MenuItem>Baby & Toddler</MenuItem></NextLink>
                    <NextLink href="/products/category/Clothing & Shoes?id=1&sortOrder=productName" passHref><MenuItem>Clothing & Shoes</MenuItem></NextLink>
