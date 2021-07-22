@@ -47,7 +47,7 @@ const Paypal = ({toPay,ontracSuccess,ontracError,ontracCancel}) => {
          onError={onError}
           onSuccess={onSuccess} 
           onCancel={onCancel}
-          style={{size:'medium', color:'blue', shape:'rect',label:'checkout'}}
+          style={{size:'medium', color:'black', shape:'rect',label:'checkout'}}
           />
     );
 }

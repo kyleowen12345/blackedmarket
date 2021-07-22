@@ -33,10 +33,10 @@ const CartList = () => {
                                         </Box>
                                   </Box> 
                                   <Box display="flex" justifyContent="space-between" alignItems="center" mt={[5,5,5,0]} width="70%">
-                                     <Text w="10%" fontSize="14px" fontWeight="bold" >$ {i.price}</Text>
+                                     <Text w="10%" fontSize="14px" fontWeight="bold"  >$ {i.price}</Text>
                                       <SetQuantity details={i} />
-                                      <Text fontSize="14px" fontWeight="bold"  w="14%">$ {i.price * 0.25}</Text>
-                                      <Text fontSize="14px" fontWeight="bold" color="#FC8E00" w="14%">$ {i.price * 0.25 +  i.price * i.quantity}</Text>
+                                      <Text fontSize="14px" fontWeight="bold" align="center"  w="14%">$ {i.price * 0.25}</Text>
+                                      <Text fontSize="14px" align="center" fontWeight="bold" color="#FC8E00" w="14%">$ {i.price * 0.25 +  i.price * i.quantity}</Text>
                                       <DeleteItemInCart productId={i.id} />
                                   </Box>
                             </Box>

@@ -21,7 +21,8 @@ import {
     MenuList,
     MenuItem,
     Icon,
-    useMediaQuery
+    useMediaQuery,
+    Badge 
   } from '@chakra-ui/react'
   import NextLink from 'next/link'
   import { HamburgerIcon, CloseIcon,ChevronDownIcon } from '@chakra-ui/icons'
@@ -79,7 +80,7 @@ const NavbarWithUser = ({signOut,user,loading}) => {
           
             {/* Cart */}
            <Container display="flex" justifyContent="space-around"  alignItems="center"  width="300" p={2} m={1} mr={isLargerThan1200 && 0} pr={isLargerThan1200 && 0}>
-                  <Link onClick={()=>router.push('/user/cart/1')}><Icon as={AiOutlineShoppingCart} color="#ffffff" w={7} h={7}/></Link> 
+                  <Link onClick={()=>router.push('/user/cart/1')}><Box position="relative" display="inline-block"><Badge size="sm" colorScheme="orange" position="absolute" top="-10px" right="-10px" borderRadius="50%">{data?.getCartInfo.productCount}</Badge><Icon as={AiOutlineShoppingCart} color="#ffffff" w={7} h={7}/></Box></Link> 
              </Container>
 
         </Flex>
