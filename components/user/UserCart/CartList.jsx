@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box,Text,Image,Button,Link,Input} from "@chakra-ui/react"
+import { Box,Text,Image,Link} from "@chakra-ui/react"
 import NextLink from 'next/link'
 import Moment from 'react-moment';
 import DeleteItemInCart from './DeleteItemInCart';

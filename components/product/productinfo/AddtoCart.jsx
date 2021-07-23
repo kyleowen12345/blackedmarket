@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { useMutation, gql  } from "@apollo/client";
 import { useAuth } from '../../../lib/auth';
-import { Box,Text,Button,Input,Icon,useDisclosure  } from "@chakra-ui/react"
+import { Box,Text,Button,Input,Icon,useDisclosure,useToast  } from "@chakra-ui/react"
 import { AiOutlineShoppingCart } from "react-icons/ai"
 import BuyNow from '../BuyNow/BuyNow';
 import { useRouter } from 'next/router'
@@ -26,10 +26,11 @@ const AddtoCart = ({product,refetch}) => {
     const {authToken}=useAuth()
     const {cartRefetch}=useCart()
     const [quantity,setQuantity]=useState(1)
-    const [addToCart,{ loading }] = useMutation(ADDTOCART,{ errorPolicy: 'all' });
+    const [addToCart,{ loading,error }] = useMutation(ADDTOCART,{ errorPolicy: 'all' });
     const { isOpen, onOpen, onClose } = useDisclosure()
     const initialRef = React.useRef()
     const finalRef = React.useRef()
+    const toast = useToast()
  
     const onSubmit=async()=>{
         if(!authToken){
@@ -51,6 +52,15 @@ const AddtoCart = ({product,refetch}) => {
     const noUser=()=>{
         return router.push('/login')
     }
+    useEffect(() => {
+        if(error){
+            toast({
+                title:error.message,
+                    status:"error",
+                    isClosable: true,
+              })
+        }
+    }, [error])
     return (
         <Box maxH={"90px"}>
             <Box m={3} mt={5} display={"flex"} >

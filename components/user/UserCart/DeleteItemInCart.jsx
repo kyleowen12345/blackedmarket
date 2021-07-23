@@ -1,9 +1,9 @@
 import React from 'react'
 import { useMutation, gql  } from "@apollo/client";
 import { useAuth } from '../../../lib/auth';
-import { Box,Text,Image,Button,Link,Input} from "@chakra-ui/react"
-import { CARTINFO, useCart } from '../../../lib/cart';
-import { useRouter } from 'next/router'
+import { Button} from "@chakra-ui/react"
+import { CARTINFO } from '../../../lib/cart';
+
 const DELETECART=gql`
 mutation ($id:ID!){
     removeItem(id:$id){
@@ -12,18 +12,32 @@ mutation ($id:ID!){
   }
 `
 const DeleteItemInCart = ({productId}) => {
-    const router = useRouter()
-    const {id}= router.query
     const {authToken}=useAuth()
-    const {cartRefetch}=useCart()
     const [deleteCart,{data, loading }] = useMutation(DELETECART,{ errorPolicy: 'all' },);
     const onSubmit=async()=>{
         await deleteCart({
             variables:{id:productId},
             context:{headers:{token:authToken || ""}},
-            
+            update(cache,{data}){
+              const oldCart=cache.readQuery({
+                  query:CARTINFO,
+                  context:{headers:{token:authToken||""}}
+              })
+              if(data){
+                  cache.writeQuery({
+                      query:CARTINFO,
+                      context:{headers:{token:authToken||""}},
+                      data:{
+                        getCartInfo:{
+                            __typename: "cartPaginate", 
+                            productCount:oldCart.getCartInfo.productCount - 1,
+                            cart:oldCart.getCartInfo.cart.filter(i=>i.id !== productId)
+                        }
+                      }
+                  })
+              }
+            }
         })
-        cartRefetch()
     }
     return (
         <>

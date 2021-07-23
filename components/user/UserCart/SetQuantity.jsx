@@ -1,9 +1,8 @@
 import React from 'react'
 import { useMutation, gql  } from "@apollo/client";
-import { Box,Text,Image,Button,Link,Input} from "@chakra-ui/react"
+import { Box,Text,Button} from "@chakra-ui/react"
 import { useAuth } from '../../../lib/auth';
-import { CARTINFO,useCart } from '../../../lib/cart';
-import { useRouter } from 'next/router'
+import { CARTINFO } from '../../../lib/cart';
 const SETQUANTITY=gql`
 mutation ($id:ID!,$value:Int!){
     setQuantity(id:$id,value:$value){
@@ -12,14 +11,30 @@ mutation ($id:ID!,$value:Int!){
 }
 `
 const SetQuantity = ({details}) => {
-    const router = useRouter()
-    const {id}= router.query
     const {authToken}=useAuth()
-    const {cartRefetch}=useCart()
-    const [setQuantity,{data, loading }] = useMutation(SETQUANTITY,{ errorPolicy: 'all' },);
+    const [setQuantity,{data, loading }] = useMutation(SETQUANTITY,{ errorPolicy: 'all' });
     const onSetQuantity=async(product,value)=>{
-       await setQuantity({variables:{id:product,value:value},context:{headers:{token:authToken||""}}})
-       cartRefetch()
+       await setQuantity({variables:{id:product,value:value},context:{headers:{token:authToken||""}},
+       update(cache,{data}){
+        const oldCart=cache.readQuery({
+            query:CARTINFO,
+            context:{headers:{token:authToken||""}}
+        })
+        if(data){
+            cache.writeQuery({
+                query:CARTINFO,
+                context:{headers:{token:authToken||""}},
+                data:{
+                  getCartInfo:{
+                      __typename: "cartPaginate", 
+                      productCount:oldCart.getCartInfo.productCount - 1,
+                      cart:oldCart.getCartInfo.cart.map(i=>i.id === product && {...i,quantity:value})
+                  }
+                }
+            })
+        }
+       }
+    })
     }
     return (
         <Box display="flex" w="18%">
