@@ -12,9 +12,10 @@ mutation ($id:ID!,$value:Int!){
 `
 const SetQuantity = ({details}) => {
     const {authToken}=useAuth()
-    const [setQuantity,{data, loading }] = useMutation(SETQUANTITY,{ errorPolicy: 'all' });
-    const onSetQuantity=async(product,value)=>{
-       await setQuantity({variables:{id:product,value:value},context:{headers:{token:authToken||""}},
+    const [subQuantity,{ loading:subLoading }] = useMutation(SETQUANTITY,{ errorPolicy: 'all' });
+    const [addQuantity,{ loading:addLoading }] = useMutation(SETQUANTITY,{ errorPolicy: 'all' });
+    const onAddQuantity=async(product,value)=>{
+       await addQuantity({variables:{id:product,value:value},context:{headers:{token:authToken||""}},
        update(cache,{data}){
         const oldCart=cache.readQuery({
             query:CARTINFO,
@@ -35,14 +36,39 @@ const SetQuantity = ({details}) => {
         }
        }
     })
+    
     }
+    const onSubQuantity=async(product,value)=>{
+        await subQuantity({variables:{id:product,value:value},context:{headers:{token:authToken||""}},
+        update(cache,{data}){
+         const oldCart=cache.readQuery({
+             query:CARTINFO,
+             context:{headers:{token:authToken||""}}
+         })
+         if(data){
+             cache.writeQuery({
+                 query:CARTINFO,
+                 context:{headers:{token:authToken||""}},
+                 data:{
+                   getCartInfo:{
+                       __typename: "cartPaginate", 
+                       productCount:oldCart.getCartInfo.productCount - 1,
+                       cart:oldCart.getCartInfo.cart.map(i=>i.id === product && {...i,quantity:value})
+                   }
+                 }
+             })
+         }
+        }
+     })
+     
+     }
     return (
         <Box display="flex" w={["100%","100%","100%","20%"]}>
-                <Button bg="white" disabled={details.quantity == 1} isLoading={loading} _hover={{bg:"white"}} borderRadius={0} border="1px solid #E2E8F0" height={["25px","25px","30px"]} onClick={()=>onSetQuantity(details.id,details.quantity - 1)}>-</Button>
+                <Button bg="white" disabled={details.quantity == 1 || addLoading}  isLoading={subLoading} _hover={{bg:"white"}} borderRadius={0} border="1px solid #E2E8F0" height={["25px","25px","30px"]} onClick={()=>onSubQuantity(details.id,details.quantity - 1)}>-</Button>
                 <Box display="flex" justifyContent="center" height={["25px","25px","30px"]} alignItems="center" width="50px" border="1px solid #E2E8F0">
                  <Text>{details.quantity}</Text>
                 </Box>
-                <Button  bg="white" isLoading={loading} _hover={{bg:"white"}}  borderRadius={0} border="1px solid #E2E8F0" height={["25px","25px","30px"]} onClick={()=>onSetQuantity(details.id,details.quantity + 1)}>+</Button>
+                <Button  bg="white" disabled={subLoading} isLoading={addLoading} _hover={{bg:"white"}}  borderRadius={0} border="1px solid #E2E8F0" height={["25px","25px","30px"]} onClick={()=>onAddQuantity(details.id,details.quantity + 1)}>+</Button>
         </Box>
     )
 }
