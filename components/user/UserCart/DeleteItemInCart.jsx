@@ -41,7 +41,7 @@ const DeleteItemInCart = ({productId}) => {
     }
     return (
         <>
-            <Button width="14%" bg="white" align="center" fontSize="14px" color="red" _hover={{bg:"white"}} _focus={{bg:"white"}} onClick={onSubmit} disabled={loading || data} isLoading={loading}>Remove </Button>
+            <Button width={[" "," "," ","14%"]} p={0} bg="white" align="center" fontSize={["13px","13px","13px","14px"]} color="red" _hover={{bg:"white"}} _focus={{bg:"white"}} onClick={onSubmit} disabled={loading || data} isLoading={loading}>Remove </Button>
     </>
     )
 }

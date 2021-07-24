@@ -9,7 +9,7 @@ import { useCart } from '../../../lib/cart';
 const CartList = () => {
    const {data}=useCart()
     return (
-        <>
+        <Box display={["none","none","none","block"]}>
          {
              data?.getCartInfo.cart.length < 1 ?
              <Box bg="white" my={4} height="300px" display="flex" justifyContent="center" alignItems="center" boxShadow="md" borderRadius={5}>
@@ -28,15 +28,15 @@ const CartList = () => {
                                <Box display={["block","block","flex"]} justifyContent="space-between" alignItems="center" width="100%" py={5} borderY="1px solid #EFEFEF">
                                   <Box display="flex" justifyContent={["space-between","space-between","left"]}  width={["100%","100%","80%","30%"]}>
                                        <Image src={i.image} alt={i.productName} width={["150px","150px","100px"]} height={["150px","150px","100px"]}/>
-                                        <Box ml={10} alignItems="left" w="50%">
-                                            <Text fontSize="18px" fontWeight="bold" mb={5}>{i.productName}</Text>
+                                        <Box ml={5} alignItems="left" w="50%" >
+                                            <Text fontSize="18px" fontWeight="bold" mb={5} isTruncated>{i.productName}</Text>
                                         </Box>
                                   </Box> 
                                   <Box display="flex" justifyContent="space-between" alignItems="center" mt={[5,5,5,0]} width="70%">
-                                     <Text w="10%" fontSize="14px" fontWeight="bold"  >$ {i.price}</Text>
+                                     <Text w="10%" fontSize="14px" fontWeight="bold"  isTruncated>$ {i.price}</Text>
                                       <SetQuantity details={i} />
-                                      <Text fontSize="14px" fontWeight="bold" align="center"  w="14%">$ {i.price * 0.25}</Text>
-                                      <Text fontSize="14px" align="center" fontWeight="bold" color="#FC8E00" w="14%">$ {i.price * 0.25 +  i.price * i.quantity}</Text>
+                                      <Text fontSize="14px" fontWeight="bold" align="center"  w="14%" isTruncated>$ {i.price * 0.25}</Text>
+                                      <Text fontSize="14px" align="center" fontWeight="bold" color="#FC8E00" w="14%" isTruncated>$ {i.price * 0.25 +  i.price * i.quantity}</Text>
                                       <DeleteItemInCart productId={i.id} />
                                   </Box>
                             </Box>
@@ -44,7 +44,7 @@ const CartList = () => {
                  </Box>
              ))
          }   
-        </>
+        </Box>
     )
 }
 

@@ -44,7 +44,7 @@ const Payment = () => {
          }
        }
     return (
-        <Box p={5} bg="white" width="100%" display="flex" justifyContent="space-between" alignItems="center" flexDirection={["column","column","column","column","row"]} boxShadow="md" border="2px solid black" borderRadius={5} position="sticky" bottom={0}>
+        <Box p={[2,2,5]} bg="white" width="100%" display="flex" justifyContent="space-between" alignItems="center" flexDirection={["column","column","column","column","row"]} boxShadow="md" border="2px solid black" position="sticky" bottom={0}>
             <Box >
                <Text fontWeight="bold" fontSize="13px">Pay with Paypal</Text> 
             </Box>

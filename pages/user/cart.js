@@ -12,7 +12,7 @@ export default function Home() {
   return (
     < >
     {loading ? <Loader/> : error ? <h1>{error?.message}</h1>:
-     <Box  mt={[0,0,0,0,10]}  width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,0,0]} display="flex" flexDirection={["column","column","column","column","row"]}>
+     <Box  mt={[0,0,0,0,5]}  width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,0,0]} display="flex" flexDirection={["column","column","column","column","row"]}>
      <Cart />
      </Box>}
   </>
