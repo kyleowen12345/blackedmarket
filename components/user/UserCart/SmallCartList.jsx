@@ -17,12 +17,10 @@ const SmallCartList = () => {
             </Box>
             :
             data?.getCartInfo.cart.map(i=>(
-                <Box key={i.id} bg="white" my={4} boxShadow="md" borderRadius={5}>
+                <Box key={i.id} bg="white" my={4} mx={1} boxShadow="md" borderRadius={5}>
                         <Box mx={5} >
-                              <Box display="flex" justifyContent="space-between" my={1} alignItems="center">
-                                  <NextLink href={`/stores/info/${i.storeName}`} passHref>
-                                     <Link fontSize="13px" fontWeight="bold">Visit Store</Link>
-                                  </NextLink>
+                              <Box display="flex" justifyContent="space-between" alignItems="center">
+                                  <Text fontSize="13px" fontWeight="bold"><Moment fromNow>{Date.parse(i.date)|| i.date}</Moment></Text>
                                   <DeleteItemInCart productId={i.id} />
                               </Box>
                               <Box display={["block","block","flex"]} justifyContent="space-between" alignItems="center" width="100%" py={5} borderY="1px solid #EFEFEF">
@@ -32,7 +30,7 @@ const SmallCartList = () => {
                                            <Stack spacing={3}>
                                               <Text fontSize="14px" fontWeight="bold" isTruncated>{i.productName}</Text>
                                               <Text fontSize="12px" fontWeight="bold" isTruncated>Price: $ {i.price}</Text>
-                                              <Text fontSize="12px" fontWeight="bold" color="#FC8E00" isTruncated>Fee: $ {i.price * 0.25}</Text>
+                                              <Text fontSize="12px" fontWeight="bold" color="#FC8E00" isTruncated>Shipping: $ {i.price * 0.25}</Text>
                                               <Text fontSize="12px"  fontWeight="bold"  isTruncated>Total: $ {i.price * 0.25 +  i.price * i.quantity}</Text>
                                               <SetQuantity details={i} />
                                            </Stack>

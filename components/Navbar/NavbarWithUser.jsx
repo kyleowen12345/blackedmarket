@@ -79,7 +79,7 @@ const NavbarWithUser = ({signOut,user,loading}) => {
            </Container>
           
             {/* Cart */}
-           <Container display="flex" justifyContent="space-around"  alignItems="center"  width="300" p={2} m={1} mr={isLargerThan1200 && 0} pr={isLargerThan1200 && 0}>
+           <Container display="flex" justifyContent="space-around"  alignItems="center"  width="300" p={2} m={1} mr={[1,1,1,1,1,0]} pr={[1,1,1,1,1,0]} >
                   <Link onClick={()=>router.push('/user/cart')}><Box position="relative" display="inline-block"><Badge size="sm" colorScheme="orange" position="absolute" top="-10px" right="-10px" borderRadius="50%">{data?.getCartInfo.productCount}</Badge><Icon as={AiOutlineShoppingCart} color="#ffffff" w={7} h={7}/></Box></Link> 
              </Container>
 
