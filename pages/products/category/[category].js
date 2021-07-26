@@ -8,6 +8,7 @@ import { Box,Text,Link} from "@chakra-ui/react"
 import SortingMenu from '../../../components/SortingMenu/SortingMenu';
 import Pagination  from '../../../components/helpers/Pagination';
 import ProductGrid from '../../../components/product/ProductGrid';
+import Footer from '../../../components/Footer/Footer';
 export const PRODUCTCATEGORY = gql`
 query ($category:String!,$curPage:String!,$sortOrder:String!){
     productCategory(category:$category,curPage:$curPage,sortOrder:$sortOrder){
@@ -52,9 +53,8 @@ export default function Home() {
       {data && <ProductGrid  products={data.productCategory.products} />}
      <Pagination marginPages={1} pageRange={2} initialPage={data?.productCategory.curPage - 1} pageCount={data?.productCategory.maxPage} />
    </Box>
-
     }
-    
+     {data && <Footer/>}
     </>
   )
 }

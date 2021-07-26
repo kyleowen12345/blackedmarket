@@ -7,6 +7,7 @@ import Loader from '../../../components/Loader/Loader';
 import { Box,Text,Link} from "@chakra-ui/react"
 import SortingMenu from '../../../components/SortingMenu/SortingMenu';
 import ProductGrid from '../../../components/product/ProductGrid';
+import Footer from '../../../components/Footer/Footer';
 const SEARCHPRODUCT = gql`
   query ($product:String!,$curPage:String,$sortOrder:String!) {
     searchProduct(product:$product,curPage:$curPage,sortOrder:$sortOrder){
@@ -53,7 +54,7 @@ export default function Home() {
    </Box>
 
     }
-    
+    {data && <Footer/>}
     </>
   )
 }

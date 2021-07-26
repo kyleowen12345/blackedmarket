@@ -23,7 +23,7 @@ const Footer = () => {
         }}
       >
         <Box flex="1" >
-         <Text fontWeight="bold" fontSize="18px">BlackedMarket</Text>
+         <Text fontWeight="bold" fontSize="20px">BlackedMarket</Text>
         </Box>
         <Stack
           direction={{

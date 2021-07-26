@@ -8,6 +8,7 @@ import Loader from '../../components/Loader/Loader';
 import SortingMenu from '../../components/SortingMenu/SortingMenu';
 import NextLink from 'next/link'
 import { Box,Text,Link} from "@chakra-ui/react"
+import Footer from '../../components/Footer/Footer';
 export const PRODUCTS = gql`
 query ($curPage:String!,$sortOrder:String!){
   productpaginate(curPage:$curPage,sortOrder:$sortOrder){
@@ -55,6 +56,7 @@ export default function Home() {
        <Pagination marginPages={1} pageRange={2} initialPage={data?.productpaginate.curPage - 1} pageCount={data?.productpaginate.maxPage}/> 
     </Box>
     }
+    {data && <Footer/>}
     </>
   )
 }

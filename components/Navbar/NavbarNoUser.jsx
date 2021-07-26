@@ -14,7 +14,6 @@ import {Box,
     DrawerContent,
     DrawerCloseButton,
     Icon,
-    useMediaQuery
   } from '@chakra-ui/react'
   import NextLink from 'next/link'
   import {  FaStore,FaProductHunt} from "react-icons/fa"
@@ -26,7 +25,6 @@ const NoUserLinks = [{name:'Stores',link:"/stores/1?sortOrder=storeName",icon:Fa
 
 const NavbarNoUser = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const [isLargerThan1200] = useMediaQuery("(min-width: 1200px)")
     return (
   <div>
     <Box bg={useColorModeValue('#000000', 'gray.900')} p={1} >     
@@ -36,10 +34,9 @@ const NavbarNoUser = () => {
           <IconButton size={'md'} icon={isOpen ? <CloseIcon  color="#ffffff"/> : <HamburgerIcon  color="#ffffff"/>} display={{ xl: 'none' }} aria-label={'Open Menu'} onClick={isOpen ? onClose : onOpen} bg="#000000" />
           
           {/* Logo logic */}
-         <Container display="flex" justifyContent="space-around" alignItems="center"  width="300"   ml={isLargerThan1200 && 0 } pl={isLargerThan1200 && 0}>
-             <NextLink href="/" passHref><Link fontWeight="bold" fontSize="lg" display={{ md: 'none' }} color="#ffffff" >BlackedMarket</Link></NextLink>
-             <NextLink href="/" passHref><Link fontWeight="bold" fontSize="3xl" display={{ base: 'none', md: 'flex' }} color="#ffffff">BlackedMarket</Link></NextLink>
-           </Container> 
+          <Container display="flex" justifyContent="space-around" alignItems="center"  width="300"  ml={["","","","","",0]} pl={["","","","","",0]}>
+             <NextLink href="/" passHref><Link fontWeight="bold" fontSize={["lg","lg","3xl"]}  color="#ffffff">BlackedMarket</Link></NextLink>
+           </Container>
       
            {/* Search and Links */}
            <Box display={{ base: 'none', xl: 'flex' }}>

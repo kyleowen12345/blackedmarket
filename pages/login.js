@@ -16,6 +16,7 @@ import {
   Alert,
   AlertIcon, 
 } from '@chakra-ui/react';
+import Footer from "../components/Footer/Footer"
 import NextLink from 'next/link'
 const LOGIN = gql`
 mutation($email:String!,$password:String!){
@@ -37,6 +38,7 @@ export default function Login() {
             }
     };
     return (
+      <>
       <Box  mx={'auto'} maxW={'lg'} py={[5,5,5,8,12]} px={[3,3,3,6]}>
           
         <Box rounded={'lg'} bg={useColorModeValue('white', 'gray.700')} boxShadow={'lg'} width={["100%","100%",""]} p={[4,4,4,8]}>
@@ -105,5 +107,7 @@ export default function Login() {
         </Box>
        
       </Box>
+      <Footer/>
+      </>
     );
   }

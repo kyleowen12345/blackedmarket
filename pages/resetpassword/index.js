@@ -29,7 +29,6 @@ export default function Register() {
     const onSubmit = async({email}) => {
        await  resetpassword({variables:{email:email}})      
     };
-    console.log(error)
     return (
          <Box  mx={'auto'} maxW={'lg'} py={[5,5,5,8,12]} px={[3,3,3,6]}>  
          <Box

@@ -17,6 +17,7 @@ import {
   AlertIcon, 
 } from '@chakra-ui/react';
 import NextLink from 'next/link'
+import Footer from "../components/Footer/Footer";
 const SIGNUP = gql`
 mutation($name:String!,$email:String!,$password:String!){
     createUser(name:$name,email:$email,password:$password){
@@ -37,6 +38,7 @@ export default function Register() {
             }
     };
     return (
+      <>
         <Box  mx={'auto'} maxW={'lg'} py={[5,5,5,8,12]} px={[3,3,3,6]}>
           
           <Box
@@ -122,6 +124,7 @@ export default function Register() {
           </Box>
          
         </Box>
-        
+        <Footer/>
+      </>
     );
   }

@@ -5,6 +5,7 @@ import { useLazyQuery  } from "@apollo/client";
 import { useRouter } from "next/router"
 import Loader from '../../components/Loader/Loader';
 import { Box } from "@chakra-ui/react"
+import Footer from '../../components/Footer/Footer';
 export const STORES = gql`
 query paginate($curPage:String!,$sortOrder:String!) {
     storespaginate(curPage:$curPage,sortOrder:$sortOrder){
@@ -45,7 +46,7 @@ export default function Home() {
        {data && <Stores  data={data} loading={loading}/>}
     </Box>
     }
-    
+    {data && <Footer/>}
     </>
   )
 }
