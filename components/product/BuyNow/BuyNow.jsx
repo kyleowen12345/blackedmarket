@@ -34,7 +34,7 @@ const BuyNow = ({isOpen,quantity,product,setQuantity,onClose,initialRef,finalRef
           onClose()
           refetch()
           toast({
-            title: `Purchase successful`,
+            title: `It's a celebration  b**ch , its a successful purchase`,
                 status:"success",
                 isClosable: true,
           })

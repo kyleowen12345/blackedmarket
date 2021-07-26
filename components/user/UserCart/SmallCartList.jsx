@@ -13,7 +13,7 @@ const SmallCartList = () => {
         {
             data?.getCartInfo.cart.length < 1 ?
             <Box bg="white" my={4} height="300px" display="flex" justifyContent="center" alignItems="center" boxShadow="md" borderRadius={5}>
-                 <Text fontSize="20px" fontWeight="bold">No following record</Text>
+                 <Text fontSize="20px" fontWeight="bold">Cart is empty</Text>
             </Box>
             :
             data?.getCartInfo.cart.map(i=>(

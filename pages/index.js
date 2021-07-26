@@ -6,6 +6,7 @@ import StoreGrid from "../components/store/StoreGrid"
 import { Box,Text  } from "@chakra-ui/react"
 import Deals from "../components/Deals/Deals";
 import CarouselBanner from "../components/Banner/CarouselBanner";
+import Footer from "../components/Footer/Footer";
 
 
 const LANDINGPAGE = gql`
@@ -58,7 +59,7 @@ export default function Home({initialApolloState}) {
    <Text  size="2xl" bg="white" mt={10} mb={2} p={3} fontWeight="bold" boxShadow="md" id="products">New Products</Text>
    <ProductGrid products={data?.landingpage.products} imageLoad={"eager"}/>
     </Box>
-   
+    <Footer/>
    </>
   );
 }

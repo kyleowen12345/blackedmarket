@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {Box,Text} from "@chakra-ui/react"
+import {Box,Text,useToast} from "@chakra-ui/react"
 import axios from 'axios'
 import { useCart } from '../../../lib/cart'
 import { useAuth } from '../../../lib/auth'
@@ -10,6 +10,7 @@ const Payment = () => {
     const {authToken}=useAuth()
     const [total,setTotal]=useState()
     const [ready,setReady]=useState(false)
+    const toast = useToast()
     const calculateTotal=()=>{
         let total=0
         data?.getCartInfo.cart.map(item=>{
@@ -39,12 +40,18 @@ const Payment = () => {
             token:authToken || ""
           }})
           cartRefetch()
+          toast({
+            title: `It's a celebration  b**ch , you just purchase those items`,
+            status:"success",
+            isClosable: true,
+          })
         } catch (error) {
           console.log(error)
          }
        }
     return (
-        <Box p={[2,2,5]} bg="white" width="100%" display="flex" justifyContent="space-between" alignItems="center" flexDirection={["column","column","column","column","row"]} boxShadow="md" border="2px solid black" position="sticky" bottom={0}>
+      <>
+       {data?.getCartInfo.cart.length > 1 && <Box p={[2,2,5]} bg="white" width="100%" display="flex" justifyContent="space-between" alignItems="center" flexDirection={["column","column","column","column","row"]} boxShadow="md" border="2px solid black" position="sticky" bottom={0}>
             <Box >
                <Text fontWeight="bold" fontSize="13px">Pay with Paypal</Text> 
             </Box>
@@ -55,7 +62,8 @@ const Payment = () => {
                </Box>
                {ready  && <Paypal toPay={total} ontracSuccess={transactionSuccess} ontracError={transactionError} ontracCancel={transactionCancel}/>}
             </Box>
-        </Box>
+        </Box>}
+        </>
     )
 }
 
