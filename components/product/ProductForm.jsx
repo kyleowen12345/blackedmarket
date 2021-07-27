@@ -12,8 +12,8 @@ import {
     Textarea,
     Select
   } from '@chakra-ui/react';
-import UpdateProductButton from './UpdateProductButton';
-import CreateProductButton from './CreateProductButton';
+import UpdateProductButton from './ProductForm/UpdateProductButton';
+import CreateProductButton from './ProductForm/CreateProductButton';
 
 const ProductForm = ({register,loading,error,errors,storeNames,product,nextStep}) => {
     return (
