@@ -18,7 +18,7 @@ export default function Home() {
     useEffect(() => {
         allMyStores()
   }, [])
-  console.log(data)
+ 
   return (
     <Box mt={[0,0,5]} borderRadius={5} bg="white" width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,2,0]}>
     <CreateProduct storeNames={data?.allMyStores}/>

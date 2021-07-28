@@ -61,7 +61,12 @@ const StoreImage = ({storeId,nextStep,store,prevStep}) => {
       <form >
          <Box display={["block","block","flex"]} alignItems="center" justifyContent="space-between">
           <input type="file" onChange={(e) => setImage(e.target.files[0])} style={{maxWidth:"250px"}}/>
-          {error && <p>{error?.message}</p>}
+          {error && 
+          <Alert status="error" w="100%">
+            <AlertIcon />
+            <Text fontSize={["12px","13px","14px","16px"]} isTruncated>{error.message}</Text>
+          </Alert> 
+          }
           <Box>
           {store && <Button onClick={prevStep} mr={2}  mt={[2,2,0]}>Back</Button>}
           <Button type="submit" onClick={postPhoto} disabled={photoload||!image} isLoading={photoload} mt={[2,2,0]} >Finish</Button>

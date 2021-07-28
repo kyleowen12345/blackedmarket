@@ -3,7 +3,7 @@ import { useMutation, gql } from "@apollo/client"
 import imageCompressor from 'browser-image-compression'
 import axios from "axios";
 import Cookies from 'js-cookie'
-import { useRouter } from 'next/router'
+import { Box,Button,Text,Alert,AlertIcon } from "@chakra-ui/react"
 const PRODUCTIMAGE = gql`
 mutation ($id:ID!,$image:String!){
     productImage(id:$id,image:$image){
@@ -11,8 +11,7 @@ mutation ($id:ID!,$image:String!){
     }
   }
 `;
-const StoreImage = ({productId,storeId}) => {
-    const router = useRouter()
+const StoreImage = ({productId,storeId,nextStep}) => {
     const [image, setImage] = useState("");
     const [url, setUrl] = useState("");
     const [photoload,setPhotoLoad]=useState(false)
@@ -20,7 +19,7 @@ const StoreImage = ({productId,storeId}) => {
     useEffect(async() => {
         if(url){
             const {data}= await productimage({variables:{id:productId,image:url},context:{headers:{token:Cookies.get('blackedmarket') || ""}}})
-             if(data) router.push(`/stores/dashboard/mystore/${storeId}`)
+             if(data) nextStep()
         } 
     },[productimage,productId,url]);
     const postPhoto = async(e) => {
@@ -37,11 +36,20 @@ const StoreImage = ({productId,storeId}) => {
        };
        console.log(url)
     return (
-    <form >
-    <input type="file" onChange={(e) => setImage(e.target.files[0])} />
-    {error && <p>{error?.message}</p>}
-    {photoload ?<p>Uploading...</p>:<button type="submit" onClick={postPhoto} disabled={photoload||!image}>Finish</button>}
-    </form> 
+    <Box p={5} px={[0,0,5,5,20]} w={["200px","200px","100%"]} m={0}>     
+      <form >
+        <Box display={["block","block","flex"]} alignItems="center" justifyContent="space-between">  
+          <input type="file" onChange={(e) => setImage(e.target.files[0])} />
+          {error && 
+          <Alert status="error" w="100%">
+            <AlertIcon />
+            <Text fontSize={["12px","13px","14px","16px"]} isTruncated>{error.message}</Text>
+          </Alert> 
+          }
+          <Button type="submit" onClick={postPhoto} disabled={photoload||!image} isLoading={photoload}>Finish</Button>
+        </Box>
+      </form> 
+    </Box> 
     )
 }
 

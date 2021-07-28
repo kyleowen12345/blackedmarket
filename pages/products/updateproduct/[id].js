@@ -4,6 +4,7 @@ import { useRouter } from "next/router"
 import Cookies from 'js-cookie'
 import UpdateProduct from "../../../components/product/UpdateProduct";
 import Loader from '../../../components/Loader/Loader';
+import { Box,Text,Link,Button } from "@chakra-ui/react"
  const UPDATEPRODUCTINFO = gql`
  query ($id:ID!){
     productInfoUpdate(id:$id){
@@ -26,20 +27,34 @@ import Loader from '../../../components/Loader/Loader';
   }
 }
 `;
+const ALLMYSTORES = gql`
+{
+   allMyStores{
+     id
+     storeName
+   }
+ }
+`;
 
 export default function Home() {
     const router = useRouter()
     const {id}= router.query
     const [updateproductinfo,{ data,error,loading }] = useLazyQuery(UPDATEPRODUCTINFO,{variables:{id:id },context:{headers:{token:Cookies.get('blackedmarket')||""}}});
+    const [allMyStores,{ data:MyStoresData,error:MyStoresError,loading:MyStoresLoading }] = useLazyQuery(ALLMYSTORES,{context:{headers:{token:Cookies.get('blackedmarket')||""}}});
     useEffect(() => {
-      updateproductinfo()
-  }, [])
+      if(id) {
+        updateproductinfo()
+        allMyStores()
+      } 
+      
+  }, [id])
+
   return (
-    <div >
+    <Box mt={[0,0,5]} borderRadius={5} bg="white" width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,2,0]}>
        {loading && <Loader/>}
        {error && <h1>{error?.message}</h1>}
-       {data && <UpdateProduct product={data?.productInfoUpdate}/>} 
+       {data && <UpdateProduct product={data?.productInfoUpdate} storeNames={MyStoresData?.allMyStores}/>} 
        
-    </div>
+    </Box>
   )
 }

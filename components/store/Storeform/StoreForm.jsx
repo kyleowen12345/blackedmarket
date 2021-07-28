@@ -21,7 +21,7 @@ const StoreForm = ({register,loading,error,errors,prevStep,nextStep,data,store})
     <Box p={5} px={[1,1,5,5,20]} >
       <Stack spacing={[4,4,4,10]} align="center">
          <Box display={["block","block","flex"]} justifyContent="space-between" width="100%">
-          <FormControl id="storename" width={["100%","100%","45%"]}>
+          <FormControl id="storename" width={["100%","100%","45%"]} mb={[3,3,0]}>
              <Box display="flex">
                 <FormLabel >Store name </FormLabel>
                  <Text color="red">*</Text>
@@ -59,7 +59,7 @@ const StoreForm = ({register,loading,error,errors,prevStep,nextStep,data,store})
           </FormControl>
          </Box>
           <Box display={["block","block","flex"]} justifyContent="space-between" width="100%">
-          <FormControl id="socialMediaAcc" width={["100%","100%","45%"]}>
+          <FormControl id="socialMediaAcc" width={["100%","100%","45%"]} mb={[3,3,0]}>
           <Box display="flex">
                 <FormLabel>Social Media Account</FormLabel>
                 <Text color="red">*</Text>

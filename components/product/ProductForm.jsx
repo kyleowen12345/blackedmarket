@@ -12,15 +12,15 @@ import {
     Textarea,
     Select
   } from '@chakra-ui/react';
-import UpdateProductButton from './ProductForm/UpdateProductButton';
-import CreateProductButton from './ProductForm/CreateProductButton';
 
-const ProductForm = ({register,loading,error,errors,storeNames,product,nextStep}) => {
+
+const ProductForm = ({register,data,loading,error,errors,storeNames,product,nextStep}) => {
+  const StoreSelection=storeNames?.concat({id:"",storeName:""}).reverse()
     return (
         <Box py={5} px={[1,1,5,5,20]}>
             <Stack  spacing={[4,4,4,10]} >
                   <Box display={["block","block","flex"]} justifyContent="space-between" width="100%">    
-                     <FormControl id="productname" width={["100%","100%","45%"]}>
+                     <FormControl id="productname" width={["100%","100%","45%"]} mb={[3,3,0]}>
                         <Box display="flex">
                            <FormLabel >Product name</FormLabel>
                            <Text color="red">*</Text>
@@ -39,17 +39,21 @@ const ProductForm = ({register,loading,error,errors,storeNames,product,nextStep}
                            <FormLabel >Price</FormLabel>
                            <Text color="red">*</Text>
                         </Box> 
-                        <Input  type="number" {...register("price")}/>
+                        <Input  type="number" {...register("price" ,{
+                          required: 'this is  required'
+                          })}/>
                         <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.price && errors.price.message}</Text>
                      </FormControl>
                  </Box>
                  <Box display={["block","block","flex"]} justifyContent="space-between" width="100%"> 
-                    <FormControl id="stocks" width={["100%","100%","45%"]}>
+                    <FormControl id="stocks" width={["100%","100%","45%"]} mb={[3,3,0]}>
                           <Box display="flex">
                               <FormLabel >Product stocks</FormLabel>
                               <Text color="red">*</Text>
                           </Box> 
-                          <Input  type="number" {...register("productStocks")}/>
+                          <Input  type="number" {...register("productStocks",{
+                          required: 'this is  required'
+                          })}/>
                           <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.productStocks && errors.productStocks.message}</Text>
                     </FormControl>
                     <FormControl id="storename" width={["100%","100%","45%"]}>
@@ -57,11 +61,15 @@ const ProductForm = ({register,loading,error,errors,storeNames,product,nextStep}
                                <FormLabel>Store name</FormLabel>
                                <Text color="red">*</Text>
                           </Box>
-                          <Select {...register('storeName')}>
-                              {storeNames?.map(i=>(
-                              <option key={i.id} value={i.id}>{i.storeName}</option>
+                          <Select  {...register('storeName',{
+                          required: 'this is  required',
+                          
+                          })}>
+                              {StoreSelection?.map(i=>(
+                              <option key={i.id} value={i.id} >{i.storeName}</option>
                               )) }
                           </Select>
+                         {product && <Text  ml={2} fontSize={["12px","12px","12px","14px"]}>{product.storeName.storeName} (current store)</Text>}
                           <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.storeName && errors.storeName.message}</Text>
                     </FormControl>
                 </Box>
@@ -79,6 +87,7 @@ const ProductForm = ({register,loading,error,errors,storeNames,product,nextStep}
                       },
                       })}
                      />
+                     <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.description && errors.description.message}</Text>
                 </FormControl>
                 {error && 
                     <Alert status="error" w="100%">
@@ -95,17 +104,19 @@ const ProductForm = ({register,loading,error,errors,storeNames,product,nextStep}
                     bg: '#FC8E00',
                     }}
                     type="submit" 
-                    disabled={loading }
+                    disabled={loading || data}
                     isLoading={loading}
                     >
                      Submit
                     </Button> 
-                    {/* {
-                      product ?
-                      <UpdateProductButton />
-                      :
-                      <CreateProductButton/>
-                    } */}
+                    <Button
+                    onClick={nextStep}
+                    width={["30%","30%","30%","20%"]}
+                    disabled={loading || !data}
+                    isLoading={loading}
+                    >
+                     Next
+                    </Button> 
                 </Box>
             </Stack> 
       </Box>

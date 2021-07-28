@@ -22,7 +22,7 @@ const DeleteProduct = ({productId,storeId,productName}) => {
     const onSubmit=async()=>{
       const {data}= await deleteproduct({variables:{id:productId},context:{headers:{token:authToken || ""}}})
       if(data) {
-        router.push(`/stores/dashboard/mystore/${storeId}`) 
+        router.push(`/stores/info/${storeId}`) 
         onClose()
       }
         
