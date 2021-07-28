@@ -52,7 +52,7 @@ const UpdateProduct = ({product,storeNames}) => {
             <Step label={"Step 2"} key={2} description={"Product Image"} >
                   <Text pl={[1,1,5,5,20]} fontSize="24px" fontWeight="bold" w={["200px","200px","500px"]}>Upload Image</Text>
                   <Text pl={[1,1,5,5,20]} fontSize="12px" w={["200px","200px","500px"]}>Select an image and click finish.</Text>
-                   <ProductImage productId={data?.updateProduct.id} storeId={product.storeName.id}/>
+                   <ProductImage productId={data?.updateProduct.id} storeId={product.storeName.id} nextStep={nextStep}/>
               </Step>  
              </Steps>
              }
