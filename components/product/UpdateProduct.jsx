@@ -8,6 +8,8 @@ import Image from 'next/image'
 import { Box,Text,Link, Button  } from "@chakra-ui/react"
 import { Step, Steps, useSteps } from "chakra-ui-steps"
 import NextLink from 'next/link'
+import { useAuth } from '../../lib/auth';
+import { PRODUCTINFO } from '../../pages/products/info/[id]';
 const UPDATEPRODUCT = gql`
 mutation ($id:ID!,$productName:String!,$price:Int!,$productStocks:Int!,$description:String!,$storeName:ID!){
     updateProduct(id:$id,productName:$productName,price:$price,productStocks:$productStocks,description:$description,storeName:$storeName){
@@ -19,6 +21,7 @@ mutation ($id:ID!,$productName:String!,$price:Int!,$productStocks:Int!,$descript
 
 const UpdateProduct = ({product,storeNames}) => {
     const [ready,setReady]=useState(false)
+    const {authToken}=useAuth()
     const { nextStep, prevStep, activeStep } = useSteps({
       initialStep: 0,
     })
@@ -34,7 +37,7 @@ const UpdateProduct = ({product,storeNames}) => {
     });
     const onSubmit = async({productName,price,productStocks,description,storeName}) => {
       const storeNamelist=storeNames.find(i=>i.storeName === storeName)
-     if(storeNamelist) return await updateproduct({variables:{id:product.id,productName:productName,price:parseInt(price),productStocks:parseInt(productStocks),description:description,storeName:storeNamelist.id},context:{headers:{token:Cookies.get('blackedmarket') || ""}}})
+     if(storeNamelist) return await updateproduct({variables:{id:product.id,productName:productName,price:parseInt(price),productStocks:parseInt(productStocks),description:description,storeName:storeNamelist.id},context:{headers:{token:authToken || ""}},refetchQueries:[{query:PRODUCTINFO,variables:{id:product.id}}]})
     };
     useEffect(() => {
       setReady(true)
