@@ -33,8 +33,8 @@ const UpdateProduct = ({product,storeNames}) => {
       }
     });
     const onSubmit = async({productName,price,productStocks,description,storeName}) => {
-     const {data}= await updateproduct({variables:{id:product.id,productName:productName,price:parseInt(price),productStocks:parseInt(productStocks),description:description,storeName:storeName},context:{headers:{token:Cookies.get('blackedmarket') || ""}}})
-     if(data) console.log(data)
+      const storeNamelist=storeNames.find(i=>i.storeName === storeName)
+     if(storeNamelist) return await updateproduct({variables:{id:product.id,productName:productName,price:parseInt(price),productStocks:parseInt(productStocks),description:description,storeName:storeNamelist.id},context:{headers:{token:Cookies.get('blackedmarket') || ""}}})
     };
     useEffect(() => {
       setReady(true)
@@ -59,7 +59,7 @@ const UpdateProduct = ({product,storeNames}) => {
             {activeStep === 2 && 
        <Box display="flex"  flexDirection="column" ml="auto" mr="auto" p={[0,0,5,5]} px={[4,10,5,5,20]}>
          <Text fontSize="20px" fontWeight="bold">Woohoo! All steps completed!</Text>
-         <NextLink href={`/stores/info/${data?.updateProduct.id}`} passHref><Link color="blue.400" textDecoration="underline" fontWeight="bold" fontSize={["12px","13px","14px","16px"]} >Click here to visit your new product!!!</Link></NextLink>
+         <NextLink href={`/products/info/${data?.updateProduct.id}`} passHref><Link color="blue.400" textDecoration="underline" fontWeight="bold" fontSize={["12px","13px","14px","16px"]} >Click here to visit your updated product!!!</Link></NextLink>
       </Box>
       }
       </Box>

@@ -12,6 +12,7 @@ import {
     Textarea,
     Select
   } from '@chakra-ui/react';
+ 
 
 
 const ProductForm = ({register,data,loading,error,errors,storeNames,product,nextStep}) => {
@@ -66,10 +67,10 @@ const ProductForm = ({register,data,loading,error,errors,storeNames,product,next
                           
                           })}>
                               {StoreSelection?.map(i=>(
-                              <option key={i.id} value={i.id} >{i.storeName}</option>
+                              <option key={i.id} value={i.storeName} >{i.storeName}</option>
                               )) }
                           </Select>
-                         {product && <Text  ml={2} fontSize={["12px","12px","12px","14px"]}>{product.storeName.storeName} (current store)</Text>}
+                        
                           <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.storeName && errors.storeName.message}</Text>
                     </FormControl>
                 </Box>

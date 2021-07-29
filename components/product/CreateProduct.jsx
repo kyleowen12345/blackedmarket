@@ -34,8 +34,9 @@ const CreateProduct = ({storeNames}) => {
     const [createproduct,{data, loading,error }] = useMutation(CREATEPRODUCT,{ errorPolicy: 'all' });
     const { register, formState: { errors } , handleSubmit } = useForm();
     const onSubmit = async({productName,price,productStocks,description,storeName}) => {
-        const {data}= await createproduct({variables:{productName:productName,price:parseInt(price),productStocks:parseInt(productStocks),description:description,storeName:storeName},context:{headers:{token:Cookies.get('blackedmarket') || ""}}})
-        if(data) console.log(data)
+        const storeNamelist=storeNames.find(i=>i.storeName === storeName)
+        if(storeNamelist) return await createproduct({variables:{productName:productName,price:parseInt(price),productStocks:parseInt(productStocks),description:description,storeName:storeNamelist.id},context:{headers:{token:Cookies.get('blackedmarket') || ""}}})
+        
        };
   useEffect(() => {
         setReady(true)
