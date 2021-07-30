@@ -37,7 +37,7 @@ export default function Home() {
   return (
     <>
      {loading && <Loader/>}
-    <Box mt={[0,0,5]} borderRadius={5} bg="white" width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,2,0]}  >
+    <Box mt={[0,0,5]} borderRadius={5} bg="white" width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,2,0]}  boxShadow="md">
        {error && <h1>{error?.message}</h1>}
        {data && <UpdateStore store={data?.storeInfo.store} id={id}/>}
     </Box>

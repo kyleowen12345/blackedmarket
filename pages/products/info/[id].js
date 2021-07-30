@@ -5,6 +5,7 @@ import ProductInfo from "../../../components/product/productinfo/ProductInfo";
 import Loader from '../../../components/Loader/Loader';
 import { Box } from "@chakra-ui/react"
 import ProductInfoSubNav from '../../../components/product/productinfo/ProductInfoSubNav'
+import Footer from '../../../components/Footer/Footer';
 
 export const PRODUCTINFO = gql`
  query ($id:ID!){
@@ -50,17 +51,16 @@ export default function Home() {
   }, [id])
   return (
     <>
-    {loading ? <Loader/>:<div >
-       {/* {error && <h1>{error?.message}</h1>} */}
-      
+    {loading ? <Loader/> : error ? <h1>{error?.message}</h1>
+    :
          <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"   >
            <ProductInfoSubNav data={data} id={id}/>
               {data && 
               <ProductInfo product={data?.productInfo} refetch={refetch}/>
               }
        </Box>
-       
-    </div>}
+       }
+      {data && <Footer/>} 
     </>
   )
 }

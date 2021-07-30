@@ -7,6 +7,7 @@ import { Step, Steps, useSteps } from "chakra-ui-steps"
 import ProductForm from './ProductForm';
 import ProductImage from './ProductImage';
 import NextLink from 'next/link'
+import { useAuth } from '../../lib/auth';
 const CREATEPRODUCT = gql`
 mutation ($productName:String!,$price:Int!,$productStocks:Int!,$description:String!,$storeName:ID!){
     createProduct(productName:$productName,price:$price,productStocks:$productStocks,description:$description,storeName:$storeName){
@@ -28,6 +29,7 @@ mutation ($productName:String!,$price:Int!,$productStocks:Int!,$description:Stri
 
 const CreateProduct = ({storeNames}) => {
   const [ready,setReady]=useState(false)
+  const {authToken}=useAuth()
   const { nextStep, prevStep, activeStep } = useSteps({
     initialStep: 0,
   })
@@ -35,7 +37,7 @@ const CreateProduct = ({storeNames}) => {
     const { register, formState: { errors } , handleSubmit } = useForm();
     const onSubmit = async({productName,price,productStocks,description,storeName}) => {
         const storeNamelist=storeNames.find(i=>i.storeName === storeName)
-        if(storeNamelist) return await createproduct({variables:{productName:productName,price:parseInt(price),productStocks:parseInt(productStocks),description:description,storeName:storeNamelist.id},context:{headers:{token:Cookies.get('blackedmarket') || ""}}})
+        if(storeNamelist) return await createproduct({variables:{productName:productName,price:parseInt(price),productStocks:parseInt(productStocks),description:description,storeName:storeNamelist.id},context:{headers:{token:authToken || ""}}})
         
        };
   useEffect(() => {

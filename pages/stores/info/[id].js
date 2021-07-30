@@ -5,6 +5,7 @@ import StoreInfo from "../../../components/store/storeInfo/StoreInfo";
 import { Box } from "@chakra-ui/react"
 import Loader from '../../../components/Loader/Loader';
 import { useAuth } from '../../../lib/auth';
+import Footer from '../../../components/Footer/Footer';
 export const STORESINFO = gql`
  query ($id:ID!){
     storeInfo(id:$id){
@@ -49,14 +50,14 @@ export default function Home() {
     }
     
   }, [id])
-  console.log(data)
   return (
-    <div >
-       {loading && <Loader/>}
-       {error && <h1>{error?.message}</h1>}
+    < >
+      {loading ? <Loader/> : error ? <h1>{error?.message}</h1>
+      :
        <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"   >
        {data && <StoreInfo store={data?.storeInfo.store} product={data?.storeInfo.products} follower={data?.storeInfo.isUserAFollower}/>}
-       </Box>
-    </div>
+       </Box>}
+       {data && <Footer/>}
+    </>
   )
 }

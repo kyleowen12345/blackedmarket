@@ -2,8 +2,10 @@ import React, {useEffect,useState} from 'react'
 import { useMutation, gql } from "@apollo/client"
 import imageCompressor from 'browser-image-compression'
 import axios from "axios";
-import Cookies from 'js-cookie'
 import { Box,Button,Text,Alert,AlertIcon } from "@chakra-ui/react"
+import { useAuth } from '../../lib/auth';
+import { PRODUCTINFO } from '../../pages/products/info/[id]';
+import { STORESINFO } from '../../pages/stores/info/[id]';
 const PRODUCTIMAGE = gql`
 mutation ($id:ID!,$image:String!){
     productImage(id:$id,image:$image){
@@ -11,14 +13,15 @@ mutation ($id:ID!,$image:String!){
     }
   }
 `;
-const StoreImage = ({productId,storeId,nextStep}) => {
+const ProductImage = ({productId,storeId,nextStep,product,prevStep}) => {
     const [image, setImage] = useState("");
+    const {authToken}=useAuth()
     const [url, setUrl] = useState("");
     const [photoload,setPhotoLoad]=useState(false)
     const [productimage,{error }] = useMutation(PRODUCTIMAGE,{ errorPolicy: 'all' });
     useEffect(async() => {
         if(url){
-            const {data}= await productimage({variables:{id:productId,image:url},context:{headers:{token:Cookies.get('blackedmarket') || ""}}})
+            const {data}= await productimage({variables:{id:productId,image:url},context:{headers:{token:authToken || ""}},refetchQueries:[{query:PRODUCTINFO,variables:{id:productId}},{query:STORESINFO,variables:{id:storeId}}]})
              if(data) nextStep()
         } 
     },[productimage,productId,url]);
@@ -46,11 +49,14 @@ const StoreImage = ({productId,storeId,nextStep}) => {
             <Text fontSize={["12px","13px","14px","16px"]} isTruncated>{error.message}</Text>
           </Alert> 
           }
+          <Box>
+          {product && <Button onClick={prevStep} mr={2}  mt={[2,2,0]}>Back</Button>}
           <Button type="submit" onClick={postPhoto} disabled={photoload||!image} isLoading={photoload}>Finish</Button>
+          </Box>
         </Box>
       </form> 
     </Box> 
     )
 }
 
-export default StoreImage
+export default ProductImage

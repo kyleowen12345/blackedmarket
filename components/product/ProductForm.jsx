@@ -12,10 +12,11 @@ import {
     Textarea,
     Select
   } from '@chakra-ui/react';
- 
+  import { useRouter } from 'next/router'
 
 
 const ProductForm = ({register,data,loading,error,errors,storeNames,product,nextStep}) => {
+  const router = useRouter()
   const StoreSelection=storeNames?.concat({id:"",storeName:""}).reverse()
     return (
         <Box py={5} px={[1,1,5,5,20]}>
@@ -109,15 +110,20 @@ const ProductForm = ({register,data,loading,error,errors,storeNames,product,next
                     isLoading={loading}
                     >
                      Submit
-                    </Button> 
-                    <Button
-                    onClick={nextStep}
-                    width={["30%","30%","30%","20%"]}
-                    disabled={loading || !data}
-                    isLoading={loading}
-                    >
-                     Next
-                    </Button> 
+                    </Button>
+                    <Box display="flex" width="20%" justifyContent="space-between" alignItems="center">
+                      { product && 
+                        <Button width="45%" onClick={()=> router.push(`/products/info/${product.id}`)}>
+                        Go Back
+                       </Button>
+                       } 
+                       {data || product && <Button
+                       onClick={nextStep}
+                       width="45%"
+                       >
+                        Next
+                       </Button>} 
+                    </Box> 
                 </Box>
             </Stack> 
       </Box>

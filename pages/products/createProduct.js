@@ -3,6 +3,7 @@ import {  gql,useLazyQuery  } from "@apollo/client";
 import { Box,Text,Link,Button } from "@chakra-ui/react"
 import {useAuth} from "../../lib/auth"
 import CreateProduct from '../../components/product/CreateProduct';
+import Footer from '../../components/Footer/Footer';
  const ALLMYSTORES = gql`
  {
     allMyStores{
@@ -20,8 +21,13 @@ export default function Home() {
   }, [])
  
   return (
-    <Box mt={[0,0,5]} borderRadius={5} bg="white" width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,2,0]}>
-    <CreateProduct storeNames={data?.allMyStores}/>
+    <>
+    <Box mt={[0,0,5]} borderRadius={5} bg="white" width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,2,0]} boxShadow="md">
+    {data?.allMyStores.length < 1  ? 
+    <Box height={["200px","200px","400px"]} display="flex" justifyContent="center" alignItems="center"><Link fontWeight="bold" fontSize={["15px","15px","20px"]}>Please create a store first, then go back here.</Link></Box>
+    : <CreateProduct storeNames={data?.allMyStores}/>}
     </Box>
+    <Footer/>
+    </>
   )
 }

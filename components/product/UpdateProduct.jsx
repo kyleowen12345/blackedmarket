@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useMutation, gql } from "@apollo/client"
 import { useForm } from 'react-hook-form';
-import Cookies from 'js-cookie';
 import ProductImage from './ProductImage';
 import ProductForm from './ProductForm';
-import Image from 'next/image'
-import { Box,Text,Link, Button  } from "@chakra-ui/react"
+import { Box,Text,Link, Button,Image  } from "@chakra-ui/react"
 import { Step, Steps, useSteps } from "chakra-ui-steps"
 import NextLink from 'next/link'
 import { useAuth } from '../../lib/auth';
 import { PRODUCTINFO } from '../../pages/products/info/[id]';
+import { STORESINFO } from '../../pages/stores/info/[id]';
 const UPDATEPRODUCT = gql`
 mutation ($id:ID!,$productName:String!,$price:Int!,$productStocks:Int!,$description:String!,$storeName:ID!){
     updateProduct(id:$id,productName:$productName,price:$price,productStocks:$productStocks,description:$description,storeName:$storeName){
@@ -37,7 +36,7 @@ const UpdateProduct = ({product,storeNames}) => {
     });
     const onSubmit = async({productName,price,productStocks,description,storeName}) => {
       const storeNamelist=storeNames.find(i=>i.storeName === storeName)
-     if(storeNamelist) return await updateproduct({variables:{id:product.id,productName:productName,price:parseInt(price),productStocks:parseInt(productStocks),description:description,storeName:storeNamelist.id},context:{headers:{token:authToken || ""}},refetchQueries:[{query:PRODUCTINFO,variables:{id:product.id}}]})
+     if(storeNamelist) return await updateproduct({variables:{id:product.id,productName:productName,price:parseInt(price),productStocks:parseInt(productStocks),description:description,storeName:storeNamelist.id},context:{headers:{token:authToken || ""}},refetchQueries:[{query:PRODUCTINFO,variables:{id:product.id}},{query:STORESINFO,variables:{id:storeNamelist.id}}]})
     };
     useEffect(() => {
       setReady(true)
@@ -53,9 +52,12 @@ const UpdateProduct = ({product,storeNames}) => {
                   </form>
             </Step>
             <Step label={"Step 2"} key={2} description={"Product Image"} >
-                  <Text pl={[1,1,5,5,20]} fontSize="24px" fontWeight="bold" w={["200px","200px","500px"]}>Upload Image</Text>
-                  <Text pl={[1,1,5,5,20]} fontSize="12px" w={["200px","200px","500px"]}>Select an image and click finish.</Text>
-                   <ProductImage productId={data?.updateProduct.id} storeId={product.storeName.id} nextStep={nextStep}/>
+                  <Text pl={[1,1,5,5,20]} fontSize="24px" fontWeight="bold" w={["200px","200px","500px"]}>Edit image</Text>
+                  <Text pl={[1,1,5,5,20]} fontSize="12px" w={["200px","200px","500px"]}>The image below is the current image of your product, select an image of your choice to change it and click finish.</Text>
+                  <Box pl={[1,1,5,5,20]} mt={3}>
+                  <Image src={product?.image} alt={product?.productName} width={200} height={200}/>
+                  </Box>
+                  <ProductImage productId={product.id} storeId={product.storeName.id} nextStep={nextStep} product={product} prevStep={prevStep}/>
               </Step>  
              </Steps>
              }

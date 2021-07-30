@@ -5,6 +5,7 @@ import Cookies from 'js-cookie'
 import UpdateProduct from "../../../components/product/UpdateProduct";
 import Loader from '../../../components/Loader/Loader';
 import { Box,Text,Link,Button } from "@chakra-ui/react"
+import Footer from '../../../components/Footer/Footer';
  const UPDATEPRODUCTINFO = gql`
  query ($id:ID!){
     productInfoUpdate(id:$id){
@@ -50,11 +51,14 @@ export default function Home() {
   }, [id])
 
   return (
-    <Box mt={[0,0,5]} borderRadius={5} bg="white" width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,2,0]}>
-       {loading && <Loader/>}
-       {error && <h1>{error?.message}</h1>}
+    <>
+    {loading ? <Loader/> : error ? <h1>{error?.message}</h1>
+    :
+    <Box mt={[0,0,5]} borderRadius={5} bg="white" width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,2,0]} boxShadow="md">
        {data && <UpdateProduct product={data?.productInfoUpdate} storeNames={MyStoresData?.allMyStores}/>} 
-       
-    </Box>
+      
+    </Box>}
+    {data && <Footer/>}
+    </>
   )
 }
