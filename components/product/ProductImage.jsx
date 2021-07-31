@@ -18,7 +18,7 @@ const ProductImage = ({productId,storeId,nextStep,product,prevStep}) => {
     const {authToken}=useAuth()
     const [url, setUrl] = useState("");
     const [photoload,setPhotoLoad]=useState(false)
-    const [productimage,{error }] = useMutation(PRODUCTIMAGE,{ errorPolicy: 'all' });
+    const [productimage,{error,loading }] = useMutation(PRODUCTIMAGE,{ errorPolicy: 'all' });
     useEffect(async() => {
         if(url){
             const {data}= await productimage({variables:{id:productId,image:url},context:{headers:{token:authToken || ""}},refetchQueries:[{query:PRODUCTINFO,variables:{id:productId}},{query:STORESINFO,variables:{id:storeId}}]})
@@ -39,19 +39,19 @@ const ProductImage = ({productId,storeId,nextStep,product,prevStep}) => {
        };
        console.log(url)
     return (
-    <Box p={5} px={[0,0,5,5,20]} w={["200px","200px","100%"]} m={0}>     
+    <Box p={5} px={[0,0,5,5,20]} w={["200px","200px","100%"]} height={["100px","100px","250px"]} m={0}>     
       <form >
         <Box display={["block","block","flex"]} alignItems="center" justifyContent="space-between">  
-          <input type="file" onChange={(e) => setImage(e.target.files[0])} />
+          <input type="file" onChange={(e) => setImage(e.target.files[0])} style={{maxWidth:"250px"}}/>
           {error && 
           <Alert status="error" w="100%">
             <AlertIcon />
             <Text fontSize={["12px","13px","14px","16px"]} isTruncated>{error.message}</Text>
           </Alert> 
           }
-          <Box>
-          {product && <Button onClick={prevStep} mr={2}  mt={[2,2,0]}>Back</Button>}
-          <Button type="submit" onClick={postPhoto} disabled={photoload||!image} isLoading={photoload}>Finish</Button>
+          <Box display="flex" alignItems="center" mt={[2,2,0]}>
+          {product && <Button onClick={prevStep} mr={2}  >Back</Button>}
+          <Button type="submit" onClick={postPhoto} disabled={photoload||!image} isLoading={photoload || loading}>Finish</Button>
           </Box>
         </Box>
       </form> 

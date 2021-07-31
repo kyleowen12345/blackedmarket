@@ -111,18 +111,23 @@ const ProductForm = ({register,data,loading,error,errors,storeNames,product,next
                     >
                      Submit
                     </Button>
-                    <Box display="flex" width="20%" justifyContent="space-between" alignItems="center">
-                      { product && 
-                        <Button width="45%" onClick={()=> router.push(`/products/info/${product.id}`)}>
-                        Go Back
+                    <Box display="flex" width={["50%","55%","50%","20%"]} justifyContent="space-between" alignItems="center">
+                        <Button display={product ? "block" : "none"} width="50%" onClick={()=> router.push(`/products/info/${product.id}`)}>
+                          Back
                        </Button>
-                       } 
-                       {data || product && <Button
+                       {product ?  <Button
                        onClick={nextStep}
                        width="45%"
                        >
                         Next
-                       </Button>} 
+                       </Button>: 
+                       <Button
+                       onClick={nextStep}
+                       disabled={!data }
+                       width="100%"
+                       >
+                        Next
+                       </Button> }
                     </Box> 
                 </Box>
             </Stack> 

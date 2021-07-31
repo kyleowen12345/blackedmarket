@@ -44,7 +44,7 @@ const CreateProduct = ({storeNames}) => {
         setReady(true)
       }, [])
     return (
-        <Box>
+        <Box >
            {ready && <Steps colorScheme="teal" activeStep={activeStep} p={[1,1,1,1,8]}  fontFamily="body" textAlign={"left"}>
            <Step label={"Step 1"} key={1} description={"Product Details"} >
                   <Text pl={[1,1,5,5,20]}fontSize="24px" fontWeight="bold">Product Details</Text>
@@ -61,8 +61,8 @@ const CreateProduct = ({storeNames}) => {
              </Steps>
              }
             {activeStep === 2 && 
-       <Box display="flex"  flexDirection="column" ml="auto" mr="auto" p={[0,0,5,5]} px={[4,10,5,5,20]}>
-         <Text fontSize="20px" fontWeight="bold">Woohoo! All steps completed!</Text>
+       <Box display="flex"  flexDirection="column"  p={[0,0,5,5]} px={[4,10,5,5,20]} height={["100px","100px","300px"]} alignItems={["","","center"]} justifyContent="center">
+         <Text fontSize={["15px","15px","20px"]} fontWeight="bold">Woohoo! All steps completed!</Text>
          <NextLink href={`/products/info/${data?.createProduct.id}`} passHref><Link color="blue.400" textDecoration="underline" fontWeight="bold" fontSize={["12px","13px","14px","16px"]} >Click here to visit your new product!!!</Link></NextLink>
       </Box>
       }

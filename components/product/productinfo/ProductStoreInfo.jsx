@@ -9,14 +9,14 @@ const ProductStoreInfo = ({product}) => {
   
     return (
         <>
-        <Box  display="flex" bg="white" height={["200px","100%","130px"]}  mt={5} mb={5}  alignItems="center" p={[0,3,10]} flexDirection={["column","column","row"]}  boxShadow="md" borderRadius={5}> 
+        <Box  display="flex" bg="white" height={["200px","100%","130px"]}  my={5}  mx={[1,2,0]} alignItems="center" p={[0,3,10]} flexDirection={["column","column","row"]}  boxShadow="md" borderRadius={5}> 
            <Box display="flex" borderRight={["","","","1px solid #C4C4C4"]} width={["300px","100vw","250px","250px","400px"]} justifyContent="center">
                <Box>
                   <Image src={product.product.storeName.storeBackgroundImage} alt={product.product.storeName.storeBackgroundImage} width="70px" height="70px" className="productStore"/>
                </Box>
                
-               <Box ml={[1,1,1,1,5]}>
-                 <Text maxW={["120px","120px","200px"]} fontSize={["12px","14px","14px","14px","16px"]} isTruncated>{product.product.storeName.storeName}</Text>
+               <Box ml={[1,2,2,2,5]}>
+                 <Text maxW={["120px","120px","200px"]} fontSize={["12px","14px","14px","14px","16px"]} fontWeight='bold' isTruncated>{product.product.storeName.storeName}</Text>
                  <NextLink href={`/stores/info/${product.product.storeName.id}`} passHref>
                  <Box display="flex"   justifyContent="space-between" as="a">
                  <Button  width={["100px","100px","120px"]}    bg="white" color="#FC8E00" _hover={{bg:"white", color:"#FC8E00"}} border="1px solid #FC8E00"  height="35px" fontSize={["11px","11px","13px"]}><Icon as={FaStore}  mr={2}/> View Shop</Button>
@@ -26,7 +26,7 @@ const ProductStoreInfo = ({product}) => {
                </Box>
             
            </Box>
-          <Box display={["none","flex","flex"]} justifyContent="center" ml="auto" mr="auto" p={2}>
+          <Box display={["none","flex","flex"]} justifyContent="center" mx={["","","auto"]} >
           <Grid templateColumns={ ["repeat(1, 1fr)","repeat(1, 65vw)","repeat(2, 1fr)","repeat(2, 1fr)"]} gap={5} display={["none","none","grid"]}>
                <Box display="flex" alignItems="center">
                     <Text fontSize={["11px","11px","11px","13px"]}>
@@ -61,8 +61,10 @@ const ProductStoreInfo = ({product}) => {
                     </Text>
                 </Box>
                 
-            </Grid>  
-            <Container display={["flex","flex","none"]}  justifyContent="space-around" alignItems="center"  maxW="290px" >
+            </Grid> 
+            
+             
+            <Container display={["flex","flex","none"]}   alignItems="center"  width="100%" >
                 <Box display="flex" flexDirection="column" alignItems="center">
                      <Text fontSize={["8px","12px"]} fontWeight="bold"  color="#FC8E00" maxW="110px" isTruncated>
                         {product.relatedProducts}
