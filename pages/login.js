@@ -1,3 +1,4 @@
+import React, {useEffect} from 'react'
 import { useMutation, gql } from "@apollo/client"
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router'
@@ -27,14 +28,19 @@ mutation($email:String!,$password:String!){
 `;
 export default function Login() {
     const router = useRouter()
-    const {Login}=useAuth()
+    const {Login,userCookie}=useAuth()
+    useEffect(() => {
+      if(userCookie){
+        return router.push('/')
+      }  
+    }, [userCookie])
     const [login,{data, loading,error }] = useMutation(LOGIN,{ errorPolicy: 'all' });
     const { register, formState: { errors } , handleSubmit } = useForm();
     const onSubmit = async({email,password}) => {
             const{data}=await  login({variables:{email:email,password:password}})
             if(data){
              Login(data?.login.token)
-             router.push("/stores/1?sortOrder=storeName")
+             router.push("/")
             }
     };
     return (

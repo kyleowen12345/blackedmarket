@@ -28,13 +28,17 @@ import SmallMenu from '../../components/user/SmallMenu';
 `;
 
 export default function Home() {
-  const {authToken,userData}=useAuth()
+  const {authToken,userData,userCookie}=useAuth()
     const router = useRouter()
     const {id,keyword}= router.query
     const [purchases,{ data,error,loading }] = useLazyQuery(PURCHASES,{variables:{curPage:id || "1",keyword:keyword},context:{headers:{token:authToken||""}}, fetchPolicy: "no-cache" });
     useEffect(() => {
-        purchases()
-  }, [])
+       if(!userCookie){
+         return router.push('/login')
+       }else{
+         return  purchases()
+       }
+  }, [userCookie])
   return (
     < >
       {loading ? <Loader/> : error ? <h1>{error?.message}</h1>:
