@@ -12,7 +12,7 @@ const SmallCartList = () => {
         <Box display={["block","block","block","none"]}>
         {
             data?.getCartInfo.cart.length < 1 ?
-            <Box bg="white" my={4} height="300px" display="flex" justifyContent="center" alignItems="center" boxShadow="md" borderRadius={5}>
+            <Box bg="white" m={2} height="300px" display="flex" justifyContent="center" alignItems="center" boxShadow="md" borderRadius={5}>
                  <Text fontSize="20px" fontWeight="bold">Cart is empty</Text>
             </Box>
             :

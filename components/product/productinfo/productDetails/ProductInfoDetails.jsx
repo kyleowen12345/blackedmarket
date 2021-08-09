@@ -53,8 +53,8 @@ const ProductInfoDetails = ({product,userData,refetch}) => {
                <Box  mr={[5,5,10,20]} width={"95px"}>
                    <Text color="#888888" fontSize={"15px"}>Created</Text>
                </Box>
-               <Box>
-                    <Text fontSize={"13px"}><Moment format="LLL">{Date.parse(product.product.createdAt) || product.product.createdAt}</Moment></Text>
+               <Box maxW={["150px","150px","200px"]} isTruncated>
+                    <Text fontSize={"13px"} isTruncated><Moment format="LL">{Date.parse(product.product.createdAt) || product.product.createdAt}</Moment></Text>
                </Box>
             </Box>}
 

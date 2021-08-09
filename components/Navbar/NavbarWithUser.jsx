@@ -33,7 +33,7 @@ import {
 import { useCart } from '../../lib/cart'
 
   
-const WithUserLinks = [{name:'Profile',link:"/user/profile",icon:ImProfile},{name:'DashBoard',link:`/stores/dashboard?id=${1}`,icon:AiOutlineDashboard ,as:`/stores/dashboard?id=${1}`},{name:'Stores',link:"/stores/1?sortOrder=storeName",icon:FaStore}, {name:'Products',link:"/products/1?sortOrder=productName",icon:FaProductHunt},{name:'Create Store',link:"/stores/createstore",icon:AiFillFolderAdd},{name:'Create Product',link:"/products/createProduct",icon:AiOutlineAppstoreAdd}];
+const WithUserLinks = [{name:'Profile',link:"/user/profile",icon:ImProfile},{name:'DashBoard',link:`/stores/dashboard?id=${1}`,icon:AiOutlineDashboard ,as:`/stores/dashboard`},{name:'Stores',link:"/stores/1?sortOrder=storeName",icon:FaStore}, {name:'Products',link:"/products/1?sortOrder=productName",icon:FaProductHunt},{name:'Create Store',link:"/stores/createstore",icon:AiFillFolderAdd},{name:'Create Product',link:"/products/createProduct",icon:AiOutlineAppstoreAdd}];
 
 const NavbarWithUser = ({signOut,user,loading}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
