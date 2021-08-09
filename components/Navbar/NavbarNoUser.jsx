@@ -42,7 +42,7 @@ const NavbarNoUser = () => {
            <Box display={{ base: 'none', xl: 'flex' }}>
             <SearchInput width={"450px"} />
             </Box>
-            <Container  display="flex" justifyContent="space-around" alignItems="center"  width="200" display={{ base: 'none', xl: 'flex' }}>
+            <Container  display="flex" justifyContent="space-around" alignItems="center"  width="230px" display={{ base: 'none', xl: 'flex' }}>
                      <NextLink href="/stores/1?sortOrder=storeName" passHref><Link color="#ffffff" >Stores</Link></NextLink>
                          <Text ml={2} mr={2} color="#ffffff">|</Text>
                      <NextLink href="/products/1?sortOrder=productName" passHref><Link  color="#ffffff">Products</Link></NextLink> 

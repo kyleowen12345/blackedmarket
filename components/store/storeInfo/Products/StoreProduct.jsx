@@ -6,7 +6,7 @@ import ProductGrid from '../../../product/ProductGrid'
 const StoreProduct = ({product}) => {
     return (
         <Box  >
-            {product < 1 ? <Box bg="white" height="100px" display="flex" alignItems="center" justifyContent="center">
+            {product < 1 ? <Box bg="white" height="200px" display="flex" alignItems="center" justifyContent="center" boxShadow="md" borderRadius={5} mx={[2,2,0]}>
                 <Text fontWeight="bold">No Products </Text>
                 <Icon as={BiSad} ml={3}  h="30px" w="30px"/>
             </Box>
