@@ -14,7 +14,7 @@ import {
 
 const ProductsAccordion = ({data}) => {
     return (
-      <Box bg="white" display="flex" flexDirection="column" alignItems="center" boxShadow="md" borderRadius={5}> 
+      <Box bg="white" display="flex" flexDirection="column" alignItems="center" boxShadow="md" borderRadius={5} my={[5,5,5,10]}> 
          <Text my={2} fontWeight="bold"> Your best sellers </Text> 
         <Accordion defaultIndex={[0]} allowMultiple width="100%">
             {data?.products.map(i=>(

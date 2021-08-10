@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box } from "@chakra-ui/react"
-import { Line    } from 'react-chartjs-2';
+import { Bar    } from 'react-chartjs-2';
 const StoreStats = ({data}) => {
     const stats = {
         labels: data?.stores.map(i=>i.storeName),
@@ -8,7 +8,7 @@ const StoreStats = ({data}) => {
           {
             label: 'followers count',
             data: data?.stores.map(i=>i.followers.length),
-            backgroundColor: "rgb(252,142,0)",
+            backgroundColor: " rgb(254,189,105)",
             borderColor: 'rgb(252,142,0)',
             borderWidth: 2,
             
@@ -30,8 +30,8 @@ const StoreStats = ({data}) => {
       };
     return (
         <Box width={["100%","100%","100%","70%"]}  bg="white" height="300px" borderRadius={5} boxShadow="md" mt={[2,2,2,0]} >
-         <Box width={["100%","100%","100%","90%"]} height={["100%","100%","100%","95%"]} ml="auto" mr="auto" color="black">
-              <Line  data={stats} 
+         <Box width={["95%","95%","95%","90%"]} height={["100%","100%","100%","95%"]} ml="auto" mr="auto" color="black">
+              <Bar  data={stats} 
               options={options}
               />
             </Box>

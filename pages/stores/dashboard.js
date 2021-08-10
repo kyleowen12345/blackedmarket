@@ -47,18 +47,20 @@ export default function Home() {
     dashboard()
 }, [])
 console.log(data)
-// {loading && <Loader/>}
-//     {error && <h1>{error?.message}</h1>}
-  return (
-    <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto" mt={[0,0,0,10]}>
 
-    {data && <ProductDashBoard data={data?.dashBoard}/>}
-    {data && <ProductsAccordion data={data?.dashBoard}/>}
+  return (
+   <> 
+   {loading ? <Loader/> : error ? <h1>{error?.message}</h1> :
+    <Box width={["90%","90%","90%","100%","100%",1200]} mr="auto" ml="auto" mt={5}>
+     <Text fontSize={["25px","25px","25px","30px"]} fontWeight="bold">Dashboard</Text>
+    {data &&  <>
+     <ProductDashBoard data={data?.dashBoard}/>
+     <ProductsAccordion data={data?.dashBoard}/>
     
-    {data &&<StoreDashBoard data={data?.dashBoard}/>}
-    {data && <StoreAccordion data={data?.dashBoard}/>}
-   
-     
-    </Box>
+     <StoreDashBoard data={data?.dashBoard}/>
+     <StoreAccordion data={data?.dashBoard}/>
+     </>}
+    </Box>}
+    </>
   )
 }
