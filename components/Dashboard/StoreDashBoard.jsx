@@ -4,7 +4,7 @@ import StoreCount from './StoreCount'
 import StoreStats from './StoreStats'
 const StoreDashBoard = ({data}) => {
     return (
-        <Box width="100%" display={["","","","flex"]} height="350px" my={5}>
+        <Box width="100%" display={["","","","flex"]} height={["500px","500px","500px","300px"]} my={5}>
             <StoreCount data={data}/>
             <StoreStats data={data}/>
         </Box>

@@ -6,7 +6,7 @@ const StoreStats = ({data}) => {
         labels: data?.stores.map(i=>i.storeName),
         datasets: [
           {
-            label: 'follower count',
+            label: 'followers count',
             data: data?.stores.map(i=>i.followers.length),
             backgroundColor: "rgb(252,142,0)",
             borderColor: 'rgb(252,142,0)',
@@ -29,8 +29,8 @@ const StoreStats = ({data}) => {
         },
       };
     return (
-        <Box width={["100%","100%","100%","70%"]}  bg="white" height="300px" borderRadius={5} boxShadow="md" mt={[2,2,2,0]}>
-         <Box width="90%" height="95%" ml="auto" mr="auto" color="black">
+        <Box width={["100%","100%","100%","70%"]}  bg="white" height="300px" borderRadius={5} boxShadow="md" mt={[2,2,2,0]} >
+         <Box width={["100%","100%","100%","90%"]} height={["100%","100%","100%","95%"]} ml="auto" mr="auto" color="black">
               <Line  data={stats} 
               options={options}
               />

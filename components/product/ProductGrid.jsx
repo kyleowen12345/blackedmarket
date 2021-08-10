@@ -9,7 +9,7 @@ const ProductGrid = ({products,imageLoad}) => {
         <Grid  templateColumns={[ "repeat(2, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)", "repeat(4, 1fr)", "repeat(5, 1fr)" ]} gap={[1,1,1,3]}  px={[1,1,0]}>
             {products?.map(i=>(
                 <NextLink key={i.id || i._id} href={`/products/info/${i.id}`}  passHref={true}>
-                    <Box maxW="230px" h={["205px" ,"245px" ,"260px"]} borderWidth="1px" overflow="hidden"  as="a" bg="white" _hover={{border: "3px solid rgb(254,189,105)",color:"#FC8E00" }} boxShadow="md" >
+                    <Box maxW="230px" h={["205px" ,"245px" ,"260px"]} borderWidth="1px" overflow="hidden"  as="a" bg="white" _hover={{border: "3px solid rgb(254,189,105)",color:"#FC8E00" }} boxShadow="md" borderRadius={5}>
                         <Image src={i.image} alt={i.productName} width={"100%"} height={"65%"} loading={imageLoad} />
                           <Box pl={[1,1,1,1,2]}>
                                  <Box mt="1" fontWeight="semibold"as="h4" lineHeight="tight" isTruncated >

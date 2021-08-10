@@ -32,7 +32,7 @@ const ProductStats = ({data}) => {
     
     return (
         <Box width={["100%","100%","100%","70%"]}  bg="white" height="300px" borderRadius={5} boxShadow="md" mt={[2,2,2,0]}>
-            <Box width="90%" height="95%"  ml="auto" mr="auto" color="black">
+            <Box width={["100%","100%","100%","90%"]} height="95%"  ml="auto" mr="auto" color="black">
               <Bar  data={stats} 
               options={options}
               />
