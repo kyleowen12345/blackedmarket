@@ -4,10 +4,9 @@ import { useLazyQuery } from "@apollo/client";
 import { useRouter } from "next/router"
 import Pagination from '../../../components/helpers/Pagination';
 import Loader from '../../../components/Loader/Loader';
-import { Box,Text,Link} from "@chakra-ui/react"
-import SortingMenu from '../../../components/SortingMenu/SortingMenu';
-import ProductGrid from '../../../components/product/ProductGrid';
+import { Box} from "@chakra-ui/react"
 import Footer from '../../../components/Footer/Footer';
+import Searched from '../../../components/Searched/Searched';
 const SEARCHPRODUCT = gql`
   query ($product:String!,$curPage:String,$sortOrder:String!) {
     searchProduct(product:$product,curPage:$curPage,sortOrder:$sortOrder){
@@ -47,10 +46,8 @@ export default function Home() {
     {loading ? <Loader/> : error ? <h1>{error?.message}</h1>
     :
     <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto" >
-      <SortingMenu sorterList={sorterList} sortOrder={sortOrder}  route={`/products/search/${search}?id=${id}&`}/>
-       <Text px={[1,1,0]}>result for "{search}"</Text>
-      {data && <ProductGrid  products={data?.searchProduct.products} />}
-     <Pagination marginPages={1} pageRange={2} initialPage={data?.searchProduct.curPage - 1} pageCount={data?.searchProduct.maxPage} />
+      {data && <Searched sorterList={sorterList} sortOrder={sortOrder} route={`/products/search/${search}?id=${id}&`} products={data?.searchProduct.products} result={search}/>}
+     {data?.searchProduct.maxPage > 1 && <Pagination marginPages={1} pageRange={2} initialPage={data?.searchProduct.curPage - 1} pageCount={data?.searchProduct.maxPage} />}
    </Box>
 
     }

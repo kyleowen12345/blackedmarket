@@ -1,10 +1,13 @@
 import React from 'react'
-import {Flex,Spinner} from '@chakra-ui/react'
+import {Flex, Box,Spinner} from '@chakra-ui/react'
 
 const Loader = () => {
     return (
-     <Flex  alignItems="center" justifyContent="center" m={5} >
-      <Spinner thickness="8px" speed="0.65s"emptyColor="gray.200" size="xl" />
+     <Flex  alignItems="center" justifyContent="center" m={5} mt={10}>
+       <Box bg="white" width="4rem" height="4rem" borderRadius="50%" display="flex" justifyContent="center" alignItems="center" boxShadow="lg">
+          <Spinner thickness="4px" speed="0.85s" emptyColor="gray.300" size="xl" color="black" />
+       </Box>
+         
      </Flex>
     )
 }

@@ -3,12 +3,10 @@ import {  gql  } from "@apollo/client";
 import { useLazyQuery } from "@apollo/client";
 import { useRouter } from "next/router"
 import Loader from '../../../components/Loader/Loader';
-import NextLink from 'next/link'
-import { Box,Text,Link} from "@chakra-ui/react"
-import SortingMenu from '../../../components/SortingMenu/SortingMenu';
+import { Box} from "@chakra-ui/react"
 import Pagination  from '../../../components/helpers/Pagination';
-import ProductGrid from '../../../components/product/ProductGrid';
 import Footer from '../../../components/Footer/Footer';
+import Searched from '../../../components/Searched/Searched';
 export const PRODUCTCATEGORY = gql`
 query ($category:String!,$curPage:String!,$sortOrder:String!){
     productCategory(category:$category,curPage:$curPage,sortOrder:$sortOrder){
@@ -48,10 +46,8 @@ export default function Home() {
     {loading ? <Loader/> : error ? <h1>{error?.message}</h1>
     :
     <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto" >
-      <SortingMenu sorterList={sorterList} sortOrder={sortOrder}  route={`/products/category/${category}?id=${id}&`}/>
-       <Text px={[1,1,0]}>result for "{category}"</Text>
-      {data && <ProductGrid  products={data.productCategory.products} />}
-     <Pagination marginPages={1} pageRange={2} initialPage={data?.productCategory.curPage - 1} pageCount={data?.productCategory.maxPage} />
+       {data && <Searched sorterList={sorterList} sortOrder={sortOrder}  route={`/products/category/${category}?id=${id}&`} products={data?.productCategory.products} result={category}/>}
+     {data?.productCategory.maxPage > 1 &&<Pagination marginPages={1} pageRange={2} initialPage={data?.productCategory.curPage - 1} pageCount={data?.productCategory.maxPage} />}
    </Box>
     }
      {data && <Footer/>}
