@@ -7,6 +7,7 @@ import { Box,Text,Link,Button } from "@chakra-ui/react"
 import Cookies from 'js-cookie'
 import Loader from '../../../components/Loader/Loader';
 import { STORESINFO } from '../info/[id]';
+import { useAuth } from '../../../lib/auth';
 export const UPDATESTOREINFO = gql`
  query ($id:ID!){
     storeInfoUpdate(id:$id){
@@ -25,12 +26,13 @@ export const UPDATESTOREINFO = gql`
 export default function Home() {
     const router = useRouter()
     const {id}= router.query
+    const {userCookie}=useAuth()
     const [storesInfo,{ data,error,loading }] = useLazyQuery(STORESINFO,{variables:{id:id }});
     useEffect(() => {
-      if(id){
-        return storesInfo()
+      if(!userCookie){
+        return router.push('/login')
       }else{
-        return
+        return storesInfo()
       }
       
   }, [id])

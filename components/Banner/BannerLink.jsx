@@ -6,7 +6,7 @@ import { ChevronDownIcon} from '@chakra-ui/icons'
 
 const BannerLink = () => {
     return (
-        <Box display={"flex"} justifyContent="space-between"    mt={[0,0,4]} mb={4} bg="white" width={["100%","100%","100%","100%","100%",1200]} boxShadow="md" position="sticky" top={0} borderBottom="2px solid #FC8E00">
+        <Box display={"flex"} justifyContent="space-between"    mb={4} bg="white" width={["100%","100%","100%","100%","100%",1200]} boxShadow="md" position="sticky" top={0} borderBottom="2px solid #FC8E00">
             <Link href="#products" _hover={{textDecoration:"none"}} width="33vw">
                 <Box  p={3} pl={[0,1,3,5]}  display="flex" alignItems="center" >
                      <Icon as={FaProductHunt} color="#FC8E00" />

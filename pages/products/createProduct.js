@@ -4,6 +4,7 @@ import { Box,Text,Link,Button } from "@chakra-ui/react"
 import {useAuth} from "../../lib/auth"
 import CreateProduct from '../../components/product/CreateProduct';
 import Footer from '../../components/Footer/Footer';
+import { useRouter } from "next/router"
  const ALLMYSTORES = gql`
  {
     allMyStores{
@@ -14,10 +15,15 @@ import Footer from '../../components/Footer/Footer';
 `;
 
 export default function Home() {
-    const {authToken}=useAuth()
+    const {authToken,userCookie}=useAuth()
+    const router = useRouter()
     const [allMyStores,{ data,error,loading }] = useLazyQuery(ALLMYSTORES,{context:{headers:{token:authToken||""}}});
     useEffect(() => {
-        allMyStores()
+      if(!userCookie){
+        return router.push('/login')
+      }else{
+       return allMyStores()
+      }
   }, [])
  
   return (

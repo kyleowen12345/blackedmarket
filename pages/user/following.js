@@ -30,7 +30,7 @@ export default function Home() {
     const {authToken,userData,userCookie}=useAuth()
     const router = useRouter()
     const {id,keyword}= router.query
-    const [following,{ data,error,loading }] = useLazyQuery(FOLLOWING,{variables:{curPage:id || "1",keyword:keyword},context:{headers:{token:authToken||""}} });
+    const [following,{ data,error,loading }] = useLazyQuery(FOLLOWING,{variables:{curPage:id || "1",keyword:keyword},context:{headers:{token:authToken||""}},fetchPolicy: "no-cache" });
     useEffect(() => {
         if(!userCookie){
           return router.push('/login')

@@ -6,6 +6,7 @@ import UpdateProduct from "../../../components/product/UpdateProduct";
 import Loader from '../../../components/Loader/Loader';
 import { Box,Text,Link,Button } from "@chakra-ui/react"
 import Footer from '../../../components/Footer/Footer';
+import { useAuth } from '../../../lib/auth';
  const UPDATEPRODUCTINFO = gql`
  query ($id:ID!){
     productInfoUpdate(id:$id){
@@ -38,12 +39,15 @@ const ALLMYSTORES = gql`
 `;
 
 export default function Home() {
+   const {authToken,userCookie}=useAuth()
     const router = useRouter()
     const {id}= router.query
-    const [updateproductinfo,{ data,error,loading }] = useLazyQuery(UPDATEPRODUCTINFO,{variables:{id:id },context:{headers:{token:Cookies.get('blackedmarket')||""}}});
-    const [allMyStores,{ data:MyStoresData,error:MyStoresError,loading:MyStoresLoading }] = useLazyQuery(ALLMYSTORES,{context:{headers:{token:Cookies.get('blackedmarket')||""}}});
+    const [updateproductinfo,{ data,error,loading }] = useLazyQuery(UPDATEPRODUCTINFO,{variables:{id:id },context:{headers:{token:authToken||""}}});
+    const [allMyStores,{ data:MyStoresData,error:MyStoresError,loading:MyStoresLoading }] = useLazyQuery(ALLMYSTORES,{context:{headers:{token:authToken||""}}});
     useEffect(() => {
-      if(id) {
+      if(!userCookie){
+        return router.push('/login')
+      }else{
         updateproductinfo()
         allMyStores()
       } 

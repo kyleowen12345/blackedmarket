@@ -41,7 +41,7 @@ const ProductsAccordion = ({data}) => {
                      <Text fontWeight="bold" isTruncated>{i.description}</Text>
                      <Text color="gray" fontSize="12px">description</Text>
                     </Box>
-                   <NextLink href={`/products/info/${i.id}`} passHref><Link display="flex" flexDirection="column" textAlign={["left","left","left","center"]}>Visit</Link></NextLink> 
+                   <NextLink href={`/products/info/${i.id}`} passHref><Link color="blue.400" fontWeight="bold" display="flex" flexDirection="column" textAlign={["left","left","left","center"]}>Visit</Link></NextLink> 
                </AccordionPanel>
              </AccordionItem> 
             ))}

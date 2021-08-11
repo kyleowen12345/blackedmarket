@@ -1,8 +1,9 @@
 import React from 'react'
-import { Box } from "@chakra-ui/react"
+import { Box,useMediaQuery } from "@chakra-ui/react"
 import { Bar    } from 'react-chartjs-2';
 
 const ProductStats = ({data}) => {
+    const [isSmallerThan100] = useMediaQuery("(max-width: 1000px)")
     const stats = {
         labels: data?.products.map(i=>i.productName),
         datasets: [
@@ -19,15 +20,24 @@ const ProductStats = ({data}) => {
       const options = {
         responsive: true,
         maintainAspectRatio: false,
-        scales: {
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true,
-              },
-            },
-          ],
-        },
+        scales:{
+          x:{
+            ticks:{
+              callback:function(value){
+                if(isSmallerThan100) {
+                  return this.getLabelForValue(value).substr(0,7)
+                }else{
+                  return this.getLabelForValue(value).substr(0,20)
+                } 
+                 
+              }
+            }
+          },
+          y:{
+            beginAtZero:true
+          }
+        }
+        
       };
     
     return (
