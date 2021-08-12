@@ -62,14 +62,31 @@ export default function Home() {
        </Box>
        }
       {data && <Footer/>} 
-      <NextSeo title={`BlackMarket | Product info`} 
-      canonical={`https://blackedmarket.vercel.app/products/info/${id}`}
+      <NextSeo
+       title={`${data?.productInfo.product.productName} | BlackedMarket`} 
+       canonical={`https://blackedmarket.vercel.app/products/info/${id}`}
+       description={`${data?.productInfo.product.description}`} 
       openGraph={{
-        url:`https://blackedmarket.vercel.app/products/info/${id}`,
-        title:`BlackMarket | Product info`
-      }}
-      >
-      </NextSeo>
+      url:`https://blackedmarket.vercel.app/products/info/${id}`,
+      title:`${data?.productInfo.product.productName} | BlackedMarket`,
+      images:[
+        {
+          url: `${data?.productInfo.product.image}`,
+          width: 800,
+          height: 600,
+          alt: `${data?.productInfo.product.productName}`,
+        }
+      ]
+    }}
+    twitter={{
+      site:'BlackedMarket',
+      cardType:'summary_large_image',
+      handle:'Kyle Owen Ga'
+    }}
+    
+    
+    >
+    </NextSeo>
     </>
   )
 }

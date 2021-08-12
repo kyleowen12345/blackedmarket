@@ -10,6 +10,7 @@ import SortingMenu from '../../components/SortingMenu/SortingMenu';
 import { Box,Text,Link} from "@chakra-ui/react"
 import Footer from '../../components/Footer/Footer';
 import Error from '../../components/Error/Error';
+import { NextSeo } from 'next-seo';
 
 
 export const PRODUCTS = gql`
@@ -60,6 +61,31 @@ export default function Products() {
     </Box>
     }
     {data && <Footer/>}
+    <NextSeo
+    title='Products | BlackedMarket'
+    canonical='https://blackedmarket.vercel.app/products/1?sortOrder=productName'
+    description="We sell multiple types of products you've never seen before"
+    openGraph={{
+      url:'https://blackedmarket.vercel.app/products/1?sortOrder=productName',
+      title:'Products | BlackedMarket',
+      images:[
+        {
+          url: 'https://res.cloudinary.com/kaking/image/upload/v1628751336/products_dctlnv.png',
+          width: 800,
+          height: 600,
+          alt: 'Products page',
+        }
+      ]
+    }}
+    twitter={{
+      site:'BlackedMarket',
+      cardType:'summary_large_image',
+      handle:'Kyle Owen Ga'
+    }}
+    
+    
+    >
+    </NextSeo>
     
     </>
   )

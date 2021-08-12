@@ -70,7 +70,7 @@ export default function Home({initialApolloState}) {
       title:'Blacked Market',
       images:[
         {
-          url: 'https://media.giphy.com/media/S5iaflEE71xTQaWTFm/giphy.gif',
+          url: 'https://res.cloudinary.com/kaking/image/upload/v1628750805/217357472_675551463359051_2404077277848383996_n_ljac7b.png',
           width: 800,
           height: 600,
           alt: 'Cash rules everything around me',
