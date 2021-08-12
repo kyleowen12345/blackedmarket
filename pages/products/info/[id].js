@@ -6,6 +6,7 @@ import Loader from '../../../components/Loader/Loader';
 import { Box } from "@chakra-ui/react"
 import ProductInfoSubNav from '../../../components/product/productinfo/ProductInfoSubNav'
 import Footer from '../../../components/Footer/Footer';
+import { NextSeo } from 'next-seo';
 
 export const PRODUCTINFO = gql`
  query ($id:ID!){
@@ -61,6 +62,14 @@ export default function Home() {
        </Box>
        }
       {data && <Footer/>} 
+      <NextSeo title={`BlackMarket | Product info`} 
+      canonical={`https://blackedmarket.vercel.app/products/info/${id}`}
+      openGraph={{
+        url:`https://blackedmarket.vercel.app/products/info/${id}`,
+        title:`BlackMarket | Product info`
+      }}
+      >
+      </NextSeo>
     </>
   )
 }

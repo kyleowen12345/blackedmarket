@@ -7,6 +7,7 @@ import { Box,Text  } from "@chakra-ui/react"
 import Deals from "../components/Deals/Deals";
 import CarouselBanner from "../components/Banner/CarouselBanner";
 import Footer from "../components/Footer/Footer";
+import { NextSeo } from "next-seo";
 
 
 const LANDINGPAGE = gql`
@@ -60,6 +61,31 @@ export default function Home({initialApolloState}) {
    <ProductGrid products={data?.landingpage.products} imageLoad={"eager"}/>
     </Box>
     <Footer/>
+    <NextSeo
+    title='Blacked Market'
+    canonical='https://blackedmarket.vercel.app/'
+    description="Cash rules everything around me.."
+    openGraph={{
+      url:'https://blackedmarket.vercel.app/',
+      title:'Blacked Market',
+      images:[
+        {
+          url: 'https://media.giphy.com/media/S5iaflEE71xTQaWTFm/giphy.gif',
+          width: 800,
+          height: 600,
+          alt: 'Cash rules everything around me',
+        }
+      ]
+    }}
+    twitter={{
+      site:'BlackedMarket',
+      cardType:'summary_large_image',
+      handle:'Kyle Owen Ga'
+    }}
+    
+    
+    >
+    </NextSeo>
    </>
   );
 }
