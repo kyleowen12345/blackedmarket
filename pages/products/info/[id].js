@@ -63,18 +63,19 @@ export default function Home() {
        }
       {data && <Footer/>} 
       <NextSeo
-       title={`${data?.productInfo.product.productName} | BlackedMarket`} 
+       title={'Product Information | BlackedMarket'} 
        canonical={`https://blackedmarket.vercel.app/products/info/${id}`}
-       description={`${data?.productInfo.product.description}`} 
+       description="BlackedMarket product information page shows the complete details about the product." 
       openGraph={{
       url:`https://blackedmarket.vercel.app/products/info/${id}`,
-      title:`${data?.productInfo.product.productName} | BlackedMarket`,
+      title:'Product Information | BlackedMarket',
+      description:"It's a preview of what the product information page looks",
       images:[
         {
-          url: `${data?.productInfo.product.image}`,
-          width: 800,
-          height: 600,
-          alt: `${data?.productInfo.product.productName}`,
+          url: 'https://res.cloudinary.com/kaking/image/upload/v1628814469/productinfo_kdvkiv.png',
+          width: 200,
+          height: 200,
+          alt: 'Product Information | BlackedMarket',
         }
       ]
     }}

@@ -64,16 +64,16 @@ export default function Home({initialApolloState}) {
     <NextSeo
     title='Blacked Market'
     canonical='https://blackedmarket.vercel.app/'
-    description="Cash rules everything around me.."
+    description="Diversify your bonds and grow with BlackedMarket.."
     openGraph={{
       url:'https://blackedmarket.vercel.app/',
       title:'Blacked Market',
       images:[
         {
           url: 'https://res.cloudinary.com/kaking/image/upload/v1628750805/217357472_675551463359051_2404077277848383996_n_ljac7b.png',
-          width: 800,
-          height: 600,
-          alt: 'Cash rules everything around me',
+          width: 200,
+          height: 200,
+          alt: 'Diversify your bonds and grow with BlackedMarket..',
         }
       ]
     }}

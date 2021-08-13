@@ -64,15 +64,15 @@ export default function Products() {
     <NextSeo
     title='Products | BlackedMarket'
     canonical='https://blackedmarket.vercel.app/products/1?sortOrder=productName'
-    description="We sell multiple types of products you've never seen before"
+    description="We sell multiple types of products you've never seen before."
     openGraph={{
       url:'https://blackedmarket.vercel.app/products/1?sortOrder=productName',
       title:'Products | BlackedMarket',
       images:[
         {
           url: 'https://res.cloudinary.com/kaking/image/upload/v1628751336/products_dctlnv.png',
-          width: 800,
-          height: 600,
+          width: 200,
+          height: 200,
           alt: 'Products page',
         }
       ]
