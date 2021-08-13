@@ -38,7 +38,7 @@ export const PRODUCTINFO = gql`
   }
 `;
 
-export default function Home() {
+export default function ProductInfo() {
   const router = useRouter()
   const {id}= router.query
   const [productinfo,{ data,error,loading,refetch }] = useLazyQuery( PRODUCTINFO,{variables:{id:id }} );

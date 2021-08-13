@@ -19,6 +19,7 @@ import {
 } from '@chakra-ui/react';
 import NextLink from 'next/link'
 import Footer from "../components/Footer/Footer";
+import { NextSeo } from 'next-seo';
 const SIGNUP = gql`
 mutation($name:String!,$email:String!,$password:String!){
     createUser(name:$name,email:$email,password:$password){
@@ -47,13 +48,8 @@ export default function Register() {
       <>
         <Box  mx={'auto'} maxW={'lg'} py={[5,5,5,8,12]} px={[3,3,3,6]}>
           
-          <Box
-            rounded={'lg'}
-            bg={useColorModeValue('white', 'gray.700')}
-            boxShadow={'lg'}
-            width={["100%","100%",""]}
-            p={[4,4,4,8]}>
-                   <form onSubmit={handleSubmit(onSubmit)}>
+          <Box rounded={'lg'} bg={useColorModeValue('white', 'gray.700')} boxShadow={'lg'} width={["100%","100%",""]} p={[4,4,4,8]}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                   <Stack spacing={[4,4,4,6]}>
                   <Stack  spacing={0}>
                      <Text fontSize={['lg','lg','xl','2xl','2xl']} fontWeight="bold">Create your account</Text>
@@ -130,7 +126,32 @@ export default function Register() {
           </Box>
          
         </Box>
+
         <Footer/>
+
+        <NextSeo
+          title={'Register | BlackedMarket'} 
+          canonical='https://blackedmarket.vercel.app/register'
+          description="Register now to diversify your bonds." 
+          openGraph={{
+             url:'https://blackedmarket.vercel.app/register',
+             title:'Register | BlackedMarket',
+             description:"Register now to diversify your bonds.",
+             images:[
+               {
+                  url: 'https://res.cloudinary.com/kaking/image/upload/v1628816701/register_vytbzy.png',
+                  width: 200,
+                  height: 200,
+                  alt: 'Register | BlackedMarket',
+               }
+                   ]
+          }}
+          twitter={{
+          site:'BlackedMarket',
+          cardType:'summary_large_image',
+          handle:'Kyle Owen Ga'
+          }}>
+        </NextSeo>
       </>
     );
   }

@@ -1,12 +1,14 @@
 import React, {useEffect} from 'react'
 import {  gql,useLazyQuery  } from "@apollo/client";
 import { useRouter } from "next/router"
-import Cookies from 'js-cookie'
 import UpdateProduct from "../../../components/product/UpdateProduct";
 import Loader from '../../../components/Loader/Loader';
-import { Box,Text,Link,Button } from "@chakra-ui/react"
+import { Box} from "@chakra-ui/react"
 import Footer from '../../../components/Footer/Footer';
 import { useAuth } from '../../../lib/auth';
+import Error from '../../../components/Error/Error';
+import { NextSeo } from 'next-seo';
+
  const UPDATEPRODUCTINFO = gql`
  query ($id:ID!){
     productInfoUpdate(id:$id){
@@ -56,13 +58,41 @@ export default function Home() {
 
   return (
     <>
-    {loading ? <Loader/> : error ? <h1>{error?.message}</h1>
+    {
+    loading ? <Loader/> 
+    : 
+    error ?<Error message={error?.message}/>
     :
     <Box mt={[0,0,0,5]} borderRadius={5} bg="white" width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,2,0]} boxShadow="md">
        {data && <UpdateProduct product={data?.productInfoUpdate} storeNames={MyStoresData?.allMyStores}/>} 
       
     </Box>}
+
     {data && <Footer/>}
+    
+    {/* <NextSeo
+      title={`Product Update | BlackedMarket`}
+      canonical={`https://blackedmarket.vercel.app/products/search/${search}?id=${id}&sortOrder=${sortOrder}`}
+      description="BlackedMarket's product update helps you improve the quality of your service"
+      openGraph={{
+        url:`https://blackedmarket.vercel.app/products/search/${search}?id=${id}&sortOrder=${sortOrder}`,
+        title:`${search} | BlackedMarket`,
+        description:"BlackedMarket's product update helps you improve the quality of your service",
+        images:[
+          {
+            url: 'https://res.cloudinary.com/kaking/image/upload/v1628751336/products_dctlnv.png',
+            width: 200,
+            height: 200,
+            alt: `Product Update | BlackedMarket`,
+          }
+              ]
+      }}
+      twitter={{
+      site:'BlackedMarket',
+      cardType:'summary_large_image',
+      handle:'Kyle Owen Ga'
+      }}>
+     </NextSeo> */}
     </>
   )
 }

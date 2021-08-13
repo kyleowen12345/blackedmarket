@@ -15,6 +15,8 @@ import {
   AlertIcon, 
 } from '@chakra-ui/react';
 import NextLink from 'next/link'
+import { NextSeo } from "next-seo";
+import Footer from "../../components/Footer/Footer";
 const RESETPASSWORD = gql`
 mutation($email:String!){
     resetPassword(email:$email){
@@ -30,14 +32,10 @@ export default function Register() {
        await  resetpassword({variables:{email:email}})      
     };
     return (
-         <Box  mx={'auto'} maxW={'lg'} py={[5,5,5,8,12]} px={[3,3,3,6]}>  
-         <Box
-          rounded={'lg'}
-          bg={useColorModeValue('white', 'gray.700')}
-          boxShadow={'lg'}
-          width={["100%","100%",""]}
-          p={[4,4,4,8]}>
-                 <form onSubmit={handleSubmit(onSubmit)}>
+    <>
+      <Box  mx={'auto'} maxW={'lg'} py={[5,5,5,8,12]} px={[3,3,3,6]}>  
+        <Box rounded={'lg'} bg={useColorModeValue('white', 'gray.700')} boxShadow={'lg'} width={["100%","100%",""]} p={[4,4,4,8]}>
+          <form onSubmit={handleSubmit(onSubmit)}>
                 <Stack spacing={[4,4,4,6]}>
                 <Stack  spacing={0}>
                    <Text fontSize={['lg','lg','xl','2xl','2xl']} fontWeight="bold">Reset your password</Text>
@@ -84,7 +82,36 @@ export default function Register() {
                  </Stack>
           </form>   
         </Box>
-       
+        
+  
       </Box>
+
+
+      <Footer/>
+
+      <NextSeo
+         title={'Reset Password | BlackedMarket'} 
+         canonical='https://blackedmarket.vercel.app/resetpassword'
+         description="It's not a big deal it happens." 
+         openGraph={{
+            url:'https://blackedmarket.vercel.app/resetpassword',
+            title:'Reset Password | BlackedMarket',
+            description:"It's not a big deal it happens.",
+            images:[
+             {
+              url: 'https://res.cloudinary.com/kaking/image/upload/v1628817805/resetpass_h3e8z3.png',
+              width: 200,
+              height: 200,
+              alt: 'Reset Password | BlackedMarket',
+             }
+                ]
+         }}
+         twitter={{
+         site:'BlackedMarket',
+         cardType:'summary_large_image',
+         handle:'Kyle Owen Ga'
+         }}>
+      </NextSeo>
+    </>
     );
   }

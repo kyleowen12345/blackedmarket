@@ -5,7 +5,7 @@ import Cart from '../../components/user/Cart';
 import { useCart } from '../../lib/cart';
 import { useAuth } from '../../lib/auth';
 import { useRouter } from "next/router"
-
+import Error from '../../components/Error/Error'
 
 
 export default function Home() {
@@ -19,11 +19,15 @@ export default function Home() {
       
 }, [userCookie])
   return (
-    < >
-    {loading ? <Loader/> : error ? <h1>{error?.message}</h1>:
+    <>
+    {loading ? <Loader/> 
+    : 
+    error ? <Error message={error?.message}/> 
+    :
      <Box  mt={[0,0,0,0,5]}  width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,0,0]} display="flex" flexDirection={["column","column","column","column","row"]}>
-     {data && <Cart />}
+         {data && <Cart />}
      </Box>}
+     
   </>
   )
 }

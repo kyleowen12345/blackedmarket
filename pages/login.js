@@ -19,6 +19,7 @@ import {
 } from '@chakra-ui/react';
 import Footer from "../components/Footer/Footer"
 import NextLink from 'next/link'
+import { NextSeo } from 'next-seo';
 const LOGIN = gql`
 mutation($email:String!,$password:String!){
     login(email:$email,password:$password){
@@ -45,10 +46,10 @@ export default function Login() {
     };
     return (
       <>
-      <Box  mx={'auto'} maxW={'lg'} py={[5,5,5,8,12]} px={[3,3,3,6]}>
+      <Box  mx={'auto'} maxW={'lg'} py={[5,5,5,8,20]} px={[3,3,3,6]}>
           
         <Box rounded={'lg'} bg={useColorModeValue('white', 'gray.700')} boxShadow={'lg'} width={["100%","100%",""]} p={[4,4,4,8]}>
-                 <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
                 <Stack spacing={[4,4,4,6]}>
                 <Stack  spacing={0}>
                    <Text fontSize={['lg','lg','xl','2xl','2xl']} fontWeight="bold">Sign in to your account</Text>
@@ -113,7 +114,32 @@ export default function Login() {
         </Box>
        
       </Box>
+
       <Footer/>
-      </>
+
+      <NextSeo
+       title={'Login | BlackedMarket'} 
+       canonical='https://blackedmarket.vercel.app/login'
+       description="Login and explore how we can diversify your bonds." 
+       openGraph={{
+          url:'https://blackedmarket.vercel.app/login',
+          title:'Login | BlackedMarket',
+          description:"Login and explore how we can diversify your bonds.",
+          images:[
+             {
+                url: 'https://res.cloudinary.com/kaking/image/upload/v1628816288/login_gglnit.png',
+                width: 200,
+                height: 200,
+                alt: 'Login | BlackedMarket',
+             }
+                ]
+       }}
+       twitter={{
+          site:'BlackedMarket',
+          cardType:'summary_large_image',
+          handle:'Kyle Owen Ga'
+       }}>
+      </NextSeo>
+    </>
     );
   }

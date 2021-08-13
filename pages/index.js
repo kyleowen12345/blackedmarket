@@ -46,45 +46,46 @@ query {
 `;
 
 
-export default function Home({initialApolloState}) {
-  const { data,error } = useQuery( LANDINGPAGE );
+export default function Home() {
+  const { data } = useQuery( LANDINGPAGE );
  
   return (
     <>
-    
-    <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"   display="flex" flexDirection="column" justifyContent="center">
-    <CarouselBanner/>
-    <Deals deals={data?.landingpage.deals}/>
-    <Text  size="2xl" bg="white" mt={20} mb={2} p={3} fontWeight="bold" boxShadow="md" id="Store" >Top Stores</Text>
-    <StoreGrid stores={data?.landingpage.stores} imageLoad={"eager"}/>
-   <Text  size="2xl" bg="white" mt={10} mb={2} p={3} fontWeight="bold" boxShadow="md" id="products">New Products</Text>
-   <ProductGrid products={data?.landingpage.products} imageLoad={"eager"}/>
-    </Box>
+       <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"   display="flex" flexDirection="column" justifyContent="center">
+           <CarouselBanner/>
+           <Deals deals={data?.landingpage.deals}/>
+           <Text  size="2xl" bg="white" mt={20} mb={2} p={3} fontWeight="bold" boxShadow="md" id="Store" borderRadius={5}>Top Stores</Text>
+             <StoreGrid stores={data?.landingpage.stores} imageLoad={"eager"}/>
+           <Text  size="2xl" bg="white" mt={10} mb={2} p={3} fontWeight="bold" boxShadow="md" id="products" borderRadius={5}>New Products</Text>
+             <ProductGrid products={data?.landingpage.products} imageLoad={"eager"}/>
+       </Box>
+
+
     <Footer/>
+
+
     <NextSeo
-    title='Blacked Market'
-    canonical='https://blackedmarket.vercel.app/'
-    description="Diversify your bonds and grow with BlackedMarket.."
-    openGraph={{
-      url:'https://blackedmarket.vercel.app/',
-      title:'Blacked Market',
-      images:[
-        {
-          url: 'https://res.cloudinary.com/kaking/image/upload/v1628750805/217357472_675551463359051_2404077277848383996_n_ljac7b.png',
-          width: 200,
-          height: 200,
-          alt: 'Diversify your bonds and grow with BlackedMarket..',
-        }
-      ]
-    }}
-    twitter={{
-      site:'BlackedMarket',
-      cardType:'summary_large_image',
-      handle:'Kyle Owen Ga'
-    }}
-    
-    
-    >
+      title='Blacked Market'
+      canonical='https://blackedmarket.vercel.app/'
+      description="Diversify your bonds and grow with BlackedMarket.."
+      openGraph={{
+         url:'https://blackedmarket.vercel.app/',
+         title:'Blacked Market',
+         description:"Diversify your bonds and grow with BlackedMarket..",
+         images:[
+           {
+             url: 'https://res.cloudinary.com/kaking/image/upload/v1628750805/217357472_675551463359051_2404077277848383996_n_ljac7b.png',
+             width: 200,
+             height: 200,
+             alt: 'Diversify your bonds and grow with BlackedMarket..',
+           }
+               ]
+      }}
+      twitter={{
+        site:'BlackedMarket',
+        cardType:'summary_large_image',
+        handle:'Kyle Owen Ga'
+      }}>
     </NextSeo>
    </>
   );
