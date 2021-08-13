@@ -65,19 +65,19 @@ export default function Home() {
 
 
     <NextSeo
-      title='Blacked Market'
+      title='BlackedMarket'
       canonical='https://blackedmarket.vercel.app/'
       description="Diversify your bonds and grow with BlackedMarket.."
       openGraph={{
          url:'https://blackedmarket.vercel.app/',
-         title:'Blacked Market',
-         description:"Diversify your bonds and grow with BlackedMarket..",
+         title:'BlackedMarket',
+         description:"Diversify your bonds with BlackedMarket..",
          images:[
            {
              url: 'https://res.cloudinary.com/kaking/image/upload/v1628750805/217357472_675551463359051_2404077277848383996_n_ljac7b.png',
              width: 200,
              height: 200,
-             alt: 'Diversify your bonds and grow with BlackedMarket..',
+             alt: 'Diversify your bonds with BlackedMarket..',
            }
                ]
       }}

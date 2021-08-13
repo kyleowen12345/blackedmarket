@@ -6,6 +6,10 @@ import { useRouter } from "next/router"
 import Loader from '../../components/Loader/Loader';
 import { Box } from "@chakra-ui/react"
 import Footer from '../../components/Footer/Footer';
+import Error from '../../components/Error/Error';
+import { NextSeo } from 'next-seo';
+
+
 export const STORES = gql`
 query paginate($curPage:String!,$sortOrder:String!) {
     storespaginate(curPage:$curPage,sortOrder:$sortOrder){
@@ -40,13 +44,41 @@ export default function Home() {
   }, [id])
   return (
     <>
-    {loading ? <Loader/> : error ? <h1>{error?.message}</h1>
+    {loading ? <Loader/> 
+    : 
+    error ? <Error message={error?.message}/>
     :
     <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto" >
        {data && <Stores  data={data} loading={loading}/>}
     </Box>
     }
+
     {data && <Footer/>}
+
+    <NextSeo
+    title='Stores | BlackedMarket'
+    canonical='https://blackedmarket.vercel.app/stores/1?sortOrder=storeName'
+    description="We sell multiple types of products you've never seen before."
+    openGraph={{
+      url:'https://blackedmarket.vercel.app/stores/1?sortOrder=storeName',
+      title:'Stores | BlackedMarket',
+      description:"We sell multiple types of products you've never seen before.",
+      images:[
+        {
+          url: 'https://image.freepik.com/free-vector/online-shop-illustration_180868-82.jpg',
+          width: 200,
+          height: 200,
+          alt: 'Stores page',
+        }
+      ]
+    }}
+    twitter={{
+      site:'BlackedMarket',
+      cardType:'summary_large_image',
+      handle:'Kyle Owen Ga'
+    }}>
+    </NextSeo>
+     
     </>
   )
 }

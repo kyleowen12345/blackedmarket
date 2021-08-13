@@ -63,13 +63,13 @@ export default function ProductInformation() {
        }
       {data && <Footer/>} 
       <NextSeo
-       title={'Product Information | BlackedMarket'} 
+       title={!data ? 'Product Information | BlackedMarket' : `${data?.productInfo.product.productName} | BlackedMarket`} 
        canonical={`https://blackedmarket.vercel.app/products/info/${id}`}
        description="BlackedMarket product information page shows the complete details about the product." 
       openGraph={{
       url:`https://blackedmarket.vercel.app/products/info/${id}`,
       title:'Product Information | BlackedMarket',
-      description:"It's a preview of what the product information page looks",
+      description:"BlackedMarket product information page shows the complete details about the product",
       images:[
         {
           url: 'https://res.cloudinary.com/kaking/image/upload/v1628814469/productinfo_kdvkiv.png',

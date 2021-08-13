@@ -59,13 +59,13 @@ export default function Category() {
      {data && <Footer/>}
 
     <NextSeo
-      title={`${category} | BlackedMarket`}
+      title={!category ? ` Category | BlackedMarket` : `${category} | BlackedMarket`}
       canonical={`https://blackedmarket.vercel.app/products/category/${category}?id=${id}&sortOrder=${sortOrder}`}
-      description={`This is are the products related to ${category} .`}
+      description={!category ? "This is are the products related to category choosen .":`This  are the products related to ${category} .`}
       openGraph={{
         url:`https://blackedmarket.vercel.app/products/category/${category}?id=${id}&sortOrder=${sortOrder}`,
-        title:`${category} | BlackedMarket`,
-        description:`This is are the products related to ${category} .`,
+        title:`Category | BlackedMarket`,
+        description:`This  are the products related to category choosen .`,
         images:[
           {
             url: 'https://res.cloudinary.com/kaking/image/upload/v1628751336/products_dctlnv.png',

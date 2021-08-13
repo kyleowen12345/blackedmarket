@@ -70,17 +70,17 @@ export default function Home() {
 
     {data && <Footer/>}
     
-    {/* <NextSeo
+    <NextSeo
       title={`Product Update | BlackedMarket`}
-      canonical={`https://blackedmarket.vercel.app/products/search/${search}?id=${id}&sortOrder=${sortOrder}`}
+      canonical={`https://blackedmarket.vercel.app/products/updateproduct/${id}`}
       description="BlackedMarket's product update helps you improve the quality of your service"
       openGraph={{
-        url:`https://blackedmarket.vercel.app/products/search/${search}?id=${id}&sortOrder=${sortOrder}`,
-        title:`${search} | BlackedMarket`,
+        url:`https://blackedmarket.vercel.app/products/updateproduct/${id}`,
+        title:`Product Update | BlackedMarket`,
         description:"BlackedMarket's product update helps you improve the quality of your service",
         images:[
           {
-            url: 'https://res.cloudinary.com/kaking/image/upload/v1628751336/products_dctlnv.png',
+            url: 'https://res.cloudinary.com/kaking/image/upload/v1628831176/createproducts_vyrooh.png',
             width: 200,
             height: 200,
             alt: `Product Update | BlackedMarket`,
@@ -92,7 +92,7 @@ export default function Home() {
       cardType:'summary_large_image',
       handle:'Kyle Owen Ga'
       }}>
-     </NextSeo> */}
+     </NextSeo>
     </>
   )
 }

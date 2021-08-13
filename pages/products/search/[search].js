@@ -63,13 +63,13 @@ export default function Home() {
     {data && <Footer/>}
 
     <NextSeo
-      title={`${search} | BlackedMarket`}
+      title={!search ? 'Search | BlackedMarket': `${search} | BlackedMarket`}
       canonical={`https://blackedmarket.vercel.app/products/search/${search}?id=${id}&sortOrder=${sortOrder}`}
-      description={`This is are the products related search query "${search}" .`}
+      description={!search ? "This  are the products related to the search query": `This are the products related search query "${search}" .`}
       openGraph={{
         url:`https://blackedmarket.vercel.app/products/search/${search}?id=${id}&sortOrder=${sortOrder}`,
-        title:`${search} | BlackedMarket`,
-        description:`This is are the products related to the search query "${search}" .`,
+        title:`Search | BlackedMarket`,
+        description:"This  are the products related to the search query" ,
         images:[
           {
             url: 'https://res.cloudinary.com/kaking/image/upload/v1628751336/products_dctlnv.png',

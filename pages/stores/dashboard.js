@@ -9,6 +9,9 @@ import StoreDashBoard from '../../components/Dashboard/StoreDashBoard';
 import ProductsAccordion from '../../components/Dashboard/ProductsAccordion';
 import StoreAccordion from '../../components/Dashboard/StoreAccordion';
 import Error from '../../components/Error/Error';
+import Footer from '../../components/Footer/Footer';
+import { NextSeo } from 'next-seo';
+
 export const DASHBOARD = gql`
 query {
     dashBoard{
@@ -56,10 +59,15 @@ export default function Home() {
 
   return (
    <> 
-   {loading ? <Loader/> : error ? <Error message={error.message}/> :
+   {
+   loading ? <Loader/> 
+   : 
+   error ? <Error message={error.message}/> 
+   :
     <Box width={["90%","90%","90%","95%","100%",1200]} mr="auto" ml="auto" mt={5}>
      <Text fontSize={["25px","25px","25px","30px"]} fontWeight="bold">Dashboard</Text>
-    {data &&  <>
+    {data &&  
+    <>
      <ProductDashBoard data={data?.dashBoard}/>
      <ProductsAccordion data={data?.dashBoard}/>
     
@@ -67,6 +75,32 @@ export default function Home() {
      <StoreAccordion data={data?.dashBoard}/>
      </>}
     </Box>}
+
+    {data && <Footer/>}
+
+    <NextSeo
+      title='DashBoard | BlackedMarket'
+      canonical={`https://blackedmarket.vercel.app/stores/dashboard`}
+      description="BlackedMarket's dashboard page shows it's users the details about their best products and stores "
+      openGraph={{
+        url:`https://blackedmarket.vercel.app/stores/dashboard`,
+        title:`Search | BlackedMarket`,
+        description:"BlackedMarket's dashboard page shows it's users the details about their best products and stores" ,
+        images:[
+          {
+            url: 'https://res.cloudinary.com/kaking/image/upload/v1628833325/dashboard_bp05ya.png',
+            width: 200,
+            height: 200,
+            alt: 'DashBoard | BlackedMarket',
+          }
+              ]
+      }}
+      twitter={{
+      site:'BlackedMarket',
+      cardType:'summary_large_image',
+      handle:'Kyle Owen Ga'
+      }}>
+     </NextSeo>
     </>
   )
 }

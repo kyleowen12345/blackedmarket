@@ -17,7 +17,7 @@ const SortedProducts = ({product}) => {
                <NextLink href={`/stores/info/${store}`} passHref><Link  fontSize="14px">Back To Store</Link></NextLink>
             </Box>
             <StoreProduct product={product?.products}/>
-            <Pagination marginPages={1} pageRange={2} initialPage={product?.curPage - 1} pageCount={product?.maxPage} />
+            {product?.maxPage > 1 && <Pagination marginPages={1} pageRange={2} initialPage={product?.curPage - 1} pageCount={product?.maxPage} />}
         </Box>
     )
 }
