@@ -6,7 +6,7 @@ import { SocialMediaLinks } from './SocialMediaLinks'
 import { SubscribeForm } from './SubscribeForm'
 const Footer = () => {
     return (
-        <Box as="footer" w="100%" borderTop="5px solid #FC8E00"  bg="#FBFBFB" bottom={0} height={["100%","100%","400px"]} mt={20} px={5}>
+        <Box as="footer" w="100%" borderTop="5px solid #FC8E00"  bg="#FBFBFB" bottom={0} height={["100%","100%","500px"]} mt={20} px={5}>
             <Box w="100%"  >
                <Box width={["100%","100%","100%","100%","100%",1200]}   height={["0px","0px","60px"]} borderBottom="1px solid #EAEDED" mx="auto"></Box>
             </Box> 

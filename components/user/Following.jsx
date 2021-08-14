@@ -9,7 +9,7 @@ const Following = ({following}) => {
         <Box width={["100%","100%","100%","100%","80%"]} >
           <FollowingSearch />
           <FollowingList following={following?.follow}/>
-          <Pagination marginPages={1} pageRange={2} initialPage={following?.curPage - 1} pageCount={following?.maxPage}/>
+         {following?.maxPage > 1 &&  <Pagination marginPages={1} pageRange={2} initialPage={following?.curPage - 1} pageCount={following?.maxPage}/>}
         </Box>
     )
 }

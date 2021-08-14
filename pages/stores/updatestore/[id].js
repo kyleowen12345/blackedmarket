@@ -60,7 +60,7 @@ export default function Home() {
       description="BlackedMarket's store update helps you improve the quality of your service"
       openGraph={{
         url:`https://blackedmarket.vercel.app/stores/updatestore/${id}`,
-        title:`Product Update | BlackedMarket`,
+        title:`Store Update | BlackedMarket`,
         description:"BlackedMarket's store update helps you improve the quality of your service",
         images:[
           {

@@ -9,7 +9,7 @@ const Deals = ({deals}) => {
     return (
       <>
       <Box id="Deals">
-        <Text  size="2xl" bg="white" mt={4} mb={2} p={3} fontWeight="bold" boxShadow="md"  >Best Seller</Text>
+        <Text  size="2xl" bg="white" mt={4} mb={2} p={3} fontWeight="bold" boxShadow="md"  borderRadius={5}>Best Seller</Text>
         <Grid  templateColumns={[ "repeat(2, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)", "repeat(5, 1fr)" ]}  gap={[1,1,1,3]}  px={[1,1,0]}>
         {deals?.map(i=>(
            <NextLink key={i.id || i._id} href={`/products/info/${i.id || i._id}`}  passHref={true}>

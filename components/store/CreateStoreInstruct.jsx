@@ -9,7 +9,6 @@ mutation{
     id
     email
     name
-    Seller
     }
   }
 `;

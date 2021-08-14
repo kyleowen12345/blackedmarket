@@ -22,7 +22,7 @@ const CreateStore = ({isSeller}) => {
     const [ready,setReady]=useState(false)
     const [createstore,{data, loading,error }] = useMutation(CREATESTORE,{ errorPolicy: 'all' });
     const { nextStep, prevStep, activeStep } = useSteps({
-      initialStep: 0,
+      initialStep: isSeller ? 1 : 0,
     })
     const { register, formState: { errors } , handleSubmit } = useForm();
     const onSubmit = async({storeName,storeAddress,storeDescription,storeType,socialMediaAcc,contactNumber}) => {

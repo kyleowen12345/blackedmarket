@@ -12,7 +12,7 @@ const Menu = ({data}) => {
         <Box display="flex" width="80%" height="100px"  >
            <Avatar size="lg" name={data?.name} src={data?.profilePic} />
         <Box alignItems="center" ml={5} mt={2}>
-           <Text fontWeight="bold">{data?.name}</Text>
+           <Text fontWeight="bold" maxW="108px" isTruncated>{data?.name}</Text>
            <NextLink href={"/user/profile?page=update"} passHref>
             <Link fontSize="13px" ><Icon as={AiOutlineEdit} mr={3} />Edit Profile</Link>
             </NextLink>

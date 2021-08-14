@@ -7,6 +7,10 @@ import { Box} from "@chakra-ui/react"
 import Menu from '../../components/user/Menu';
 import { useAuth } from '../../lib/auth';
 import SmallMenu from '../../components/user/SmallMenu';
+import Error from '../../components/Error/Error';
+import Footer from '../../components/Footer/Footer';
+import { NextSeo } from 'next-seo';
+
 export const PROFILE = gql`
  {
     user{
@@ -40,8 +44,11 @@ export default function Home() {
 
   return (
     <>
-    {loading ? <Loader/> : error ? <h1>{error?.message}</h1>:
-    <Box mt={[0,0,0,0,10]}  width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"   p={[3,0,0]} display="flex" flexDirection={["column","column","column","column","row"]}>
+    {loading ? <Loader/> 
+    : 
+    error ? <Error message={error?.message}/>
+    :
+    <Box mt={[0,0,0,0,5]}  width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"   p={[3,0,0]} display="flex" flexDirection={["column","column","column","column","row"]}>
      {data && 
      <>
      <Menu data={userData}/>
@@ -50,6 +57,32 @@ export default function Home() {
      </>
      }
     </Box>}
+
+    {data && <Footer/>}
+
+    <NextSeo
+      title={`Profile | BlackedMarket`}
+      canonical={`https://blackedmarket.vercel.app/user/profile`}
+      description="BlackedMarket bond diversification helps you improve your life."
+      openGraph={{
+        url:`https://blackedmarket.vercel.app/user/profile`,
+        title:`Profile | BlackedMarket`,
+        description:"BlackedMarket bond diversification helps you improve your life.",
+        images:[
+          {
+            url: 'https://image.freepik.com/free-vector/online-shop-illustration_180868-82.jpg',
+            width: 200,
+            height: 200,
+            alt: `Profile | BlackedMarket`,
+          }
+              ]
+      }}
+      twitter={{
+      site:'BlackedMarket',
+      cardType:'summary_large_image',
+      handle:'Kyle Owen Ga'
+      }}>
+     </NextSeo>
   
     </>
   )

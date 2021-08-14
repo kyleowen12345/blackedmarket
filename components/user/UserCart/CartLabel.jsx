@@ -3,7 +3,7 @@ import { Box,Text} from "@chakra-ui/react"
 
 const CartLabel = () => {
     return (
-        <Box width="100%" bg="white" display={["none","none","none","flex"]} justifyContent="space-between" py={3} px={5} borderRadius={5} boxShadow="md">
+        <Box width="100%" bg="white" display={["none","none","none","flex"]} justifyContent="space-between" py={3} px={5} borderRadius={5} boxShadow="md" >
             <Box >
                 <Text fontWeight="bold"> Product</Text >
             </Box>

@@ -9,8 +9,8 @@ const Purchases = ({history}) => {
         <Box width={["100%","100%","100%","100%","80%"]} >
           <PurchasesSearch/>
               <PurchaseList history={history?.history}/>
-            <Pagination marginPages={1} pageRange={2} initialPage={history?.curPage - 1} pageCount={history?.maxPage}/>
-            </Box>
+              {history?.maxPage > 1 &&<Pagination marginPages={1} pageRange={2} initialPage={history?.curPage - 1} pageCount={history?.maxPage}/>}
+        </Box>
     )
 }
 

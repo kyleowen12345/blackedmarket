@@ -21,9 +21,7 @@ export default function createStore() {
         return profile()
       }
   }, [])
-  console.log(data)
-  console.log(error)
-  console.log(loading)
+
     return (
       <>
       {
