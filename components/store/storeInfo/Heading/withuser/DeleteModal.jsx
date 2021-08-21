@@ -7,7 +7,6 @@ const DeleteModal = ({store}) => {
     const [isOpen, setIsOpen] = React.useState(false)
     const onClose = () => setIsOpen(false)
     const cancelRef = React.useRef()
-    console.log(store.id)
     return (
         <>
              <Button bg="transparent" fontSize="14px" borderRadius="none" color="white" border="1px solid white" width="100%" _hover={{bg:"transparent"}}  onClick={() => setIsOpen(true)}>

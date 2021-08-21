@@ -3,6 +3,8 @@ import { Box,Text,Link,Avatar, Stack,Icon} from "@chakra-ui/react"
 import { AiOutlineEdit,AiOutlineUser,AiOutlineHistory } from "react-icons/ai"
 import NextLink from 'next/link'
 import { useRouter } from "next/router"
+import {  FaStore} from "react-icons/fa"
+
 const Menu = ({data}) => {
   const router = useRouter()
   const path=router.route
@@ -21,7 +23,10 @@ const Menu = ({data}) => {
         <Stack spacing={5}>
         <NextLink href={"/user/profile"} passHref>
         <Link fontWeight="bold" color={path == "/user/profile" && "#FC8E00"}><Icon as={AiOutlineUser} mr={3} />Account</Link>
-        </NextLink>  
+        </NextLink> 
+        <NextLink href={'/user/mystores?id=1&sortOrder=storeName'}  passHref>
+        <Link fontWeight="bold"  color={path == "/user/mystores" && "#FC8E00"}><Icon as={FaStore} mr={3} />My Stores</Link>
+        </NextLink> 
         <NextLink href={'/user/purchases?id=1'}  passHref>
         <Link fontWeight="bold" color={path == "/user/purchases" && "#FC8E00"}><Icon as={AiOutlineHistory} mr={3} />Purchases</Link>
         </NextLink>

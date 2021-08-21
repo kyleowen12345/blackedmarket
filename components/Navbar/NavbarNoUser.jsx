@@ -53,7 +53,7 @@ const NavbarNoUser = () => {
           
 
            {/* Register */}
-          <Container display="flex"  justifyContent="flex-end"  width={["44px","47px","47px","70px","150px"]}  p={3} m={2} borderRadius={25}  mr={[1,1,1,1,1,0]} pr={[1,1,1,1,1,0]}>
+          <Container display="flex"  justifyContent="flex-end"  width={["44px","47px","47px","70px"]}  p={3} m={2} borderRadius={25}  mr={[1,1,1,1,1,0]} pr={[1,1,1,1,1,0]}>
                <NextLink href="/register" passHref><Link fontWeight="bold" fontSize={["xs","xs","md"]} color="#ffffff">Register</Link></NextLink>
             </Container>
          </Flex>

@@ -2,10 +2,11 @@ import React from 'react'
 import NextLink from 'next/link'
 import { Grid,Box,Image,Text} from "@chakra-ui/react"
 import Moment from 'react-moment';
-const StoreGrid = ({stores,imageLoad}) => {
+
+const UserStoreList = ({stores}) => {
     return (
         <>
-        <Grid  templateColumns={[ "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)","repeat(3, 1fr)"  ]} gap={[1,1,1,3]}  px={[1,1,0]}>
+        <Grid  templateColumns={[ "repeat(1, 1fr)", "repeat(1, 1fr)","repeat(2, 1fr)", "repeat(3, 1fr)" ]} gap={3}  px={[1,1,0]} my={5}>
             {stores?.map(i=>(
             <NextLink key={i.id} href={`/stores/info/${i.id}`} passHref={true}>
                 <Box maxW="400px" h={["320px" ,"320px" ,"400px"]} borderWidth="1px" overflow="hidden" as="a" bg="white"  _hover={{border: "4px solid rgb(254,189,105)",color:"#FC8E00" }} boxShadow="md" borderRadius={5}>
@@ -44,4 +45,4 @@ const StoreGrid = ({stores,imageLoad}) => {
     )
 }
 
-export default StoreGrid
+export default UserStoreList

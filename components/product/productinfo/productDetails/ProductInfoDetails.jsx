@@ -17,7 +17,7 @@ const ProductInfoDetails = ({product,userData,refetch}) => {
 
             {/* Price */}
             <Box m={3} p={[2,2,5]} bg={"rgb(250,250,250)"} >
-              <Text fontSize={["15px","15px","25px"]} fontWeight="bold" color="#FC8E00" pl={4}>$ {product?.product.price}</Text>
+              <Text fontSize={["15px","15px","18px","25px"]} fontWeight="bold" color="#FC8E00" pl={4}>$ {product?.product.price}</Text>
             </Box>
 
 
@@ -26,7 +26,7 @@ const ProductInfoDetails = ({product,userData,refetch}) => {
                 <Box mr={[5,5,10,20]} width={"95px"}>
                    <Text color="#888888" fontSize={"15px"}>Description </Text>
                 </Box>
-                <Box maxW={["150px","150px","200px"]} isTruncated>
+                <Box maxW={["150px","150px","200px","300px"]} isTruncated>
                     <Text fontSize={"13px"} isTruncated>{product?.product.description}</Text>
                 </Box>
                 

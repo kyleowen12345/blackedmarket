@@ -8,7 +8,6 @@ import NextLink from 'next/link'
 import { useAuth } from '../../../lib/auth'
 const StoreInfo = ({store,product,follower}) => {
     const {userData}=useAuth()
-    console.log(store)
     return (
         <Box >
 

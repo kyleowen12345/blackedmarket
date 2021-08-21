@@ -26,7 +26,7 @@ const CarouselBanner = () => {
   // }, delay);
   return (
     <>
-      <Box mt={[0,0,1,5]}backgroundColor="#222" display="flex">
+      <Box mt={[0,0,1,5]}backgroundColor="#222" display="flex"  boxShadow="full">
         {/* {arr.map((item, key) => {
           return (
             <Box

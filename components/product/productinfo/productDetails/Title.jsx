@@ -10,7 +10,7 @@ const Title = ({product}) => {
                     <Box>
                           <Badge  colorScheme="orange" fontSize={["8px","8px","10px","12px","13px"]}>Preffered</Badge>
                     </Box>
-                      <Text fontSize={["15px","15px","15px","25px","25px","25px"]} fontWeight="bold" ml={[5,5,10]}>{product?.productName}</Text>
+                      <Text fontSize={["15px","15px","15px","25px","25px","25px"]} fontWeight="bold" ml={[5,5,10]} maxW={["200px","200px","210px","300px","400px"]} isTruncated>{product?.productName}</Text>
                 </Box>
                 <Box d="flex" mt="2"  alignItems="center" width={["200px","200px","300px","500px"]}>
                                    {Array(5)

@@ -49,7 +49,6 @@ export default function Products() {
     }
   }, [id])
   const sorterList=[{link:"productName",name:"Name"},{link:"price",name:"Price"},{link:"sold",name:"Sold"},{link:"createdAt",name:"Date"},{link:"productStocks",name:"Stocks"}]
-  console.log(data)
   return (
     <>
     {loading ? <Loader/> : error ? <Error message={error?.message}/>

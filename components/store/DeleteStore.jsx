@@ -11,7 +11,6 @@ mutation ($id:ID!){
   }
 `
 const DeleteStore = ({storeId}) => {
-    console.log(storeId)
     const {authToken}=useAuth()
     const router = useRouter()
     const [deletestore,{data, loading,error }] = useMutation(DELETESTORE,{ errorPolicy: 'all' },);

@@ -55,9 +55,8 @@ const StoreImage = ({storeId,nextStep,store,prevStep}) => {
 		const config = {headers: { "content-type": "multipart/form-data" },};
 		axios.post(`${process.env.NEXT_PUBLIC_CLOUDINARY_API}`,data,config).then((data) => {setUrl(data?.data.secure_url); setPhotoLoad(false)}).catch((err) => {console.log(err);setPhotoLoad(false)});})
        };
-       console.log(url)
     return (
-    <Box p={5} px={[0,0,5,5,20]} w={["200px","200px","100%"]} m={0}>    
+    <Box p={5} px={[0,0,5,5,20]} w={["200px","200px","100%"]} height={["100px","100px","250px"]} m={0}>    
       <form >
          <Box display={["block","block","flex"]} alignItems="center" justifyContent="space-between">
           <input type="file" onChange={(e) => setImage(e.target.files[0])} style={{maxWidth:"250px"}}/>

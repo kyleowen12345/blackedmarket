@@ -1,7 +1,7 @@
 import '../styles/globals.scss'
 import "@fontsource/poppins/300.css"
 import "@fontsource/open-sans/700.css"
-import React, { useState,useEffect } from 'react'
+import React from 'react'
 import { ApolloProvider } from "@apollo/client";
 import { ChakraProvider } from "@chakra-ui/react"
 import  {useApollo}  from "../src/apollo.ts";
@@ -28,10 +28,10 @@ const GlobalStyle = ({ children }) => {
 };
 function MyApp({ Component, pageProps }) {
   const client = useApollo(pageProps.initialApolloState);
-  const [ready,setReady]=useState(false)
-    useEffect(() => {
-      setReady(true)
-  }, [])
+  // const [ready,setReady]=useState(false)
+  //   useEffect(() => {
+  //     setReady(true)
+  // }, [])
   return(
    
     <ApolloProvider client={client}>
@@ -39,7 +39,7 @@ function MyApp({ Component, pageProps }) {
       <CartProvider>
       <ChakraProvider theme={theme}  resetCSS>
       <GlobalStyle/>
-      {ready && <Navbar/>}
+       <Navbar/>
        <Component {...pageProps} />
     </ChakraProvider >
     </CartProvider> 

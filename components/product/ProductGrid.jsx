@@ -10,7 +10,7 @@ const ProductGrid = ({products,imageLoad}) => {
             {products?.map(i=>(
                 <NextLink key={i.id || i._id} href={`/products/info/${i.id}`}  passHref={true}>
                     <Box maxW="230px" h={["205px" ,"245px" ,"260px"]} borderWidth="1px" overflow="hidden"  as="a" bg="white" _hover={{border: "3px solid rgb(254,189,105)",color:"#FC8E00" }} boxShadow="md" borderRadius={5}>
-                        <Image src={i.image} alt={i.productName} width={"100%"} height={"65%"} loading={imageLoad} />
+                        <Image src={i.image} alt={i.productName} width={"100%"} height={"65%"}  />
                           <Box pl={[1,1,1,1,2]}>
                                  <Box mt="1" fontWeight="semibold"as="h4" lineHeight="tight" isTruncated >
                                       <Text fontSize={["0.75rem" ,"0.875rem",]} isTruncated>{i.productName}</Text>

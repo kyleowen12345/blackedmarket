@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useMutation, gql } from "@apollo/client"
 import { useForm } from 'react-hook-form';
 import Cookies from 'js-cookie';
-import { Box,Text,Link,  } from "@chakra-ui/react"
+import { Box,Text,Link  } from "@chakra-ui/react"
 import { Step, Steps, useSteps } from "chakra-ui-steps"
 import ProductForm from './ProductForm';
 import ProductImage from './ProductImage';

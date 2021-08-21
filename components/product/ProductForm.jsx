@@ -101,7 +101,7 @@ const ProductForm = ({register,data,loading,error,errors,storeNames,product,next
                    <Button
                     bg={"#FC8E00"}
                     color={'white'}
-                    width={["30%","30%","30%","20%"]}
+                    width={["30%","40%","40%","20%"]}
                     _hover={{
                     bg: '#FC8E00',
                     }}
