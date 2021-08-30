@@ -45,7 +45,7 @@ const NavbarWithUser = ({signOut,user,loading}) => {
       <Box  display="flex" justifyContent="center" alignItems="space-between">
         <Flex width={1200} alignItems="center" justifyContent="center">
           {/* Burger Menu */}
-          <IconButton size={'md'} icon={isOpen ? <CloseIcon  color="#ffffff"/> : <HamburgerIcon  color="#ffffff"/>} display={{ xl: 'none' }} aria-label={'Open Menu'} onClick={isOpen ? onClose : onOpen} bg="#000000" />
+          <IconButton size={'md'} icon={isOpen ? <CloseIcon  color="#ffffff"/> : <HamburgerIcon  color="#ffffff"/>} display={{ lg: 'none' }} aria-label={'Open Menu'} onClick={isOpen ? onClose : onOpen} bg="#000000" />
            
            {/* Logo */}
            <Container display="flex" justifyContent="space-around" alignItems="center"  width="300"  ml={["","","","","",0]} pl={["","","","","",0]}>
@@ -53,11 +53,11 @@ const NavbarWithUser = ({signOut,user,loading}) => {
            </Container>
 
            {/* Search and user Menu */}
-           <Box display={{ base: 'none', xl: 'flex' }}>
-            <SearchInput width={"450px"} />
+           <Box display={{ base: 'none', lg: 'flex' }}>
+            <SearchInput  />
             </Box>
            
-           <Container justifyContent="space-around" alignItems="center" width="200" display={{ base: 'none', xl: 'flex' }} >
+           <Container justifyContent="space-around" alignItems="center" width="200" display={{ base: 'none', lg: 'flex' }} >
               <Menu >
                  <MenuButton   bg="#000000">
                      <Flex display="flex" alignItems="center">
@@ -83,8 +83,8 @@ const NavbarWithUser = ({signOut,user,loading}) => {
         </Flex>
       </Box>
       {/* 768px Search input*/}
-      <Box bg={useColorModeValue('#000000', 'gray.900')} p={2} display={{ xl: 'none' }}>
-          <SearchInput width={"99%"}/>
+      <Box bg={useColorModeValue('#000000', 'gray.900')} p={2} display={{ lg: 'none' }}>
+          <SearchInput />
       </Box>
       
     </Box>

@@ -34,8 +34,10 @@ const StoreForm = ({register,loading,error,errors,prevStep,nextStep,data,store})
             message: 'Min length is 5',
             },
             })}
+            isInvalid={errors.storeName && errors.storeName.message}
+            errorBorderColor="crimson"
             />
-            <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.storeName && errors.storeName.message}</Text>
+            <Text color="red" ml={2} mt={1}  fontSize={["12px","12px","12px","14px"]}>{errors.storeName && errors.storeName.message}</Text>
           </FormControl>
           <FormControl id="storetype" width={["100%","100%","45%"]}>
             <Box display="flex">
@@ -50,12 +52,14 @@ const StoreForm = ({register,loading,error,errors,prevStep,nextStep,data,store})
             message: 'Min length is 5',
             },
             })}
+            isInvalid={errors.storeType && errors.storeType.message}
+            errorBorderColor="crimson"
             >
              {options.map(i=>(
                  <option key={i} value={i}>{i}</option>
              )) }
             </Select>
-            <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.storeType && errors.storeType.message}</Text>
+            <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.storeType && errors.storeType.message}</Text>
           </FormControl>
          </Box>
           <Box display={["block","block","flex"]} justifyContent="space-between" width="100%">
@@ -72,8 +76,10 @@ const StoreForm = ({register,loading,error,errors,prevStep,nextStep,data,store})
             message: 'Min length is 5',
             },
             })}
+            isInvalid={errors.socialMediaAcc && errors.socialMediaAcc.message}
+            errorBorderColor="crimson"
             />
-            <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.socialMediaAcc && errors.socialMediaAcc.message}</Text>
+            <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.socialMediaAcc && errors.socialMediaAcc.message}</Text>
           </FormControl>
           <FormControl id="contactNumber" width={["100%","100%","45%"]}>
             <Box display="flex">
@@ -88,8 +94,10 @@ const StoreForm = ({register,loading,error,errors,prevStep,nextStep,data,store})
             message: 'Min length is 5',
             },
             })}
+            isInvalid={errors.contactNumber && errors.contactNumber.message}
+            errorBorderColor="crimson"
             />
-            <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.contactNumber && errors.contactNumber.message}</Text>
+            <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.contactNumber && errors.contactNumber.message}</Text>
           </FormControl>
          </Box>
          <FormControl id="storeAddress" >
@@ -105,8 +113,10 @@ const StoreForm = ({register,loading,error,errors,prevStep,nextStep,data,store})
             message: 'Min length is 5',
             },
             })}
+            isInvalid={errors.storeAddress && errors.storeAddress.message}
+            errorBorderColor="crimson"
             />
-            <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.storeAddress && errors.storeAddress.message}</Text>
+            <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.storeAddress && errors.storeAddress.message}</Text>
           </FormControl>
           <FormControl id="storeDescription" >
             <Box display="flex">
@@ -121,6 +131,8 @@ const StoreForm = ({register,loading,error,errors,prevStep,nextStep,data,store})
             message: 'Min length is 5',
             },
             })}
+            isInvalid={errors.storeDescription && errors.storeDescription.message}
+            errorBorderColor="crimson"
             />
             <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.storeDescription && errors.storeDescription.message}</Text>
           </FormControl>

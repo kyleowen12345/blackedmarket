@@ -31,18 +31,18 @@ const NavbarNoUser = () => {
       <Box  display="flex" justifyContent="center" alignItems="space-between">
         <Flex width={1200} alignItems="center" justifyContent="center">
           {/* Burger Menu */}
-          <IconButton size={'md'} icon={isOpen ? <CloseIcon  color="#ffffff"/> : <HamburgerIcon  color="#ffffff"/>} display={{ xl: 'none' }} aria-label={'Open Menu'} onClick={isOpen ? onClose : onOpen} bg="#000000" />
+          <IconButton size={'md'} icon={isOpen ? <CloseIcon  color="#ffffff"/> : <HamburgerIcon  color="#ffffff"/>} display={{ lg: 'none' }} aria-label={'Open Menu'} onClick={isOpen ? onClose : onOpen} bg="#000000" />
           
           {/* Logo logic */}
-          <Container display="flex" justifyContent="space-around" alignItems="center"  width="300"  ml={["","","","","",0]} pl={["","","","","",0]}>
+          <Container display="flex"  alignItems="center"  width="300"  ml={["","","","","",0]} pl={["","","","","",0]}>
              <NextLink href="/" passHref><Link fontWeight="bold" fontSize={["lg","lg","3xl"]}  color="#ffffff">BlackedMarket</Link></NextLink>
            </Container>
       
            {/* Search and Links */}
-           <Box display={{ base: 'none', xl: 'flex' }}>
-            <SearchInput width={"450px"} />
+           <Box display={{ base: 'none', lg: 'flex' }}>
+            <SearchInput />
             </Box>
-            <Container  display="flex" justifyContent="space-around" alignItems="center"  width="230px" display={{ base: 'none', xl: 'flex' }}>
+            <Container  display="flex" justifyContent="space-around" alignItems="center"  width="230px" display={{ base: 'none', lg: 'flex' }}>
                      <NextLink href="/stores/1?sortOrder=storeName" passHref><Link color="#ffffff" >Stores</Link></NextLink>
                          <Text ml={2} mr={2} color="#ffffff">|</Text>
                      <NextLink href="/products/1?sortOrder=productName" passHref><Link  color="#ffffff">Products</Link></NextLink> 
@@ -61,8 +61,8 @@ const NavbarNoUser = () => {
 
       {/* 768px Search input*/}
   
-      <Box bg={useColorModeValue('#000000', 'gray.900')} p={2} display={{ xl: 'none' }}>
-          <SearchInput width={"99%"}/>
+      <Box bg={useColorModeValue('#000000', 'gray.900')} p={2} display={{ lg: 'none' }} width="100%">
+          <SearchInput />
       </Box>
 
     </Box> 

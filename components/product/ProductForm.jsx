@@ -33,8 +33,11 @@ const ProductForm = ({register,data,loading,error,errors,storeNames,product,next
                           value: 5,
                           message: 'Min length is 5',
                           },
-                          })} />
-                        <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.productName && errors.productName.message}</Text>
+                          })} 
+                          isInvalid={errors.productName && errors.productName.message}
+                          errorBorderColor="crimson"
+                          />
+                        <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.productName && errors.productName.message}</Text>
                      </FormControl>
                      <FormControl id="price" width={["100%","100%","45%"]}>
                         <Box display="flex">
@@ -43,8 +46,11 @@ const ProductForm = ({register,data,loading,error,errors,storeNames,product,next
                         </Box> 
                         <Input  type="number" {...register("price" ,{
                           required: 'this is  required'
-                          })}/>
-                        <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.price && errors.price.message}</Text>
+                          })}
+                          isInvalid={errors.price && errors.price.message}
+                          errorBorderColor="crimson"
+                          />
+                        <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.price && errors.price.message}</Text>
                      </FormControl>
                  </Box>
                  <Box display={["block","block","flex"]} justifyContent="space-between" width="100%"> 
@@ -55,8 +61,11 @@ const ProductForm = ({register,data,loading,error,errors,storeNames,product,next
                           </Box> 
                           <Input  type="number" {...register("productStocks",{
                           required: 'this is  required'
-                          })}/>
-                          <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.productStocks && errors.productStocks.message}</Text>
+                          })}
+                          isInvalid={errors.productStocks && errors.productStocks.message}
+                          errorBorderColor="crimson"
+                          />
+                          <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.productStocks && errors.productStocks.message}</Text>
                     </FormControl>
                     <FormControl id="storename" width={["100%","100%","45%"]}>
                           <Box display="flex">
@@ -66,13 +75,16 @@ const ProductForm = ({register,data,loading,error,errors,storeNames,product,next
                           <Select  {...register('storeName',{
                           required: 'this is  required',
                           
-                          })}>
+                          })} 
+                          isInvalid={errors.storeName && errors.storeName.message}
+                          errorBorderColor="crimson"
+                          >
                               {StoreSelection?.map(i=>(
                               <option key={i.id} value={i.storeName} >{i.storeName}</option>
                               )) }
                           </Select>
                         
-                          <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.storeName && errors.storeName.message}</Text>
+                          <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.storeName && errors.storeName.message}</Text>
                     </FormControl>
                 </Box>
                 <FormControl id="Description" >
@@ -88,8 +100,10 @@ const ProductForm = ({register,data,loading,error,errors,storeNames,product,next
                       message: 'Min length is 5',
                       },
                       })}
+                      isInvalid={errors.description && errors.description.message}
+                      errorBorderColor="crimson" 
                      />
-                     <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.description && errors.description.message}</Text>
+                     <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.description && errors.description.message}</Text>
                 </FormControl>
                 {error && 
                     <Alert status="error" w="100%">

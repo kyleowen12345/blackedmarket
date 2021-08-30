@@ -51,8 +51,10 @@ export default function Register() {
                            message: 'Invalid email address',
                            },
                            })}
+                           isInvalid={errors.email && errors.email.message}
+                           errorBorderColor="crimson"
                            />
-                          <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.email && errors.email.message}</Text>
+                          <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.email && errors.email.message}</Text>
                         </FormControl>
                         <Stack spacing={[5,5,5,5,8]}>
                              {error && <Alert status="error" maxW={["300px","300px","400px","500px"]}>

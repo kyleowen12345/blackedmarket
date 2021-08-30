@@ -91,9 +91,11 @@ const ProfileForm = ({user}) => {
                value:5,
                message:'Minimum length is 5'
                }
-            })} 
+            })}
+            isInvalid={errors.name && errors.name.message}
+            errorBorderColor="crimson" 
             />
-            <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.name && errors.name.message}</Text>
+            <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.name && errors.name.message}</Text>
           </FormControl>
           <FormControl id="email" width={["100%","100%","100%","100%","50%"]} mt={[3,3,3,3,0]}>
              <Box display="flex">
@@ -106,8 +108,11 @@ const ProfileForm = ({user}) => {
                   value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                   message: 'Invalid email address',
                   },
-                  })} />
-            <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.email && errors.email.message}</Text>
+                  })} 
+                  isInvalid={errors.email && errors.email.message}
+                  errorBorderColor="crimson" 
+                  />
+            <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.email && errors.email.message}</Text>
           </FormControl>
            </Box>
          
@@ -123,8 +128,11 @@ const ProfileForm = ({user}) => {
                value:5,
                message:'Minimum length is 5'
                }
-            })} />
-            <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.contactNumber && errors.contactNumber.message}</Text>
+            })} 
+            isInvalid={errors.contactNumber && errors.contactNumber.message}
+            errorBorderColor="crimson"
+            />
+            <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.contactNumber && errors.contactNumber.message}</Text>
           </FormControl>
           <FormControl id="socialmedia" width={["100%","100%","100%","100%","50%"]} mt={[3,3,3,3,0]}>
              <Box display="flex">
@@ -137,8 +145,11 @@ const ProfileForm = ({user}) => {
                value:5,
                message:'Minimum length is 5'
                }
-            })} />
-            <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.SocialMediaAcc && errors.SocialMediaAcc.message}</Text>
+            })} 
+            isInvalid={errors.SocialMediaAcc && errors.SocialMediaAcc.message}
+            errorBorderColor="crimson"
+            />
+            <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.SocialMediaAcc && errors.SocialMediaAcc.message}</Text>
           </FormControl>
           </Box>
 
@@ -153,8 +164,11 @@ const ProfileForm = ({user}) => {
                value:5,
                message:'Minimum length is 5'
                }
-            })} />
-            <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.country && errors.country.message}</Text>
+            })} 
+            isInvalid={errors.country && errors.country.message}
+            errorBorderColor="crimson"
+            />
+            <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.country && errors.country.message}</Text>
           </FormControl>
           <Box display="flex" flexDirection={["column","column","column","column","row"]}>
           <FormControl id="city" width={["100%","100%","100%","100%","50%"]} mr={5}>
@@ -168,8 +182,11 @@ const ProfileForm = ({user}) => {
                value:5,
                message:'Minimum length is 5'
                }
-            })} />
-            <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.city && errors.city.message}</Text>
+            })} 
+            isInvalid={errors.city && errors.city.message}
+            errorBorderColor="crimson"
+            />
+            <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.city && errors.city.message}</Text>
           </FormControl>
           <FormControl id="zipcode" width={["100%","100%","100%","100%","50%"]} mt={[3,3,3,3,0]}>
              <Box display="flex">
@@ -178,8 +195,11 @@ const ProfileForm = ({user}) => {
             </Box> 
             <Input type="number" {...register("zipcode", {
             required: 'this is required'
-            } )} />
-            <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.zipcode && errors.zipcode.message}</Text>
+            } )} 
+            isInvalid={errors.zipcode && errors.zipcode.message}
+            errorBorderColor="crimson"
+            />
+            <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.zipcode && errors.zipcode.message}</Text>
           </FormControl>
           </Box>
           {error && 

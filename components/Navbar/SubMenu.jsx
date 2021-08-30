@@ -17,7 +17,7 @@ const SubMenu = () => {
     return (
       
           <Menu >
-          <MenuButton color="#000000" fontSize="sm" fontWeight="bold"  width="80px" bg="#EAEDED" borderLeftRadius="5px" height="30px" >
+          <MenuButton color="#000000" fontSize="sm" fontWeight="bold"  width="80px" bg="#EAEDED" borderLeftRadius="5px" height="40px" >
           <Container display="flex" alignItems="center" pl={1.5}>
           <Text fontSize="xs">Category</Text> <ChevronDownIcon color="#000000"/>
             </Container>

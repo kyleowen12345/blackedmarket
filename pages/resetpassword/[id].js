@@ -58,9 +58,12 @@ export default function Register() {
                               value: 3,
                               message: 'Min length is 5',
                               },
-                              })} />
+                              })} 
+                              isInvalid={errors.password && errors.password.message}
+                              errorBorderColor="crimson"
+                              />
                               
-                             <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.password && errors.password.message}</Text>
+                             <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.password && errors.password.message}</Text>
                         </FormControl>
                         <FormControl id="confirm_password">
                              <FormLabel>Confirm password</FormLabel>
@@ -71,9 +74,12 @@ export default function Register() {
                               value: 3,
                               message: 'Min length is 5',
                               },
-                              })} />
+                              })} 
+                              isInvalid={errors.password && errors.password.message}
+                              errorBorderColor="crimson"
+                              />
                               
-                             <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.password && errors.password.message}</Text>
+                             <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.password && errors.password.message}</Text>
                         </FormControl>
                         <Stack spacing={[5,5,5,5,8]}>
                              {error && <Alert status="error" maxW={["300px","300px","400px","500px"]}>

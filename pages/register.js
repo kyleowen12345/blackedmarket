@@ -65,8 +65,10 @@ export default function Register() {
                                   message: 'Min length is 5',
                                 },
                               })}
+                              isInvalid={errors.name && errors.name.message}
+                              errorBorderColor="crimson"
                              />
-                            <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.name && errors.name.message}</Text>
+                            <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.name && errors.name.message}</Text>
                           </FormControl>
                           <FormControl id="email">
                              <FormLabel>Email address</FormLabel>
@@ -78,8 +80,10 @@ export default function Register() {
                              message: 'Invalid email address',
                              },
                              })}
+                             isInvalid={errors.email && errors.email.message}
+                             errorBorderColor="crimson"
                              />
-                            <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.email && errors.email.message}</Text>
+                            <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.email && errors.email.message}</Text>
                           </FormControl>
                           <FormControl id="password">
                                <FormLabel>Password</FormLabel>
@@ -90,9 +94,12 @@ export default function Register() {
                                     value: 5,
                                     message: 'Min length is 5',
                                   },
-                                })} />
+                                })}
+                                isInvalid={errors.password && errors.password.message}
+                                errorBorderColor="crimson"
+                                />
                                 
-                               <Text color="red" ml={2} fontSize={["12px","12px","12px","14px"]}>{errors.password && errors.password.message}</Text>
+                               <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.password && errors.password.message}</Text>
                           </FormControl>
                           <Stack spacing={[5,5,5,5,8]}>
                               <Stack
