@@ -79,12 +79,12 @@ export default function Home() {
     {data && <Footer/>}
 
     <NextSeo
-      title='DashBoard | BlackedMarket'
+      title='Dashboard | BlackedMarket'
       canonical={`https://blackedmarket.vercel.app/stores/dashboard`}
       description="BlackedMarket's dashboard page shows it's users the details about their best products and stores "
       openGraph={{
         url:`https://blackedmarket.vercel.app/stores/dashboard`,
-        title:`Search | BlackedMarket`,
+        title:`Dashboard | BlackedMarket`,
         description:"BlackedMarket's dashboard page shows it's users the details about their best products and stores" ,
         images:[
           {

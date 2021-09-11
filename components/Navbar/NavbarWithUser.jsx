@@ -2,19 +2,12 @@ import React  from 'react'
 import {
     Box,
     Flex,
-    Input,
     Container,
     Link,
     Text,
     useDisclosure,
     useColorModeValue,
     IconButton,
-    Drawer, 
-    DrawerOverlay,
-    DrawerHeader, 
-    DrawerBody, 
-    DrawerContent,
-    DrawerCloseButton, 
     Avatar,
     Menu,
     MenuButton,
@@ -31,9 +24,10 @@ import {
   import { useRouter } from 'next/router'
   import SearchInput from './SearchInput'
 import { useCart } from '../../lib/cart'
+import ReusableDrawer from './ReusableDrawer'
 
   
-const WithUserLinks = [{name:'Profile',link:"/user/profile",icon:ImProfile},{name:'DashBoard',link:`/stores/dashboard?id=${1}`,icon:AiOutlineDashboard ,as:`/stores/dashboard`},{name:'Stores',link:"/stores/1?sortOrder=storeName",icon:FaStore}, {name:'Products',link:"/products/1?sortOrder=productName",icon:FaProductHunt},{name:'Create Store',link:"/stores/createstore",icon:AiFillFolderAdd},{name:'Create Product',link:"/products/createProduct",icon:AiOutlineAppstoreAdd}];
+const WithUserLinks = [{name:'Profile',link:"/user/profile",icon:ImProfile},{name:'Dashboard',link:`/stores/dashboard`,icon:AiOutlineDashboard ,as:`/stores/dashboard`},{name:'Stores',link:"/stores/1?sortOrder=storeName",icon:FaStore}, {name:'Products',link:"/products/1?sortOrder=productName",icon:FaProductHunt},{name:'Create Store',link:"/stores/createstore",icon:AiFillFolderAdd},{name:'Create Product',link:"/products/createProduct",icon:AiOutlineAppstoreAdd}];
 
 const NavbarWithUser = ({signOut,user,loading}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -90,27 +84,7 @@ const NavbarWithUser = ({signOut,user,loading}) => {
     </Box>
 
   {/* 768px UserDrawer */}
-      <Drawer onClose={onClose} isOpen={isOpen} placement="left" >
-        <DrawerOverlay />
-        <DrawerContent bg="#ffffff" zIndex={9999}>
-          <DrawerCloseButton color="#000000"/>
-           <DrawerHeader borderBottomWidth="1px" color="#000000">
-               <Flex display="flex" alignItems="center">
-               <Avatar name={user?.name} src={user?.profilePic} mr={2}/>
-               {loading ? "loading...": user?.name}
-               </Flex>
-               </DrawerHeader>
-             <DrawerBody display="flex" flexDirection="column">
-            {WithUserLinks.map((link) => (
-             <Container key={link.name} mb={5}> 
-             <Icon as={link.icon} color="#000000" />
-             <NextLink key={link.name} href={link.link} passHref><Link fontSize="md" color="#000000" p={2} onClick={onClose}>{link.name}</Link></NextLink> 
-             </Container>
-              ))}
-              <Container onClick={signOut}><Icon as={AiOutlineLogout} color="#000000" /><Link  fontSize="md" color="#000000" p={2} >Log Out</Link></Container>
-             </DrawerBody>
-        </DrawerContent>
-      </Drawer>
+    <ReusableDrawer onClose={onClose} isOpen={isOpen} routes={WithUserLinks} user={user} loading={loading} signOut={signOut}/>
         </div>
     )
 }

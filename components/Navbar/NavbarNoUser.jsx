@@ -7,26 +7,20 @@ import {Box,
     useDisclosure,
     useColorModeValue,
     IconButton,
-    Drawer, 
-    DrawerOverlay,
-    DrawerHeader, 
-    DrawerBody, 
-    DrawerContent,
-    DrawerCloseButton,
-    Icon,
   } from '@chakra-ui/react'
   import NextLink from 'next/link'
   import {  FaStore,FaProductHunt} from "react-icons/fa"
   import { AiOutlineLogin } from "react-icons/ai"
   import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import SearchInput from './SearchInput'
+import ReusableDrawer from './ReusableDrawer'
 
 const NoUserLinks = [{name:'Stores',link:"/stores/1?sortOrder=storeName",icon:FaStore}, {name:'Products',link:"/products/1?sortOrder=productName",icon:FaProductHunt},{name:'Login',link:"/login",icon:AiOutlineLogin}];
 
 const NavbarNoUser = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
-  <div>
+  <>
     <Box bg={useColorModeValue('#000000', 'gray.900')} p={1} >     
       <Box  display="flex" justifyContent="center" alignItems="space-between">
         <Flex width={1200} alignItems="center" justifyContent="center">
@@ -69,22 +63,8 @@ const NavbarNoUser = () => {
 
     {/* <SubMenu/> */}
     {/* 768px Drawer */}
-      <Drawer onClose={onClose} isOpen={isOpen} placement="left">
-        <DrawerOverlay />
-        <DrawerContent bg="#ffffff" zIndex={9999}>
-          <DrawerCloseButton color="#000000"/>
-           <DrawerHeader borderBottomWidth="1px" color="#000000">BlackedMarket</DrawerHeader>
-             <DrawerBody display="flex" flexDirection="column">
-               {NoUserLinks.map((link) => (
-                  <Container key={link.name} mb={5}> 
-                      <Icon as={link.icon} color="#000000" />
-                      <NextLink key={link.name} href={link.link} passHref><Link fontSize="md" color="#000000" p={2} onClick={onClose} >{link.name}</Link></NextLink>
-                  </Container>
-              ))}
-             </DrawerBody>
-        </DrawerContent>
-      </Drawer>
-  </div>
+    <ReusableDrawer onClose={onClose} isOpen={isOpen} routes={NoUserLinks}/>
+  </>
     )
 }
 

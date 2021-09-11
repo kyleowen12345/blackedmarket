@@ -63,7 +63,7 @@ const ProductInfoDetails = ({product,userData,refetch}) => {
             {product?.product.storeOwner.id === userData?.id && 
             <Box display={"flex"} width={["290px","290px","310px","400px"]} justifyContent="space-between" m={3} mt={[5,5,7]}>
                 <Link href={`/products/updateproduct/${product.product.id}`} passHref>
-                    <Button fontSize={["13px","13px","18px"]} width={["120px","120px","150px","180px"]} bg="#E4E6EB" color="black"  ><Icon as={AiOutlineEdit} color="black" mr={2}/>Update</Button>
+                    <Button fontSize={["13px","13px","18px"]} width={["120px","120px","150px","180px"]} bg="#EAEDED" color="gray" border="1px solid gray" ><Icon as={AiOutlineEdit} color="gray" mr={2}/>Update</Button>
                 </Link>
                 <DeleteProduct productId={product.product.id} storeId={product?.product.storeName.id} productName={product?.product.productName}/>
             </Box>

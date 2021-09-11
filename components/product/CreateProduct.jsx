@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import Cookies from 'js-cookie';
 import { Box,Text,Link  } from "@chakra-ui/react"
 import { Step, Steps, useSteps } from "chakra-ui-steps"
-import ProductForm from './ProductForm';
+import ProductForm from './ProductForm/ProductForm';
 import ProductImage from './ProductImage';
 import NextLink from 'next/link'
 import { useAuth } from '../../lib/auth';

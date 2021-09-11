@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useMutation, gql } from "@apollo/client"
 import { useForm } from 'react-hook-form';
 import ProductImage from './ProductImage';
-import ProductForm from './ProductForm';
+import ProductForm from './ProductForm/ProductForm';
 import { Box,Text,Link, Button,Image  } from "@chakra-ui/react"
 import { Step, Steps, useSteps } from "chakra-ui-steps"
 import NextLink from 'next/link'

@@ -54,9 +54,9 @@ export default function Home() {
        <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"   display="flex" flexDirection="column" justifyContent="center">
            <CarouselBanner/>
            <Deals deals={data?.landingpage.deals}/>
-           <Text   fontSize={["11px","11px","13px"]} bg="white" mt={20} mb={2} p={3} fontWeight="bold" boxShadow="md" id="Store" borderRadius={5} border="2px solid #FC8E00" color="#FC8E00">Top Stores</Text>
+           <Text   fontSize={["13px","13px","17px"]} bg="white" mt={20} mb={5} p={[3,3,3,5]} fontWeight="bold" boxShadow="md" id="Store"   color="#FC8E00">Top Stores</Text>
              <StoreGrid stores={data?.landingpage.stores} imageLoad={"eager"}/>
-           <Text  fontSize={["11px","11px","13px"]}  bg="white" mt={10} mb={2} p={3} fontWeight="bold" boxShadow="md" id="products" borderRadius={5} border="2px solid #FC8E00" color="#FC8E00">New Products</Text>
+           <Text  fontSize={["13px","13px","17px"]}  bg="white" mt={10} mb={5} p={[3,3,3,5]} fontWeight="bold" boxShadow="md" id="products"   color="#FC8E00">New Products</Text>
              <ProductGrid products={data?.landingpage.products} imageLoad={"eager"}/>
        </Box>
 
