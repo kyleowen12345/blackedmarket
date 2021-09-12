@@ -13,6 +13,8 @@ import {
     Select
   } from '@chakra-ui/react';
   import { useRouter } from 'next/router'
+import CreateProductButton from './CreateProductButton';
+import UpdateProductButton from './UpdateProductButton';
 
 
 const ProductForm = ({register,data,loading,error,errors,storeNames,product,nextStep}) => {
@@ -125,24 +127,12 @@ const ProductForm = ({register,data,loading,error,errors,storeNames,product,next
                     >
                      Submit
                     </Button>
-                    <Box display="flex" width={["50%","55%","50%","20%"]} justifyContent="space-between" alignItems="center">
-                        <Button display={product ? "block" : "none"} width="50%" onClick={()=> router.push(`/products/info/${product.id}`)}>
-                          Back
-                       </Button>
-                       {product ?  <Button
-                       onClick={nextStep}
-                       width="45%"
-                       >
-                        Next
-                       </Button>: 
-                       <Button
-                       onClick={nextStep}
-                       disabled={!data }
-                       width="100%"
-                       >
-                        Next
-                       </Button> }
-                    </Box> 
+                    {
+                      product ? 
+                      <UpdateProductButton loading={loading} nextStep={nextStep}/>
+                      :
+                      <CreateProductButton loading={loading} nextStep={nextStep} data={data}/>
+                    }
                 </Box>
             </Stack> 
       </Box>

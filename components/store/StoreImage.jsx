@@ -6,6 +6,7 @@ import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 import { Box,Button,Text } from "@chakra-ui/react"
 import { STORESINFO } from '../../pages/stores/info/[id]';
+import { ST } from 'next/dist/next-server/lib/utils';
 const STOREIMAGE = gql`
 mutation ($id:ID!,$storeBackgroundImage:String!){
     storeImage(id:$id,storeBackgroundImage:$storeBackgroundImage){
@@ -18,28 +19,10 @@ const StoreImage = ({storeId,nextStep,store,prevStep}) => {
     const [image, setImage] = useState("");
     const [url, setUrl] = useState("");
     const [photoload,setPhotoLoad]=useState(false)
-    const [storeimage,{error }] = useMutation(STOREIMAGE,{ errorPolicy: 'all' });
+    const [storeimage,{error,loading }] = useMutation(STOREIMAGE,{ errorPolicy: 'all' });
     useEffect(async() => {
         if(url){
-            const {data}= await storeimage({variables:{id:storeId,storeBackgroundImage:url},context:{headers:{token:Cookies.get('blackedmarket') || ""}},
-        update(cache,{data}){
-            const oldStoreDetail=cache.readQuery({query:STORESINFO,variables:{id:storeId}})
-
-            if(data && oldStoreDetail){
-                cache.writeQuery({
-                  query:STORESINFO,
-                  variables:{id:storeId},
-                  data:{
-                    storeInfo:{
-                      __typename:"StoreswithProduct",
-                      isUserAFollower:false,
-                      products:oldStoreDetail.storeInfo.products,
-                      store:data.updateStore
-                    }
-                  }
-                })
-              }
-        }})
+            const {data}= await storeimage({variables:{id:storeId,storeBackgroundImage:url},context:{headers:{token:Cookies.get('blackedmarket') || ""}},refetchQueries:[{query:STORESINFO,variables:{id:storeId}}]})
              if(data) nextStep()
         } 
     },[storeimage,storeId,url]);
@@ -67,7 +50,7 @@ const StoreImage = ({storeId,nextStep,store,prevStep}) => {
           </Alert> 
           }
           <Box>
-          {store && <Button onClick={prevStep} mr={2}  mt={[2,2,0]}>Back</Button>}
+          {store && <Button onClick={prevStep} disabled={photoload || loading} mr={2}  mt={[2,2,0]}>Back</Button>}
           <Button type="submit" onClick={postPhoto} disabled={photoload||!image} isLoading={photoload} mt={[2,2,0]} >Finish</Button>
           </Box>
           </Box>

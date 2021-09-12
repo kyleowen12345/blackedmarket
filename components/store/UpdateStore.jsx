@@ -100,7 +100,7 @@ const UpdateStore = ({store,id}) => {
           </Steps>
           }
           {activeStep === 2 && 
-       <Box display="flex"  flexDirection="column" ml="auto" mr="auto" p={[0,0,5,5]} px={[4,10,5,5,20]}>
+       <Box display="flex"  flexDirection="column" ml="auto" mr="auto" p={[0,0,5,5]} px={[4,10,5,5,20]} height={["100px","100px","300px"]} alignItems={["","","center"]} justifyContent="center">
          <Text fontSize="20px" fontWeight="bold">Woohoo! All steps completed!</Text>
          <NextLink href={`/stores/info/${store.id}`} passHref><Link color="blue.400" textDecoration="underline" fontWeight="bold" fontSize={["12px","13px","14px","16px"]} >Click here to go to your store!!!</Link></NextLink>
       </Box>

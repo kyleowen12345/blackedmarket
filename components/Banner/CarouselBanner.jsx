@@ -26,7 +26,7 @@ const CarouselBanner = () => {
   }, delay);
   return (
     <>
-      <Box mt={[0,0,0,0,0,5]}backgroundColor="#222" display="flex"  borderRadius="sm">
+      <Box mt={[0,0,0,0,0,5]}backgroundColor="#222" display="flex"  borderRadius="sm" mb={10}>
         {arr.map((item, key) => {
           return (
             <Box
@@ -41,7 +41,7 @@ const CarouselBanner = () => {
         })}
         <Image src={"https://media.giphy.com/media/S5iaflEE71xTQaWTFm/giphy.gif"}  alt={"https://media.giphy.com/media/S5iaflEE71xTQaWTFm/giphy.gif"} height={["150px","200px","300px","400px"]} pl={10} display={["none","none","none","none","block"]} loading="eager"/>
       </Box>
-      <BannerLink/>
+      {/* <BannerLink/> */}
     </>
   );
 }

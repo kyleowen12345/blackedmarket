@@ -49,7 +49,7 @@ const ProductImage = ({productId,storeId,nextStep,product,prevStep}) => {
           </Alert> 
           }
           <Box display="flex" alignItems="center" mt={[2,2,0]}>
-          {product && <Button onClick={prevStep} mr={2}  >Back</Button>}
+          {product && <Button onClick={prevStep} disabled={loading || photoload} mr={2}  >Back</Button>}
           <Button type="submit" onClick={postPhoto} disabled={photoload||!image} isLoading={photoload || loading}>Finish</Button>
           </Box>
         </Box>
