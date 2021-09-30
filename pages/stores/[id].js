@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import {  gql  } from "@apollo/client";
-import Stores from "../../components/store/Stores";
+import Stores from "../../components/store/PaginatedStores/Stores";
 import { useLazyQuery  } from "@apollo/client";
 import { useRouter } from "next/router"
 import Loader from '../../components/Loader/Loader';
@@ -41,7 +41,7 @@ export default function Home() {
     }else{
       return
     }
-  }, [id])
+  }, [id,sortOrder])
   return (
     <>
     {loading ? <Loader/> 

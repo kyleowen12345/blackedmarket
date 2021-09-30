@@ -12,7 +12,7 @@ const CartList = () => {
         <Box display={["none","none","none","block"]}>
          {
              data?.getCartInfo.cart.length < 1 ?
-             <Box bg="white" my={4} height="300px" display="flex" justifyContent="center" alignItems="center" boxShadow="md" borderRadius={5}>
+             <Box  my={4} height="300px" display="flex" justifyContent="center" alignItems="center" >
                   <Text fontSize="20px" fontWeight="bold">Cart is empty</Text>
              </Box>
              :
@@ -21,13 +21,13 @@ const CartList = () => {
                          <Box mx={5} pt={3}>
                                <Box display="flex" justifyContent="space-between" my={3}>
                                    <NextLink href={`/stores/info/${i.storeName}`} passHref>
-                                      <Link fontSize="13px" fontWeight="bold">Visit Store</Link>
+                                      <Link fontSize="13px" color="messenger.400" fontWeight="bold">Visit Store</Link>
                                    </NextLink>
                                     <Text fontSize="13px" fontWeight="bold"><Moment fromNow>{Date.parse(i.date)|| i.date}</Moment></Text>
                                </Box>
                                <Box display={["block","block","flex"]} justifyContent="space-between" alignItems="center" width="100%" py={5} borderY="1px solid #EFEFEF">
                                   <Box display="flex" justifyContent={["space-between","space-between","left"]}  width={["100%","100%","80%","30%"]}>
-                                       <Image src={i.image} alt={i.productName} width={["150px","150px","100px"]} height={["150px","150px","100px"]}/>
+                                       <Image src={i.image} alt={i.productName} width={["150px","150px","100px"]} height={["150px","150px","100px"]} fallbackSrc="https://images.pexels.com/photos/1526/dark-blur-blurred-gradient.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
                                         <Box ml={5} alignItems="left" w="50%" >
                                             <Text fontSize="18px" fontWeight="bold" mb={5} isTruncated>{i.productName}</Text>
                                         </Box>

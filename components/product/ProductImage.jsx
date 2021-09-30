@@ -8,10 +8,15 @@ import { PRODUCTINFO } from '../../pages/products/info/[id]';
 import { STORESINFO } from '../../pages/stores/info/[id]';
 const PRODUCTIMAGE = gql`
 mutation ($id:ID!,$image:String!){
-    productImage(id:$id,image:$image){
-    message
-    }
+  productImage(id:$id,image:$image){
+  id
+  productName
+  image
+  price
+  sold
+  description
   }
+}
 `;
 const ProductImage = ({productId,storeId,nextStep,product,prevStep}) => {
     const [image, setImage] = useState("");
@@ -38,7 +43,7 @@ const ProductImage = ({productId,storeId,nextStep,product,prevStep}) => {
 		axios.post(`${process.env.NEXT_PUBLIC_CLOUDINARY_API}`,data,config).then((data) => {setUrl(data?.data.secure_url); setPhotoLoad(false)}).catch((err) => {console.log(err);setPhotoLoad(false)});})
        };
     return (
-    <Box p={5} px={[0,0,5,5,20]} w={["200px","200px","100%"]} height={["100px","100px","250px"]} m={0}>     
+    <Box p={5} px={[0,0,5,5,20]} w={["200px","200px","100%"]} height={"250px"} m={0}>     
       <form >
         <Box display={["block","block","flex"]} alignItems="center" justifyContent="space-between">  
           <input type="file" onChange={(e) => setImage(e.target.files[0])} style={{maxWidth:"250px"}}/>

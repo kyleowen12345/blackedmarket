@@ -1,7 +1,6 @@
 import React from 'react'
-import { Box,Text,Button,Icon,Grid,Container  } from "@chakra-ui/react"
+import { Box,Text,Button,Icon,Grid,Container,Image  } from "@chakra-ui/react"
 import {  FaStore} from "react-icons/fa"
-import Image from 'next/image'
 import Moment from 'react-moment';
 import NextLink from 'next/link'
 
@@ -12,7 +11,7 @@ const ProductStoreInfo = ({product}) => {
         <Box  display="flex" bg="white" height={["200px","100%","130px"]}  my={5}  mx={[1,2,0]} alignItems="center" p={[0,3,10]} flexDirection={["column","column","row"]}  boxShadow="md" borderRadius={5}> 
            <Box display="flex" borderRight={["","","","1px solid #C4C4C4"]} width={["300px","100vw","250px","250px","400px"]} justifyContent="center">
                <Box>
-                  <Image src={product.product.storeName.storeBackgroundImage} alt={product.product.storeName.storeBackgroundImage} width="70px" height="70px" className="productStore"/>
+                  <Image src={product.product.storeName.storeBackgroundImage} alt={product.product.storeName.storeBackgroundImage} width="70px" height="70px" fallbackSrc="https://images.pexels.com/photos/1526/dark-blur-blurred-gradient.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" className="productStore" />
                </Box>
                
                <Box ml={[1,2,2,2,5]}>

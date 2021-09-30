@@ -1,17 +1,17 @@
 import React, {useEffect} from 'react'
 import {  gql,useLazyQuery  } from "@apollo/client";
 import { useRouter } from "next/router"
+import { NextSeo } from 'next-seo';
 import { Box} from "@chakra-ui/react"
+
 import { useAuth } from '../../lib/auth';
 import Loader from '../../components/Loader/Loader';
-import Menu from '../../components/user/Menu';
-import Following from '../../components/user/Following';
-import SmallMenu from '../../components/user/SmallMenu';
+import Menu from '../../components/user/ReusableUserComponents/Menu';
+import SmallMenu from '../../components/user/ReusableUserComponents/SmallMenu';
 import Error from '../../components/Error/Error';
 import Footer from '../../components/Footer/Footer';
-import { NextSeo } from 'next-seo';
-import UserStores from '../../components/user/UserStores';
-import Pagination from '../../components/helpers/Pagination';
+import UserStores from '../../components/user/UserStores/UserStores';
+
 
 const MYSTORES = gql`
 query MyStores($curPage:String!,$sortOrder:String!,$keyword:String){
@@ -34,12 +34,15 @@ export default function Home() {
     const router = useRouter()
     const {userCookie,authToken,userData}=useAuth()
     const {id,sortOrder,keyword}= router.query
-    const [mystores,{ data, loading,error } ]= useLazyQuery( MYSTORES,{variables:{curPage:id || "1",sortOrder:sortOrder, keyword:keyword },context:{headers:{token:authToken || ""}}} );
+    const [mystores,{ data, loading,error } ]= useLazyQuery( MYSTORES,{variables:{curPage:id || "1",sortOrder:sortOrder, keyword:keyword },context:{headers:{token:authToken || ""}},fetchPolicy:"no-cache"} );
     useEffect(() => {
-      if(id ){
+      if(!userCookie){
+        return router.push('/login')
+      }
+      if(id){
         return mystores()
       }
-}, [id])
+}, [userCookie,id,keyword])
 
   return (
     <>
@@ -47,13 +50,13 @@ export default function Home() {
     : 
     error ? <Error message={error?.message}/> 
     :
-     <Box  mt={[0,0,0,0,5]}  width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,0,0]} display="flex" flexDirection={["column","column","column","column","row"]} >
+     <Box  mt={[0,0,0,0,5]}  width={["100%","100%","100%","100%","95%",1200]} mr="auto" ml="auto"  display="flex" flexDirection={["column","column","column","column","row"]} >
          {data &&
          <>
-       <Menu data={userData}/>
-       <SmallMenu />
-       <UserStores stores={data?.allMyStoresPaginated.stores} sortOrder={sortOrder} maxPage={data?.allMyStoresPaginated.maxPage} curPage={data?.allMyStoresPaginated.curPage}/>
-       </>
+          <Menu data={userData}/>
+          <SmallMenu />
+          <UserStores stores={data?.allMyStoresPaginated.stores} sortOrder={sortOrder} maxPage={data?.allMyStoresPaginated.maxPage} curPage={data?.allMyStoresPaginated.curPage}/>
+         </>
        }
      </Box>}
      
@@ -65,14 +68,14 @@ export default function Home() {
       description="BlackedMarket bond diversification helps you improve your life"
       openGraph={{
         url:`https://blackedmarket.vercel.app/user/mystores?id=${id}&sortOrder=${sortOrder}`,
-        title:`Cart | BlackedMarket`,
+        title:`My Stores | BlackedMarket`,
         description:"BlackedMarket bond diversification helps you improve your life",
         images:[
           {
             url: 'https://image.freepik.com/free-vector/online-shop-illustration_180868-82.jpg',
             width: 200,
             height: 200,
-            alt: `Cart | BlackedMarket`,
+            alt: `My Stores | BlackedMarket`,
           }
               ]
       }}

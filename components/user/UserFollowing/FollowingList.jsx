@@ -1,56 +1,32 @@
 import React from 'react'
-import { Box,Text,Image,Button} from "@chakra-ui/react"
-import { useMutation, gql  } from "@apollo/client";
+import { Box,Text,Image,Button,Link} from "@chakra-ui/react"
 import NextLink from 'next/link'
-import {useAuth} from '../../../lib/auth'
-import { FOLLOWING } from '../../../pages/user/following';
-import { useRouter } from "next/router"
-const UNFOLLOW = gql`
-mutation ($id:ID!){
-    unfollowStore(id:$id){
-     token
-   }
-   }
-`;
+import UnFollowButton from './UnFollowButton'
+import { useRouter } from 'next/router'
+
+
 
 const FollowingList = ({following}) => {
-  const {authToken}=useAuth()
-  const router = useRouter()
-  const {id,keyword}= router.query
-  const [unfollow,{data,loading,error}] = useMutation(UNFOLLOW,{ errorPolicy: 'all'});
-  const onUnFollow = async(storeId)=>{
-
-    await unfollow({variables:{id:storeId},context:{headers:{token:authToken || ""}},
-    update(cache,{data}){
-     const queryResult=cache.readQuery({
-       query:FOLLOWING,
-       variables:{curPage:id || "1",keyword:keyword},
-       context:{headers:{token:authToken||""}}
-     })
-     if(queryResult){
-       cache.writeQuery({
-        query:FOLLOWING,
-        variables:{curPage:id || "1",keyword:keyword},
-        context:{headers:{token:authToken||""}},
-        data:{
-          getFollowingStore:{
-            __typename: "followPaginate",
-            curPage:queryResult.getFollowingStore.curPage,
-            followCount:queryResult.getFollowingStore.followCount,
-            maxPage:queryResult.getFollowingStore.maxPage,
-            follow:queryResult.getFollowingStore.follow.filter(i=>i.id !== storeId)
-          }
-        }
-       })
-     }
-    }})
-  }
+    const router = useRouter()
+    const {keyword}=router.query
     return (
         <>
           {
-            following?.length < 1 ? <Box bg="white" my={4} height="300px" display="flex" justifyContent="center" alignItems="center" boxShadow="md" borderRadius={5}>
-            <Text fontSize="20px" fontWeight="bold">No following record</Text>
-        </Box>
+            following?.length < 1 ? 
+            <Box  my={4} height="300px" display="flex" justifyContent="center" alignItems="center" >
+            {
+                keyword ? 
+                <Box display="flex" flexDirection="column" alignItems="center">
+                    <Text fontSize="17px" > No record for </Text>
+                    <Text fontSize="20px" fontWeight="bold">"{keyword}"</Text>
+                    <NextLink href={`/user/following?id=1&keyword=`} passHref={true}>
+                        <Link color="messenger.400" fontWeight="bold">Go back</Link> 
+                    </NextLink>
+                </Box>
+                :
+                <Text fontSize="20px" fontWeight="bold">No Record</Text>
+                }
+            </Box>
         :
          following?.map(i=>(
              <Box key={i.id} bg="white" my={4} boxShadow="md" borderRadius={5} mx={1}>
@@ -61,14 +37,14 @@ const FollowingList = ({following}) => {
                             </Box>
                             <Box display={["block","block","flex"]} justifyContent="space-between" alignItems="center" width="100%" py={5} borderY="1px solid #EFEFEF">
                                <Box display="flex" justifyContent={["space-between","space-between","left"]}  width={["100%","100%","80%","80%"]}>
-                                    <Image src={i.storeBackgroundImage} alt={i.storeName} width={["150px","150px","100px"]} height={["150px","150px","100px"]}/>
+                                    <Image src={i.storeBackgroundImage} alt={i.storeName} width={["150px","150px","100px"]} height={["150px","150px","100px"]} fallbackSrc="https://images.pexels.com/photos/1526/dark-blur-blurred-gradient.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
                                     <Box ml={10} alignItems="left" w="50%">
                                        <Text fontSize="18px" fontWeight="bold" mb={5}>{i.storeName}</Text>
                                        <Text fontSize="13px" fontWeight="bold" >{i.sellerName.name}</Text> 
                                      </Box>
                                </Box> 
                                <Box display="flex" justifyContent="space-between" alignItems="center" mt={[5,5,5,0]} >
-                                      <Button   fontSize="14px" bg="#FC8E00" color="white" _hover={{bg:"#FC8E00"}}  onClick={()=>onUnFollow(i.id)} isLoading={loading} width="50%">UnFollow</Button>
+                                      <UnFollowButton storeId={i.id}/>
                                    <NextLink href={`/stores/info/${i.id}`} passHref> 
                                       <Button as="a" fontSize="14px" ml={5} bg="white" border="1px solid gray" color="gray" _hover={{bg:"white"}} width="50%">Visit Store</Button>
                                    </NextLink> 

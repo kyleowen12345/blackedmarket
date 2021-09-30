@@ -4,7 +4,6 @@ import { useRouter } from "next/router"
 import UpdateProduct from "../../../components/product/UpdateProduct";
 import Loader from '../../../components/Loader/Loader';
 import { Box} from "@chakra-ui/react"
-import Footer from '../../../components/Footer/Footer';
 import { useAuth } from '../../../lib/auth';
 import Error from '../../../components/Error/Error';
 import { NextSeo } from 'next-seo';
@@ -49,7 +48,8 @@ export default function Home() {
     useEffect(() => {
       if(!userCookie){
         return router.push('/login')
-      }else{
+      }
+      if(id){
         updateproductinfo()
         allMyStores()
       } 
@@ -63,12 +63,12 @@ export default function Home() {
     : 
     error ?<Error message={error?.message}/>
     :
-    <Box mt={[0,0,0,5]} borderRadius={5} bg="white" width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,2,0]} boxShadow="md">
+    <Box mt={[0,0,0,0,0,10]} borderRadius={5} bg="white" width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,2,0]} boxShadow="md">
        {data && <UpdateProduct product={data?.productInfoUpdate} storeNames={MyStoresData?.allMyStores}/>} 
       
     </Box>}
 
-    {data && <Footer/>}
+
     
     <NextSeo
       title={`Product Update | BlackedMarket`}

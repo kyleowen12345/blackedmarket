@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import {  gql,useLazyQuery  } from "@apollo/client";
 import { useRouter } from "next/router"
-import SortedProducts from '../../../../components/store/storeInfo/SortedProducts/SortedProducts';
+import SortedProducts from '../../../../components/store/StoreInfo/StoreProducts/SortedProducts';
 import Loader from '../../../../components/Loader/Loader';
 import Footer from '../../../../components/Footer/Footer'
 import Error from '../../../../components/Error/Error'
@@ -62,7 +62,7 @@ export default function Home() {
             url: 'https://image.freepik.com/free-vector/online-shop-illustration_180868-82.jpg',
             width: 200,
             height: 200,
-            alt: 'DashBoard | BlackedMarket',
+            alt: 'Store Products | BlackedMarket',
           }
               ]
       }}

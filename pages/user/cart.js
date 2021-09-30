@@ -1,13 +1,15 @@
 import React, {useEffect} from 'react'
 import { Box} from "@chakra-ui/react"
-import Loader from '../../components/Loader/Loader';
-import Cart from '../../components/user/Cart';
+import { useRouter } from "next/router"
+import { NextSeo } from 'next-seo';
+
 import { useCart } from '../../lib/cart';
 import { useAuth } from '../../lib/auth';
-import { useRouter } from "next/router"
+import Loader from '../../components/Loader/Loader';
+import Cart from '../../components/user/UserCart/Cart';
 import Error from '../../components/Error/Error'
 import Footer from '../../components/Footer/Footer';
-import { NextSeo } from 'next-seo';
+
 
 
 export default function Home() {
@@ -26,7 +28,7 @@ export default function Home() {
     : 
     error ? <Error message={error?.message}/> 
     :
-     <Box  mt={[0,0,0,0,5]}  width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,0,0]} display="flex" flexDirection={["column","column","column","column","row"]} >
+     <Box  mt={[0,0,0,5]}  width={["100%","100%","100%","95%","95%",1200]} mr="auto" ml="auto"  p={[3,0,0]} display="flex" flexDirection={["column","column","column","column","row"]} >
          {data && <Cart />}
      </Box>}
      

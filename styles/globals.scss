@@ -70,19 +70,22 @@ a {
   @media only screen and (max-width: 700px) {
     .paginate-previous,.paginate-next{
       padding: 0.2rem 0rem;
+      margin: 0 0.6rem;
+    }
+    .paginate-li {
+      margin: 0 0.3rem;
+      font-size: 20px;
+    }
+   
+  }
+  @media only screen and (max-width: 450px) {
+    .paginate-previous,.paginate-next{
+      padding: 0.2rem 0rem;
+      margin: 0 0.3rem;
     }
     .paginate-li {
       margin: 0 0.2rem;
-      font-size: 13px;
-    }
-    .paginate-previous,.paginate-next{
-      margin: 0 0.6rem;
-    }
-  }
-  @media only screen and (max-width: 300px) {
-    .paginate-previous,.paginate-next{
-      font-size: 30px;
-      margin: 0 0.3rem;
+      font-size: 15px;
     }
   }
 }

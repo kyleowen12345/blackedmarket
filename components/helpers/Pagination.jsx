@@ -21,6 +21,7 @@ const Pagination = ({marginPages,pageRange,initialPage,pageCount}) => {
             nextLabel={">"}
             breakLabel={"..."}
             initialPage={initialPage}
+            forcePage={initialPage}
             pageCount={pageCount}
             onPageChange={handlePagination}
             containerClassName={"paginate-wrap"}

@@ -1,6 +1,5 @@
 import React from 'react'
-import { Box,Text,Image,Link,Stack} from "@chakra-ui/react"
-import NextLink from 'next/link'
+import { Box,Text,Image,Stack} from "@chakra-ui/react"
 import Moment from 'react-moment';
 import DeleteItemInCart from './DeleteItemInCart';
 import SetQuantity from './SetQuantity';
@@ -12,7 +11,7 @@ const SmallCartList = () => {
         <Box display={["block","block","block","none"]}>
         {
             data?.getCartInfo.cart.length < 1 ?
-            <Box bg="white" m={2} height="300px" display="flex" justifyContent="center" alignItems="center" boxShadow="md" borderRadius={5}>
+            <Box  m={2} height="300px" display="flex" justifyContent="center" alignItems="center" >
                  <Text fontSize="20px" fontWeight="bold">Cart is empty</Text>
             </Box>
             :
@@ -25,7 +24,7 @@ const SmallCartList = () => {
                               </Box>
                               <Box display={["block","block","flex"]} justifyContent="space-between" alignItems="center" width="100%" py={5} borderY="1px solid #EFEFEF">
                                  <Box display="flex" justifyContent={["space-between","space-between","left"]}  width={["100%","100%","100%","30%"]} alignItems="center">
-                                      <Image src={i.image} alt={i.productName} width={["130px","130px","150px"]} height={["130px","130px","150px"]}/>
+                                      <Image src={i.image} alt={i.productName} width={["130px","130px","150px"]} height={["130px","130px","150px"]} fallbackSrc="https://images.pexels.com/photos/1526/dark-blur-blurred-gradient.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
                                        <Box ml={[5,5,10]}  w="50%">
                                            <Stack spacing={3}>
                                               <Text fontSize="14px" fontWeight="bold" isTruncated>{i.productName}</Text>

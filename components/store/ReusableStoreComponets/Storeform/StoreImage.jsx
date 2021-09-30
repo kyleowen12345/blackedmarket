@@ -4,15 +4,28 @@ import imageCompressor from 'browser-image-compression'
 import axios from "axios";
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
-import { Box,Button,Text } from "@chakra-ui/react"
-import { STORESINFO } from '../../pages/stores/info/[id]';
-import { ST } from 'next/dist/next-server/lib/utils';
+import { Box,Button,Text,Alert,AlertIcon } from "@chakra-ui/react"
+import { STORESINFO } from '../../../../pages/stores/info/[id]';
+
 const STOREIMAGE = gql`
 mutation ($id:ID!,$storeBackgroundImage:String!){
-    storeImage(id:$id,storeBackgroundImage:$storeBackgroundImage){
-    message
+  storeImage(id:$id,storeBackgroundImage:$storeBackgroundImage){
+    id
+    storeName
+    storeAddress
+    storeDescription
+    storeType
+    sellerName{
+      id
+      email
+      name
     }
+    socialMediaAcc
+    contactNumber
+    createdAt
+    storeBackgroundImage
   }
+}
 `;
 const StoreImage = ({storeId,nextStep,store,prevStep}) => {
     const router = useRouter()
@@ -20,12 +33,32 @@ const StoreImage = ({storeId,nextStep,store,prevStep}) => {
     const [url, setUrl] = useState("");
     const [photoload,setPhotoLoad]=useState(false)
     const [storeimage,{error,loading }] = useMutation(STOREIMAGE,{ errorPolicy: 'all' });
+
     useEffect(async() => {
         if(url){
-            const {data}= await storeimage({variables:{id:storeId,storeBackgroundImage:url},context:{headers:{token:Cookies.get('blackedmarket') || ""}},refetchQueries:[{query:STORESINFO,variables:{id:storeId}}]})
+            const {data}= await storeimage({variables:{id:storeId,storeBackgroundImage:url},context:{headers:{token:Cookies.get('blackedmarket') || ""}},
+          update(cache,{data}){
+            const oldStoreDetail = cache.readQuery({query:STORESINFO,variables:{id:storeId}})
+            
+            if(data && oldStoreDetail){
+              cache.writeQuery({
+                query:STORESINFO,
+                variables:{id:storeId},
+                data:{
+                  storeInfo:{
+                    __typename:"StoreswithProduct",
+                    isUserAFollower:false,
+                    products:oldStoreDetail.storeInfo.products,
+                    store:data.storeImage
+                  }
+                }
+              })
+            }
+          }})
              if(data) nextStep()
         } 
     },[storeimage,storeId,url]);
+
     const postPhoto = async(e) => {
         e.preventDefault();
         setPhotoLoad(true)
@@ -38,8 +71,9 @@ const StoreImage = ({storeId,nextStep,store,prevStep}) => {
 		const config = {headers: { "content-type": "multipart/form-data" },};
 		axios.post(`${process.env.NEXT_PUBLIC_CLOUDINARY_API}`,data,config).then((data) => {setUrl(data?.data.secure_url); setPhotoLoad(false)}).catch((err) => {console.log(err);setPhotoLoad(false)});})
        };
+       
     return (
-    <Box p={5} px={[0,0,5,5,20]} w={["200px","200px","100%"]} height={["100px","100px","250px"]} m={0}>    
+    <Box p={5} px={[0,0,5,5,20]} w={["200px","200px","100%"]} height={"250px"} m={0}>    
       <form >
          <Box display={["block","block","flex"]} alignItems="center" justifyContent="space-between">
           <input type="file" onChange={(e) => setImage(e.target.files[0])} style={{maxWidth:"250px"}}/>

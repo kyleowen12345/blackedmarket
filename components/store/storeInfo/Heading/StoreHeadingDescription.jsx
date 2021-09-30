@@ -6,6 +6,7 @@ import { FiUserCheck } from "react-icons/fi"
 import Moment from 'react-moment';
 
 const StoreHeadingDescription = ({product,store}) => {
+  
     return (
         <Grid templateColumns={ "repeat(2, 1fr)"} gridColumnGap={10}  display={["none","none","none","grid"]} ml={["10px","10px","10px","10px","50px"]} height="150px" mt="auto" pt={5}>
             <Box display="flex" alignItems="center" height="30px">
@@ -41,6 +42,7 @@ const StoreHeadingDescription = ({product,store}) => {
                 <Text fontSize={["8px","10px","11px","13px"]} fontWeight="bold" ml={3} color="#FC8E00" isTruncated>
                    <Moment fromNow>{Date.parse(store.createdAt) || store.createdAt}</Moment>
                 </Text>
+                
                 </Box>
         </Grid>
     )

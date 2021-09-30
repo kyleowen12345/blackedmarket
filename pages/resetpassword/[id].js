@@ -1,3 +1,4 @@
+import React, {useEffect} from 'react'
 import { useMutation, gql } from "@apollo/client"
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router'
@@ -18,6 +19,8 @@ import NextLink from 'next/link'
 import { useState } from "react";
 import { NextSeo } from "next-seo";
 import Footer from "../../components/Footer/Footer";
+import { useAuth } from "../../lib/auth";
+
 const NEWPASSWORD = gql`
 mutation($token:String!,$password:String!){
     newPassword(token:$token,password:$password){
@@ -27,10 +30,18 @@ mutation($token:String!,$password:String!){
 `;
 export default function Register() {
     const [nomatch,setNoMatch]=useState(false)
+    const {userCookie} = useAuth()
     const router = useRouter()
     const { id } = router.query
     const [newpassword,{data, loading,error }] = useMutation(NEWPASSWORD,{ errorPolicy: 'all' });
     const { register, formState: { errors } , handleSubmit } = useForm();
+
+    useEffect(() => {
+      if(userCookie){
+        return router.push('/')
+      }  
+    }, [userCookie])
+
     const onSubmit = async({password,confirm_password}) => {
       if(password != confirm_password){
         return setNoMatch(true)
@@ -82,15 +93,15 @@ export default function Register() {
                              <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.password && errors.password.message}</Text>
                         </FormControl>
                         <Stack spacing={[5,5,5,5,8]}>
-                             {error && <Alert status="error" maxW={["300px","300px","400px","500px"]}>
+                             {error && <Alert status="error" >
                                 <AlertIcon />
                                 <Text fontSize={["12px","13px","14px","16px"]} isTruncated>{error.message}</Text>
                               </Alert> }
-                              {nomatch  && <Alert status="error" maxW={["300px","300px","400px","500px"]}>
+                              {nomatch  && <Alert status="error" >
                                 <AlertIcon />
                                 <Text fontSize={["12px","13px","14px","16px"]} isTruncated>passwords did not match</Text>
                               </Alert> }
-                              {data && <Alert status="success"maxW={["300px","300px","400px","500px"]}>
+                              {data && <Alert status="success">
                                 <AlertIcon />
                                 <Text fontSize={["12px","13px","14px","16px"]} isTruncated>Reset password complete !!!</Text>
                               </Alert> }

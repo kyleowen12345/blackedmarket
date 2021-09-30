@@ -7,6 +7,7 @@ import { Box } from "@chakra-ui/react"
 import ProductInfoSubNav from '../../../components/product/productinfo/ProductInfoSubNav'
 import Footer from '../../../components/Footer/Footer';
 import { NextSeo } from 'next-seo';
+import Error from '../../../components/Error/Error';
 
 export const PRODUCTINFO = gql`
  query ($id:ID!){
@@ -52,7 +53,9 @@ export default function ProductInformation() {
   }, [id])
   return (
     <>
-    {loading ? <Loader/> : error ? <h1>{error?.message}</h1>
+    {loading ? <Loader/> 
+    : 
+    error ? <Error message={error?.message}/>
     :
          <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"   >
            <ProductInfoSubNav data={data} id={id}/>

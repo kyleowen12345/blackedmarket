@@ -1,9 +1,14 @@
 import React from 'react'
+import NextLink from 'next/link'
+
+import { useRouter } from "next/router"
 import { Box,Text,Link,Avatar, Stack,Icon} from "@chakra-ui/react"
 import { AiOutlineEdit,AiOutlineUser,AiOutlineHistory } from "react-icons/ai"
-import NextLink from 'next/link'
-import { useRouter } from "next/router"
 import {  FaStore} from "react-icons/fa"
+import {  RiChatFollowUpLine} from "react-icons/ri"
+
+
+
 
 const Menu = ({data}) => {
   const router = useRouter()
@@ -16,7 +21,7 @@ const Menu = ({data}) => {
         <Box alignItems="center" ml={5} mt={2}>
            <Text fontWeight="bold" maxW="108px" isTruncated>{data?.name}</Text>
            <NextLink href={"/user/profile?page=update"} passHref>
-            <Link fontSize="13px" ><Icon as={AiOutlineEdit} mr={3} />Edit Profile</Link>
+            <Link fontSize="13px" >Edit Profile</Link>
             </NextLink>
         </Box>
         </Box>
@@ -31,7 +36,7 @@ const Menu = ({data}) => {
         <Link fontWeight="bold" color={path == "/user/purchases" && "#FC8E00"}><Icon as={AiOutlineHistory} mr={3} />Purchases</Link>
         </NextLink>
         <NextLink href={'/user/following?id=1'}  passHref>
-        <Link fontWeight="bold" color={path == "/user/following" && "#FC8E00"}><Icon as={AiOutlineEdit} mr={3} />Following</Link>
+        <Link fontWeight="bold" color={path == "/user/following" && "#FC8E00"}><Icon as={RiChatFollowUpLine} mr={3} />Following</Link>
         </NextLink>
         </Stack>
       </Box>

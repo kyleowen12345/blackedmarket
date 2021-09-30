@@ -5,11 +5,11 @@ import Moment from 'react-moment';
 const StoreGrid = ({stores,imageLoad}) => {
     return (
         <>
-        <Grid  templateColumns={[ "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)","repeat(3, 1fr)"  ]} gap={[1,1,1,2]}  px={[1,1,0]}>
+        <Grid  templateColumns={[ "repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)","repeat(3, 1fr)"  ]} gap={[1,2,2,2]}  px={[2,2,2,2,2,0]}>
             {stores?.map(i=>(
             <NextLink key={i.id} href={`/stores/info/${i.id}`} passHref={true}>
-                <Box maxW="400px" h={["320px" ,"320px" ,"400px"]} borderWidth="1px" overflow="hidden" as="a" bg="white"  _hover={{border: "3px solid rgb(254,189,105)",color:"#FC8E00" }} boxShadow="md" borderRadius={5}>
-                         <Image src={i.storeBackgroundImage} alt={i.storeName} width={"100%"} height={"82%"} />
+                <Box maxW="400px" h={["300px" ,"300px" ,"320px","340px","360px","400px"]} borderWidth="1px" overflow="hidden" as="a" bg="white"  _hover={{color:"#FC8E00" }} boxShadow="md" borderRadius={5}>
+                         <Image src={i.storeBackgroundImage} alt={i.storeName} width={"100%"} height={"82%"} fallbackSrc="https://images.pexels.com/photos/1526/dark-blur-blurred-gradient.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
                     <Box p={[2,2,2,4]}>
                            <Box d="flex" alignItems="baseline">
                                  <Box

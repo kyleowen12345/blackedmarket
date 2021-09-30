@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react'
 import {  gql,useLazyQuery  } from "@apollo/client";
 import { useRouter } from 'next/router'
-import Profile from "../../components/user/Profile";
+import Profile from "../../components/user/UserProfile/Profile";
 import Loader from '../../components/Loader/Loader';
 import { Box} from "@chakra-ui/react"
-import Menu from '../../components/user/Menu';
+import Menu from '../../components/user/ReusableUserComponents/Menu';
 import { useAuth } from '../../lib/auth';
-import SmallMenu from '../../components/user/SmallMenu';
+import SmallMenu from '../../components/user/ReusableUserComponents/SmallMenu';
 import Error from '../../components/Error/Error';
 import Footer from '../../components/Footer/Footer';
 import { NextSeo } from 'next-seo';
@@ -48,7 +48,7 @@ export default function Home() {
     : 
     error ? <Error message={error?.message}/>
     :
-    <Box mt={[0,0,0,0,5]}  width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"   p={[3,0,0]} display="flex" flexDirection={["column","column","column","column","row"]}>
+    <Box mt={[0,0,0,0,5]}  width={["100%","100%","100%","100%","95%",1200]} mr="auto" ml="auto"   p={[3,0,0]} display="flex" flexDirection={["column","column","column","column","row"]}>
      {data && 
      <>
      <Menu data={userData}/>

@@ -108,7 +108,7 @@ export default function Register() {
                                justify={'space-between'}>
                                   <Checkbox ><Text fontSize={["12px","12px","14px","16px"]}>Remember me</Text></Checkbox>
                                </Stack>
-                               {error && <Alert status="error" maxW={["300px","300px","400px","500px"]}>
+                               {error && <Alert status="error">
                                   <AlertIcon />
                                   <Text fontSize={["12px","13px","14px","16px"]} isTruncated>{error.message}</Text>
                                 </Alert> }

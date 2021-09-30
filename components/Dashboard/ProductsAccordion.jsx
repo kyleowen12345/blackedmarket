@@ -28,7 +28,7 @@ const ProductsAccordion = ({data}) => {
                  </AccordionButton>
                </h2>
                <AccordionPanel pb={4} display={["","","","flex"]} justifyContent="space-between" alignItems="center">
-                    <Image src={i.image} height="100px" width="100px" borderRadius="50%" />
+                    <Image src={i.image} height="100px" width="100px" borderRadius="50%" fallbackSrc="https://images.pexels.com/photos/1526/dark-blur-blurred-gradient.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
                     <Box my={5} display="flex" flexDirection="column" textAlign={["left","left","left","center"]}>
                       <Text fontWeight="bold">$ {i.price}</Text>
                       <Text color="gray" fontSize="12px">price</Text>

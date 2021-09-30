@@ -4,9 +4,9 @@ import { useRouter } from "next/router"
 import { Box} from "@chakra-ui/react"
 import { useAuth } from '../../lib/auth';
 import Loader from '../../components/Loader/Loader';
-import Menu from '../../components/user/Menu';
-import Following from '../../components/user/Following';
-import SmallMenu from '../../components/user/SmallMenu';
+import Menu from '../../components/user/ReusableUserComponents/Menu';
+import Following from '../../components/user/UserFollowing/Following';
+import SmallMenu from '../../components/user/ReusableUserComponents/SmallMenu';
 import Error from '../../components/Error/Error';
 import Footer from '../../components/Footer/Footer';
 import { NextSeo } from 'next-seo';
@@ -42,7 +42,7 @@ export default function Home() {
           return following()
         }
         
-  }, [userCookie])
+  }, [userCookie,keyword,id])
   return (
     < >
       {
@@ -50,7 +50,7 @@ export default function Home() {
       : 
       error ? <Error message={error?.message}/>
       :
-       <Box  mt={[0,0,0,0,5]}  width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,0,0]} display="flex" flexDirection={["column","column","column","column","row"]} >
+       <Box  mt={[0,0,0,0,5]}  width={["100%","100%","100%","100%","95%",1200]} mr="auto" ml="auto"  p={[3,0,0]} display="flex" flexDirection={["column","column","column","column","row"]} >
        {data &&
          <>
        <Menu data={userData}/>

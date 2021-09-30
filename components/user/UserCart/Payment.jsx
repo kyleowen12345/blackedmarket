@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import {Box,Text,useToast} from "@chakra-ui/react"
-import axios from 'axios'
 import { useCart } from '../../../lib/cart'
 import { useAuth } from '../../../lib/auth'
 import Paypal from '../../product/Paypal'
+
+import axios from 'axios'
 
 const Payment = () => {
     const {data,cartRefetch}=useCart()
@@ -41,27 +42,28 @@ const Payment = () => {
           }})
           cartRefetch()
           toast({
-            title: `It's a celebration  b**ch , you just purchase those items`,
+            title: `You successfully just purchase those items`,
             status:"success",
             isClosable: true,
           })
         } catch (error) {
+          toast({
+            title: `Something went wrong`,
+            status:"error",
+            isClosable: true,
+          })
           console.log(error)
          }
        }
     return (
       <>
-       {data?.getCartInfo.cart.length > 1 && <Box p={[2,2,5]} bg="white" width="100%" display="flex" justifyContent="space-between" alignItems="center" flexDirection={["column","column","column","column","row"]} boxShadow="md" border="2px solid black" position="sticky" bottom={0}>
-            <Box >
-               <Text fontWeight="bold" fontSize="13px">Pay with Paypal</Text> 
-            </Box>
-            <Box display="flex" alignItems="center"  justifyContent="space-between" flexDirection={["column","column","column","column","row"]} width="40%" mt={[2,2,0]}>
-               <Box display="flex" alignItems="center" width="200px">
-               <Text mr={3} fontWeight="bold">Total ({data?.getCartInfo.productCount} item) : </Text> 
-               <Text fontWeight="bold" color="#FC8E00">$ {total}</Text> 
-               </Box>
-               {ready  && <Paypal toPay={total} ontracSuccess={transactionSuccess} ontracError={transactionError} ontracCancel={transactionCancel}/>}
-            </Box>
+       {data?.getCartInfo.cart.length >= 1 && <Box p={[2,2,5]} bg="white" width="100%" display="flex" justifyContent="space-between" alignItems="center" flexDirection={["column","column","column","row"]} boxShadow="md" borderTop="2px solid black" position="sticky" bottom={0}>
+             <Text fontWeight="bold" fontSize="13px">Pay with Paypal</Text>
+             <Box display="flex" alignItems="center"  isTruncated>
+                  <Text mr={3} fontWeight="bold" >Total ({data?.getCartInfo.productCount} item) : </Text> 
+                  <Text fontWeight="bold" color="#FC8E00" isTruncated>$ {total}</Text> 
+             </Box>
+             {ready  && <Paypal toPay={total} ontracSuccess={transactionSuccess} ontracError={transactionError} ontracCancel={transactionCancel}/>} 
         </Box>}
         </>
     )

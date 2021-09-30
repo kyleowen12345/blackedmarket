@@ -3,7 +3,6 @@ import {  gql,useLazyQuery  } from "@apollo/client";
 import { Box,Link } from "@chakra-ui/react"
 import {useAuth} from "../../lib/auth"
 import CreateProduct from '../../components/product/CreateProduct';
-import Footer from '../../components/Footer/Footer';
 import { useRouter } from "next/router"
 import Loader from '../../components/Loader/Loader';
 import Error from '../../components/Error/Error';
@@ -37,7 +36,7 @@ export default function Home() {
       :
       error ? <Error message={error?.message}/>
       :
-      <Box mt={[0,0,0,5]}  borderRadius={5} bg="white" width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,2,0]} boxShadow="md">
+      <Box mt={[0,0,0,0,0,10]}  borderRadius={5} bg="white" width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,2,0]} boxShadow="md">
         {data?.allMyStores.length < 1  ? 
           <Box height={["200px","200px","400px"]} display="flex" justifyContent="center" alignItems="center"><Link fontWeight="bold" fontSize={["15px","15px","20px"]}>Please create a store first, then go back here.</Link></Box>
          : 
@@ -46,7 +45,7 @@ export default function Home() {
       </Box>
     }
      
-    {data && <Footer/>}
+
 
     <NextSeo
       title={`Create Product | BlackedMarket`}

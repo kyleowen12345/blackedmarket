@@ -11,7 +11,7 @@ const StoreProduct = ({product}) => {
                 <Icon as={BiSad} ml={3}  h="30px" w="30px"/>
             </Box>
             :
-            <ProductGrid products={product} imageLoad={"lazy"}/>
+            <ProductGrid products={product} />
             }
         
         </Box>

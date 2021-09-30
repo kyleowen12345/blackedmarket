@@ -1,13 +1,12 @@
 import React from 'react'
-import { Box,Text,Link,Stack } from "@chakra-ui/react"
+import { Box,Text,Link } from "@chakra-ui/react"
 import StoreHeading from './Heading/StoreHeading'
 import SubNavigation from './SubNavigation/SubNavigation'
-import StoreProduct from './Products/StoreProduct'
+import StoreProduct from './StoreProducts/StoreProduct'
 import StoreDetails from './StoreDetails/StoreDetails'
 import NextLink from 'next/link'
-import { useAuth } from '../../../lib/auth'
+
 const StoreInfo = ({store,product,follower}) => {
-    const {userData}=useAuth()
     return (
         <Box >
 
@@ -28,6 +27,8 @@ const StoreInfo = ({store,product,follower}) => {
                       <Link  fontSize={["10px","10px","10px","13px"]} color="#FC8E00" fontWeight="bold">View All</Link>
                  </NextLink>
             </Box>
+
+
             {/* Products */}
              <StoreProduct product={product}/>
          

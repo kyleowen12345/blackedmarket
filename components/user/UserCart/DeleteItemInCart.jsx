@@ -6,7 +6,7 @@ import { CARTINFO } from '../../../lib/cart';
 
 const DELETECART=gql`
 mutation ($id:ID!){
-    removeItem(id:$id){
+    removeCartItem(id:$id){
       token
     }
   }
@@ -40,9 +40,7 @@ const DeleteItemInCart = ({productId}) => {
         })
     }
     return (
-        <>
             <Button width={[" "," "," ","14%"]} p={0} bg="white" align="center" fontSize={["13px","13px","13px","14px"]} color="red" _hover={{bg:"white"}} _focus={{bg:"white"}} onClick={onSubmit} disabled={loading || data} isLoading={loading}>Remove </Button>
-    </>
     )
 }
 

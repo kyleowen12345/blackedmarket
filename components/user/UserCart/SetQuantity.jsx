@@ -28,7 +28,7 @@ const SetQuantity = ({details}) => {
                 data:{
                   getCartInfo:{
                       __typename: "cartPaginate", 
-                      productCount:oldCart.getCartInfo.productCount - 1,
+                      productCount:oldCart.getCartInfo.productCount,
                       cart:oldCart.getCartInfo.cart.map(i=>i.id === product && {...i,quantity:value})
                   }
                 }
@@ -52,7 +52,7 @@ const SetQuantity = ({details}) => {
                  data:{
                    getCartInfo:{
                        __typename: "cartPaginate", 
-                       productCount:oldCart.getCartInfo.productCount - 1,
+                       productCount:oldCart.getCartInfo.productCount,
                        cart:oldCart.getCartInfo.cart.map(i=>i.id === product && {...i,quantity:value})
                    }
                  }
@@ -66,7 +66,7 @@ const SetQuantity = ({details}) => {
         <Box display="flex" w={["100%","100%","100%","20%"]}>
                 <Button bg="white" disabled={details.quantity == 1 || addLoading}  isLoading={subLoading} _hover={{bg:"white"}} borderRadius={0} border="1px solid #E2E8F0" height={["25px","25px","30px"]} onClick={()=>onSubQuantity(details.id,details.quantity - 1)}>-</Button>
                 <Box display="flex" justifyContent="center" height={["25px","25px","30px"]} alignItems="center" width="50px" border="1px solid #E2E8F0">
-                 <Text>{details.quantity}</Text>
+                 <Text isTruncated>{details.quantity}</Text>
                 </Box>
                 <Button  bg="white" disabled={subLoading} isLoading={addLoading} _hover={{bg:"white"}}  borderRadius={0} border="1px solid #E2E8F0" height={["25px","25px","30px"]} onClick={()=>onAddQuantity(details.id,details.quantity + 1)}>+</Button>
         </Box>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useMutation, gql  } from "@apollo/client";
-import { useAuth } from '../../lib/auth';
+import { useAuth } from '../../../../../lib/auth';
 import { useRouter } from "next/router"
 import { Button  } from "@chakra-ui/react"
 const DELETESTORE=gql`
@@ -16,10 +16,10 @@ const DeleteStore = ({storeId}) => {
     const [deletestore,{data, loading,error }] = useMutation(DELETESTORE,{ errorPolicy: 'all' },);
     const onSubmit=async()=>{
       const {data}= await deletestore({variables:{id:storeId},context:{headers:{token:authToken || ""}}})
-      if(data) router.push('/') 
+      if(data) router.push('/user/mystores?id=1&sortOrder=storeName') 
         
     }
-    //  {error && <p>{error?.message}</p>} 
+ 
     return (
         <Button colorScheme="red" onClick={onSubmit} disabled={loading || data} isLoading={loading}>Delete</Button>
     )

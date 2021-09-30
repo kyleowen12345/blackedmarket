@@ -1,9 +1,11 @@
 import React from 'react'
 import { Box,Text} from "@chakra-ui/react"
-import ProfileForm from './UserProfile/ProfileForm'
-import ProfileDetails from './UserProfile/ProfileDetails'
-import ProfileImage from './UserProfile/ProfileImage'
 import { useRouter } from "next/router"
+
+import ProfileForm from './ProfileForm'
+import ProfileDetails from './ProfileDetails'
+import ProfileImage from './ProfileImage'
+
 const Profile = ({user}) => {
   const router = useRouter()
   const {page}= router.query
@@ -14,7 +16,8 @@ const Profile = ({user}) => {
             <Text>Manage your account</Text>
             </Box>
             {
-              page =="update" ?  <ProfileForm user={user}/> 
+              page =="update" ?  
+              <ProfileForm user={user}/> 
               :
             <Box display="flex" flexDirection={["column-reverse","column-reverse","column-reverse","row"]}>
            <ProfileDetails user={user}/>

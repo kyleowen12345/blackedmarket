@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useMutation, gql } from "@apollo/client"
 import { useForm } from 'react-hook-form';
-import StoreForm from './Storeform/StoreForm';
+import StoreForm from '../ReusableStoreComponets/Storeform/StoreForm';
 import Cookies from 'js-cookie';
-import StoreImage from './StoreImage';
+import StoreImage from '../ReusableStoreComponets/Storeform/StoreImage';
 import { Box,Text,Link  } from "@chakra-ui/react"
 import { Step, Steps, useSteps } from "chakra-ui-steps"
 import CreateStoreInstruct from './CreateStoreInstruct'
@@ -25,15 +25,17 @@ const CreateStore = ({isSeller}) => {
       initialStep: isSeller ? 1 : 0,
     })
     const { register, formState: { errors } , handleSubmit } = useForm();
+    
     const onSubmit = async({storeName,storeAddress,storeDescription,storeType,socialMediaAcc,contactNumber}) => {
     await createstore({variables:{storeName:storeName,storeAddress:storeAddress,storeDescription:storeDescription,storeType:storeType,socialMediaAcc:socialMediaAcc,contactNumber:contactNumber},context:{headers:{token:Cookies.get('blackedmarket') || ""}}})
     };
+
     useEffect(() => {
       setReady(true)
     }, [])
     return (
         <Box >
-           {ready && <Steps colorScheme="teal" activeStep={activeStep} p={[1,1,1,1,8]}  fontFamily="body" textAlign={"left"}>
+           {ready && <Steps colorScheme="teal" activeStep={activeStep} p={[1,1,6,6,8]}  fontFamily="body" textAlign={"left"}>
            <Step label={"Step 1"} key={1} description={"Instructions"} >
                   <Text pl={[1,1,5,5,20]}fontSize="24px" fontWeight="bold">Instructions</Text>
                   <Text pl={[1,1,5,5,20]} fontSize="12px" >This step is to give guidance for the user on how to finish all the steps and to verify if you are a seller.</Text>
@@ -54,7 +56,7 @@ const CreateStore = ({isSeller}) => {
       </Steps>
       }
       {activeStep === 3 && 
-       <Box display="flex"  flexDirection="column" ml="auto" mr="auto" p={[0,0,5,5]} px={[4,10,5,5,20]} height={["100px","100px","300px"]} alignItems={["","","center"]} justifyContent="center">
+       <Box display="flex"  flexDirection="column" ml="auto" mr="auto" p={[0,0,5,5]} px={[4,10,5,5,20]} height={["200px","200px","300px"]} alignItems={["","","center"]} justifyContent="center">
          <Text fontSize="20px" fontWeight="bold">Woohoo! All steps completed!</Text>
          <NextLink href={`/stores/info/${data?.createStore.id}`} passHref><Link color="blue.400" textDecoration="underline" fontWeight="bold" fontSize={["12px","13px","14px","16px"]} >Click here to visit your new store!!!</Link></NextLink>
       </Box>

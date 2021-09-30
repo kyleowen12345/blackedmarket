@@ -1,3 +1,4 @@
+import React, {useEffect} from 'react'
 import { useMutation, gql } from "@apollo/client"
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router'
@@ -17,6 +18,8 @@ import {
 import NextLink from 'next/link'
 import { NextSeo } from "next-seo";
 import Footer from "../../components/Footer/Footer";
+import { useAuth } from "../../lib/auth";
+
 const RESETPASSWORD = gql`
 mutation($email:String!){
     resetPassword(email:$email){
@@ -24,10 +27,19 @@ mutation($email:String!){
     }
   }
 `;
+
 export default function Register() {
+    const {userCookie} = useAuth()
     const router = useRouter()
     const [resetpassword,{data, loading,error }] = useMutation(RESETPASSWORD,{ errorPolicy: 'all' });
     const { register, formState: { errors } , handleSubmit } = useForm();
+
+    useEffect(() => {
+      if(userCookie){
+        return router.push('/')
+      }  
+    }, [userCookie])
+    
     const onSubmit = async({email}) => {
        await  resetpassword({variables:{email:email}})      
     };
@@ -57,11 +69,11 @@ export default function Register() {
                           <Text color="red" ml={2} mt={1} fontSize={["12px","12px","12px","14px"]}>{errors.email && errors.email.message}</Text>
                         </FormControl>
                         <Stack spacing={[5,5,5,5,8]}>
-                             {error && <Alert status="error" maxW={["300px","300px","400px","500px"]}>
+                             {error && <Alert status="error" >
                                 <AlertIcon />
                                 <Text fontSize={["12px","13px","14px","16px"]} isTruncated>{error.message}</Text>
                               </Alert> }
-                              {data && <Alert status="success"maxW={["300px","300px","400px","500px"]}>
+                              {data && <Alert status="success">
                                 <AlertIcon />
                                 <Text fontSize={["12px","13px","14px","16px"]} isTruncated>Check your email to continue</Text>
                               </Alert> }

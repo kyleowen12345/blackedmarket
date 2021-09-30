@@ -12,10 +12,11 @@ import SubMenu from './SubMenu';
 
 const SearchInput = () => {
     const router = useRouter()
-    const { register, formState: { errors } , handleSubmit } = useForm();
+    const { register, formState: { errors } , handleSubmit,reset } = useForm();
     const onSubmit = async({search}) => {
             if(search){
-            return  router.push(`/products/search/${search}?id=1&sortOrder=productName`)
+              router.push(`/products/search/${search}?id=1&sortOrder=productName`)
+              reset(search)
             }else{
               return
             }

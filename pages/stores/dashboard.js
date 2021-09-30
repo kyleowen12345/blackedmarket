@@ -64,10 +64,10 @@ export default function Home() {
    : 
    error ? <Error message={error.message}/> 
    :
-    <Box width={["90%","90%","90%","95%","100%",1200]} mr="auto" ml="auto" mt={5}>
-     <Text fontSize={["25px","25px","25px","30px"]} fontWeight="bold">Dashboard</Text>
+    <Box width={["90%","90%","90%","95%","95%",1200]} mr="auto" ml="auto" mt={5}>
     {data &&  
     <>
+    <Text fontSize={["25px","25px","25px","30px"]} fontWeight="bold">Dashboard</Text>
      <ProductDashBoard data={data?.dashBoard}/>
      <ProductsAccordion data={data?.dashBoard}/>
     

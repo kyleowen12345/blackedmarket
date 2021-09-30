@@ -2,7 +2,7 @@ import {  gql } from "@apollo/client";
 import { initializeApollo } from "../src/apollo.ts";
 import { useQuery } from "@apollo/client";
 import ProductGrid from "../components/product/ProductGrid"
-import StoreGrid from "../components/store/StoreGrid"
+import StoreGrid from "../components/store/ReusableStoreComponets/StoreGrid"
 import { Box,Text,Button  } from "@chakra-ui/react"
 import Deals from "../components/Deals/Deals";
 import CarouselBanner from "../components/Banner/CarouselBanner";
@@ -58,6 +58,7 @@ export default function Home() {
            <Deals deals={data?.landingpage.deals}/>
 
 
+           
            <Text   fontSize={["13px","13px","17px"]} bg="white" mt={10} mb={2} p={[3,3,3,5]} fontWeight="bold" boxShadow="md" id="Store"   color="#FC8E00">Top Stores</Text>
              <StoreGrid stores={data?.landingpage.stores} />
              <NextLink href={'/stores/1?sortOrder=storeName'} passHref>
@@ -65,6 +66,8 @@ export default function Home() {
                     See More
                  </Button>
              </NextLink>
+         
+           
 
            <Text  fontSize={["13px","13px","17px"]}  bg="white" mt={10} mb={2} p={[3,3,3,5]} fontWeight="bold" boxShadow="md" id="products"   color="#FC8E00">New Products</Text>
              <ProductGrid products={data?.landingpage.products} />

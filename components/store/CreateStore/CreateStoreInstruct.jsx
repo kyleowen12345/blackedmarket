@@ -1,8 +1,8 @@
 import React from 'react'
 import { Box,Button,Text,Stack ,Alert,AlertIcon } from "@chakra-ui/react"
 import { useMutation, gql } from "@apollo/client"
-import {PROFILE} from '../../pages/user/profile'
-import { useAuth } from '../../lib/auth';
+import {PROFILE} from '../../../pages/user/profile'
+import { useAuth } from '../../../lib/auth';
 const SELLER = gql`
 mutation{
    seller{

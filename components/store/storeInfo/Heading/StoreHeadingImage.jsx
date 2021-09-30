@@ -5,7 +5,7 @@ import { useAuth } from '../../../../lib/auth'
 import { AiOutlineEdit } from "react-icons/ai"
 import DeleteModal from './withuser/DeleteModal'
 import NextLink from 'next/link'
-import Follow from './Follow/Follow'
+import Follow from './WithoutUser/Follow'
 
 const StoreHeadingImage = ({store,follower}) => {
     const {userData}=useAuth()
@@ -17,13 +17,14 @@ const StoreHeadingImage = ({store,follower}) => {
             <Box position="absolute" left={"1.25rem"} top={".625rem"} right={".875rem"} bottom={".625rem"} >
                 <Box display="flex">
                    <Box position="relative" height="5rem" width="5rem" flexShrink={0}>
-                       <Image src={store.storeBackgroundImage} alt={store.storeName} width="75px" height="75px" borderRadius="50%" border="2px solid white"/>
+                       <Image src={store.storeBackgroundImage} alt={store.storeName} width="75px" height="75px" borderRadius="50%" border="2px solid white" fallbackSrc="https://images.pexels.com/photos/1526/dark-blur-blurred-gradient.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
                    </Box>
                    <Box mt={".625rem"} ml={".625rem"} color="white" position="relative" overflow="hidden">
                        <Text fontWeight="bold" fontSize="20px" isTruncated  maxW="220px">{store.storeName}</Text>
                        <Text fontSize="12px">Active</Text>
                    </Box>
                 </Box>
+                {/* To identify if you are the owner of the store */}
                 {
                 store?.sellerName.id == userData?.id ? 
                 <Box position="relative" display="flex" mt=".625rem">
