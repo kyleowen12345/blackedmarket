@@ -12,7 +12,6 @@ module.exports = {
       ];
     },
      
-        webpack5: true,
     
       images: {
         domains: ['res.cloudinary.com','www.watsons.com.ph'],
