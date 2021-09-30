@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import {  gql,useLazyQuery  } from "@apollo/client";
 import { useRouter } from "next/router"
-import SortedProducts from '../../../../components/store/StoreInfo/StoreProducts/SortedProducts';
+import SortedProducts from '../../../../components/store/StoreInformation/StoreProducts/SortedProducts';
 import Loader from '../../../../components/Loader/Loader';
 import Footer from '../../../../components/Footer/Footer'
 import Error from '../../../../components/Error/Error'
