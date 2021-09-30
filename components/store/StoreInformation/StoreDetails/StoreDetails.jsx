@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box,Text,Image } from "@chakra-ui/react"
-import StoreDetailsGrid from '../StoreDetails/StoreDetailsGrid';
+import StoreDetailsGrid from './StoreDetailsGrid';
 const StoreDetails = ({store}) => {
     return (
         <Box  bg="white" height={["100%","100%","100%","400px"]}  m={[2,2,0]}  boxShadow="md" id="details" display="flex" flexDirection="column" justifyContent="center" mb={5} borderRadius={5}>

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import {  gql,useLazyQuery  } from "@apollo/client";
 import { useRouter } from "next/router"
-import StoreInfo from "../../../components/store/StoreInfo/Index";
+import StoreInfo from "../../../components/store/StoreInformation/Index";
 import { Box } from "@chakra-ui/react"
 import Loader from '../../../components/Loader/Loader';
 import { useAuth } from '../../../lib/auth';
