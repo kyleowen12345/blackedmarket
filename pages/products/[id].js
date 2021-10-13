@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {  gql  } from "@apollo/client";
 import { useLazyQuery } from "@apollo/client";
 import  { useRouter } from "next/router"
-import Products from '../../components/product/Products';
+import Products from '../../components/product/PaginatedProducts/Products';
 import Loader from '../../components/Loader/Loader';
 
 
@@ -41,12 +41,12 @@ export default function Home() {
   const {id,sortOrder}= router.query
   const [products,{ data, loading,error }] = useLazyQuery( PRODUCTS,{variables:{curPage:id || "1",sortOrder:sortOrder}} );
   useEffect(() => {
-    if( id){
+    if(sortOrder ||  id){
       return products()
     }else{
       return
     }
-  }, [id])
+  }, [id,sortOrder])
   return (
     <>
     {loading ? <Loader/> : error ? <Error message={error?.message}/>

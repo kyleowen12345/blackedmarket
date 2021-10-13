@@ -53,7 +53,7 @@ const ConfirmUser = ({setConfirmedUser}) => {
               <ModalHeader>Enter your password</ModalHeader>
               <ModalCloseButton />
               <ModalBody>
-               <Text fontSize="13px">Enter your password and submit, then click save changes.</Text>   
+               <Text fontSize="13px">Enter your password and click submit, then click save changes.</Text>   
               <Input type="password" onChange={(e)=>setPassword(e.target.value)}/>
               {error && 
           <Alert status="error" w="100%" mt={3}>
@@ -67,7 +67,7 @@ const ConfirmUser = ({setConfirmedUser}) => {
                 <Button  mr={3} onClick={onClose}>
                   Close
                 </Button>
-                <Button isLoading={loading} bg={"#FC8E00"}color={'white'} onClick={handleSubmit}>Confirm</Button>
+                <Button isLoading={loading} bg={"#FC8E00"}color={'white'} onClick={handleSubmit}>Submit</Button>
               </ModalFooter>
             </ModalContent>
           </Modal>

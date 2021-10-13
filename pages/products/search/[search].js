@@ -2,13 +2,12 @@ import React, {useEffect} from 'react'
 import {  gql  } from "@apollo/client";
 import { useLazyQuery } from "@apollo/client";
 import { useRouter } from "next/router"
-import Pagination from '../../../components/helpers/Pagination';
 import Loader from '../../../components/Loader/Loader';
 import { Box} from "@chakra-ui/react"
 import Footer from '../../../components/Footer/Footer';
-import Searched from '../../../components/Searched/Searched';
 import Error from '../../../components/Error/Error';
 import { NextSeo } from 'next-seo';
+import Searches from '../../../components/product/Search/Searches';
 
 
 const SEARCHPRODUCT = gql`
@@ -37,14 +36,14 @@ const SEARCHPRODUCT = gql`
 export default function Home() {
   const router = useRouter()
   const {id,search,sortOrder}= router.query
-  const [searchproduct,{ data, loading,error }] = useLazyQuery( SEARCHPRODUCT,{variables:{product:search,curPage:id,sortOrder:sortOrder||"1"}} );
+  const [searchproduct,{ data, loading,error }] = useLazyQuery( SEARCHPRODUCT,{variables:{product:search,curPage:id||"1",sortOrder:sortOrder}} );
   useEffect(() => {
     if(search){
    return  searchproduct()
     }
  
-  }, [search])
-  const sorterList=[{link:"productName",name:"Name"},{link:"price",name:"Price"},{link:"sold",name:"Sold"},{link:"createdAt",name:"Date"},{link:"productStocks",name:"Stocks"}]
+  }, [search,id,sortOrder])
+  
   return (
     <>
     {
@@ -53,9 +52,8 @@ export default function Home() {
     : 
     error ? <Error message={error?.message}/>
     :
-    <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto" >
-      {data && <Searched sorterList={sorterList} sortOrder={sortOrder} route={`/products/search/${search}?id=${id}&`} products={data?.searchProduct.products} result={search}/>}
-     {data?.searchProduct.maxPage > 1 && <Pagination marginPages={1} pageRange={2} initialPage={data?.searchProduct.curPage - 1} pageCount={data?.searchProduct.maxPage} />}
+    <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto" minH="600px">
+        {data && <Searches data={data} search={search} sortOrder={sortOrder}/>}
    </Box>
 
     }

@@ -11,7 +11,7 @@ const UserStoreList = ({stores}) => {
         <>
         {
             stores.length < 1 ?        
-            <Box  my={4} height="300px" display="flex" justifyContent="center" alignItems="center">
+            <Box  my={4} height="400px" display="flex" justifyContent="center" alignItems="center">
                 {
                 keyword ? 
                 <Box display="flex" flexDirection="column" alignItems="center">

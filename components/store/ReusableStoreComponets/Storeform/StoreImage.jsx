@@ -4,7 +4,7 @@ import imageCompressor from 'browser-image-compression'
 import axios from "axios";
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
-import { Box,Button,Text,Alert,AlertIcon } from "@chakra-ui/react"
+import { Box,Button,useToast } from "@chakra-ui/react"
 import { STORESINFO } from '../../../../pages/stores/info/[id]';
 
 const STOREIMAGE = gql`
@@ -27,8 +27,9 @@ mutation ($id:ID!,$storeBackgroundImage:String!){
   }
 }
 `;
-const StoreImage = ({storeId,nextStep,store,prevStep}) => {
+const StoreImage = ({storeId,store,prevStep}) => {
     const router = useRouter()
+    const toast = useToast()
     const [image, setImage] = useState("");
     const [url, setUrl] = useState("");
     const [photoload,setPhotoLoad]=useState(false)
@@ -55,9 +56,32 @@ const StoreImage = ({storeId,nextStep,store,prevStep}) => {
               })
             }
           }})
-             if(data) nextStep()
+             if(data){
+              router.push(`/stores/info/${storeId}`)
+              toast({
+                title: `Image upload success.`,
+                status:"success",
+                position:"top-right",
+                isClosable: true,
+              })
+              
+             }
+
         } 
     },[storeimage,storeId,url]);
+
+    useEffect(async() => {
+      if(error){
+        toast({
+          title: `Image upload failed.`,
+          description: `${error.message}`,
+          status:"error",
+          position:"top-right",
+          isClosable: true,
+        })
+       }
+
+},[error]);
 
     const postPhoto = async(e) => {
         e.preventDefault();
@@ -69,7 +93,18 @@ const StoreImage = ({storeId,nextStep,store,prevStep}) => {
 		data.append("upload_preset", "insta-clone");
 		data.append("cloud_name", "kaking");
 		const config = {headers: { "content-type": "multipart/form-data" },};
-		axios.post(`${process.env.NEXT_PUBLIC_CLOUDINARY_API}`,data,config).then((data) => {setUrl(data?.data.secure_url); setPhotoLoad(false)}).catch((err) => {console.log(err);setPhotoLoad(false)});})
+		axios.post(`${process.env.NEXT_PUBLIC_CLOUDINARY_API}`,data,config)
+    .then((data) => {setUrl(data?.data.secure_url); setPhotoLoad(false)})
+    .catch((err) => {
+      toast({
+        title: `Image upload failed.`,
+        description: `Cloudinary error`,
+        status:"error",
+        position:"top-right",
+        isClosable: true,
+      })
+      setPhotoLoad(false)
+    });})
        };
        
     return (
@@ -77,15 +112,9 @@ const StoreImage = ({storeId,nextStep,store,prevStep}) => {
       <form >
          <Box display={["block","block","flex"]} alignItems="center" justifyContent="space-between">
           <input type="file" onChange={(e) => setImage(e.target.files[0])} style={{maxWidth:"250px"}}/>
-          {error && 
-          <Alert status="error" w="100%">
-            <AlertIcon />
-            <Text fontSize={["12px","13px","14px","16px"]} isTruncated>{error.message}</Text>
-          </Alert> 
-          }
           <Box>
           {store && <Button onClick={prevStep} disabled={photoload || loading} mr={2}  mt={[2,2,0]}>Back</Button>}
-          <Button type="submit" onClick={postPhoto} disabled={photoload||!image} isLoading={photoload} mt={[2,2,0]} >Finish</Button>
+          <Button type="submit" onClick={postPhoto} disabled={loading||photoload||!image} isLoading={photoload} mt={[2,2,0]} >Upload</Button>
           </Box>
           </Box>
     </form>

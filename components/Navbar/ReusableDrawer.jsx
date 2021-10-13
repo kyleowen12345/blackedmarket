@@ -1,5 +1,6 @@
 import React from 'react'
 import {
+    Text,
     Flex,
     Container,
     Link,
@@ -24,19 +25,19 @@ const ReusableDrawer = ({onClose,isOpen,routes,user,loading,signOut}) => {
             <DrawerHeader borderBottomWidth="1px" color="#000000">
                <Flex display="flex" alignItems="center">
                <Avatar name={user?.name} src={user?.profilePic} mr={2}/>
-               {loading ? "loading...": user?.name}
+               <Text  maxW={200} isTruncated>{user ? user?.name : "loading..." }</Text>  
                </Flex>
             </DrawerHeader>
                :
             <DrawerHeader borderBottomWidth="1px" color="#000000">BlackedMarket</DrawerHeader>}
-             <DrawerBody display="flex" flexDirection="column">
+             <DrawerBody display="flex" flexDirection="column" mt={5} >
                {routes.map((link) => (
-                  <Container key={link.name} mb={5}> 
-                      <Icon as={link.icon} color="#000000" />
-                      <NextLink key={link.name} href={link.link} passHref><Link fontSize="md" color="#000000" p={2} onClick={onClose} >{link.name}</Link></NextLink>
+                  <Container key={link.name} mb={10}> 
+                      <Icon as={link.icon} color="#000000" fontSize="20px"/>
+                      <NextLink key={link.name} href={link.link} passHref><Link fontSize="20px" color="#000000" p={2} onClick={onClose} >{link.name}</Link></NextLink>
                   </Container>
               ))}
-              {user && <Container onClick={signOut}><Icon as={AiOutlineLogout} color="#000000" /><Link  fontSize="md" color="#000000" p={2} >Log Out</Link></Container>}
+              {user && <Container onClick={signOut}><Icon as={AiOutlineLogout} color="#000000" /><Link  fontSize="20px" color="#000000" p={2} >Log Out</Link></Container>}
              </DrawerBody>
         </DrawerContent>
       </Drawer>

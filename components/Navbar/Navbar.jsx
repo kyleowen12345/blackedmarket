@@ -10,10 +10,11 @@ const Navbar = () => {
     useEffect(() => {
       setReady(true)
   }, [])
+
     return (
-      <>
+      <div id="navbar">
       {ready && userCookie ?  <NavbarWithUser signOut={signOut} user={userData} loading={loading}/> :<NavbarNoUser />}
-      </>
+      </div >
     )
 }
 

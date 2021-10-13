@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { Box, Image } from "@chakra-ui/react";
-import BannerLink from "./BannerLink"
+
 
 
 
@@ -41,7 +41,7 @@ const CarouselBanner = () => {
         })}
         <Image src={"https://media.giphy.com/media/S5iaflEE71xTQaWTFm/giphy.gif"}  alt={"https://media.giphy.com/media/S5iaflEE71xTQaWTFm/giphy.gif"} height={["150px","200px","300px","400px"]} pl={10} display={["none","none","none","none","block"]} loading="eager"/>
       </Box>
-      {/* <BannerLink/> */}
+
     </>
   );
 }

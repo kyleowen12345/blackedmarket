@@ -12,10 +12,10 @@ import {
     Textarea,
     Select
   } from '@chakra-ui/react';
-  import CreateStoreButtons from './CreateStoreButtons'
+
   import UpdateStoreButtons from './UpdateStoreButtons'
   
-const StoreForm = ({register,loading,error,errors,prevStep,nextStep,data,store}) => {
+const StoreForm = ({register,loading,error,errors,nextStep,data,store}) => {
   const options=["","Automotive","Baby & Toddler","Clothing & Shoes","Computers","Electronics","Entertainment & Arts","Food & Gifts","Health & Beauty","Home & Garden","Travel","Sports & Outdoors","Software","Personal & Home Services","Office & Professional Services","Restaurants & Dining"]
     return (
     <Box p={5} px={[1,1,5,5,20]} >
@@ -157,12 +157,7 @@ const StoreForm = ({register,loading,error,errors,prevStep,nextStep,data,store})
             >
              Submit
           </Button> 
-          {
-          store ? 
-          <UpdateStoreButtons  loading={loading} nextStep={nextStep} />
-          :
-          <CreateStoreButtons prevStep={prevStep} loading={loading} nextStep={nextStep} data={data}/>
-          }
+          {store &&  <UpdateStoreButtons  loading={loading} nextStep={nextStep} />}
           
            
           </Box>

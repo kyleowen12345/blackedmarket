@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react'
 import {  gql,useLazyQuery  } from "@apollo/client";
 import { useRouter } from "next/router"
-import UpdateProduct from "../../../components/product/UpdateProduct";
+import UpdateProduct from "../../../components/product/UpdateProduct/UpdateProduct";
 import Loader from '../../../components/Loader/Loader';
 import { Box} from "@chakra-ui/react"
 import { useAuth } from '../../../lib/auth';
 import Error from '../../../components/Error/Error';
 import { NextSeo } from 'next-seo';
+import Footer from '../../../components/Footer/Footer';
 
  const UPDATEPRODUCTINFO = gql`
  query ($id:ID!){
@@ -63,12 +64,19 @@ export default function Home() {
     : 
     error ?<Error message={error?.message}/>
     :
-    <Box mt={[0,0,0,0,0,10]} borderRadius={5} bg="white" width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"  p={[3,2,0]} boxShadow="md">
+    <Box mt={[0,0,6,7,8,10]} borderRadius={5} bg="white" width={["100%","100%","95%","95%","95%",1200]} mr="auto" ml="auto"  p={[3,2,0]} boxShadow="md">
        {data && <UpdateProduct product={data?.productInfoUpdate} storeNames={MyStoresData?.allMyStores}/>} 
       
     </Box>}
 
 
+    {
+      data &&
+      <Box display={["none","none","none","block"]}>
+        <Footer/>
+      </Box>
+    }
+    
     
     <NextSeo
       title={`Product Update | BlackedMarket`}

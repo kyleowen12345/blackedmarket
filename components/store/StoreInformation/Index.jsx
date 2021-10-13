@@ -22,9 +22,9 @@ const StoreInfo = ({store,product,follower}) => {
             {/* Products Navigation*/}
          
             <Box bg="white" mt={20} mb={2} p={3} boxShadow="md" display="flex" alignItems="center" justifyContent="space-between" >
-              <Text  size="2xl"  fontWeight="bold" >Latest Products</Text>
+              <Text  fontSize={["10px","14px","15px","17px"]}  fontWeight="bold" >Latest Products</Text>
                  <NextLink href={`/stores/info/products?store=${store.id}&id=1&sortOrder=productName`} passHref>
-                      <Link  fontSize={["10px","10px","10px","13px"]} color="#FC8E00" fontWeight="bold">View All</Link>
+                      <Link  fontSize={["10px","13px","13px","15px"]} color="#FC8E00" fontWeight="bold">View All</Link>
                  </NextLink>
             </Box>
 
@@ -37,7 +37,7 @@ const StoreInfo = ({store,product,follower}) => {
              
              {/* Details */}
             
-               <Text  size="2xl" bg="white" mt={20} mb={2} p={3} fontWeight="bold" boxShadow="md" id="products">Store Details</Text>
+               <Text  fontSize={["10px","14px","15px","17px"]} bg="white" mt={20} mb={2} p={3} fontWeight="bold" boxShadow="md" id="products">Store Details</Text>
                <StoreDetails store={store}/>
          
         </Box>

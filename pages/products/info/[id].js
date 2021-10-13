@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react'
 import {  gql,useLazyQuery  } from "@apollo/client";
 import { useRouter } from "next/router"
-import ProductInfo from "../../../components/product/productinfo/ProductInfo";
+import ProductInfo from "../../../components/product/ProductInformation/ProductInfo";
 import Loader from '../../../components/Loader/Loader';
 import { Box } from "@chakra-ui/react"
-import ProductInfoSubNav from '../../../components/product/productinfo/ProductInfoSubNav'
+import ProductInfoSubNav from '../../../components/product/ProductInformation/ProductInfoSubNav'
 import Footer from '../../../components/Footer/Footer';
 import { NextSeo } from 'next-seo';
 import Error from '../../../components/Error/Error';
@@ -57,10 +57,12 @@ export default function ProductInformation() {
     : 
     error ? <Error message={error?.message}/>
     :
-         <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"   >
-           <ProductInfoSubNav data={data} id={id}/>
+         <Box mt={[0,0,6,7,8]} width={["100%","100%","95%","95%","95%",1200]} mr="auto" ml="auto"   >
               {data && 
+              <>
+              <ProductInfoSubNav data={data} id={id}/>
               <ProductInfo product={data?.productInfo} refetch={refetch}/>
+              </>
               }
        </Box>
        }

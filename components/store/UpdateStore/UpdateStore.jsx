@@ -3,11 +3,11 @@ import { useMutation, gql } from "@apollo/client"
 import { useForm } from 'react-hook-form';
 import StoreForm from '../ReusableStoreComponets/Storeform/StoreForm';
 import StoreImage from '../ReusableStoreComponets/Storeform/StoreImage';
-import { Box,Text,Link,Image  } from "@chakra-ui/react"
+import { Box,Text,Image,useToast  } from "@chakra-ui/react"
 import { Step, Steps, useSteps } from "chakra-ui-steps"
 import { useAuth } from '../../../lib/auth';
-import NextLink from 'next/link'
 import { STORESINFO } from '../../../pages/stores/info/[id]';
+
 const UPDATESTORE = gql`
 mutation ($id:ID!,$storeName:String!,$storeAddress:String!,$storeDescription:String!,$storeType:String!,$socialMediaAcc:String!,$contactNumber:String!){
   updateStore(id:$id,storeName:$storeName,storeAddress:$storeAddress,storeDescription:$storeDescription,storeType:$storeType,socialMediaAcc:$socialMediaAcc,contactNumber:$contactNumber){
@@ -33,10 +33,12 @@ mutation ($id:ID!,$storeName:String!,$storeAddress:String!,$storeDescription:Str
 const UpdateStore = ({store,id}) => {
     const [ready,setReady]=useState(false)  
     const {authToken}=useAuth()
-    const [updateStore,{ loading,error }] = useMutation(UPDATESTORE,{ errorPolicy: 'all' });
+    const toast = useToast()
     const { nextStep, prevStep, activeStep } = useSteps({
       initialStep: 0,
     })
+    const [updateStore,{ loading,error }] = useMutation(UPDATESTORE,{ errorPolicy: 'all' });
+    
     
     const { register, formState: { errors } , handleSubmit } = useForm({
       defaultValues:{
@@ -54,7 +56,7 @@ const UpdateStore = ({store,id}) => {
     }, [])
 
   const onSubmit = async({storeName,storeAddress,storeDescription,storeType,socialMediaAcc,contactNumber}) => {
-  await updateStore({variables:{id:store.id,storeName:storeName,storeAddress:storeAddress,storeDescription:storeDescription,storeType:storeType,socialMediaAcc:socialMediaAcc,contactNumber:contactNumber},context:{headers:{token:authToken || ""}},
+    const {data:StoreData}=  await updateStore({variables:{id:store.id,storeName:storeName,storeAddress:storeAddress,storeDescription:storeDescription,storeType:storeType,socialMediaAcc:socialMediaAcc,contactNumber:contactNumber},context:{headers:{token:authToken || ""}},
   update(cache,{data}){
     const oldStoreDetail=cache.readQuery({query:STORESINFO,variables:{id:id}})
 
@@ -74,6 +76,15 @@ const UpdateStore = ({store,id}) => {
     }
    
   }})
+  if(StoreData){
+    toast({
+      title: `Update successful.`,
+      description: 'Click "Next" to update the image of your store.',
+      status:"success",
+      position:"top-right",
+      isClosable: true,
+    })
+  }  
     
     };
     return (
@@ -98,12 +109,7 @@ const UpdateStore = ({store,id}) => {
               </Step>
           </Steps>
           }
-          {activeStep === 2 && 
-       <Box display="flex"  flexDirection="column" ml="auto" mr="auto" p={[0,0,5,5]} px={[4,10,5,5,20]} height={["200px","200px","300px"]} alignItems={["","","center"]} justifyContent="center">
-         <Text fontSize="20px" fontWeight="bold">Woohoo! All steps completed!</Text>
-         <NextLink href={`/stores/info/${store.id}`} passHref><Link color="blue.400" textDecoration="underline" fontWeight="bold" fontSize={["12px","13px","14px","16px"]} >Click here to go to your store!!!</Link></NextLink>
-      </Box>
-      }
+
       </Box>
     )
 }

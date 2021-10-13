@@ -10,7 +10,7 @@ const Footer = () => {
             <Box w="100%"  >
                <Box width={["100%","100%","100%","100%","100%",1200]}   height={["0px","0px","60px"]} borderBottom="1px solid #EAEDED" mx="auto"></Box>
             </Box> 
-            <Box width={["100%","100%","100%","100%","100%",1200]} mx="auto" mt={5} display="flex" justifyContent="space-between" >
+            <Box width={["100%","100%","100%","100%","100%",1200]} mx="auto" mt={10} display="flex" justifyContent="space-between" >
             <Stack spacing="10" divider={<StackDivider />} >
       <Stack
         direction={{

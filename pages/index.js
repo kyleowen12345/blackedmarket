@@ -1,7 +1,7 @@
 import {  gql } from "@apollo/client";
 import { initializeApollo } from "../src/apollo.ts";
 import { useQuery } from "@apollo/client";
-import ProductGrid from "../components/product/ProductGrid"
+import ProductGrid from "../components/product/ReusableProductComponent/ProductGrid"
 import StoreGrid from "../components/store/ReusableStoreComponets/StoreGrid"
 import { Box,Text,Button  } from "@chakra-ui/react"
 import Deals from "../components/Deals/Deals";

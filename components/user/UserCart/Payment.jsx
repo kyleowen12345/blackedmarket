@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {Box,Text,useToast} from "@chakra-ui/react"
 import { useCart } from '../../../lib/cart'
 import { useAuth } from '../../../lib/auth'
-import Paypal from '../../product/Paypal'
+import Paypal from '../../helpers/Paypal'
 
 import axios from 'axios'
 

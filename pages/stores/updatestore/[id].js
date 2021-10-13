@@ -10,6 +10,7 @@ import { NextSeo } from 'next-seo';
 import UpdateStore from "../../../components/store/UpdateStore/UpdateStore";
 import Loader from '../../../components/Loader/Loader';
 import Error from '../../../components/Error/Error';
+import Footer from '../../../components/Footer/Footer';
 
 export const UPDATESTOREINFO = gql`
  query ($id:ID!){
@@ -35,9 +36,7 @@ export default function Home() {
     useEffect(() => {
       if(!userCookie){
         return router.push('/login')
-        
       }
-
       if(id){
         return storesInfo()
       }
@@ -54,7 +53,14 @@ export default function Home() {
        {data && <UpdateStore store={data?.storeInfo.store} id={id}/>}
     </Box>
      }
-
+    
+    {
+      data && 
+      <Box display={["none","none","none","block",]}>
+           <Footer/>
+      </Box>
+      
+    }
 
      <NextSeo
       title={`Store Update | BlackedMarket`}

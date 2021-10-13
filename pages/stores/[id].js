@@ -36,7 +36,7 @@ export default function Home() {
   const {id,sortOrder}= router.query
   const [stores,{ data, loading,error } ]= useLazyQuery( STORES,{variables:{curPage:id || "1",sortOrder:sortOrder }} );
   useEffect(() => {
-    if(sortOrder && id){
+    if(sortOrder || id){
       return stores()
     }else{
       return

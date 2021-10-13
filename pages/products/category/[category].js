@@ -4,11 +4,10 @@ import { useLazyQuery } from "@apollo/client";
 import { useRouter } from "next/router"
 import Loader from '../../../components/Loader/Loader';
 import { Box} from "@chakra-ui/react"
-import Pagination  from '../../../components/helpers/Pagination';
 import Footer from '../../../components/Footer/Footer';
-import Searched from '../../../components/Searched/Searched';
 import Error from '../../../components/Error/Error';
 import { NextSeo } from 'next-seo';
+import Categories from '../../../components/product/Category/Categories';
 
 export const PRODUCTCATEGORY = gql`
 query ($category:String!,$curPage:String!,$sortOrder:String!){
@@ -36,23 +35,23 @@ query ($category:String!,$curPage:String!,$sortOrder:String!){
 export default function Category() {
   const router = useRouter()
   const {id,category,sortOrder}= router.query
-  const [productcategory,{ data, loading,error }] = useLazyQuery( PRODUCTCATEGORY,{variables:{category:category,curPage:id,sortOrder:sortOrder||"1"}} );
+  const [productcategory,{ data, loading,error }] = useLazyQuery( PRODUCTCATEGORY,{variables:{category:category,curPage:id||"1",sortOrder:sortOrder}} );
+  
   useEffect(() => {
     if(category){
    return  productcategory()
     }
  
-  }, [category])
-  const sorterList=[{link:"productName",name:"Name"},{link:"price",name:"Price"},{link:"sold",name:"Sold"},{link:"createdAt",name:"Date"},{link:"productStocks",name:"Stocks"}]
+  }, [category,id,sortOrder])
+  
   return (
     <>
     {loading ? <Loader/> 
     : 
     error ?  <Error message={error?.message}/> 
     :
-    <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto" >
-       {data && <Searched sorterList={sorterList} sortOrder={sortOrder}  route={`/products/category/${category}?id=${id}&`} products={data?.productCategory.products} result={category}/>}
-     {data?.productCategory.maxPage > 1 &&<Pagination marginPages={1} pageRange={2} initialPage={data?.productCategory.curPage - 1} pageCount={data?.productCategory.maxPage} />}
+    <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto" minH="600px">
+       {data && <Categories data={data} category={category} sortOrder={sortOrder}/> }
    </Box>
     }
 

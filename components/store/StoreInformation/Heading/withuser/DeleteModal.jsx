@@ -1,6 +1,6 @@
 import React from 'react'
 import { AiFillDelete } from "react-icons/ai"
-import { Icon,Button,AlertDialog,AlertDialogBody,AlertDialogFooter,AlertDialogHeader,AlertDialogContent,AlertDialogOverlay,AlertDialogCloseButton  } from "@chakra-ui/react"
+import { Icon,Text,Button,AlertDialog,AlertDialogBody,AlertDialogFooter,AlertDialogHeader,AlertDialogContent,AlertDialogOverlay,AlertDialogCloseButton  } from "@chakra-ui/react"
 import DeleteStore from './DeleteStore';
 
 const DeleteModal = ({store}) => {
@@ -25,7 +25,7 @@ const DeleteModal = ({store}) => {
             </AlertDialogHeader>
             <AlertDialogCloseButton />
             <AlertDialogBody>
-              Are you sure to delete {store.storeName} ? You can't undo this action afterwards.
+              Are you sure to delete "{store.storeName}" ? You can't undo this action afterwards.
             </AlertDialogBody>
 
             <AlertDialogFooter>

@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "cypress": "cypress open"
   },
   "dependencies": {
     "@apollo/client": "^3.3.16",
@@ -41,6 +42,7 @@
   },
   "devDependencies": {
     "@types/node": "^15.0.2",
+    "cypress": "^8.5.0",
     "eslint-plugin-react-hooks": "^4.2.0"
   },
   "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",

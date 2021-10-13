@@ -11,7 +11,7 @@ const SortedProducts = ({product}) => {
   const sorterList=[{link:"productName",name:"Name"},{link:"price",name:"Price"},{link:"sold",name:"Sold"},{link:"createdAt",name:"Date"},{link:"productStocks",name:"Stocks"}]
   
   return (
-        <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"   >
+        <Box width={["100%","100%","100%","100%","100%",1200]} mr="auto" ml="auto"   minH="600px">
             <SortingMenu sorterList={sorterList} sortOrder={sortOrder} route={`/stores/info/products?store=${store}&id=1&`}/>
             <Box display={"flex"}  alignItems="center" mt={[1,1,2,5]} p={3} px={[1,1,1,0]}>
                <NextLink href={`/stores/info/${store}`} passHref><Link color="messenger.400" fontSize="14px" fontWeight="bold" px={[2,2,2,2,2,0]}>Back To Store</Link></NextLink>

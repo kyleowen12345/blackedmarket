@@ -28,7 +28,7 @@ export default function Home() {
     : 
     error ? <Error message={error?.message}/> 
     :
-     <Box  mt={[0,0,0,5]}  width={["100%","100%","100%","95%","95%",1200]} mr="auto" ml="auto"  p={[3,0,0]} display="flex" flexDirection={["column","column","column","column","row"]} >
+     <Box  mt={[0,0,0,5]}  width={["100%","100%","100%","95%","95%",1200]} mr="auto" ml="auto"  p={[3,0,0]} display="flex" flexDirection={["column","column","column","column","row"]} minH="600px">
          {data && <Cart />}
      </Box>}
      

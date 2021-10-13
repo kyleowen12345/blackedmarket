@@ -8,6 +8,7 @@ import { useRouter } from "next/router"
 import Loader from '../../components/Loader/Loader';
 import Error from '../../components/Error/Error';
 import { NextSeo } from 'next-seo';
+import Footer from '../../components/Footer/Footer';
 
 export default function createStore() {
    const {authToken,userCookie}=useAuth()
@@ -19,7 +20,7 @@ export default function createStore() {
       }else{
         return profile()
       }
-  }, [])
+  }, [userCookie,authToken])
 
     return (
       <>
@@ -33,6 +34,12 @@ export default function createStore() {
       </Box>
       }
 
+     {
+       data && 
+       <Box display={["none","none","none","block",]}>
+          <Footer/>
+       </Box>
+     }
       <NextSeo
       title={`Create Store | BlackedMarket`}
       canonical={`https://blackedmarket.vercel.app/stores/createstore`}

@@ -11,7 +11,7 @@ const PurchaseList = ({history}) => {
     return (
         <>
         {
-        history?.length < 1 ? <Box my={4} height="300px" display="flex" justifyContent="center" alignItems="center" >
+        history?.length < 1 ? <Box my={4} height="500px" display="flex" justifyContent="center" alignItems="center" >
             {
                 keyword ? 
                 <Box display="flex" flexDirection="column" alignItems="center">

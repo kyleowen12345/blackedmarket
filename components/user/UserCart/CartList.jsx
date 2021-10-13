@@ -5,6 +5,7 @@ import Moment from 'react-moment';
 import DeleteItemInCart from './DeleteItemInCart';
 import SetQuantity from './SetQuantity';
 import { useCart } from '../../../lib/cart';
+import EmptyList from '../../helpers/EmptyList'
 
 const CartList = () => {
    const {data}=useCart()
@@ -12,9 +13,7 @@ const CartList = () => {
         <Box display={["none","none","none","block"]}>
          {
              data?.getCartInfo.cart.length < 1 ?
-             <Box  my={4} height="300px" display="flex" justifyContent="center" alignItems="center" >
-                  <Text fontSize="20px" fontWeight="bold">Cart is empty</Text>
-             </Box>
+              <EmptyList emptyData={"Cart is empty"}/>
              :
              data?.getCartInfo.cart.map(i=>(
                  <Box key={i.id} bg="white" my={4} boxShadow="md" borderRadius={5}>

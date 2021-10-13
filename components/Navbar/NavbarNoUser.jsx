@@ -25,7 +25,7 @@ const NavbarNoUser = () => {
       <Box  display="flex" justifyContent="center" alignItems="space-between">
         <Flex width={1200} alignItems="center" justifyContent="center">
           {/* Burger Menu */}
-          <IconButton size={'md'} icon={isOpen ? <CloseIcon  color="#ffffff"/> : <HamburgerIcon  color="#ffffff"/>} display={{ lg: 'none' }} aria-label={'Open Menu'} onClick={isOpen ? onClose : onOpen} bg="#000000" />
+          <IconButton size={'md'} icon={isOpen ? <CloseIcon  color="#ffffff"/> : <HamburgerIcon  color="#ffffff" id="humberger-icon"/>} display={{ lg: 'none' }} aria-label={'Open Menu'} onClick={isOpen ? onClose : onOpen} bg="#000000" />
           
           {/* Logo logic */}
           <Container display="flex"  alignItems="center"  width="300"  ml={["","","","","",0]} pl={["","","","","",0]}>
