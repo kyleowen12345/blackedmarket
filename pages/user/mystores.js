@@ -36,7 +36,7 @@ export default function Home() {
     const {id,sortOrder,keyword}= router.query
     const [mystores,{ data, loading,error } ]= useLazyQuery( MYSTORES,{variables:{curPage:id || "1",sortOrder:sortOrder, keyword:keyword },context:{headers:{token:authToken || ""}},fetchPolicy:"no-cache"} );
     useEffect(() => {
-      if(!userCookie){
+      if(!userCookie && !userData){
         return router.push('/login')
       }
       if(id){

@@ -30,18 +30,18 @@ export const UPDATESTOREINFO = gql`
 export default function Home() {
     const router = useRouter()
     const {id}= router.query
-    const {userCookie}=useAuth()
+    const {userCookie,userData}=useAuth()
     const [storesInfo,{ data,error,loading }] = useLazyQuery(STORESINFO,{variables:{id:id }});
 
     useEffect(() => {
-      if(!userCookie){
+      if(!userCookie && !userData){
         return router.push('/login')
       }
       if(id){
         return storesInfo()
       }
       
-  }, [id])
+  }, [id,userCookie,userData])
   return (
     <>
      {

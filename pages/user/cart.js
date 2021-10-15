@@ -15,13 +15,13 @@ import Footer from '../../components/Footer/Footer';
 export default function Home() {
     const router = useRouter()
     const {data,loading,error}=useCart()
-    const {userCookie}=useAuth()
+    const {userCookie,userData}=useAuth()
     useEffect(() => {
-      if(!userCookie){
+      if(!userCookie && !userData){
         return router.push('/login')
       }
       
-}, [userCookie])
+}, [userCookie,userData])
   return (
     <>
     {loading ? <Loader/> 

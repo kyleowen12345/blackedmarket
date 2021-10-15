@@ -11,16 +11,16 @@ import { NextSeo } from 'next-seo';
 import Footer from '../../components/Footer/Footer';
 
 export default function createStore() {
-   const {authToken,userCookie}=useAuth()
+   const {authToken,userCookie,userData}=useAuth()
    const router = useRouter()
    const [profile,{ data,error,loading }] = useLazyQuery( PROFILE,{context:{headers:{token:authToken||""}}});
     useEffect(() => {
-      if(!userCookie){
+      if(!userCookie && !userData){
         return router.push('/login')
       }else{
         return profile()
       }
-  }, [userCookie,authToken])
+  }, [userCookie,userData,authToken])
 
     return (
       <>

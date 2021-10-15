@@ -41,13 +41,13 @@ const ALLMYSTORES = gql`
 `;
 
 export default function Home() {
-   const {authToken,userCookie}=useAuth()
+   const {authToken,userCookie,userData}=useAuth()
     const router = useRouter()
     const {id}= router.query
     const [updateproductinfo,{ data,error,loading }] = useLazyQuery(UPDATEPRODUCTINFO,{variables:{id:id },context:{headers:{token:authToken||""}}});
     const [allMyStores,{ data:MyStoresData,error:MyStoresError,loading:MyStoresLoading }] = useLazyQuery(ALLMYSTORES,{context:{headers:{token:authToken||""}}});
     useEffect(() => {
-      if(!userCookie){
+      if(!userCookie && !userData){
         return router.push('/login')
       }
       if(id){
@@ -55,7 +55,7 @@ export default function Home() {
         allMyStores()
       } 
       
-  }, [id])
+  }, [id,userCookie,userData])
 
   return (
     <>

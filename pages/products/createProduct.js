@@ -20,16 +20,16 @@ import EmptyList from '../../components/helpers/EmptyList';
 `;
 
 export default function Home() {
-    const {authToken,userCookie}=useAuth()
+    const {authToken,userCookie,userData}=useAuth()
     const router = useRouter()
     const [allMyStores,{ data,error,loading }] = useLazyQuery(ALLMYSTORES,{context:{headers:{token:authToken||""}}});
     useEffect(() => {
-      if(!userCookie){
+      if(!userCookie && !userData){
         return router.push('/login')
       }else{
        return allMyStores()
       }
-  }, [userCookie])
+  }, [userCookie,userData])
  
   return (
     <>

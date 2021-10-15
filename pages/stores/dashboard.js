@@ -16,6 +16,7 @@ export const DASHBOARD = gql`
 query {
     dashBoard{
       productCount
+      productSoldCount
       storeCount
       products{
         id
@@ -45,18 +46,18 @@ query {
 
 
 export default function Home() {
-  const {authToken,userCookie}=useAuth()
+  const {authToken,userCookie,userData}=useAuth()
   const router = useRouter()
   const [dashboard,{ data, loading,error }] = useLazyQuery( DASHBOARD,{context:{headers:{token:authToken||""}}} );
   useEffect(() => {
-    if(!userCookie){
+    if(!userCookie && !userData){
       return router.push('/login')
     }else{
     return dashboard()
     }
-}, [])
+}, [userCookie,userData])
 
-
+console.log(data)
   return (
    <> 
    {

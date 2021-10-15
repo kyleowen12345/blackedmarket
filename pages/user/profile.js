@@ -34,13 +34,13 @@ export default function Home() {
   const {authToken,userData,userCookie}=useAuth()
     const [profile,{ data,error,loading }] = useLazyQuery( PROFILE,{context:{headers:{token:authToken||""}}});
     useEffect(() => {
-      if(!userCookie){
+      if(!userCookie && !userData){
         return router.push('/login')
       }else{
         return  profile()
       }
      
-  }, [userCookie])
+  }, [userCookie,userData])
 
   return (
     <>

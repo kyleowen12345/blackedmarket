@@ -36,12 +36,12 @@ export default function Home() {
     const {id,keyword}= router.query
     const [purchases,{ data,error,loading }] = useLazyQuery(PURCHASES,{variables:{curPage:id || "1",keyword:keyword},context:{headers:{token:authToken||""}}, fetchPolicy: "no-cache" });
     useEffect(() => {
-       if(!userCookie){
+       if(!userCookie && !userData){
          return router.push('/login')
        }else{
          return  purchases()
        }
-  }, [userCookie,id,keyword])
+  }, [userCookie,userData,id,keyword])
   return (
     < >
       {loading ? <Loader/> 
