@@ -7,8 +7,8 @@ import { Box,Text,Button  } from "@chakra-ui/react"
 import Deals from "../components/Deals/Deals";
 import CarouselBanner from "../components/Banner/CarouselBanner";
 import Footer from "../components/Footer/Footer";
-import { NextSeo } from "next-seo";
 import NextLink from 'next/link'
+import Seo from "../components/helpers/Seo";
 
 
 const LANDINGPAGE = gql`
@@ -83,7 +83,7 @@ export default function Home() {
     <Footer/>
 
 
-    <NextSeo
+    {/* <NextSeo
       title='BlackedMarket'
       canonical='https://blackedmarket.vercel.app/'
       description="Diversify your bonds and grow with BlackedMarket.."
@@ -105,7 +105,8 @@ export default function Home() {
         cardType:'summary_large_image',
         handle:'Kyle Owen Ga'
       }}>
-    </NextSeo>
+    </NextSeo> */}
+    <Seo title={'BlackedMarket'} url={'https://blackedmarket.vercel.app/'} description={"Diversify your bonds and grow with BlackedMarket.."}/>
    </>
   );
 }

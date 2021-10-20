@@ -7,7 +7,7 @@ import Loader from '../../components/Loader/Loader';
 import { Box } from "@chakra-ui/react"
 import Footer from '../../components/Footer/Footer';
 import Error from '../../components/Error/Error';
-import { NextSeo } from 'next-seo';
+import Seo from '../../components/helpers/Seo';
 
 
 export const STORES = gql`
@@ -55,7 +55,7 @@ export default function Home() {
 
     {data && <Footer/>}
 
-    <NextSeo
+    {/* <NextSeo
     title='Stores | BlackedMarket'
     canonical='https://blackedmarket.vercel.app/stores/1?sortOrder=storeName'
     description="We sell multiple types of products you've never seen before."
@@ -77,7 +77,13 @@ export default function Home() {
       cardType:'summary_large_image',
       handle:'Kyle Owen Ga'
     }}>
-    </NextSeo>
+    </NextSeo> */}
+
+    <Seo 
+    title={'Stores | BlackedMarket'} 
+    url={'https://blackedmarket.vercel.app/stores/1?sortOrder=storeName'} 
+    description={"We sell multiple types of products you've never seen before."} 
+    />
      
     </>
   )

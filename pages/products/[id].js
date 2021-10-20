@@ -10,6 +10,7 @@ import { Box} from "@chakra-ui/react"
 import Footer from '../../components/Footer/Footer';
 import Error from '../../components/Error/Error';
 import { NextSeo } from 'next-seo';
+import Seo from '../../components/helpers/Seo';
 
 
 export const PRODUCTS = gql`
@@ -56,7 +57,7 @@ export default function Home() {
     </Box>
     }
     {data && <Footer/>}
-    <NextSeo
+    {/* <NextSeo
     title='Products | BlackedMarket'
     canonical='https://blackedmarket.vercel.app/products/1?sortOrder=productName'
     description="We sell multiple types of products you've never seen before."
@@ -81,8 +82,12 @@ export default function Home() {
     
     
     >
-    </NextSeo>
-    
+    </NextSeo> */}
+    <Seo 
+    title={'Products | BlackedMarket'} 
+    url={'https://blackedmarket.vercel.app/products/1?sortOrder=productName'} 
+    description={"We sell multiple types of products you've never seen before."} 
+    />
     </>
   )
 }
