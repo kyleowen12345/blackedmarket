@@ -26,7 +26,31 @@ const AddtoCart = ({product,refetch}) => {
     const {authToken}=useAuth()
     const {cartRefetch}=useCart()
     const [quantity,setQuantity]=useState(1)
-    const [addToCart,{ loading,error }] = useMutation(ADDTOCART,{ errorPolicy: 'all' });
+    const [addToCart,{ loading,error }] = useMutation(ADDTOCART,{ errorPolicy: 'all' ,
+       onCompleted:data => {
+           if(data) {
+            toast({
+                title:"Add to cart success",
+                description:`${data.addToCart.productName} has been added`,
+                status:"success",
+                isClosable: true,
+                position:"top-right",
+                duration:1000
+              })
+           }
+       },
+       onError:error =>{
+           if(error) {
+            toast({
+                title:"Add to cart failed",
+                description:error.message,
+                status:"error",
+                isClosable: true,
+                position:"top-right"
+              })
+           }
+       }
+});
     const { isOpen, onOpen, onClose } = useDisclosure()
     const initialRef = React.useRef()
     const finalRef = React.useRef()
@@ -49,18 +73,8 @@ const AddtoCart = ({product,refetch}) => {
         }
        
     }
-    const noUser=()=>{
-        return router.push('/login')
-    }
-    useEffect(() => {
-        if(error){
-            toast({
-                title:error.message,
-                    status:"error",
-                    isClosable: true,
-              })
-        }
-    }, [error])
+    
+
     return (
         <Box maxH={"90px"}>
             <Box m={3} mt={5} display={"flex"} >
@@ -75,7 +89,7 @@ const AddtoCart = ({product,refetch}) => {
             </Box>
             <Box display={"flex"} width={["290px","290px","290px","400px"]} justifyContent="space-between" m={3} mt={[3,3,5]}>
                  <Button fontSize={["13px","13px","18px"]} onClick={onSubmit} isLoading={loading} disabled={ quantity > product.productStocks || quantity === 0 ||isNaN(quantity) || product.productStocks < 1}  width={["120px","120px","150px","180px"]} bg="#FFF0DD" color="#FC8E00" border="1px solid #FC8E00" _hover={{bg:"#FFF0DD"}} mr={5}><Icon as={AiOutlineShoppingCart} color="#FC8E00" mr={2}/>Add to Cart</Button>
-                 <Button fontSize={["13px","13px","18px"]}  width={["120px","120px","150px","180px"]} disabled={ quantity > product.productStocks || quantity === 0 ||isNaN(quantity) || product.productStocks < 1}  bg="#FC8E00" color="white" _hover={{bg:"#FC8E00"}} mr={[5,5,0]} onClick={authToken ? onOpen : noUser}  >Buy Now</Button>
+                 <Button fontSize={["13px","13px","18px"]}  width={["120px","120px","150px","180px"]} disabled={ quantity > product.productStocks || quantity === 0 ||isNaN(quantity) || product.productStocks < 1}  bg="#FC8E00" color="white" _hover={{bg:"#FC8E00"}} mr={[5,5,0]} onClick={authToken ? onOpen : ()=>router.push('/login')}  >Buy Now</Button>
             </Box>
                 <BuyNow isOpen={isOpen} quantity={quantity} product={product} setQuantity={setQuantity} onClose={onClose}  initialRef={initialRef} finalRef={finalRef} refetch={refetch}/>
         </Box>

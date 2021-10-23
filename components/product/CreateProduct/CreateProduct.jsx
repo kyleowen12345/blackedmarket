@@ -4,8 +4,9 @@ import { useForm } from 'react-hook-form';
 import { Box,Text,useToast  } from "@chakra-ui/react"
 import { Step, Steps, useSteps } from "chakra-ui-steps"
 import ProductForm from '../ReusableProductComponent/ProductForm/ProductForm';
-import ProductImage from '../ReusableProductComponent/ProductImage';
+import ProductImage from '../ReusableProductComponent/ProductForm/ProductImage';
 import { useAuth } from '../../../lib/auth';
+
 const CREATEPRODUCT = gql`
 mutation ($productName:String!,$price:Int!,$productStocks:Int!,$description:String!,$storeName:ID!){
     createProduct(productName:$productName,price:$price,productStocks:$productStocks,description:$description,storeName:$storeName){
@@ -26,37 +27,37 @@ mutation ($productName:String!,$price:Int!,$productStocks:Int!,$description:Stri
 `;
 
 const CreateProduct = ({storeNames}) => {
-  const [ready,setReady]=useState(false)
   const {authToken}=useAuth()
   const toast = useToast()
   const { nextStep, prevStep, activeStep } = useSteps({
     initialStep: 0,
   })
-    const [createproduct,{data, loading,error }] = useMutation(CREATEPRODUCT,{ errorPolicy: 'all' });
+    const [createproduct,{data, loading,error }] = useMutation(CREATEPRODUCT,{ errorPolicy: 'all',
+     onCompleted:data =>{
+       if(data){
+        nextStep()
+        toast({
+          title: "Successfully created a product",
+          description: 'Now you can add an image for your product.',
+          status:"success",
+          position:"top-right",
+          isClosable: true,
+        })
+       }
+     }
+  });
     const { register, formState: { errors } , handleSubmit } = useForm();
     const onSubmit = async({productName,price,productStocks,description,storeName}) => {
         const storeNamelist=storeNames.find(i=>i.storeName === storeName)
         if(storeNamelist){
-           const {data:ProductData} = await createproduct({variables:{productName:productName,price:parseInt(price),productStocks:parseInt(productStocks),description:description,storeName:storeNamelist.id},context:{headers:{token:authToken || ""}}})
-           if(ProductData){
-            nextStep()
-            toast({
-              title: "Successfully created a product",
-              description: 'Now you can add an image for your product.',
-              status:"success",
-              position:"top-right",
-              isClosable: true,
-            })
-           }  
+           await createproduct({variables:{productName:productName,price:parseInt(price),productStocks:parseInt(productStocks),description:description,storeName:storeNamelist.id},context:{headers:{token:authToken || ""}}})
         } 
         
        };
-  useEffect(() => {
-        setReady(true)
-      }, [])
+ 
     return (
         <Box >
-           {ready && <Steps colorScheme="teal" activeStep={activeStep} p={[1,1,6,6,8]}  fontFamily="body" textAlign={"left"}>
+           {storeNames && <Steps colorScheme="teal" activeStep={activeStep} p={[1,1,6,6,8]}  fontFamily="body" textAlign={"left"}>
            <Step label={"Step 1"} key={1} description={"Product Details"} >
                   <Text pl={[1,1,5,5,20]}fontSize="24px" fontWeight="bold">Product Details</Text>
                   <Text pl={[1,1,5,5,20]} fontSize="12px" >Please be careful on choosing store name.</Text>

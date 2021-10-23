@@ -26,7 +26,6 @@ const StoreGrid = ({stores,imageLoad}) => {
                            </Box>
 
                                <Box
-                                mt="1"
                                 pl={2}
                                 display="flex"
                                 justifyContent="space-between"

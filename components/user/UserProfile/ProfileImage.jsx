@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react'
 import { useMutation, gql } from "@apollo/client"
-import { Box,Text,Image,Input,Button,Icon} from "@chakra-ui/react"
+import { Box,Text,Image,Input,Button,Icon,useToast} from "@chakra-ui/react"
 import { AiOutlineSave,AiOutlineEdit } from "react-icons/ai"
 import imageCompressor from 'browser-image-compression'
 import axios from "axios";
@@ -27,14 +27,40 @@ mutation ($profilePic:String!){
 
 const ProfileImage = ({user}) => {
     const {authToken}=useAuth()
+    const toast = useToast()
     const [image,setImage]=useState("")
     const [url, setUrl] = useState("");
     const [photoload,setPhotoLoad]=useState(false)
     const [edit,setEdit]=useState(false)
-    const [updateUserImage,{error,loading }] = useMutation(UPDATEUSERIMAGE,{ errorPolicy: 'all' });
+    const [updateUserImage,{error,loading }] = useMutation(UPDATEUSERIMAGE,{ errorPolicy: 'all',
+      onCompleted:data =>{
+        if(data){
+          setEdit(false)
+          setImage(null)
+          toast({
+            title: `Image upload success.`,
+            description:"Succesfully updated your profile image",
+            status:"success",
+            position:"top-right",
+            isClosable: true,
+          })
+        }
+      },
+      onError:error =>{
+        if(error){
+          toast({
+            title: `Image upload failed.`,
+            description: `${error.message}`,
+            status:"error",
+            position:"top-right",
+            isClosable: true,
+          })
+         }
+      }
+  });
     useEffect(async() => {
         if(url){
-            const {data}= await updateUserImage({variables:{profilePic:url},context:{headers:{token:Cookies.get('blackedmarket') || ""}},
+            await updateUserImage({variables:{profilePic:url},context:{headers:{token:Cookies.get('blackedmarket') || ""}},
         update(cache,{data}){
             if(data){
                 cache.writeQuery({
@@ -46,23 +72,42 @@ const ProfileImage = ({user}) => {
                 })
               }
         }})
-             if(data){
-                setEdit(false)
-                setImage(null)
-              }
         } 
     },[updateUserImage,url]);
+
     const postPhoto = async(e) => {
-        e.preventDefault();
-        setPhotoLoad(true)
-        const options = {maxSizeMB: 0.3,maxWidthOrHeight: 1920,useWebWorker: true}
+    e.preventDefault();
+    setPhotoLoad(true)
+    const options = {maxSizeMB: 0.3,maxWidthOrHeight: 1920,useWebWorker: true}
 		imageCompressor(image,options).then(compressFile=>{
 		const data = new FormData();
 		data.append("file", compressFile);
 		data.append("upload_preset", "insta-clone");
 		data.append("cloud_name", "kaking");
 		const config = {headers: { "content-type": "multipart/form-data" },};
-		axios.post(`${process.env.NEXT_PUBLIC_CLOUDINARY_API}`,data,config).then((data) => {setUrl(data?.data.secure_url); setPhotoLoad(false)}).catch((err) => {console.log(err);setPhotoLoad(false)});})
+		axios.post(`${process.env.NEXT_PUBLIC_CLOUDINARY_API}`,data,config)
+    .then((data) => {
+      setUrl(data?.data.secure_url)
+       setPhotoLoad(false)
+       toast({
+        title: `Image upload ongoing.`,
+        description:"Please wait a little bit more..",
+        status:"info",
+        position:"top-right",
+        duration:1000,
+        isClosable: true,
+      })
+      })
+    .catch((err) => {
+      toast({
+        title: `Image upload failed.`,
+        description: `Cloudinary error`,
+        status:"error",
+        position:"top-right",
+        isClosable: true,
+      })
+      setPhotoLoad(false)
+    });})
        };
     return (
         <Box p={8} my={[0,0,0,10]} width={["100%","100%","100%","40%"]} borderLeft="1px solid #EFEFEF" display="flex" flexDirection="column" alignItems="center">

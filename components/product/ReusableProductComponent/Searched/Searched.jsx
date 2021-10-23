@@ -8,7 +8,7 @@ const Searched = ({sortOrder,route,products,result}) => {
     return (
         <Box width="100%">
             <SortingMenu sorterList={sorterList} sortOrder={sortOrder}  route={route}/>
-            <Text py={5} textAlign="center" fontWeight="bold" fontSize="18px">Result for -  {result?.toUpperCase()}</Text>
+            <Text py={5} textAlign="center" fontWeight="bold" fontSize={["16px","16px","19px","21px"]} isTruncated>Result for -  {result?.toUpperCase()}</Text>
             {products.length === 0 ? <EmptyList emptyData={`No results related to ${result}`}/>: <ProductGrid products={products}/>}
         </Box>
     )

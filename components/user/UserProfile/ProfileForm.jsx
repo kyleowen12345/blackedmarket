@@ -11,7 +11,8 @@ import {
     Alert,
     AlertIcon,
     Icon,
-    Link
+    Link,
+    useToast
   } from '@chakra-ui/react';
   import { useForm } from 'react-hook-form';
 import { useAuth } from '../../../lib/auth';
@@ -40,8 +41,22 @@ mutation ($name:String!,$email:String!,$contactNumber:String!,$country:String!,$
 const ProfileForm = ({user}) => {
    const {authToken}=useAuth()
    const router = useRouter()
+   const toast = useToast()
    const [confirmedUser,setConfirmedUser]=useState(false)
-   const [updateUser,{data, loading,error }] = useMutation(UPDATEUSER,{ errorPolicy: 'all' });
+   const [updateUser,{data, loading,error }] = useMutation(UPDATEUSER,{ errorPolicy: 'all',
+     onCompleted:data =>{
+        if(data){
+         router.push('/user/profile')
+         toast({
+            title: "Successfully updated your profile",
+            description: 'You can also update your profile image.',
+            status:"success",
+            position:"top-right",
+            isClosable: true,
+          })
+        }
+     }
+});
    const { register, formState: { errors } , handleSubmit } = useForm({
       defaultValues: {
           name: user.name,
@@ -54,7 +69,7 @@ const ProfileForm = ({user}) => {
         }
   });
   const onSubmit = async({name,email,contactNumber,country,city,SocialMediaAcc,zipcode}) => {
-   const {data}=await  updateUser({variables:{name:name,email:email,contactNumber:contactNumber,country:country,city:city,SocialMediaAcc:SocialMediaAcc,zipcode:zipcode},context:{headers:{token:authToken || ""}},
+   await  updateUser({variables:{name:name,email:email,contactNumber:contactNumber,country:country,city:city,SocialMediaAcc:SocialMediaAcc,zipcode:zipcode},context:{headers:{token:authToken || ""}},
    update(cache,{data}){
      if(data){
         cache.writeQuery({
@@ -67,9 +82,6 @@ const ProfileForm = ({user}) => {
      }
    }
 })
-   if(data){
-      router.push('/user/profile')
-   }  
 };
     return (
    <Box  py={5} px={8}>

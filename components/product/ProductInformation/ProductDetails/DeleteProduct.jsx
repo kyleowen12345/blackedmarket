@@ -21,35 +21,35 @@ const DeleteProduct = ({productId,storeId,productName}) => {
     const {authToken}=useAuth()
     const router = useRouter()
     const toast = useToast()
-    const [deleteproduct,{data, loading,error }] = useMutation(DELETEPRODUCT,{ errorPolicy: 'all' },);
+    const [deleteproduct,{data, loading,error }] = useMutation(DELETEPRODUCT,{ errorPolicy: 'all',
+       onCompleted:data => {
+         if(data){
+          router.push(`/stores/info/${storeId}`) 
+          toast({
+            title: `Delete successful`,
+            description: "You deleted the product.",
+            status:"success",
+            position:"top-right",
+            isClosable: true,
+      })
+         }
+       },
+       onError:error =>{
+         if(error) {
+          toast({
+            title: `Delete failed.`,
+            description: `${error.message}`,
+            status:"error",
+            position:"top-right",
+            isClosable: true,
+          })
+         }
+       }
+  });
     const onSubmit=async()=>{
-      const {data:ProductData}= await deleteproduct({variables:{id:productId},context:{headers:{token:authToken || ""}},refetchQueries:[{query:STORESINFO,variables:{id:storeId}}]})
-      if(ProductData) {
-        router.push(`/stores/info/${storeId}`) 
-        toast({
-          title: `Delete successful`,
-          description: "You deleted the product.",
-          status:"success",
-          position:"top-right",
-          isClosable: true,
-    })
-      }
-     
-        
+     await deleteproduct({variables:{id:productId},context:{headers:{token:authToken || ""}},refetchQueries:[{query:STORESINFO,variables:{id:storeId}}]})   
     }
      
-    useEffect(async() => {
-      if(error){
-        toast({
-          title: `Delete failed.`,
-          description: `${error.message}`,
-          status:"error",
-          position:"top-right",
-          isClosable: true,
-        })
-       }
-
-      },[error]);
     
     return (
         <>

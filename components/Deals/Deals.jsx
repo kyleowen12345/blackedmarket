@@ -19,7 +19,7 @@ const Deals = ({deals}) => {
                                  <Box mt="1" fontWeight="semibold"as="h4" lineHeight="tight" isTruncated >
                                       <Text fontSize={["0.75rem" ,"0.875rem",]} isTruncated>{i.productName}</Text>
                                  </Box>
-                                       <Text fontSize={["0.83rem" ,"0.955rem",]} mt={[0 ,2]} mb={[0 ,1]}>$ {i.price}</Text>
+                                       <Text fontSize={["0.83rem" ,"0.955rem",]} my={[0 ,1,1,1,2]} isTruncated>$ {i.price} </Text>
                                   <Box
                                     color="gray.500"
                                     fontWeight="semibold"
@@ -28,7 +28,7 @@ const Deals = ({deals}) => {
                                     textTransform="uppercase"
                                     isTruncated
                                    >
-                                  <Badge borderRadius="full"  colorScheme="orange" >
+                                  <Badge borderRadius="full"  colorScheme="orange" maxW="130px" isTruncated>
                                   {i.sold} sold
                                 </Badge>
                                  </Box>

@@ -13,13 +13,16 @@ mutation{
   }
 `;
 const CreateStoreInstruct = ({nextStep,isSeller}) => {
-   const [seller,{ error,loading }] = useMutation( SELLER,{ errorPolicy: 'all' });
+   const [seller,{ error,loading }] = useMutation( SELLER,{ errorPolicy: 'all',
+      onCompleted:data=>{
+        if(data){
+          nextStep()
+        }
+      } 
+  });
    const {authToken}=useAuth()
    const handleSeller=async()=>{
-    const {data}=  await seller({context:{headers:{token:authToken || ""}},refetchQueries:[{query:PROFILE,context:{headers:{token:authToken || ""}}}]})
-    if(data){
-      nextStep()
-    }
+    await seller({context:{headers:{token:authToken || ""}},refetchQueries:[{query:PROFILE,context:{headers:{token:authToken || ""}}}]})
    }
     return (
         <Box p={5} px={[1,1,5,5,20]}>

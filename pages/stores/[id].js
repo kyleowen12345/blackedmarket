@@ -55,30 +55,6 @@ export default function Home() {
 
     {data && <Footer/>}
 
-    {/* <NextSeo
-    title='Stores | BlackedMarket'
-    canonical='https://blackedmarket.vercel.app/stores/1?sortOrder=storeName'
-    description="We sell multiple types of products you've never seen before."
-    openGraph={{
-      url:'https://blackedmarket.vercel.app/stores/1?sortOrder=storeName',
-      title:'Stores | BlackedMarket',
-      description:"We sell multiple types of products you've never seen before.",
-      images:[
-        {
-          url: 'https://image.freepik.com/free-vector/online-shop-illustration_180868-82.jpg',
-          width: 200,
-          height: 200,
-          alt: 'Stores page',
-        }
-      ]
-    }}
-    twitter={{
-      site:'BlackedMarket',
-      cardType:'summary_large_image',
-      handle:'Kyle Owen Ga'
-    }}>
-    </NextSeo> */}
-
     <Seo 
     title={'Stores | BlackedMarket'} 
     url={'https://blackedmarket.vercel.app/stores/1?sortOrder=storeName'} 

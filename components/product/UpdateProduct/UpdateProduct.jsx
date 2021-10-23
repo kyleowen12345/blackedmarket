@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useMutation, gql } from "@apollo/client"
 import { useForm } from 'react-hook-form';
-import { Box,Text,Image  } from "@chakra-ui/react"
+import { Box,Text,Image,useToast  } from "@chakra-ui/react"
 import { Step, Steps, useSteps } from "chakra-ui-steps"
-import ProductImage from '../ReusableProductComponent/ProductImage';
+import ProductImage from '../ReusableProductComponent/ProductForm/ProductImage';
 import ProductForm from '../ReusableProductComponent/ProductForm/ProductForm';
 import { useAuth } from '../../../lib/auth';
 import { PRODUCTINFO } from '../../../pages/products/info/[id]';
@@ -20,10 +20,23 @@ mutation ($id:ID!,$productName:String!,$price:Int!,$productStocks:Int!,$descript
 `;
 
 const UpdateProduct = ({product,storeNames}) => {
-    const [ready,setReady]=useState(false)
+    // const [ready,setReady]=useState(false)
     const {authToken}=useAuth()
+    const toast = useToast()
     const { nextStep, prevStep, activeStep } = useSteps({initialStep: 0})
-    const [updateproduct,{data, loading,error }] = useMutation(UPDATEPRODUCT,{ errorPolicy: 'all' });
+    const [updateproduct,{data, loading,error }] = useMutation(UPDATEPRODUCT,{ errorPolicy: 'all',
+     onCompleted:data => {
+       if(data){
+        toast({
+          title: `Update successful.`,
+          description: 'Click "Next" to update the image of your product.',
+          status:"success",
+          position:"top-right",
+          isClosable: true,
+        })
+       }
+     }
+  });
 
     const { register, formState: { errors } , handleSubmit } = useForm({
       defaultValues:{
@@ -38,27 +51,19 @@ const UpdateProduct = ({product,storeNames}) => {
     const onSubmit = async({productName,price,productStocks,description,storeName}) => {
       const storeNamelist=storeNames.find(i=>i.storeName === storeName)
      if(storeNamelist){
-     const {data:ProductData}= await updateproduct({variables:{id:product.id,productName:productName,price:parseInt(price),productStocks:parseInt(productStocks),description:description,storeName:storeNamelist.id},context:{headers:{token:authToken || ""}},
+     await updateproduct({variables:{id:product.id,productName:productName,price:parseInt(price),productStocks:parseInt(productStocks),description:description,storeName:storeNamelist.id},context:{headers:{token:authToken || ""}},
       refetchQueries:[{query:PRODUCTINFO,variables:{id:product.id}},{query:STORESINFO,variables:{id:storeNamelist.id}}]})
-      if(ProductData){
-        toast({
-          title: `Update successful.`,
-          description: 'Click "Next" to update the image of your product.',
-          status:"success",
-          position:"top-right",
-          isClosable: true,
-        })
-      }
+     
      } 
     };
 
-    useEffect(() => {
-      setReady(true)
-    }, [])
+    // useEffect(() => {
+    //   setReady(true)
+    // }, [])
     
     return (
       <Box>
-        {ready && <Steps colorScheme="teal" activeStep={activeStep} p={[1,1,1,1,8]}  fontFamily="body" textAlign={"left"}>
+        {storeNames && <Steps colorScheme="teal" activeStep={activeStep} p={[1,1,1,1,8]}  fontFamily="body" textAlign={"left"}>
            <Step label={"Step 1"} key={1} description={"Product Details"} >
                   <Text pl={[1,1,5,5,20]}fontSize="24px" fontWeight="bold">Product details update</Text>
                   <Text pl={[1,1,5,5,20]} fontSize="12px" >If you don't want to change store then select the current store writen below the store name input</Text>

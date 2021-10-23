@@ -45,12 +45,14 @@ const Payment = () => {
             title: `You successfully just purchase those items`,
             status:"success",
             isClosable: true,
+            position:"top-right"
           })
         } catch (error) {
           toast({
             title: `Something went wrong`,
             status:"error",
             isClosable: true,
+            position:"top-right"
           })
           console.log(error)
          }

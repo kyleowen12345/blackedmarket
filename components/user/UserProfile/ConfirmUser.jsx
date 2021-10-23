@@ -32,14 +32,17 @@ const ConfirmUser = ({setConfirmedUser}) => {
     const {authToken}=useAuth()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [password,setPassword]=useState()
-    const [confirmUser,{ loading,error }] = useMutation(CONFIRMUSER,{ errorPolicy: 'all' });
-
-    const handleSubmit=async()=>{
-       const {data}=  await confirmUser({variables:{password:password},context:{headers:{token:authToken || ""}}})
+    const [confirmUser,{ loading,error }] = useMutation(CONFIRMUSER,{ errorPolicy: 'all',
+     onCompleted:data => {
        if(data){
         onClose()
         setConfirmedUser(true)
        }
+     }
+  });
+
+    const handleSubmit=async()=>{
+        await confirmUser({variables:{password:password},context:{headers:{token:authToken || ""}}})
     }
 
     return (

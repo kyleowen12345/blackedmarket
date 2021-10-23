@@ -31,13 +31,25 @@ mutation ($id:ID!,$storeName:String!,$storeAddress:String!,$storeDescription:Str
 `;
 
 const UpdateStore = ({store,id}) => {
-    const [ready,setReady]=useState(false)  
+    // const [ready,setReady]=useState(false)  
     const {authToken}=useAuth()
     const toast = useToast()
     const { nextStep, prevStep, activeStep } = useSteps({
       initialStep: 0,
     })
-    const [updateStore,{ loading,error }] = useMutation(UPDATESTORE,{ errorPolicy: 'all' });
+    const [updateStore,{ loading,error }] = useMutation(UPDATESTORE,{ errorPolicy: 'all',
+    onCompleted:data => {
+      if(data){
+        toast({
+          title: `Update successful.`,
+          description: 'Click "Next" to update the image of your store.',
+          status:"success",
+          position:"top-right",
+          isClosable: true,
+        })
+      }
+    }
+  });
     
     
     const { register, formState: { errors } , handleSubmit } = useForm({
@@ -51,13 +63,13 @@ const UpdateStore = ({store,id}) => {
       }
     });
 
-    useEffect(() => {
-      setReady(true)
-    }, [])
+    // useEffect(() => {
+    //   setReady(true)
+    // }, [])
 
   const onSubmit = async({storeName,storeAddress,storeDescription,storeType,socialMediaAcc,contactNumber}) => {
-    const {data:StoreData}=  await updateStore({variables:{id:store.id,storeName:storeName,storeAddress:storeAddress,storeDescription:storeDescription,storeType:storeType,socialMediaAcc:socialMediaAcc,contactNumber:contactNumber},context:{headers:{token:authToken || ""}},
-  update(cache,{data}){
+   await updateStore({variables:{id:store.id,storeName:storeName,storeAddress:storeAddress,storeDescription:storeDescription,storeType:storeType,socialMediaAcc:socialMediaAcc,contactNumber:contactNumber},context:{headers:{token:authToken || ""}},
+   update(cache,{data}){
     const oldStoreDetail=cache.readQuery({query:STORESINFO,variables:{id:id}})
 
     if(data){
@@ -76,20 +88,12 @@ const UpdateStore = ({store,id}) => {
     }
    
   }})
-  if(StoreData){
-    toast({
-      title: `Update successful.`,
-      description: 'Click "Next" to update the image of your store.',
-      status:"success",
-      position:"top-right",
-      isClosable: true,
-    })
-  }  
+ 
     
     };
     return (
         <Box >
-          {ready && 
+          {store && 
           <Steps colorScheme="teal" activeStep={activeStep} p={[1,1,6,6,8]}  fontFamily="body" textAlign={"left"}> 
              <Step label={"Step 1"} key={1} description={"Edit details"} >
                   <Text pl={[1,1,5,5,20]} fontSize="24px" fontWeight="bold">Edit details</Text>

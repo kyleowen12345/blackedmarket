@@ -16,36 +16,35 @@ const DeleteStore = ({storeId}) => {
     const {authToken}=useAuth()
     const router = useRouter()
     const toast = useToast()
-    const [deletestore,{data, loading,error }] = useMutation(DELETESTORE,{ errorPolicy: 'all' },);
-    const onSubmit=async()=>{
-      const {data:storeData}= await deletestore({variables:{id:storeId},context:{headers:{token:authToken || ""}}})
-      if(storeData){
-        toast({
-              title: `Delete successful`,
-              description: "You deleted the store.",
-              status:"success",
-              position:"top-right",
-              isClosable: true,
-        })
-        router.push('/user/mystores?id=1&sortOrder=storeName') 
+    const [deletestore,{data, loading,error }] = useMutation(DELETESTORE,{ errorPolicy: 'all',
+      onCompleted:data => {
+         if(data){
+          toast({
+            title: `Delete successful`,
+            description: "You deleted the store.",
+            status:"success",
+            position:"top-right",
+            isClosable: true,
+          })
+          router.push('/user/mystores?id=1&sortOrder=storeName')
+         }
+      },
+      onError:error => {
+        if(error){
+          toast({
+            title: `Delete failed.`,
+            description: `${error.message}`,
+            status:"error",
+            position:"top-right",
+            isClosable: true,
+          })
+        }
       }
-      
-        
+  });
+    const onSubmit=async()=>{
+      await deletestore({variables:{id:storeId},context:{headers:{token:authToken || ""}}})  
     }
 
-    useEffect(async() => {
-      if(error){
-        toast({
-          title: `Delete failed.`,
-          description: `${error.message}`,
-          status:"error",
-          position:"top-right",
-          isClosable: true,
-        })
-       }
-
-      },[error]);
- 
     return (
         <Button colorScheme="red" onClick={onSubmit} disabled={loading || data} isLoading={loading}>Delete</Button>
     )

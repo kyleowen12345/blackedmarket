@@ -30,7 +30,7 @@ export default function createStore() {
       error ? <Error message={error?.message}/>
       :
       <Box mt={[0,0,6,7,8,10]} borderRadius={5} bg="white" width={["100%","100%","95%","95%","95%",1200]} mr="auto" ml="auto"  p={[3,2,0]}  boxShadow="md" >
-      {data &&  <CreateStore isSeller={data?.user.Seller}/>}
+      {data &&  <CreateStore seller={data} />}
       </Box>
       }
 

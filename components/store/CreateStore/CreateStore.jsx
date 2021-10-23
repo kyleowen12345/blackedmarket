@@ -18,40 +18,43 @@ mutation ($storeName:String!,$storeAddress:String!,$storeDescription:String!,$st
     }
   }
 `;
-const CreateStore = ({isSeller}) => {
-    const [ready,setReady]=useState(false)
+const CreateStore = ({seller}) => {
+    // const [ready,setReady]=useState(false)
     const {authToken}=useAuth()
     const toast = useToast()
-    const [createstore,{data,loading,error }] = useMutation(CREATESTORE,{ errorPolicy: 'all' });
+    const [createstore,{data,loading,error }] = useMutation(CREATESTORE,{ errorPolicy: 'all',
+      onCompleted:data => {
+        if(data){
+          nextStep()
+          toast({
+            title: "Successfully created a store",
+            description: 'Now you can add an image for your store.',
+            status:"success",
+            position:"top-right",
+            isClosable: true,
+          })
+        }
+      }  
+  });
     const { nextStep, prevStep, activeStep } = useSteps({
-      initialStep: isSeller ? 1 : 0,
+      initialStep: seller?.user.Seller ? 1 : 0,
     })
     const { register, formState: { errors } , handleSubmit } = useForm();
     
     const onSubmit = async({storeName,storeAddress,storeDescription,storeType,socialMediaAcc,contactNumber}) => {
-    const {data:storeData}=  await createstore({variables:{storeName:storeName,storeAddress:storeAddress,storeDescription:storeDescription,storeType:storeType,socialMediaAcc:socialMediaAcc,contactNumber:contactNumber},context:{headers:{token:authToken || ""}}})
-      if(storeData){
-        nextStep()
-        toast({
-          title: "Successfully created a store",
-          description: 'Now you can add an image for your store.',
-          status:"success",
-          position:"top-right",
-          isClosable: true,
-        })
-      }  
+    await createstore({variables:{storeName:storeName,storeAddress:storeAddress,storeDescription:storeDescription,storeType:storeType,socialMediaAcc:socialMediaAcc,contactNumber:contactNumber},context:{headers:{token:authToken || ""}}})
   };
 
-    useEffect(() => {
-      setReady(true)
-    }, [])
+    // useEffect(() => {
+    //   setReady(true)
+    // }, [])
     return (
         <Box >
-           {ready && <Steps colorScheme="teal" activeStep={activeStep} p={[1,1,6,6,8]}  fontFamily="body" textAlign={"left"}>
+           {seller && <Steps colorScheme="teal" activeStep={activeStep} p={[1,1,6,6,8]}  fontFamily="body" textAlign={"left"}>
            <Step label={"Step 1"} key={1} description={"Instructions"} >
                   <Text pl={[1,1,5,5,20]}fontSize="24px" fontWeight="bold">Instructions</Text>
                   <Text pl={[1,1,5,5,20]} fontSize="12px" >This step is to give guidance for the user on how to finish all the steps and to verify if you are a seller.</Text>
-                 <CreateStoreInstruct nextStep={nextStep} isSeller={isSeller}/>
+                 <CreateStoreInstruct nextStep={nextStep} isSeller={seller?.user.Seller}/>
               </Step>
               <Step label={"Step 2"} key={2} description={"Store details"} >
                   <Text pl={[1,1,5,5,20]} fontSize="24px" fontWeight="bold">Add details</Text>

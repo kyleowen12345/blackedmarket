@@ -30,7 +30,9 @@ const StoreInfo = ({store,product,follower}) => {
 
 
             {/* Products */}
+            <Box minH={["200px","200px","300px","400px"]}>
              <StoreProduct product={product}/>
+             </Box>
          
 
 

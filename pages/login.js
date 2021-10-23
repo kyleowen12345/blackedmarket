@@ -15,11 +15,13 @@ import {
   Text,
   useColorModeValue,
   Alert,
-  AlertIcon, 
+  AlertIcon,
+  useToast 
 } from '@chakra-ui/react';
 import Footer from "../components/Footer/Footer"
 import NextLink from 'next/link'
-import { NextSeo } from 'next-seo';
+import Seo from '../components/helpers/Seo';
+
 const LOGIN = gql`
 mutation($email:String!,$password:String!){
     login(email:$email,password:$password){
@@ -29,20 +31,33 @@ mutation($email:String!,$password:String!){
 `;
 export default function Login() {
     const router = useRouter()
-    const {Login,userCookie}=useAuth()
+    const toast = useToast()
+    const {Login,userCookie,userData}=useAuth()
+
     useEffect(() => {
-      if(userCookie){
+      if(userCookie && userData){
         return router.push('/')
       }  
-    }, [userCookie])
-    const [login,{data, loading,error }] = useMutation(LOGIN,{ errorPolicy: 'all' });
+    }, [userCookie,userData])
+
+    const [login,{data, loading,error }] = useMutation(LOGIN,{ errorPolicy: 'all',
+    onCompleted: data => {
+      if (data) {
+        Login(data?.login.token)
+        toast({
+          title: `Log in successful.`,
+          description:"Now you go do amazing stuff.",
+          status:"success",
+          position:"top-right",
+          isClosable: true,
+        })
+        router.push("/")
+      }
+  } 
+  });
     const { register, formState: { errors } , handleSubmit } = useForm();
     const onSubmit = async({email,password}) => {
-            const{data}=await  login({variables:{email:email,password:password}})
-            if(data){
-             Login(data?.login.token)
-             router.push("/")
-            }
+            await  login({variables:{email:email,password:password}})
     };
     return (
       <>
@@ -122,29 +137,12 @@ export default function Login() {
 
       <Footer/>
 
-      <NextSeo
-       title={'Login | BlackedMarket'} 
-       canonical='https://blackedmarket.vercel.app/login'
-       description="Login and explore how we can diversify your bonds." 
-       openGraph={{
-          url:'https://blackedmarket.vercel.app/login',
-          title:'Login | BlackedMarket',
-          description:"Login and explore how we can diversify your bonds.",
-          images:[
-             {
-                url: 'https://res.cloudinary.com/kaking/image/upload/v1628816288/login_gglnit.png',
-                width: 200,
-                height: 200,
-                alt: 'Login | BlackedMarket',
-             }
-                ]
-       }}
-       twitter={{
-          site:'BlackedMarket',
-          cardType:'summary_large_image',
-          handle:'Kyle Owen Ga'
-       }}>
-      </NextSeo>
+     
+      <Seo 
+      title={'Login | BlackedMarket'}
+      url={'https://blackedmarket.vercel.app/login'}
+      description={"Login and explore how we can diversify your bonds."}
+    />
     </>
     );
   }
