@@ -36,14 +36,16 @@ function MyApp({ Component, pageProps }) {
    
     <ApolloProvider client={client}>
       <AuthProvider>
-      <CartProvider>
-      <ChakraProvider theme={theme}  resetCSS>
-      <GlobalStyle/>
-       <Navbar/>
-       <Component {...pageProps} />
-    </ChakraProvider >
-    </CartProvider> 
-    </AuthProvider>
+        <CartProvider>
+
+            <ChakraProvider theme={theme}  resetCSS>
+               <GlobalStyle/>
+               <Navbar/>
+                 <Component {...pageProps} />
+            </ChakraProvider >
+  
+         </CartProvider> 
+      </AuthProvider>
     </ApolloProvider>
   
   )

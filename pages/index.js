@@ -82,31 +82,11 @@ export default function Home() {
 
     <Footer/>
 
-
-    {/* <NextSeo
-      title='BlackedMarket'
-      canonical='https://blackedmarket.vercel.app/'
-      description="Diversify your bonds and grow with BlackedMarket.."
-      openGraph={{
-         url:'https://blackedmarket.vercel.app/',
-         title:'BlackedMarket',
-         description:"Diversify your bonds with BlackedMarket..",
-         images:[
-           {
-             url: 'https://res.cloudinary.com/kaking/image/upload/v1628750805/217357472_675551463359051_2404077277848383996_n_ljac7b.png',
-             width: 200,
-             height: 200,
-             alt: 'Diversify your bonds with BlackedMarket..',
-           }
-               ]
-      }}
-      twitter={{
-        site:'BlackedMarket',
-        cardType:'summary_large_image',
-        handle:'Kyle Owen Ga'
-      }}>
-    </NextSeo> */}
-    <Seo title={'BlackedMarket'} url={'https://blackedmarket.vercel.app/'} description={"Diversify your bonds and grow with BlackedMarket.."}/>
+    <Seo 
+    title={'BlackedMarket'}
+    url={'https://blackedmarket.vercel.app/'}
+    description={"Diversify your bonds and grow with BlackedMarket.."}
+    />
    </>
   );
 }
