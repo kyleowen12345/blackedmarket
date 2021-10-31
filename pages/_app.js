@@ -10,6 +10,7 @@ import {Global,css} from '@emotion/react'
 import Navbar from '../components/Navbar/Navbar';
 import theme from '../styles/theme';
 import { CartProvider } from '../lib/cart';
+import { StoreInfoProvider } from '../lib/storeinfo';
 const GlobalStyle = ({ children }) => {
   return (
     <>
@@ -36,15 +37,15 @@ function MyApp({ Component, pageProps }) {
    
     <ApolloProvider client={client}>
       <AuthProvider>
-        <CartProvider>
-
-            <ChakraProvider theme={theme}  resetCSS>
-               <GlobalStyle/>
-               <Navbar/>
-                 <Component {...pageProps} />
-            </ChakraProvider >
-  
-         </CartProvider> 
+          <CartProvider>
+                <StoreInfoProvider>  
+                      <ChakraProvider theme={theme}  resetCSS>
+                        <GlobalStyle/>
+                        <Navbar/>
+                          <Component {...pageProps} />
+                      </ChakraProvider >
+                </StoreInfoProvider>  
+          </CartProvider> 
       </AuthProvider>
     </ApolloProvider>
   

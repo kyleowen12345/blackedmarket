@@ -8,6 +8,7 @@ import { useAuth } from '../../../lib/auth';
 import Footer from '../../../components/Footer/Footer';
 import Error from '../../../components/Error/Error';
 import { NextSeo } from 'next-seo';
+import { useStoreInfo } from '../../../lib/storeinfo';
 
 export const STORESINFO = gql`
  query ($id:ID!){
@@ -43,8 +44,16 @@ export const STORESINFO = gql`
 export default function Home() {
   const router = useRouter()
   const {authToken}=useAuth()
+  const {setStoreInformation} = useStoreInfo()
   const {id}= router.query
-  const [storesinfo,{ data, error,loading }] = useLazyQuery( STORESINFO,{variables:{id:id },context:{headers:{token:authToken || ""}}} );
+  const [storesinfo,{ data, error,loading }] = useLazyQuery( STORESINFO,
+    {
+    variables:{id:id },
+    context:{headers:{token:authToken || ""}},
+    onCompleted: data => {
+         setStoreInformation(data)
+    } 
+    } );
   useEffect(() => {
     if(id){
       return storesinfo()
