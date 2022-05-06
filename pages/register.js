@@ -45,7 +45,7 @@ export default function Register() {
          if(data){
           signUp(data?.createUser.token)
           toast({
-            title: `Registration is success.`,
+            title: `Registration is successful.`,
             description:"Now you go do amazing stuff.",
             status:"success",
             position:"top-right",

@@ -120,7 +120,7 @@ const StoreForm = ({register,loading,error,errors,nextStep,data,store}) => {
           </FormControl>
           <FormControl id="storeDescription" >
             <Box display="flex">
-                <FormLabel>storeDescription</FormLabel>
+                <FormLabel>Store Description</FormLabel>
                 <Text color="red">*</Text>
             </Box>
             <Textarea 
