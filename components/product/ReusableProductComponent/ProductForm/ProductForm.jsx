@@ -25,7 +25,7 @@ const ProductForm = ({register,data,loading,error,errors,storeNames,product,next
                   <Box display={["block","block","flex"]} justifyContent="space-between" width="100%">    
                      <FormControl id="productname" width={["100%","100%","45%"]} mb={[3,3,0]}>
                         <Box display="flex">
-                           <FormLabel >Product name</FormLabel>
+                           <FormLabel >Product Name</FormLabel>
                            <Text color="red">*</Text>
                         </Box> 
                         <Input {...register("productName", {
@@ -57,7 +57,7 @@ const ProductForm = ({register,data,loading,error,errors,storeNames,product,next
                  <Box display={["block","block","flex"]} justifyContent="space-between" width="100%"> 
                     <FormControl id="stocks" width={["100%","100%","45%"]} mb={[3,3,0]}>
                           <Box display="flex">
-                              <FormLabel >Product stocks</FormLabel>
+                              <FormLabel >Product Stocks</FormLabel>
                               <Text color="red">*</Text>
                           </Box> 
                           <Input  type="number" {...register("productStocks",{
@@ -70,7 +70,7 @@ const ProductForm = ({register,data,loading,error,errors,storeNames,product,next
                     </FormControl>
                     <FormControl id="storename" width={["100%","100%","45%"]}>
                           <Box display="flex">
-                               <FormLabel>Store name</FormLabel>
+                               <FormLabel>Store Name</FormLabel>
                                <Text color="red">*</Text>
                           </Box>
                           <Select  {...register('storeName',{

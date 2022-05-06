@@ -23,7 +23,7 @@ const StoreForm = ({register,loading,error,errors,nextStep,data,store}) => {
          <Box display={["block","block","flex"]} justifyContent="space-between" width="100%">
           <FormControl id="storename" width={["100%","100%","45%"]} mb={[3,3,0]}>
              <Box display="flex">
-                <FormLabel >Store name </FormLabel>
+                <FormLabel >Store Name </FormLabel>
                  <Text color="red">*</Text>
             </Box> 
             <Input 
@@ -41,7 +41,7 @@ const StoreForm = ({register,loading,error,errors,nextStep,data,store}) => {
           </FormControl>
           <FormControl id="storetype" width={["100%","100%","45%"]}>
             <Box display="flex">
-                <FormLabel>Store type</FormLabel>
+                <FormLabel>Store Type</FormLabel>
                 <Text color="red">*</Text>
             </Box>
             <Select
@@ -83,7 +83,7 @@ const StoreForm = ({register,loading,error,errors,nextStep,data,store}) => {
           </FormControl>
           <FormControl id="contactNumber" width={["100%","100%","45%"]}>
             <Box display="flex">
-                <FormLabel>Contact number</FormLabel>
+                <FormLabel>Contact Number</FormLabel>
                 <Text color="red">*</Text>
             </Box>
             <Input  type="number"
@@ -102,7 +102,7 @@ const StoreForm = ({register,loading,error,errors,nextStep,data,store}) => {
          </Box>
          <FormControl id="storeAddress" >
             <Box display="flex">
-                <FormLabel>Store address</FormLabel>
+                <FormLabel>Store Address</FormLabel>
                 <Text color="red">*</Text>
             </Box>
             <Input 
