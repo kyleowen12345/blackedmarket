@@ -65,7 +65,7 @@ const CreateStoreInstruct = ({nextStep,isSeller}) => {
                        * If you are not a seller read the terms below and agree, to continue.
                     </Text>    
                     <Text>
-                       * * If you are on the second step you should submit the details you fill out to continue.
+                       * If you are on the second step you should submit the details you fill out to continue.
                     </Text>
                     <Text>
                     * If you don't select an image your store will have our default background image.
